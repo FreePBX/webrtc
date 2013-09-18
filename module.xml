@@ -1,0 +1,31 @@
+<module>
+        <rawname>emergencyphones</rawname>
+        <name>WebRTC Phones based on SIPML5</name>
+        <version>0.1.b4</version>
+        <type>tool</type>
+        <publisher>Navaismo</publisher>
+        <license>GPLv2+</license>
+        <description>
+                Provides two Web SIP Softphone using the SIPML5 API. 
+			&#10;One for emergency calls -register with remote pbx- 
+			&#10;Other to register in local PBX only accesible via ARI interface. 
+		&#10;&#10;Requires Asterisk 11.5 and prepared to work with WebRTC 
+        </description>
+ 	<changelog>
+                *0.1* First Release (Ultrabeta)
+		*0.1.b1* Fixed the look and feel using the dashboard css
+                *0.1.b2* Added to the ARI(user) Page the Emergency Phone Menu
+                *0.1.b3* Added to the ARI(user) Page the Local Web Phone Menu to Register with Local PBX
+			 Changed the Name of the Module.
+		*0.1.b4* Configured to work without webrt2sip media gateway.
+        </changelog>
+        <info>navaismo@gmail.com</info>
+        <category>Unsupported</category>
+        <menuitems>
+                <emergencyphones category="Connectivity"> Emergency Phone </emergencyphones>
+        </menuitems>
+</module>
+
+
+
+

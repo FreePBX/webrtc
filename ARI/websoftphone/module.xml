@@ -1,0 +1,23 @@
+<module>
+        <rawname>websoftphone</rawname>
+        <name>Web Phone based on SIPML5</name>
+        <version>0.1</version>
+        <type>tool</type>
+        <publisher>Navaismo</publisher>
+        <license>GPLv2+</license>
+        <description>
+                Provides web SIP softphone using WebRTC and SIPML5. UltraBeta Stage! Use at your Own Risk.
+        </description>
+ 	<changelog>
+                *0.1* First Release (Ultrabeta)
+        </changelog>
+        <info>navaismo@gmail.com</info>
+        <category>Unsupported</category>
+        <menuitems>
+                <websoftphone category="Connectivity"> Web Softphone </websoftphone>
+        </menuitems>
+</module>
+
+
+
+
