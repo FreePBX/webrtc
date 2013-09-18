@@ -10,7 +10,7 @@ function webrtc_get_config($engine) {
 
 	switch($engine) {
 		case "asterisk":
-			$core_conf->addRtpAdditional('general', array("icesupport" => "yes"));
+			//$core_conf->addSipGeneral("icesupport", "yes");
 			break;
 	}
 }
