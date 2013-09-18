@@ -1,7 +1,7 @@
 <module>
-        <rawname>emergencyphones</rawname>
+        <rawname>webrtc</rawname>
         <name>WebRTC Phones based on SIPML5</name>
-        <version>0.1.b4</version>
+        <version>2.11.0.0beta1</version>
         <type>tool</type>
         <publisher>Navaismo</publisher>
         <license>GPLv2+</license>
@@ -20,9 +20,9 @@
 		*0.1.b4* Configured to work without webrt2sip media gateway.
         </changelog>
         <info>navaismo@gmail.com</info>
-        <category>Unsupported</category>
+        <category>Connectivity</category>
         <menuitems>
-                <emergencyphones category="Connectivity"> Emergency Phone </emergencyphones>
+                <webrtc beta="yes">WebRTC</webrtc>
         </menuitems>
 </module>
 

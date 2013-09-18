@@ -4,10 +4,8 @@
 
 /* two columns, sizes of each category box */
 #sysinfo-left, #sysinfo-left .infobox {
-	width: 350px;
-	//float: left;
-	margin-left: 200px;
-
+	width:400px;
+	float: left;
 }
 
 #sysinfo-right {

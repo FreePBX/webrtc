@@ -16,13 +16,6 @@ if (! function_exists("outn")) {
 	}
 }
 
-$sql="DROP TABLE websoftphone";
+$sql="DROP TABLE webrtc";
 out(_("Removing Database!"));
 $check = $db->query($sql);
-
-out(_("Removing From ARI interface!"));
-exec("rm -rf ".$amp_conf['AMPWEBROOT']."/recordings/modules/emergencyphone*");
-exec("rm -rf ".$amp_conf['AMPWEBROOT']."/recordings/modules/websoftphone*");
-exec("rm -rf ".$amp_conf['AMPWEBROOT']."/recordings/modules/localweb*");
-
-?>
