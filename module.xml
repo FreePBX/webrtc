@@ -1,22 +1,20 @@
 <module>
-        <rawname>webrtc</rawname>
-        <name>WebRTC Phone</name>
-        <version>2.11.0.0beta1</version>
-        <publisher>Schmoozecom.com</publisher>
-        <license>GPLv2+</license>
-        <description></description>
-	 	<changelog>
-			*0.1* First Release (Ultrabeta)
-			*0.1.b1* Fixed the look and feel using the dashboard css
-			*0.1.b2* Added to the ARI(user) Page the Emergency Phone Menu
-			*0.1.b3* Added to the ARI(user) Page the Local Web Phone Menu to Register with Local PBX Changed the Name of the Module.
-			*0.1.b4* Configured to work without webrt2sip media gateway.
-        </changelog>
-        <info></info>
-        <category>Connectivity</category>
-        <menuitems>
-                <webrtc beta="yes">WebRTC</webrtc>
-        </menuitems>
+	<rawname>webrtc</rawname>
+	<name>WebRTC Phone</name>
+	<version>2.11.0.0beta1</version>
+	<publisher>Schmoozecom.com</publisher>
+	<license>GPLv2+</license>
+	<description></description>
+	<changelog></changelog>
+	<info></info>
+	<category>Connectivity</category>
+	<menuitems>
+		<webrtc beta="yes">WebRTC</webrtc>
+	</menuitems>
+	<depends>
+		<engine>asterisk 11</engine>
+		<module>core ge 2.11.0.5</module>
+	</depends>
 </module>
 
 

@@ -1,263 +1,147 @@
 <?php
 /**
- * @Author
- * Navaismo
- */
+* @Author
+* Navaismo
+*/
 
 /**
- * @file
- * Functions for the interface to the help page
- */
-
-/**
-  * Class for help
-  */
+* Class for help
+*/
 class webrtcphone {
 
-  /*
-   * rank (for prioritizing modules)
-   */
-  function rank() {
+	/*
+	* rank (for prioritizing modules)
+	*/
+	function rank() {
 
-    $rank = 10;
-    return $rank;
-  }
+	$rank = 10;
+		return $rank;
+	}
 
-  /*
-   * init
-   */
-  function init() {
-  }
+	/*
+	* init
+	*/
+	function init() {
+	}
 
-  /*
-   * Adds menu item to nav menu
-   *
-   * @param $args
-   *   Common arguments
-   */
-  function navMenu($args) {
-    return "<small><small><a href='" . $_SESSION['ARI_ROOT'] . "?m=webrtcphone&f=display'>" . _("My WebPhone") . "</a></small></small>";
-
-  }
-
-
-   /* Displays stats page
-   *
-   * @param $args
-   *   Common arguments
-   */
-  function display($args) {
+	/*
+	* Adds menu item to nav menu
+	*
+	* @param $args
+	*   Common arguments
+	*/
+	function navMenu($args) {
+		return "<small><small><a href='" . $_SESSION['ARI_ROOT'] . "?m=webrtcphone&f=display'>" . _("My WebPhone") . "</a></small></small>";
+	}
 
 
+	/* Displays stats page
+	*
+	* @param $args
+	*   Common arguments
+	*/
+	function display($args) {
+		//retreive values
+		global $db;
+		$extension = $_SESSION['ari_user']['extension'];
 
-//retreive values
-global $db;
-$extension = $_SESSION['ari_user']['extension'];
+
+		$sql="SELECT data FROM sip WHERE id='$extension' AND keyword='secret'";
+		$results = $db->getAll($sql,DB_FETCHMODE_ASSOC);
+		foreach($results as $row){
+			$password=$row['data'];
+		}
+
+		$sql2="select data from sipsettings where keyword = 'realm'";
+		$results = $db->getAll($sql2,DB_FETCHMODE_ASSOC);
+		foreach($results as $row){
+			$realm=$row['data'];
+		}
+
+		if (!$realm){
+			$realm='asterisk';
+		}
+
+		$name = $_SESSION['ari_user']['displayname'];
+		$myip = $_SERVER['SERVER_ADDR'];
+		$sipuri= "sip:".$extension."@".$myip;
+		$cid = $name;
+		$websocket="ws://".$myip.":10060";
 
 
-$sql="select data from sip where id='$extension' and keyword='secret'";
-$results = $db->getAll($sql,DB_FETCHMODE_ASSOC);
-foreach($results as $row){
-               	$password=$row['data'];
+
+
+		$html= <<<EOF
+		<input type='hidden' id='jrealm' value='{$myip}' > 
+		<input type='hidden' id='jusn' value='{$extension}' >
+		<input type='hidden' id='jsipuri' value='{$sipuri}' >
+		<input type='hidden' id='jcid' value='{$cid}' >
+		<input type='hidden' id='jpassword' value='{$password}' >
+		<input type='hidden' id='jwebsocket' value='ws://{$myip}:8088/ws' >
+		<input type='hidden' id='jip' value='{$myip}' >
+		<link href='theme/webrtc.css' rel='stylesheet' type='text/css'>
+		<script src='theme/js/SIPml-api.js' type='text/javascript'> </script>
+		<script src='theme/js/webrtc.js' type='text/javascript'> </script>
+		<h2>Web Phone for {$name}</h2>
+		<div id='line'>
+			<div class='spacer'></div>
+			<div class='spacer'></div>
+		</div>
+		<div>
+			<ul>
+				<li>This Phone is a temporal replacement for your normal phone.</li>
+				<li>You can call as usual, it support DTFM on call as well.</li>
+				<li>Can't Transfer using the phone but using features codes.(yet).</li>
+				<li>Can't put On Hold a call.(yet).</li>
+			</ul>
+		</div>
+		<br>
+		<!--/****************************** html/php code *************************************/-->
+		<!-- some ugly space -->
+
+		<!-- trying to create beatiful boxes  failed! :( -->
+		<div id='sysinfo-left' class='infobox ui-widget-content  ui-corner-all' >
+			<h3 class='ui-widget-header ui-state-default ui-corner-all'>WebSoftphone</h3>
+			<div align=center id='mysipstatus' style='font-size: 10px'></div>	
+			<table style='width: 100%;'>
+				<tr>
+					<td>
+						<div align='center'>
+							<input autofocus type='text' style='width: 80%' value='' id='callnumber' /> 
+							<br>
+						</div>
+					</td> 
+				</tr>
+				<tr>			
+					<td colspan='1' align='center'>
+						<!-- KeyPad Div -->
+						<table >
+							<tr><td><input type='button' style='width: 32%' class='btn-primary' value='1' onclick='sipSendDTMF(1);'/><input type='button' style='width: 32%' class='btn-primary' value='2' onclick='sipSendDTMF(2);'/><input type='button' style='width: 32%' class='btn-primary' value='3' onclick='sipSendDTMF(3);'/></td></tr>
+							<tr><td><input type='button' style='width: 32%' class='btn-primary' value='4' onclick='sipSendDTMF(4);'/><input type='button' style='width: 32%' class='btn-primary' value='5' onclick='sipSendDTMF(5);'/><input type='button' style='width: 32%' class='btn-primary' value='6' onclick='sipSendDTMF(6);'/></td></tr>
+							<tr><td><input type='button' style='width: 32%' class='btn-primary' value='7' onclick='sipSendDTMF(7);'/><input type='button' style='width: 32%' class='btn-primary' value='8' onclick='sipSendDTMF(8);'/><input type='button' style='width: 32%' class='btn-primary' value='9' onclick='sipSendDTMF(9);'/></td></tr>
+							<tr><td><input type='button' style='width: 32%' class='btn-primary' value='*' onclick=sipSendDTMF('*'); /><input type='button' style='width: 32%' class='btn-primary' value='0' onclick=sipSendDTMF('0'); /><input type='button' style='width: 32%' class='btn-primary' value='#' onclick=sipSendDTMF('#'); /></td></tr>
+						</table>
+						<input type='button' class='btn-success' style='width:25%' id='btnCall' value='Call' onclick='call();' />&nbsp;
+						<input type='button' class='btn-danger' style='width:25%'  id='btnHangUp' value='HangUp' onclick='hangup();' />
+					</td>
+				<tr>
+				</tr>			
+				<tr>
+					<td>
+						<div align=center id='mycallstatus' style='font-size: 10px'></div>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<!-- Audios -->
+		<audio id='audio_remote' autoplay='autoplay' />
+		<audio id='ringtone' loop src='modules/websoftphone/sounds/ringtone.wav' />
+		<audio id='ringbacktone' loop src='modules/websoftphone/sounds/ringbacktone.wav' />
+		<audio id='dtmfTone' src='modules/websoftphone/sounds/dtmf.wav' />
+		<audio id='newmsg' src='modules/websoftphone/sounds/newmsg.wav' />
+EOF;
+
+		return $html;
+	}
 }
-
-$sql2="select data from sipsettings where keyword = 'realm'";
-$results = $db->getAll($sql2,DB_FETCHMODE_ASSOC);
-foreach($results as $row){
-               	$realm=$row['data'];
-}
-
-if (!$realm){
-	$realm='asterisk';
-}
-
-$name = $_SESSION['ari_user']['displayname'];
-$myip = $_SERVER['SERVER_ADDR'];
-$sipuri= "sip:".$extension."@".$myip;
-$cid = $name;
-$websocket="ws://".$myip.":10060";
-
-
-
-
-$temp=
-	 "
-	 <input type='hidden' id='jrealm' value='$realm' > 
-	 <input type='hidden' id='jusn' value='$extension' >
-	 <input type='hidden' id='jsipuri' value='$sipuri' >
-	 <input type='hidden' id='jcid' value='$cid' >
-	 <input type='hidden' id='jpassword' value='$password' >
-	 <!--<input type='hidden' id='jwebsocket' value='$websocket' >-->
-	 <input type='hidden' id='jwebsocket' value='ws://$myip:8088/ws' >
-	 <input type='hidden' id='jip' value='$myip' >";
-
-
-$temp2=
-	"<link href='theme/webrtc.css' rel='stylesheet' type='text/css'>
-	<script src='theme/js/SIPml-api.js' type='text/javascript'> </script>
-	<script src='theme/js/webrtc.js' type='text/javascript'> </script>";
-
-/****************************************/
-/*	TODO:				*/
-/*					*/
-/*	Check websockets.		*/
-/*	Validate Browser compatibilty.	*/
-/*	Install webrtc4all Windows.	*/
-/*----XAccept calls after send a call.	*/
-/*----XOpen Local audio Incoming call.	*/
-/*	Video usage.			*/
-/*					*/
-/*	by navaismo at gmail dot com	*/
-/*	last rev: 29/03/2013		*/
-/*					*/
-/*	last rev: 32/03/2013		*/
-/****************************************/	
-/****************************************/
-/*	Changelog: 32/03/2013		*/
-/****************************************/
-/*					*/	
-/*	Listeners functions changed	*/
-/*	 from IF/ELSEIF to SWITCH.	*/
-/*					*/
-/*	Added media video for future	*/
-/*	usage.				*/
-/*					*/
-/*	On Hangup destroy call session.	*/
-/*					*/	
-/*	Solved Accepting calls and	*/
-/*	audio issues.			*/
-/*					*/
-/*	Solved acceptting calls after	*/
-/*	previous call.			*/
-/*					*/
-/****************************************/
-/****************************************/
-/*	Changelog: 01/04/2013		*/
-/****************************************/
-/*					*/
-/*	Keypad works now if not on 	*/
-/*	call.				*/
-/*					*/
-/*	Hangup clear keypad if not 	*/
-/*	in call.			*/
-/*					*/
-/*	If Response NOTFOUND stop	*/
-/*	all sounds.			*/
-/*					*/
-/*	Fixed DTMF sound on keypress.	*/
-/*					*/
-/****************************************/
-
-/****************** another ugly solution to write into the DB the DATA **********************/
-global $db;
-
-//catch values
-if(isset($_POST['button'])){
-	$breaker=$_POST['breaker'];
-	$password=$_POST['password'];
-	$realm=$_POST['realm'];
-	$sipuri=$_POST['sipuri'];
-	$username=$_POST['username'];
-	$websocket=$_POST['websocket'];
-	$cid=$_POST['cid'];
-
-//if one value is empty display the required label
-
-if($breaker==''){
-	$errors1 = "<span class='ui-state-highlight'>Required</span>";
-}elseif( $password==''){
-	$errors1 = "<span class='ui-state-highlight'>Required</span>";
-}elseif( $realm==''){
-	$errors1 = "<span class='ui-state-highlight'>Required</span>";
-}elseif( $sipuri==''){
-	$errors1 = "<span class='ui-state-highlight'>Required</span>";
-}elseif( $username==''){
-	$errors1 = "<span class='ui-state-highlight'>Required</span>";
-}elseif( $websocket==''){
-	$errors1 = "<span class='ui-state-highlight'>Required</span>";
-}else{
-
-//delete previous data
-$sql1='truncate websoftphone';
-$db->query($sql1);
-
-//insert new data
-$sql="INSERT INTO websoftphone(cid,breaker,password,realm,sipuri,username,websocket) Values('$cid','$breaker','$password','$realm','$sipuri','$username','$websocket')";
-$db->query($sql);
-
-}
-}
-
-$temp4.=
-
-"
-<h2>Web Phone for $name</h2>
-<div id='line'>
-        <div class='spacer'></div>
-        <div class='spacer'></div>
-</div>
-<div>
-<ul>
-<li>This Phone is a temporal replacement for your normal phone.</li>
-<li>You can call as usual, it support DTFM on call as well.</li>
-<li>Can't Transfer using the phone but using features codes.(yet).</li>
-<li>Can't put On Hold a call.(yet).</li>
-</ul>
-</div>
-<br>
-<!--/****************************** html/php code *************************************/-->
-<!-- some ugly space -->
-
-	<!-- trying to create beatiful boxes  failed! :( -->
-	<div id='sysinfo-left' class='infobox ui-widget-content  ui-corner-all' >
-		<h3 class='ui-widget-header ui-state-default ui-corner-all'>WebSoftphone</h3>
-               	<div align=center id='mysipstatus' style='font-size: 10px'></div>	
-                <table style='width: 100%;'>
-		 <tr>
-			<td>
-				<div align='center'>
-					<input autofocus type='text' style='width: 80%' value='' id='callnumber' /> 
-					<br>
-				</div>
-				
-			</td> 
-		</tr>
-                <tr>			
-                        <td colspan='1' align='center'>
-			    <!-- KeyPad Div -->
-			    	<table >
-			            <tr><td><input type='button' style='width: 32%' class='btn-primary' value='1' onclick='sipSendDTMF(1);'/><input type='button' style='width: 32%' class='btn-primary' value='2' onclick='sipSendDTMF(2);'/><input type='button' style='width: 32%' class='btn-primary' value='3' onclick='sipSendDTMF(3);'/></td></tr>
-			            <tr><td><input type='button' style='width: 32%' class='btn-primary' value='4' onclick='sipSendDTMF(4);'/><input type='button' style='width: 32%' class='btn-primary' value='5' onclick='sipSendDTMF(5);'/><input type='button' style='width: 32%' class='btn-primary' value='6' onclick='sipSendDTMF(6);'/></td></tr>
-			            <tr><td><input type='button' style='width: 32%' class='btn-primary' value='7' onclick='sipSendDTMF(7);'/><input type='button' style='width: 32%' class='btn-primary' value='8' onclick='sipSendDTMF(8);'/><input type='button' style='width: 32%' class='btn-primary' value='9' onclick='sipSendDTMF(9);'/></td></tr>
-			            <tr><td><input type='button' style='width: 32%' class='btn-primary' value='*' onclick=sipSendDTMF('*'); /><input type='button' style='width: 32%' class='btn-primary' value='0' onclick=sipSendDTMF('0'); /><input type='button' style='width: 32%' class='btn-primary' value='#' onclick=sipSendDTMF('#'); /></td></tr>
-        			</table>
-                            	<input type='button' class='btn-success' style='width:25%' id='btnCall' value='Call' onclick='call();' />&nbsp;
-                            	<input type='button' class='btn-danger' style='width:25%'  id='btnHangUp' value='HangUp' onclick='hangup();' />
-                        </td>
-		<tr></tr>			
-                </tr>
-			<td>
-				<div align=center id='mycallstatus' style='font-size: 10px'></div>
-                        </td>
-
-                <tr>
-                </tr>
-		</table>
-	</div>
-
-    <!-- Audios -->
-    <audio id='audio_remote' autoplay='autoplay' />
-    <audio id='ringtone' loop src='modules/websoftphone/sounds/ringtone.wav' />
-    <audio id='ringbacktone' loop src='modules/websoftphone/sounds/ringbacktone.wav' />
-    <audio id='dtmfTone' src='modules/websoftphone/sounds/dtmf.wav' />
-    <audio id='newmsg' src='modules/websoftphone/sounds/newmsg.wav' />";
-
-
-	$ret .= "".$temp."".$temp2."".$temp3."".$temp4."".$temp5."".$temp6."".$temp7;
-
-	return $ret;
-}
-}
-?>
-
-
