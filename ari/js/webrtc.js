@@ -1,611 +1,314 @@
- //Variables
-var mySipStack;
-var mycallSession;
-var mychatSession;
-var myregisterSession;
+//global caller volume, doesnt affect keys
+var gvolume = 100;
+//global call hold state
+var callheld = false;
+//global mute state
+var unmuted = true;
+//global shift key state
+var shifted = false;
+//JQuery onLoad
+$(function() {
+	//global keydown
+	$(document).keydown(function(e){
+		event = event || window.event;
+		//Keys 0-9
+		if(e.keyCode >= 48 && e.keyCode <= 57 && !event.shiftKey) {
+			//extract key value from 48
+			var num = (e.keyCode - 48);
+			//if we are in a call
+			if(callSession && num >= 0){
+				//attempt to send the digits to the engine
+				if(callSession.dtmf(num) == 0){
+					//play our response
+					$('#adtmf' + num).trigger('play');
+					//get lcd_2 values
+					var pre = $('#lcd_2').html();
+					//append our output to that
+					$('#lcd_2').html(pre+num)
+				}
+			//not in an active call, dont send keys to engine
+			} else if(num >= 0) {
+				//play our response
+				$('#adtmf' + num).trigger('play');
+				//get lcd_2 values
+				var pre = $('#lcd_2').html();
+				//append our output to that
+				$('#lcd_2').html(pre+num)
+			}
+			//TODO: Image replacement, terrible
+			console.log('OK')
+			var src = $('#dtmf' + num).attr("src").replace("webrtcimages/","webrtcimages/push/");
+			console.log(src);
+			$('#dtmf' + num).attr("src", src);
+		//keys 3 & 8 with shift (so # & *)
+		} else if((e.keyCode == 51 || e.keyCode == 56) && event.shiftKey) {
+			//we are in shift mode
+			shifted = true;
+			//engine replacement
+			num = (e.keyCode == 51) ? '#' : '*';
+			//image replacement..ment
+			idt = (e.keyCode == 51) ? 'p' : 's';
+			//if in call send to engine
+			if(callSession && num){
+				if(callSession.dtmf(num) == 0){
+					$('#adtmf_' + idt).trigger('play');
+					var pre = $('#lcd_2').html();
+					$('#lcd_2').html(pre+num)
+				}
+			//else append to screen
+			} else if(num) {
+				$('#adtmf_' + idt).trigger('play');
+				var pre = $('#lcd_2').html();
+				$('#lcd_2').html(pre+num)
+			}
+			//TODO: Image replacement, terrible
+			var src = $('#dtmf_' + idt).attr("src").replace("webrtcimages/","webrtcimages/push/");
+			$('#dtmf_' + idt).attr("src", src);
+		//backspace key, dont allow backspace while in a call (it doesnt make sense)
+		} else if(e.keyCode == 8 && !callSession) {
+			var pre = $('#lcd_2').html();
+			//dont allow taking off too much of nothing
+			if(pre != '') {
+				pre = pre.substring(0, pre.length -1);
+			}
+			$('#lcd_2').html(pre)
+		}
+		return false;
+	});
+	//keyboard keyup, reset image states and shift state
+	//TODO: could probably just detect keyCode 16 here and unset the shift
+	$(document).keyup(function(e){
+		if(e.keyCode >= 48 && e.keyCode <= 57) {
+			var num = (e.keyCode - 48);
+			if(shifted) {
+				num = (e.keyCode == 51) ? '_p' : '_s';
+				shifted = false;
+			}
+			var src = $('#dtmf' + num).attr("src").replace("webrtcimages/push/","webrtcimages/");
+			$('#dtmf' + num).attr("src", src);
+		}
+		return false;
+	});
+	
+	//webbutton class
+	$('.webrtcbutton')
+		.mouseup(function() { //mouse up
+			var aid = $(this).attr("data-audio");
+			var src = $(this).attr("src").replace("webrtcimages/push/","webrtcimages/");
+			$(this).attr("src", src);
+		})
+		.mousedown(function() { //mouse down
+			var num = '';
+			var dtmf = false;
+			var aid = $(this).attr("data-audio");
+			switch (aid)
+			{
+				case 'dtmf1':
+					num = 1;
+					dtmf = true;
+				break;
+				case 'dtmf2':
+					num = 2;
+					dtmf = true;
+				break;
+				case 'dtmf3':
+					num = 3;
+					dtmf = true;
+				break;
+				case 'dtmf4':
+					num = 4;
+					dtmf = true;
+				break;
+				case 'dtmf5':
+					num = 5;
+					dtmf = true;
+				break;
+				case 'dtmf6':
+					num = 6;
+					dtmf = true;
+				break;
+				case 'dtmf7':
+					num = 7;
+					dtmf = true;
+				break;
+				case 'dtmf8':
+					num = 8;
+					dtmf = true;
+				break;
+				case 'dtmf9':
+					num = 9;
+					dtmf = true;
+				break;
+				case 'dtmf_p':
+					num = '#';
+					dtmf = true;
+				break;
+				case 'dtmf0':
+					num = '0';
+					dtmf = true;
+				break;
+				case 'dtmf_s':
+					num = '*';
+					dtmf = true;
+				break;
+			}
+			//if in active call, and number and is a dtmf then send to engine
+			if(callSession && dtmf){
+				if(callSession.dtmf(num) == 0){
+					$('#a' + aid).trigger('play');
+					var pre = $('#lcd_2').html();
+					$('#lcd_2').html(pre+num)
+				}
+			//not in an active call, send to screen
+			} else if(dtmf) {
+				$('#a' + aid).trigger('play');
+				var pre = $('#lcd_2').html();
+				$('#lcd_2').html(pre+num)
+			//Volume down
+			} else if(aid == 'voldwn') {
+				//TODO: I think we could use jquery here
+				speaker=document.getElementById("audio_remote");
+				//prevent improbable volumes
+				if(gvolume > 0) {
+					gvolume = (gvolume - 10);
+					speaker.volume=gvolume/100;
+				}
+			//volume up
+			} else if(aid == 'volup') {
+				//TODO: I think we could use jquery here
+				speaker=document.getElementById("audio_remote");
+				//prevent impossible volumes
+				if(gvolume < 100) {
+					gvolume = (gvolume + 10);
+					speaker.volume=gvolume/100;
+				}
+			//detect hold button and hold state
+			} else if(callSession && aid == 'hold') {
+				alert('This functionality is currently broken in Asterisk')
+				/*
+				if(!callheld) {
+					callSession.hold();
+					callheld = true;
+				} else {
+					callSession.resume();
+					callheld = false
+				}
+				*/
+			//detect hangup
+			} else if(callSession && aid == 'hangup') {
+				//and hang it up....hahang it up
+				callSession.hangup();
+			//detect answering *inbound* call, notice we check the state of callSession
+			} else if(callSession && aid == 'answer') {
+				//accept it already
+		        callSession.accept({
+		            audio_remote: document.getElementById('audio_remote'),
+		            audio_local: document.getElementById('audio_local'),
+		            events_listener: {
+		                events: '*',
+		                listener: eventsListener
+		            } // optional: '*' means all events
+		        });
+				//get remote caller id
+				var sRemoteNumber = (callSession.getRemoteFriendlyName() || 'unknown');
+				//setup display and timer
+				$('#lcd_1').html('Connected to '+sRemoteNumber+' (<label id="minutes">00</label>:<label id="seconds">00</label>)');
+				//start timer
+				startTimer();
+				//stop ringer
+				stopRingTone();
+			//hit answer button but not in a call so we are initiating a call (notice false callSession)
+			} else if(!callSession && aid == 'answer') {
+				//setup new callSession for our call
+			    callSession = sipStack.newSession('call-audio', {
+			        audio_remote: document.getElementById('audio_remote'),
+			        events_listener: { events: '*', listener: eventsListener } // optional: '*' means all events
+			    });
+				//get lcd_2 value
+				var number = $('#lcd_2').html();
+				if(number != '') {
+					//send lcd_2 value as a 'number'
+			    	callSession.call(number);
+					//TODO: Probably remove this, it sounds weird sometimes when it gets doubled.
+					startRingbackTone();
+				}
+			//Local Microphone mute state
+			//TODO: Needs image 'stick'
+			} else if(callSession && aid == 'mute') {
+				if(unmuted) {
+					unmuted = false;
+				} else {
+					unmuted = true
+				}
+				muteMicrophone(unmuted);
+			}
+			//TODO: fix this please
+			var src = $(this).attr("src").replace("webrtcimages/","webrtcimages/push/");
+			$(this).attr("src", src);
+		});
+		//initalize the engine
+		SIPml.init(readyCallback, errorCallback);
+		//start your engines
+		sipStack.start();
+		
+		//...and were off!
+});
 
-
-
-
- // readycallback for INIT
-var readyCallback = function (e) {
-    console.log('engine is ready');
-
-    //CHeck if the SIPml start
-    if (SIPml.isInitialized() == 1) {
-        console.log('Done to initialize the engine');
-        //If the stack is started, create the sip stack
-        startSipStack();
-    } else {
-        //If not started display console msg
-        console.log('Failed to initialize the engine');
-
-    }
+//start ringer
+function startRingTone() {
+    try {
+        $('#ringtone').trigger('play')
+    } catch (e) {}
 }
 
- // error callback for INIT
-var errorCallback = function (e) {
-    console.error('Failed to initialize the engine: ' + e.message);
+//stop and reset ringer (to begining of track)
+function stopRingTone() {
+    try {
+        $('#ringtone').trigger('pause')
+		$('#ringtone').trigger('load')
+    } catch (e) {}
 }
 
- //INIT SIPML5 API
-SIPml.init(readyCallback, errorCallback);
-
- //Here we listen stack messages
-
-function listenerFunc(e) {
-    //Log incoming messages
-    tsk_utils_log_info('==stack event = ' + e.type);
-
-    switch (e.type) {
-
-        //If failed msg or error Log in console & Web Page
-    case 'failed_to_start':
-    case 'failed_to_stop':
-    case 'stopping':
-    case 'stopped':
-        {
-
-            console.log('Failed to connect to SIP SERVER')
-            mycallSession = null;
-            mySipStack = null;
-            myregisterSession = null;
-
-            $('#mysipstatus').html('');
-            $('#mysipstatus').html('<i>Disconnected: </i>' + e.description);
-
-            break;
-        }
-
-        //If the msg is 'started' now try to Login to Sip server       				
-    case 'started':
-        {
-            console.log('Trying to Login');
-
-            login(); //function to login in sip server
-
-            //Display msg in the web page
-            $('#mysipstatus').html('');
-            $('#mysipstatus').html('<i>Trying to Connect</i>');
-
-            break;
-        }
-
-        //If the msg 'connected' display the register OK in the web page 
-    case 'connected':
-        {
-            $('#mysipstatus').html('');
-            $('#mysipstatus').html('<i>Registered with Sip Server</i>');
-
-            /*$.ajax({
-                                    type: 'GET',
-                                    url: 'modules/websoftphone/getpeers.php?id=1',
-                                    success: function(data){
-                                            $('#peers').html(data);
-                                    }
-                            });*/
-
-
-
-            break;
-        }
-
-        //If the msg 'Sent request' display that in the web page---Pattience
-    case 'sent_request':
-        {
-
-            $('#mysipstatus').html('');
-            $('#mysipstatus').html('<i>' + e.description + '</i>');
-
-            break;
-        }
-
-        //If the msg 'terminated' display that on the web---error maybe?
-    case 'terminated':
-        {
-            $('#mysipstatus').html('');
-            $('#mysipstatus').html('<i>' + e.description + '</i>');
-
-            break;
-        }
-
-        //If the msg 'i_new_call' the browser has an incoming call
-    case 'i_new_call':
-        {
-            if (mycallSession) {
-                // do not accept the incoming call if we're already 'in call'
-                e.newSession.hangup(); // comment this line for multi-line support
-            } else {
-
-                mycallSession = e.newSession;
-
-                //Change buttons values
-                btnCall.value = 'Answer';
-                btnHangUp.value = 'Reject';
-                btnCall.disabled = false;
-                btnHangUp.disabled = false;
-
-                //Start ringing in the browser
-                startRingTone();
-
-                //Display in the web page who is calling
-                var sRemoteNumber = (mycallSession.getRemoteFriendlyName() || 'unknown');
-                $('#mycallstatus').html('<i>Incoming call from [<b>' + sRemoteNumber + '</b>]</i>');
-                showNotifICall(sRemoteNumber);
-            }
-            break;
-        }
-    case 'i_new_message':
-        {
-
-            console.info('++++++++ Receiving SIP SMS +++++++++++++');
-            mychatSession = e.newSession;
-            mychatSession.accept();
-
-            console.info('IMmsg = ' + e.getContentString() + ' IMtype = ' + e.getContentType());
-
-            $('#chatarea').html($('#chatarea').html() + '<b>' + e.getContentString() + '</b>');
-            $('#chatarea').scrollTop($('#chatarea')[0].scrollHeight);
-
-            newmessageTone();
-            //destroy the call session
-            mychatSession.hangup
-            mychatSession = null;
-
-            break;
-        }
-
-
-    case 'm_permission_requested':
-        {
-            break;
-        }
-    case 'm_permission_accepted':
-    case 'm_permission_refused':
-        {
-            if (e.type == 'm_permission_refused') {
-
-                btnCall.value = 'Call';
-                btnHangUp.value = 'HangUp';
-                btnCall.disabled = false;
-                btnHangUp.disabled = true;
-
-                mycallSession = null;
-
-                stopRingbackTone();
-                stopRingTone();
-
-                $('#mysipstatus').html('<i>' + s_description + '</i>');
-
-            }
-            break;
-        }
-    case 'starting':
-    default:
-        break;
-    }
+//start ring back tone
+function startRingbackTone() {
+    try {
+        $('#ringtone').trigger('play')
+    } catch (e) {}
 }
 
- //Function to Listen the call session events
-
-function calllistener(e) {
-    //Log all events
-    tsk_utils_log_info('****call event**** = ' + e.type);
-
-    switch (e.type) {
-
-        //Display in the web page that the call is connecting
-    case 'connected':
-    case 'connecting':
-        {
-
-            var bConnected = (e.type == 'connected');
-            if (e.session == myregisterSession) {
-                $('#mycallstatus').html('<i>' + e.description + '</i>');
-
-            } else if (e.type == 'connecting') {
-                $('#mycallstatus').html('<i>' + e.description + '</i>');
-
-            } else if (e.session == mycallSession) {
-                btnHangUp.value = 'HangUp';
-
-                if (bConnected) {
-                    stopRingbackTone();
-                    stopRingTone();
-                }
-            }
-
-            /*	$('#mycallstatus').html('<i>' + e.description + '</i>');
-    		 	               stopRingbackTone();
-                    			stopRingTone();
-
-			*/
-            break;
-        }
-
-        //Display in the browser teh call is finished
-    case 'terminated':
-    case 'terminating':
-        {
-
-            if (e.session == mycallSession) {
-                mycallSession = null;
-                myregisterSession = null;
-
-                $('#mycallstatus').html('<i>' + e.description + '</i>');
-                stopRingbackTone();
-                stopRingTone();
-
-
-            } else if (e.session == mycallSession) {
-
-                btnCall.value = 'Call';
-                btnHangUp.value = 'HangUp';
-                btnCall.disabled = false;
-                btnHangUp.disabled = true;
-
-                mycallSession = null;
-
-                stopRingbackTone();
-                stopRingTone();
-            }
-            break;
-
-        }
-
-        // future use with video
-    case 'm_stream_video_local_added':
-        {
-            if (e.session == mycallSession) {
-
-            }
-            break;
-        }
-
-        //future use with video
-    case 'm_stream_video_local_removed':
-        {
-            if (e.session == mycallSession) {
-
-            }
-            break;
-        }
-
-        //future use with video
-    case 'm_stream_video_remote_added':
-        {
-            if (e.session == mycallSession) {
-
-            }
-            break;
-        }
-
-        //future use with video
-    case 'm_stream_video_remote_removed':
-        {
-            if (e.session == mycallSession) {
-
-            }
-            break;
-        }
-
-        //added media audio todo messaging
-    case 'm_stream_audio_local_added':
-    case 'm_stream_audio_local_removed':
-    case 'm_stream_audio_remote_added':
-    case 'm_stream_audio_remote_removed':
-        {
-
-            stopRingTone();
-            stopRingbackTone();
-
-            break;
-        }
-
-        //If the remote end send us a request with SIPresponse 18X start to ringing
-    case 'i_ao_request':
-        {
-            var iSipResponseCode = e.getSipResponseCode();
-            if (iSipResponseCode == 180 || iSipResponseCode == 183) {
-                startRingbackTone(); //function to start the ring tone
-                $('#mycallstatus').html('');
-                $('#mycallstatus').html('<i>Remote ringing...</i>');
-            }
-            break;
-        }
-
-        // If the remote send early media stop the sounds
-    case 'm_early_media':
-        {
-            if (e.session == mycallSession) {
-                stopRingTone();
-                stopRingbackTone();
-                $('#mycallstatus').html('');
-                $('#mycallstatus').html('<i>Call Answered</i>');
-            }
-            break;
-        }
-    }
-
+//stop ring back tone (to begining of track)
+function stopRingbackTone() {
+    try {
+        $('#ringtone').trigger('pause')
+		$('#ringtone').trigger('load')
+    } catch (e) {}
 }
 
- //function to send the SIP Register
-
-function login() {
-    //Show in the console that the browser is trying to register
-    console.log('Registering');
-
-    //create the session
-    myregisterSession = mySipStack.newSession('register', {
-        events_listener: {
-            events: '*',
-            listener: listenerFunc
-        } // optional: '*' means all events
-    });
-
-    //send the register
-    myregisterSession.register();
+//starts the call timer
+function startTimer() {
+	var sec = 0;
+	function pad ( val ) { return val > 9 ? val : "0" + val; }
+	if(refreshIntervalId != null) {
+		//we have a timer running, this is bad so stop it
+		clearInterval(refreshIntervalId);
+	}
+	refreshIntervalId = setInterval( function(){
+	    $("#seconds").html(pad(++sec%60));
+	    $("#minutes").html(pad(parseInt(sec/60,10)));
+	}, 1000);
 }
 
- // function to create the sip stack
-
-function startSipStack() {
-    //show in the console that th browser is trying to create the sip stack
-    console.info('attempting to start the SIP STACK');
-
-    //retreive data from hidden items
-    var jrealm = $('#jrealm').val();
-    var jusn = $('#jusn').val();
-    var jsipuri = $('#jsipuri').val();
-    var jpassword = $('#jpassword').val();
-    var jcid = $('#jcid').val();
-    var jwebsocket = $('#jwebsocket').val();
-    var jbreaker = $('#jbreaker').val();
-    //console.info('****************ws:'+jwebsocket+'**re'+jrealm+'**uri'+jsipuri+'**cid'+jcid+'**br'+jbreaker+'**usn'+jusn+'**pwd'+jpassword );
-
-    //stack options
-    mySipStack = new SIPml.Stack({
-        realm: '' + jrealm + '',
-        impi: '' + jusn + '',
-        impu: '' + jsipuri + '',
-        password: '' + jpassword + '', // optional
-        display_name: '' + jcid + '', // optional
-        websocket_proxy_url: '' + jwebsocket + '', // optional
-        outbound_proxy_url: 'udp://' + jip + ':5060', // optional
-        //ice_servers: [{ url: 'stun:stun.l.google.com:19322'}, { url:'turn:user@numb.viagenie.ca', credential:'myPassword'}], // optional
-        ice_servers: [{
-            url: 'stun:null'
-        }], // optional
-        //enable_rtcweb_breaker: ''+jbreaker+'', // optional
-        enable_click2call: false, // optional
-        events_listener: {
-            events: '*',
-            listener: listenerFunc
-        }, //optional
-        sip_headers: [ //optional
-            {
-                name: 'User-Agent',
-                value: 'DM_SIPWEB-UA'
-            }, {
-                name: 'Organization',
-                value: 'Digital-Merge'
-            }
-        ]
-    });
-    //If the stack failed show errors in console
-    if (mySipStack.start() != 0) {
-        console.info('Failed to start Sip Stack');
-    } else {
-        console.info('Started the Sip Stack');
-    }
-
+function removeNav() {
+	$('#menu').hide();
 }
 
-
- //Fucntion to call/answer
-
-function call() {
-    //some variables
-    var tocall = $('#callnumber').val();
-    var flag = $('#btnCall').val();
-    var calltype;
-
-    if ($('#onvideo').is(':checked')) {
-        $('#lvideo').text('Disable Video');
-        calltype = 'call-audiovideo';
-    } else {
-        $('#lvideo').text('Enable Video');
-        calltype = 'call-audio';
-    }
-
-
-    //If The button to call is CAll and the input text doesn't have a number && the stack failed && there is no Sip session alert and dont call
-    if (tocall == '' && flag == 'Call' && mySipStack) {
-        alert('Please enter the Number or Uri to Call');
-
-        //If the button call is CALL and the input text has a number to call, then send the call
-    } else if (tocall != '' && flag == 'Call' && !mySipStack) {
-        alert('The Stack is not ready');
-
-        //If the button call is CALL and the input text has a number to call, then send the call
-    } else if (tocall != '' && flag == 'Call' && mySipStack) {
-
-        //create the session to call
-        mycallSession = mySipStack.newSession(calltype, {
-            audio_remote: document.getElementById('audio_remote'),
-            audio_local: document.getElementById('audio_local'),
-            video_remote: document.getElementById('video_remote'),
-            video_local: document.getElementById('video_local'),
-            events_listener: {
-                events: '*',
-                listener: calllistener
-            } // optional: '*' means all events
-        });
-
-        //call using the number in the textbox
-        mycallSession.call($('#callnumber').val());
-
-        //If the textbox is empty and the button call is ANSWER, then is a incoming call
-    } else if (flag == 'Answer' && mySipStack && mycallSession) {
-
-        stopRingbackTone();
-        stopRingTone();
-
-        //Accept the session call
-        mycallSession.accept({
-            audio_remote: document.getElementById('audio_remote'),
-            audio_local: document.getElementById('audio_local'),
-            events_listener: {
-                events: '*',
-                listener: calllistener
-            } // optional: '*' means all events
-        });
-    }
+function popoutphone() {
+	logout();
+	sipStack.stop();
+	$('#webrtcphone').hide();
+	$('#removeNavLink').hide();
+	$('#message').html('Phone is Currently Broken Out of Window');
+	newwindow=window.open('/recordings/index.php?m=webrtcphone&f=display&hidenav=true','name','height=600,width=750,location=0,toolbar=0');
+	if (window.focus) {newwindow.focus()}
+	return false;
 }
-
-
- //function to hangup the call
-
-function hangup() {
-    //If exist a call session, hangup and reset button values
-    if (mycallSession) {
-        mycallSession.hangup({
-            events_listener: {
-                events: '*',
-                listener: calllistener
-            }
-        });
-        stopRingbackTone();
-        stopRingTone();
-        btnCall.value = 'Call';
-        btnHangUp.value = 'HangUp';
-        $('#callnumber').attr('value', '');
-        $('#mycallstatus').html('Call Terminated')
-
-        //destroy the call session
-        mycallSession = null;
-
-    } else {
-        $('#callnumber').attr('value', '');
-    }
-
-}
-
- //Fucntion to send DTMF frames
-
-function sipSendDTMF(c) {
-    if (mycallSession && c) {
-        if (mycallSession.dtmf(c) == 0) {
-            try {
-                dtmfTone.play();
-            } catch (e) {}
-        }
-    } else {
-        var lastn = $('#callnumber').val();
-
-        $('#callnumber').val(lastn + c);
-        try {
-            dtmfTone.play();
-        } catch (e) {}
-
-    }
-
-
-}
-
-
-
- //function to send messages
-var messageSession;
-var IMListener = function (e) {
-    console.info('session event=' + e.type);
-}
-
-
-    function sendIM() {
-        var IMtext = $('#sendchat').val();
-
-        if (IMtext == '' && mySipStack) {
-            console.log('Empty string on IM');
-            alert('Cant send empty Message');
-
-        } else if (IMtext != '' && mySipStack) {
-            console.log('We can send IM+++++++');
-            messageSession = mySipStack.newSession('message', {
-                events_listener: {
-                    events: '*',
-                    listener: IMListener
-                }
-            });
-            var dtime = new Date();
-            var outtime = dtime.getHours() + ':' + dtime.getMinutes + ':' + dtime.getSeconds;
-            console.log('trying to send IM++++');
-            messageSession.send($('#chatpeers').val(), $('#sendchat').val(), 'text/plain;charset=utf-8');
-            $('#chatarea').html($('#chatarea').html() + '<p>>' + $('#sendchat').val() + '</p>');
-            $('#chatarea').scrollTop($('#chatarea')[0].scrollHeight);
-            $('#sendchat').val('');
-
-
-        } else if (IMtext != '' && !mySipStack) {
-            console.log('We cannot send IM+++++++');
-            alert('stack not ready');
-        }
-
-    }
-
-
-
-    /**************** fucntion to play sounds *******************/
-
-    function startRingTone() {
-        try {
-            ringtone.play();
-        } catch (e) {}
-    }
-
-    function stopRingTone() {
-        try {
-            ringtone.pause();
-        } catch (e) {}
-    }
-
-    function startRingbackTone() {
-        try {
-            ringbacktone.play();
-        } catch (e) {}
-    }
-
-    function stopRingbackTone() {
-        try {
-            ringbacktone.pause();
-        } catch (e) {}
-    }
-
-    function newmessageTone() {
-        try {
-            newmsg.play();
-        } catch (e) {}
-    }
-
-
-    function showNotifICall(s_number) {
-        // permission already asked when we registered
-        if (window.webkitNotifications && window.webkitNotifications.checkPermission() == 0) {
-            if (oNotifICall) {
-                oNotifICall.cancel();
-            }
-            oNotifICall = window.webkitNotifications.createNotification('images/sipml-34x39.png', 'Incaming call', 'Incoming call from ' + s_number);
-            oNotifICall.onclose = function () {
-                oNotifICall = null;
-            };
-            oNotifICall.show();
-        }
-    }
-
-
-    function handleKeyPress(e) {
-        var key = e.keyCode || e.which;
-        if (key == 13) {
-            sendIM();
-        }
-    }

@@ -1,8 +1,8 @@
 <?php
 /**
-* @Author
-* Navaismo
-*/
+ * @author Andrew Nagy
+ *
+ */
 
 /**
 * Class for help
@@ -31,7 +31,14 @@ class webrtcphone {
 	*   Common arguments
 	*/
 	function navMenu($args) {
-		return "<small><small><a href='" . $_SESSION['ARI_ROOT'] . "?m=webrtcphone&f=display'>" . _("My WebPhone") . "</a></small></small>";
+		$ari = $_SESSION['ari_user'];
+		$settings = webrtc_get_client_settingsByUser($ari['extension']);
+		if(!empty($settings)) {
+			$html = "<small><small><a href='" . $_SESSION['ARI_ROOT'] . "?m=webrtcphone&f=display'>" . _("WebRTC Phone") . "</a></small></small>";
+		} else {
+			$html = "";
+		}
+		return $html;
 	}
 
 
@@ -40,108 +47,123 @@ class webrtcphone {
 	* @param $args
 	*   Common arguments
 	*/
+	
+	//id="menu" displaynone
 	function display($args) {
-		//retreive values
-		global $db;
-		$extension = $_SESSION['ari_user']['extension'];
-
-
-		$sql="SELECT data FROM sip WHERE id='$extension' AND keyword='secret'";
-		$results = $db->getAll($sql,DB_FETCHMODE_ASSOC);
-		foreach($results as $row){
-			$password=$row['data'];
-		}
-
-		$sql2="select data from sipsettings where keyword = 'realm'";
-		$results = $db->getAll($sql2,DB_FETCHMODE_ASSOC);
-		foreach($results as $row){
-			$realm=$row['data'];
-		}
-
-		if (!$realm){
-			$realm='asterisk';
-		}
-
-		$name = $_SESSION['ari_user']['displayname'];
-		$myip = $_SERVER['SERVER_ADDR'];
-		$sipuri= "sip:".$extension."@".$myip;
-		$cid = $name;
-		$websocket="ws://".$myip.":10060";
-
-
-
-
-		$html= <<<EOF
-		<input type='hidden' id='jrealm' value='{$myip}' > 
-		<input type='hidden' id='jusn' value='{$extension}' >
-		<input type='hidden' id='jsipuri' value='{$sipuri}' >
-		<input type='hidden' id='jcid' value='{$cid}' >
-		<input type='hidden' id='jpassword' value='{$password}' >
-		<input type='hidden' id='jwebsocket' value='ws://{$myip}:8088/ws' >
-		<input type='hidden' id='jip' value='{$myip}' >
-		<link href='theme/webrtc.css' rel='stylesheet' type='text/css'>
-		<script src='theme/js/SIPml-api.js' type='text/javascript'> </script>
-		<script src='theme/js/webrtc.js' type='text/javascript'> </script>
-		<h2>Web Phone for {$name}</h2>
-		<div id='line'>
-			<div class='spacer'></div>
-			<div class='spacer'></div>
-		</div>
-		<div>
-			<ul>
-				<li>This Phone is a temporal replacement for your normal phone.</li>
-				<li>You can call as usual, it support DTFM on call as well.</li>
-				<li>Can't Transfer using the phone but using features codes.(yet).</li>
-				<li>Can't put On Hold a call.(yet).</li>
-			</ul>
-		</div>
-		<br>
-		<!--/****************************** html/php code *************************************/-->
-		<!-- some ugly space -->
-
-		<!-- trying to create beatiful boxes  failed! :( -->
-		<div id='sysinfo-left' class='infobox ui-widget-content  ui-corner-all' >
-			<h3 class='ui-widget-header ui-state-default ui-corner-all'>WebSoftphone</h3>
-			<div align=center id='mysipstatus' style='font-size: 10px'></div>	
-			<table style='width: 100%;'>
-				<tr>
-					<td>
-						<div align='center'>
-							<input autofocus type='text' style='width: 80%' value='' id='callnumber' /> 
-							<br>
-						</div>
-					</td> 
-				</tr>
-				<tr>			
-					<td colspan='1' align='center'>
-						<!-- KeyPad Div -->
-						<table >
-							<tr><td><input type='button' style='width: 32%' class='btn-primary' value='1' onclick='sipSendDTMF(1);'/><input type='button' style='width: 32%' class='btn-primary' value='2' onclick='sipSendDTMF(2);'/><input type='button' style='width: 32%' class='btn-primary' value='3' onclick='sipSendDTMF(3);'/></td></tr>
-							<tr><td><input type='button' style='width: 32%' class='btn-primary' value='4' onclick='sipSendDTMF(4);'/><input type='button' style='width: 32%' class='btn-primary' value='5' onclick='sipSendDTMF(5);'/><input type='button' style='width: 32%' class='btn-primary' value='6' onclick='sipSendDTMF(6);'/></td></tr>
-							<tr><td><input type='button' style='width: 32%' class='btn-primary' value='7' onclick='sipSendDTMF(7);'/><input type='button' style='width: 32%' class='btn-primary' value='8' onclick='sipSendDTMF(8);'/><input type='button' style='width: 32%' class='btn-primary' value='9' onclick='sipSendDTMF(9);'/></td></tr>
-							<tr><td><input type='button' style='width: 32%' class='btn-primary' value='*' onclick=sipSendDTMF('*'); /><input type='button' style='width: 32%' class='btn-primary' value='0' onclick=sipSendDTMF('0'); /><input type='button' style='width: 32%' class='btn-primary' value='#' onclick=sipSendDTMF('#'); /></td></tr>
-						</table>
-						<input type='button' class='btn-success' style='width:25%' id='btnCall' value='Call' onclick='call();' />&nbsp;
-						<input type='button' class='btn-danger' style='width:25%'  id='btnHangUp' value='HangUp' onclick='hangup();' />
-					</td>
-				<tr>
-				</tr>			
-				<tr>
-					<td>
-						<div align=center id='mycallstatus' style='font-size: 10px'></div>
-					</td>
-				</tr>
-			</table>
-		</div>
-
-		<!-- Audios -->
-		<audio id='audio_remote' autoplay='autoplay' />
-		<audio id='ringtone' loop src='modules/websoftphone/sounds/ringtone.wav' />
-		<audio id='ringbacktone' loop src='modules/websoftphone/sounds/ringbacktone.wav' />
-		<audio id='dtmfTone' src='modules/websoftphone/sounds/dtmf.wav' />
-		<audio id='newmsg' src='modules/websoftphone/sounds/newmsg.wav' />
+		global $amp_conf, $db;
+		$ari = $_SESSION['ari_user'];
+		$settings = webrtc_get_client_settingsByUser($ari['extension']);
+		if(!empty($settings)) {
+			$html .= '<script type="text/javascript" src="theme/js/SIPml-api.js"></script>';
+			$html .= '<script type="text/javascript" src="theme/js/phone.js"></script>';
+			$html .= '<script type="text/javascript" src="theme/js/webrtc.js"></script>';
+			$html .= '<form>';
+			if(isset($_REQUEST['hidenav'])) {
+				$html .= '<script type="text/javascript">removeNav();</script>';
+			}
+			$html .= '<input type="hidden" id="realm" name="realm" value="'.$settings['realm'].'">';
+			$html .= '<input type="hidden" id="impi" name="impi" value="'.$settings['username'].'">';
+			$html .= '<input type="hidden" id="impu" name="impu" value="'.$settings['sipuri'].'">';
+			$html .= '<input type="hidden" id="password" name="password" value="'.$settings['password'].'">';
+			$html .= '<input type="hidden" id="display_name" name="display_name" value="'.$settings['cid'].'">';
+			$html .= '<input type="hidden" id="websocket_proxy_url" name="websocket_proxy_url" value="'.$settings['websocket'].'">';
+			$html .= '<input type="hidden" name="enable_rtcweb_breaker" value="false">';
+			$html .= '</form>';
+			$html .= <<<EOF
+<table id="webrtcphone" width="670" height="544" border="0" align="center" cellpadding="0" cellspacing="0" background="theme/webrtcimages/phone-bg3.png">
+<tr>
+	<td colspan="3" height="5"></td>
+</tr>
+<tr>
+	<td align="center" valign="bottom">
+		<table width="425" height="237" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td width="196" rowspan="3" valign="top">
+					<img id="dtmf1" data-audio="dtmf1" class="webrtcbutton" src="theme/webrtcimages/key1.png" width="55" height="55" /><img id="dtmf2" data-audio="dtmf2" class="webrtcbutton" src="theme/webrtcimages/key2.png" width="55" height="55" hspace="15" /><img id="dtmf3" data-audio="dtmf3" class="webrtcbutton" src="theme/webrtcimages/key3.png" width="55" height="55" />
+					<img id="dtmf4" data-audio="dtmf4" class="webrtcbutton" src="theme/webrtcimages/key4.png" width="55" height="55" vspace="4" /><img id="dtmf5" data-audio="dtmf5" class="webrtcbutton" src="theme/webrtcimages/key5.png" width="55" height="55" hspace="15" vspace="4" /><img id="dtmf6" data-audio="dtmf6" class="webrtcbutton" src="theme/webrtcimages/key6.png" width="55" height="55" vspace="4" />
+					<img id="dtmf7" data-audio="dtmf7" class="webrtcbutton" src="theme/webrtcimages/key7.png" width="55" height="55" /><img id="dtmf8" data-audio="dtmf8" class="webrtcbutton" src="theme/webrtcimages/key8.png" width="55" height="55" hspace="15" /><img id="dtmf9" data-audio="dtmf9" class="webrtcbutton" src="theme/webrtcimages/key9.png" width="55" height="55" />
+					<img id="dtmf_s" data-audio="dtmf_s" class="webrtcbutton" src="theme/webrtcimages/key-asterisk.png" width="55" height="55" vspace="4" /><img id="dtmf0" data-audio="dtmf0" class="webrtcbutton" src="theme/webrtcimages/key0.png" width="55" height="55" hspace="15" vspace="4" /><img id="dtmf_p" data-audio="dtmf_p" class="webrtcbutton" src="theme/webrtcimages/key-pound.png" width="55" height="55" vspace="4" />
+				</td>
+				<td width="39" rowspan="3">&nbsp;</td>
+				<td width="190" height="45" valign="top" background="theme/webrtcimages/text-box.png">
+					<div style="padding:10px;font-size:75%;white-space:nowrap;"><div id="lcd_1"></div><div id="lcd_2"></div></div>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" height="7"></td>
+			</tr>
+			<tr>
+				<td align="right" valign="top"><img data-audio="answer" class="webrtcbutton"  src="theme/webrtcimages/answer-btn.png" align="left" /><img data-audio="hangup" class="webrtcbutton" src="theme/webrtcimages/hangup-btn.png" /><br />
+					<img data-audio="hold" class="webrtcbutton" src="theme/webrtcimages/hold-btn.png" align="left" /><img data-audio="mute" class="webrtcbutton"  src="theme/webrtcimages/mute-btn.png" /><br />
+					<img data-audio="transfer" class="webrtcbutton" src="theme/webrtcimages/transfer-btn.png" align="left" /><img data-audio="voldwn" class="webrtcbutton" src="theme/webrtcimages/vol-dwn-btn.png" /><br />
+					<img data-audio="conference" class="webrtcbutton" src="theme/webrtcimages/conf-btn.png" align="left" /><img data-audio="volup" class="webrtcbutton" src="theme/webrtcimages/vol-up-btn.png" />
+				</td>
+			</tr>
+		</table>
+		<br />
+		<table width="125" height="140" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+				<td align="center" valign="middle"><img src="theme/webrtcimages/message-btn.png" width="108" height="110" /></td>
+			</tr>
+		</table>
+		<table width="670" height="48" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+	</td>
+</tr>
+</table>
+<div id="message"></div>
 EOF;
-
+if(!isset($_REQUEST['hidenav'])) {
+	$html .= '<table width="670" id="removeNavLink"><tr><td><center><a onclick="popoutphone()">Detach Phone From Window</a></center></td></td></table>';
+}
+$html .= <<<EOF
+<audio id="audio_remote" autoplay="autoplay" />
+<audio id="ringtone"> 
+<source src="theme/webrtcsounds/ring.mp3" type="audio/mpeg">
+</audio>
+<audio id="adtmf1"> 
+<source src="theme/webrtcsounds/dtmf1.mp3" type="audio/mpeg">
+</audio>
+<audio id="adtmf2">
+<source src="theme/webrtcsounds/dtmf2.mp3" type="audio/mpeg">
+</audio>
+<audio id="adtmf3">
+<source src="theme/webrtcsounds/dtmf3.mp3" type="audio/mpeg">
+</audio>
+<audio id="adtmf4">
+<source src="theme/webrtcsounds/dtmf4.mp3" type="audio/mpeg">
+</audio>
+<audio id="adtmf5">
+<source src="theme/webrtcsounds/dtmf5.mp3" type="audio/mpeg">
+</audio>
+<audio id="adtmf6">
+<source src="theme/webrtcsounds/dtmf6.mp3" type="audio/mpeg">
+</audio>
+<audio id="adtmf7">
+<source src="theme/webrtcsounds/dtmf7.mp3" type="audio/mpeg">
+</audio>
+<audio id="adtmf8">
+<source src="theme/webrtcsounds/dtmf8.mp3" type="audio/mpeg">
+</audio>
+<audio id="adtmf9">
+<source src="theme/webrtcsounds/dtmf9.mp3" type="audio/mpeg">
+</audio>
+<audio id="adtmf0">
+<source src="theme/webrtcsounds/dtmf0.mp3" type="audio/mpeg">
+</audio>
+<audio id="adtmf_s">
+<source src="theme/webrtcsounds/dtmf_s.mp3" type="audio/mpeg">
+</audio>
+<audio id="adtmf_p">
+<source src="theme/webrtcsounds/dtmf_p.mp3" type="audio/mpeg">
+</audio>
+EOF;
+		} else {
+			$html = 'WebRTC Phone has not been configured for your extension';
+		}
 		return $html;
 	}
 }

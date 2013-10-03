@@ -175,12 +175,12 @@ var logout = function(){
 //login credentials and junk like that
 function createSipStack(){
     sipStack = new SIPml.Stack({
-            realm: '199.102.239.103', // mandatory: domain name
-            impi: '1040', // mandatory: authorization name (IMS Private Identity)
-            impu: 'sip:1040@199.102.239.103', // mandatory: valid SIP Uri (IMS Public Identity)
-            password: 'f00110bcda2f028a78e881c401b3750b', // optional
-            display_name: 'WebRTC', // optional
-            websocket_proxy_url: 'ws://199.102.239.103:8088/ws', // optional
+            realm: $('#realm').val(), // mandatory: domain name
+            impi: $('#impi').val(), // mandatory: authorization name (IMS Private Identity)
+            impu: $('#impu').val(), // mandatory: valid SIP Uri (IMS Public Identity)
+            password: $('#password').val(), // optional
+            display_name: $('#display_name').val(), // optional
+            websocket_proxy_url: $('#websocket_proxy_url').val(), // optional
             enable_rtcweb_breaker: false, // optional
             events_listener: { events: '*', listener: eventsListener }, // optional: '*' means all events
             sip_headers: [ // optional

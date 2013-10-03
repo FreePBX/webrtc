@@ -1,16 +1,3 @@
 <?php
-
-function webrtc_get_config($engine) {
-	global $db;
-	global $amp_conf;
-	global $ext;  // is this the best way to pass this?
-	global $asterisk_conf;
-	global $core_conf;
-	global $version;
-
-	switch($engine) {
-		case "asterisk":
-			//$core_conf->addSipGeneral("icesupport", "yes");
-			break;
-	}
-}
+include_once(dirname(__FILE__) . '/functions.inc/get_set.php');
+include_once(dirname(__FILE__) . '/functions.inc/hook_core.php');

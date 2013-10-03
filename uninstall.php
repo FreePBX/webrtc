@@ -16,6 +16,10 @@ if (! function_exists("outn")) {
 	}
 }
 
-$sql="DROP TABLE webrtc";
+$sql="DROP TABLE webrtc_clients";
 out(_("Removing Database!"));
-$check = $db->query($sql);
+sql($sql);
+
+$sql="DROP TABLE webrtc_settings";
+out(_("Removing Database!"));
+sql($sql);
