@@ -207,7 +207,7 @@ $(function() {
 				}
 				*/
 			//detect hangup (really ignore) on inbound call
-			} else if(callSession && aid == 'hangup') {
+			} else if(callSession && (aid == 'hangup' || aid == 'ignore')) {
 				//and hang it up....hahang it up
 				callSession.hangup();
 				//send lcd screen to blank
@@ -218,8 +218,14 @@ $(function() {
 				stopRingTone();
 				//destroy the session
 				callSession = null;
+				//hide window
+				$("#calleridpop" ).fadeOut("fast")
 			//detect answering *inbound* call
 			} else if(aid == 'answer') {
+				$("#calleridpop" ).fadeOut("fast", function() {
+					$('#calleridname').html()
+					$('#calleridnum').html('');
+				});
 				answer(callSession)
 			//Local Microphone mute state
 			} else if(callSession && aid == 'mute') {

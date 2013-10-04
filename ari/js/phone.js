@@ -4,11 +4,13 @@ var sipStack;
 var callSession = null;
 //the register session, null if not registered
 var registerSession = null;
-//call timer holder
-var refreshIntervalId = null;
+//requesting media stream?
+var requesting = false;
+//previous LCD
+var prev_lcd = '';
 
 var eventsListener = function(e){
-	//tsk_utils_log_info('==stack event = ' + e.type);
+	tsk_utils_log_info('==stack event = ' + e.type);
 	switch (e.type) {
 		//All Failed messages below
 		case 'failed_to_start':
@@ -82,9 +84,21 @@ var eventsListener = function(e){
 				stopRingbackTone();
 			}
 		break;
+		//canceled inbound call from remote party
+		case 'canceled':
+			$('#lcd_1').html('<i>Call Canceled</i>');
+			$('#lcd_2').html('');
+			//stop local ring back tone.
+			stopRingbackTone();
+			stopRingTone();
+			//destroy the session
+			callSession = null;
+			//hide window
+			$("#calleridpop" ).fadeOut("fast")
+		break;
 		//usually a hangup from either party
 		case 'terminated':
-			$("#lcd_1").html('<i>' + e.description + '</i>');
+			 $("#lcd_1").html('<i>' + e.description + '</i>');
 			//kill our callSession otherwise we can't make another call
 			callSession = null;
 			//send lcd screen to blank
@@ -118,6 +132,9 @@ var eventsListener = function(e){
 					prev_lcd = "Incoming call from [" + sRemoteNumber + "]";
 				}
 				/* TODO: this needs to be the shaun popup */
+				$("#calleridpop" ).fadeIn("fast")
+				$('#calleridname').html()
+				$('#calleridnum').html(sRemoteNumber);
 			}
 		break;
 		//adding remote audio stream means the call connected

@@ -67,6 +67,9 @@ class webrtcphone {
 			$html .= '<form>';
 			if(isset($_REQUEST['hidenav'])) {
 				$html .= '<script type="text/javascript">removeNav();</script>';
+				$pop_pos = 140;
+			} else {
+				$pop_pos = 154+140;
 			}
 			$html .= '<input type="hidden" id="realm" name="realm" value="'.$settings['realm'].'">';
 			$html .= '<input type="hidden" id="impi" name="impi" value="'.$settings['username'].'">';
@@ -93,11 +96,19 @@ class webrtcphone {
 				</td>
 				<td width="39" rowspan="3">&nbsp;</td>
 				<td width="190" height="45" valign="top" background="theme/webrtcimages/text-box.png">
-					<div style="padding:10px;font-size:75%;white-space:nowrap;"><div id="lcd_1"></div><div id="lcd_2"></div></div>
+					<div style="padding:10px;font-size:60%;white-space:nowrap;"><div style="overflow-y:hidden;overflow-x:scroll" id="lcd_1"></div><div style="overflow-y:hidden;overflow-x:scroll" id="lcd_2"></div></div>
 				</td>
 			</tr>
 			<tr>
-				<td valign="top" height="7"></td>
+				<td valign="top" height="7">
+					<div id="calleridpop" style="position:absolute;top:118.5px;left:{$pop_pos}px;background-image:url('theme/webrtcimages/incoming-call-bg.png');background-repeat:no-repeat;display:none">
+						<!--<div id="calleridname" style="position:relative;top:20px;left:110px;color:white;font-size:150%"></div>-->
+						<div width="4" id="calleridnum" style="position:relative;top:35px;left:-140px;color:white;font-size:150%;text-align:center">word</div>
+						<img data-audio="answer" data-file="answer-btn2" class="webrtcbutton" style="position:relative;top:-55px;left:30px" src="theme/webrtcimages/answer-btn2.png"/>
+						<img data-audio="ignore" data-file="ignore-btn" class="webrtcbutton" style="position:relative;top:-55px;left:70px" src="theme/webrtcimages/ignore-btn.png"/>
+						<img src="theme/webrtcimages/incoming-call-bg.png" style="visibility:hidden"/>
+						</div>
+				</td>
 			</tr>
 			<tr>
 				<td align="right" valign="top"><img id="answer" data-audio="answer" data-file="answer-btn" class="webrtcbutton"  src="theme/webrtcimages/answer-btn.png" align="left" /><img data-audio="hangup" data-file="hangup-btn" class="webrtcbutton" src="theme/webrtcimages/hangup-btn.png" /><br />
