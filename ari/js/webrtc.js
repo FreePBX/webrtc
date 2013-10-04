@@ -300,6 +300,26 @@ function stopRingbackTone() {
     } catch (e) {}
 }
 
+function external_call_hook(code) {
+	if(code == 803) {
+		if(callSession) {
+			//and hang it up....hahang it up
+			callSession.hangup();
+			//destroy the session
+			callSession = null;
+		}
+		//send lcd screen to blank
+		$('#lcd_1').html('<i>Call Ignored</i>');
+		$('#lcd_2').html('');
+		//stop local ring back tone.
+		stopRingbackTone();
+		stopRingTone();
+		
+		//hide window
+		$("#calleridpop" ).fadeOut("fast")
+	}
+}
+
 //starts the call timer
 function startTimer() {
 	var sec = 0;
