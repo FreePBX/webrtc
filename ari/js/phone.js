@@ -31,15 +31,23 @@ var eventsListener = function(e){
 		break;
 		//requested browser media
 		case 'm_permission_requested':
+			$('#lcd_1').html('Requesting Media Stream');
+			requesting = true;
 		break;
 		//request to get browser media accepted by user
 		case 'm_permission_accepted':
+			$('#lcd_1').html('Media Stream Authorized')
+			requesting = false;
+			if(prev_lcd != '') {
+				$('#lcd_1').html(prev_lcd);
+			}
+			prev_lcd = '';
 		break;
 		//request to get browser media rejected by user
 		case 'm_permission_refused':
 			//if the user rejects our request then reject the call
 			//e.newSession.reject();
-			$('#lcd_1').html('User Rejected Brower Media Request');
+			$('#lcd_1').html('User Rejected Media Request');
 			callSession = null;
 			//send lcd screen to blank
 			$('#lcd_2').html('');
@@ -54,11 +62,12 @@ var eventsListener = function(e){
 		//Engine is calling out or connecting
 		case 'connecting':
 			if(e.session == registerSession) {
-				//attempting to connect
-				//$("#lcd_1").html('Connecting...');
+
 			} else {
 				//attempting to call
-				$("#lcd_1").html('Calling...');
+				if(!requesting) {
+					$("#lcd_1").html('Calling...');
+				}
 			}
 		break;
 		//connected messages
@@ -87,6 +96,8 @@ var eventsListener = function(e){
 				//stop our call timer if it was set
 				clearInterval(refreshIntervalId);
 			}
+			var el = $('#answer');
+			webrtc_switch_img(el,'std')
 		break;
 		//new inbound call
 		case 'i_new_call':
@@ -101,7 +112,11 @@ var eventsListener = function(e){
 				startRingTone();
 				//Display in the phone lcd who is calling
 				var sRemoteNumber = (callSession.getRemoteFriendlyName() || 'unknown');
-				$("#lcd_1").html("Incoming call from [" + sRemoteNumber + "]");
+				if(!requesting) {
+					$("#lcd_1").html("Incoming call from [" + sRemoteNumber + "]");
+				} else {
+					prev_lcd = "Incoming call from [" + sRemoteNumber + "]";
+				}
 				/* TODO: this needs to be the shaun popup */
 			}
 		break;
@@ -197,34 +212,16 @@ var readyCallback = function(e){
 };
 
 function muteMicrophone(bEnabled) {
-    console.log("-->>>> muteMicrophone = " + bEnabled);
     if (callSession != null) {
-         console.log("-->>>> muteMicrophone-> callSession is valid");
         if (callSession.o_session != null) {
-            console.log("-->>>> muteMicrophone-> callSession.o_session is valid");
             if (callSession.o_session.o_stream_local != null) {
-                console.log("-->>>> muteMicrophone-> callSession.o_session.o_stream_local is valid");
                 if (callSession.o_session.o_stream_local.getAudioTracks().length > 0) {
-                    console.log("-->>>> muteMicrophone-> callSession.o_session.o_stream_local->Audio Tracks Greater than 0");
                     for (var nTrack = 0; nTrack < callSession.o_session.o_stream_local.getAudioTracks().length ; nTrack++) {
-                      console.log("-->>>> muteMicrophone-> Setting Audio Tracks [" + nTrack + "] to state = " + bEnabled);
                         callSession.o_session.o_stream_local.getAudioTracks()[nTrack].enabled = bEnabled;
                     }
                 }
-                else {
-                    console.log("-->>>> muteMicrophone-> callSession.o_session.o_stream_local-> NO AUDIO TRACKS");
-                }
-            }
-            else {
-                console.log("-->>>> muteMicrophone-> callSession.o_session.o_stream_local is NULL");
             }
         }
-        else {
-            console.log("-->>>> muteMicrophone-> callSession.o_session is NULL");
-        }
-    }
-    else {
-        console.log("-->>>> muteMicrophone-> callSession  is NULL");
     }
 }
 
