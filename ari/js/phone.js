@@ -86,6 +86,7 @@ var eventsListener = function(e){
 		break;
 		//canceled inbound call from remote party
 		case 'canceled':
+			/*
 			$('#lcd_1').html('<i>Call Canceled</i>');
 			$('#lcd_2').html('');
 			//stop local ring back tone.
@@ -95,6 +96,7 @@ var eventsListener = function(e){
 			callSession = null;
 			//hide window
 			$("#calleridpop" ).fadeOut("fast")
+			*/
 		break;
 		//usually a hangup from either party
 		case 'terminated':
