@@ -61,7 +61,7 @@ class webrtcphone {
 				}
 			}
 			$html .= '<link rel="stylesheet" href="theme/webrtc.css" type="text/css" />';
-			$html .= '<script type="text/javascript" src="theme/js/SIPml-api.js"></script>';
+			$html .= '<script type="text/javascript" src="theme/js/jssip-devel.js"></script>';
 			$html .= '<script type="text/javascript" src="theme/js/phone.js"></script>';
 			$html .= '<script type="text/javascript" src="theme/js/webrtc.js"></script>';
 			$html .= '<form>';

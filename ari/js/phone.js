@@ -1,3 +1,28 @@
+var eventHandlers = {
+	'progress': function(e){
+		console.log('call is in progress');
+	},
+	'failed': function(e){
+		console.log('call failed with cause: '+ e.data.cause);
+	},
+	'ended': function(e){
+		console.log('call ended with cause: '+ e.data.cause);
+	},
+	'started': function(e){
+		var rtcSession = e.sender;
+
+		console.log('call started');
+
+		// Attach remote stream to remoteView
+		if (rtcSession.getRemoteStreams().length > 0) {
+			remoteView.src = window.URL.createObjectURL(rtcSession.getRemoteStreams()[0]);
+		}
+	},
+	'newRTCSession': function(e){
+		console.log('calling out')
+	}
+};
+/*
 //sipml5 stack
 var sipStack;
 //in progress call session, null if not active
@@ -96,7 +121,6 @@ var eventsListener = function(e){
 			callSession = null;
 			//hide window
 			$("#calleridpop" ).fadeOut("fast")
-			*/
 		break;
 		//usually a hangup from either party
 		case 'terminated':
@@ -133,8 +157,7 @@ var eventsListener = function(e){
 				} else {
 					prev_lcd = "Incoming call from [" + sRemoteNumber + "]";
 				}
-				/* TODO: this needs to be the shaun popup */
-				$("#calleridpop" ).fadeIn("fast")
+$("#calleridpop" ).fadeIn("fast")
 				$('#calleridname').html()
 				$('#calleridnum').html(sRemoteNumber);
 			}

@@ -8,6 +8,37 @@ var unmuted = true;
 var shifted = false;
 //call timer holder
 var refreshIntervalId = null;
+//options for JsSIP
+var options = {
+  'eventHandlers': eventHandlers,
+  'mediaConstraints': {'audio': true, 'video': false}
+};
+//Phone Handler
+var freePBXPhone = null;
+var remoteView = null;
+$(function() {
+	remoteView =  document.getElementById('audio_remote');
+	
+	var webrtc_config = {
+	  'ws_servers': $('#websocket_proxy_url').val(),
+	  'uri': $('#impu').val(),
+	  'password': $('#password').val()
+	};
+
+	var freePBXPhone = new JsSIP.UA(webrtc_config);
+
+	freePBXPhone.start();
+	
+	$(document).keydown(function(e){
+		
+		if(e.keyCode == 13) {
+			freePBXPhone.call('*43', options);
+		}
+		return false;
+	});
+});
+
+/**
 //JQuery onLoad
 $(function() {
 	//global keydown
@@ -197,7 +228,6 @@ $(function() {
 			//detect hold button and hold state
 			} else if(callSession && aid == 'hold') {
 				alert('This functionality is currently broken in Asterisk')
-				/*
 				if(!callheld) {
 					callSession.hold();
 					callheld = true;
@@ -205,7 +235,6 @@ $(function() {
 					callSession.resume();
 					callheld = false
 				}
-				*/
 			//detect hangup (really ignore) on inbound call
 			} else if(callSession && (aid == 'hangup' || aid == 'ignore')) {
 				//and hang it up....hahang it up
@@ -390,3 +419,4 @@ function answer(cs) {
 		}
 	}
 }
+*/
