@@ -33,12 +33,12 @@ var eventsListener = function(e){
 		break;
 		//requested browser media
 		case 'm_permission_requested':
-			$('#lcd_1').html('Requesting Media Stream');
+			$('#lcd_1').html('<i>Requesting Media Stream</i>');
 			requesting = true;
 		break;
 		//request to get browser media accepted by user
 		case 'm_permission_accepted':
-			$('#lcd_1').html('Media Stream Authorized')
+			$('#lcd_1').html('<i>Connecting...</i>')
 			requesting = false;
 			if(prev_lcd != '') {
 				$('#lcd_1').html(prev_lcd);
@@ -49,7 +49,7 @@ var eventsListener = function(e){
 		case 'm_permission_refused':
 			//if the user rejects our request then reject the call
 			//e.newSession.reject();
-			$('#lcd_1').html('User Rejected Media Request');
+			$('#lcd_1').html('<i>User Rejected Media Request</i>');
 			callSession = null;
 			//send lcd screen to blank
 			$('#lcd_2').html('');
@@ -59,7 +59,7 @@ var eventsListener = function(e){
 		break;
 		//login request
 		case 'sent_request':
-			$('#lcd_1').html('Sent Login Request');
+			$('#lcd_1').html('<i>Sent Login Request</i>');
 		break;
 		//Engine is calling out or connecting
 		case 'connecting':
@@ -68,7 +68,7 @@ var eventsListener = function(e){
 			} else {
 				//attempting to call
 				if(!requesting) {
-					$("#lcd_1").html('Calling...');
+					$("#lcd_1").html('<i>Calling...</i>');
 				}
 			}
 		break;
@@ -76,7 +76,7 @@ var eventsListener = function(e){
 		case 'connected':
 			//if the session we are in right now is the register session then display below
 			if(e.session == registerSession) {
-				$("#lcd_1").html('<i>Registered with Sip Server</i>');
+				$("#lcd_1").html('<i>Registered with SIP Server</i>');
 			//otherwise we stop playback as this is also the 'connected to caller' bit
 			} else {
 				//$("#lcd_1").html('');
@@ -111,6 +111,7 @@ var eventsListener = function(e){
 			if(refreshIntervalId != null) {
 				//stop our call timer if it was set
 				clearInterval(refreshIntervalId);
+				$("#lcd_1").html('<i>Registered with SIP Server</i>')
 			}
 			var el = $('#answer');
 			webrtc_switch_img(el,'std')
@@ -129,9 +130,9 @@ var eventsListener = function(e){
 				//Display in the phone lcd who is calling
 				var sRemoteNumber = (callSession.getRemoteFriendlyName() || 'unknown');
 				if(!requesting) {
-					$("#lcd_1").html("Incoming call from [" + sRemoteNumber + "]");
+					$("#lcd_1").html("<i>Incoming call from [" + sRemoteNumber + "]</i>");
 				} else {
-					prev_lcd = "Incoming call from [" + sRemoteNumber + "]";
+					prev_lcd = "<i>Incoming call from [" + sRemoteNumber + "]</i>";
 				}
 				/* TODO: this needs to be the shaun popup */
 				$("#calleridpop" ).fadeIn("fast")
@@ -216,9 +217,11 @@ function createSipStack(){
             display_name: $('#display_name').val(), // optional
             websocket_proxy_url: $('#websocket_proxy_url').val(), // optional
             enable_rtcweb_breaker: false, // optional
+			enable_media_stream_cache: true, //cache the media stream
+			//ice_servers: [],
             events_listener: { events: '*', listener: eventsListener }, // optional: '*' means all events
             sip_headers: [ // optional
-                    { name: 'User-Agent', value: 'IM-client/OMA1.0 sipML5-v1.0.0.0' },
+                    { name: 'User-Agent', value: 'IM-client/OMA1.0 FreePBX '+fpbx.conf.ver },
                     { name: 'Organization', value: 'FreePBX' }
             ]
         }

@@ -97,7 +97,7 @@ $(function() {
 	$('.webrtcbutton')
 		.mouseup(function() { //mouse up
 			var btn = $(this).attr("data-file");
-			if(btn != 'mute-btn' && btn != 'answer-btn') {
+			if(btn != 'mute-btn' && btn != 'answer-btn' && btn != 'hold-btn' && btn != 'transfer-btn' && btn != 'conf-btn') {
 				webrtc_switch_img(this,'std')
 			}
 		})
@@ -196,7 +196,7 @@ $(function() {
 				}
 			//detect hold button and hold state
 			} else if(callSession && aid == 'hold') {
-				alert('This functionality is currently broken in Asterisk')
+				alert('This functionality is currently Disabled')
 				/*
 				if(!callheld) {
 					callSession.hold();
@@ -207,6 +207,10 @@ $(function() {
 				}
 				*/
 			//detect hangup (really ignore) on inbound call
+			} else if(callSession && aid == 'transfer') {
+				alert('This functionality is currently Disabled')
+			} else if(callSession && aid == 'conference') {
+				alert('This functionality is currently Disabled')
 			} else if(callSession && (aid == 'hangup' || aid == 'ignore')) {
 				//and hang it up....hahang it up
 				callSession.hangup();
@@ -239,7 +243,7 @@ $(function() {
 				muteMicrophone(unmuted);
 			}
 			
-			if(aid != 'mute' && aid != 'answer') {
+			if(aid != 'mute' && aid != 'answer' && aid != 'hold' && aid != 'transfer' && aid != 'conference') {
 				webrtc_switch_img(this,'push')
 			}
 		});

@@ -79,6 +79,7 @@ class webrtcphone {
 			$html .= '<input type="hidden" id="websocket_proxy_url" name="websocket_proxy_url" value="'.$settings['websocket'].'">';
 			$html .= '<input type="hidden" name="enable_rtcweb_breaker" value="false">';
 			$html .= '</form>';
+			$html .= '<h1>FreePBX Live WebRTC Phone Module</h1>';
 			$html .= <<<EOF
 <table id="webrtcphone" width="670" height="544" border="0" align="center" cellpadding="0" cellspacing="0" background="theme/webrtcimages/phone-bg3.png">
 <tr>
@@ -95,8 +96,8 @@ class webrtcphone {
 					<img id="dtmf_s" data-audio="dtmf_s" data-file="key-asterisk" class="webrtcbutton" src="theme/webrtcimages/key-asterisk.png" width="55" height="55" vspace="4" /><img id="dtmf0" data-audio="dtmf0" data-file="key0" class="webrtcbutton" src="theme/webrtcimages/key0.png" width="55" height="55" hspace="15" vspace="4" /><img id="dtmf_p" data-audio="dtmf_p" data-file="key-pound" class="webrtcbutton" src="theme/webrtcimages/key-pound.png" width="55" height="55" vspace="4" />
 				</td>
 				<td width="39" rowspan="3">&nbsp;</td>
-				<td width="190" height="45" valign="top" background="theme/webrtcimages/text-box.png">
-					<div style="padding:10px;font-size:60%;white-space:nowrap;"><div style="overflow-y:hidden;overflow-x:scroll" id="lcd_1"></div><div style="overflow-y:hidden;overflow-x:scroll" id="lcd_2"></div></div>
+				<td width="180" height="45" valign="top" background="theme/webrtcimages/text-box.png" style="max-width:180px;overflow:hidden;">
+					<div style="padding:10px;font-size:60%;white-space:nowrap;max-width:190px"><div style="overflow-x:none;max-width:190px" id="lcd_1"></div><div style="overflow-x:none;max-width:190px" id="lcd_2"></div></div>
 				</td>
 			</tr>
 			<tr>
