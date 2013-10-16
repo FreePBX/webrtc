@@ -1,27 +1,81 @@
-var eventHandlers = {
+var CallEventHandlers = {
 	'progress': function(e){
 		console.log('call is in progress');
 	},
 	'failed': function(e){
-		console.log('call failed with cause: '+ e.data.cause);
+		stopRingTone();
+		stopTimer();
+		callSession = null;
 	},
 	'ended': function(e){
-		console.log('call ended with cause: '+ e.data.cause);
+		stopRingTone();
+		stopTimer();
+		callSession = null;
 	},
 	'started': function(e){
-		var rtcSession = e.sender;
+		var rtcSession = e.sender, call = e.data.session;
 
-		console.log('call started');
-
+		display_name = callSession.remote_identity.display_name || callSession.remote_identity.uri.user;
+		$('#lcd_1').html('Connected to '+display_name+' (<label id="minutes">00</label>:<label id="seconds">00</label>)');
+		//start timer
+		startTimer();
+		//stop ringer
+		stopRingTone();
+		//Hold image in place
+		var el = $('#answer-btn');
+		webrtc_switch_img(el,'push');
+		
 		// Attach remote stream to remoteView
 		if (rtcSession.getRemoteStreams().length > 0) {
 			remoteView.src = window.URL.createObjectURL(rtcSession.getRemoteStreams()[0]);
 		}
-	},
-	'newRTCSession': function(e){
-		console.log('calling out')
 	}
 };
+
+function new_session(e) {
+	var display_name, status,
+	        request = e.data.request,
+	        call = e.data.session,
+	        uri = call.remote_identity.uri,
+	        session = callSession;
+
+	display_name = call.remote_identity.display_name || call.remote_identity.uri.user;
+
+	console.log(display_name);
+
+	if (call.direction === 'incoming') {
+		status = "incoming";
+	} else {
+		status = "outgoing";
+	}
+	
+    // If the session exists with active call reject it.
+    if (session) {
+      call.terminate();
+      return false;
+    }
+
+    // If this is a new session create it
+    if (!session) {
+      callSession = session = call;
+    }
+	
+	// Call/Message reception callbacks
+	callSession.on('failed', function(e) {
+		stopRingTone();
+	  callSession = null;
+	});
+	
+	// Call/Message reception callbacks
+	callSession.on('ended', function(e) {
+		stopRingTone();
+	  callSession = null;
+	});
+}
+
+function create_session(display_name, uri) {
+	
+}
 /*
 //sipml5 stack
 var sipStack;
