@@ -61,6 +61,7 @@ class webrtcphone {
 				}
 			}
 			$html .= '<link rel="stylesheet" href="theme/webrtc.css" type="text/css" />';
+			$html .= '<script type="text/javascript" src="theme/js/adaptor.js"></script>';
 			$html .= '<script type="text/javascript" src="theme/js/jssip-devel.js"></script>';
 			$html .= '<script type="text/javascript" src="theme/js/phone.js"></script>';
 			$html .= '<script type="text/javascript" src="theme/js/webrtc.js"></script>';
@@ -79,7 +80,8 @@ class webrtcphone {
 			$html .= '<input type="hidden" id="websocket_proxy_url" name="websocket_proxy_url" value="'.$settings['websocket'].'">';
 			$html .= '<input type="hidden" name="enable_rtcweb_breaker" value="false">';
 			$html .= '</form>';
-			$html .= <<<EOF
+			$html .= '<h1>'._("FreePBX WebRTC Phone").'</h1>';
+			$webphone .= <<<EOF
 <table id="webrtcphone" width="670" height="544" border="0" align="center" cellpadding="0" cellspacing="0" background="theme/webrtcimages/phone-bg3.png">
 <tr>
 	<td colspan="3" height="5"></td>
@@ -95,8 +97,8 @@ class webrtcphone {
 					<img id="dtmf_s" data-audio="dtmf_s" data-file="key-asterisk" class="webrtcbutton" src="theme/webrtcimages/key-asterisk.png" width="55" height="55" vspace="4" /><img id="dtmf0" data-audio="dtmf0" data-file="key0" class="webrtcbutton" src="theme/webrtcimages/key0.png" width="55" height="55" hspace="15" vspace="4" /><img id="dtmf_p" data-audio="dtmf_p" data-file="key-pound" class="webrtcbutton" src="theme/webrtcimages/key-pound.png" width="55" height="55" vspace="4" />
 				</td>
 				<td width="39" rowspan="3">&nbsp;</td>
-				<td width="190" height="45" valign="top" background="theme/webrtcimages/text-box.png">
-					<div style="padding:10px;font-size:60%;white-space:nowrap;"><div style="overflow-y:hidden;overflow-x:scroll" id="lcd_1"></div><div style="overflow-y:hidden;overflow-x:scroll" id="lcd_2"></div></div>
+				<td width="180" height="45" valign="top" background="theme/webrtcimages/text-box.png" style="max-width:180px;overflow:hidden;">
+					<div style="padding:10px;font-size:60%;white-space:nowrap;max-width:190px"><div style="overflow-x:none;max-width:190px" id="lcd_1"></div><div style="overflow-x:none;max-width:190px" id="lcd_2"></div></div>
 				</td>
 			</tr>
 			<tr>
@@ -113,8 +115,8 @@ class webrtcphone {
 			<tr>
 				<td align="right" valign="top"><img id="answer" data-audio="answer" data-file="answer-btn" class="webrtcbutton"  src="theme/webrtcimages/answer-btn.png" align="left" /><img data-audio="hangup" data-file="hangup-btn" class="webrtcbutton" src="theme/webrtcimages/hangup-btn.png" /><br />
 					<img data-audio="hold" class="webrtcbutton disabledbutton" data-file="hold-btn" src="theme/webrtcimages/hold-btn.png" align="left" /><img data-audio="mute" data-file="mute-btn" class="webrtcbutton"  src="theme/webrtcimages/mute-btn.png" /><br />
-					<img data-audio="transfer" class="webrtcbutton" data-file="transfer-btn" src="theme/webrtcimages/transfer-btn.png" align="left" /><img id="voldwn" data-audio="voldwn" data-file="vol-dwn-btn" class="webrtcbutton" src="theme/webrtcimages/vol-dwn-btn.png" /><br />
-					<img data-audio="conference" class="webrtcbutton" data-file="conf-btn" src="theme/webrtcimages/conf-btn.png" align="left" /><img id="volup" data-audio="volup" data-file="vol-up-btn" class="webrtcbutton" src="theme/webrtcimages/vol-up-btn.png" />
+					<img data-audio="transfer" class="webrtcbutton disabledbutton" data-file="transfer-btn" src="theme/webrtcimages/transfer-btn.png" align="left" /><img id="voldwn" data-audio="voldwn" data-file="vol-dwn-btn" class="webrtcbutton" src="theme/webrtcimages/vol-dwn-btn.png" /><br />
+					<img data-audio="conference" class="webrtcbutton disabledbutton" data-file="conf-btn" src="theme/webrtcimages/conf-btn.png" align="left" /><img id="volup" data-audio="volup" data-file="vol-up-btn" class="webrtcbutton" src="theme/webrtcimages/vol-up-btn.png" />
 				</td>
 			</tr>
 		</table>
@@ -134,8 +136,10 @@ class webrtcphone {
 </table>
 <div id="message"></div>
 EOF;
+$html .= $webphone;
+
 if(!isset($_REQUEST['hidenav'])) {
-	$html .= '<table width="670" id="removeNavLink"><tr><td><center><a style="cursor:pointer" onclick="popoutphone()">Detach Phone From Window</a></center></td></td></table>';
+	$html .= '<table width="670" id="removeNavLink"><tr><td><center><a style="cursor:pointer" onclick="popoutphone()">'._("Detach Phone From Window").'</a></center></td></td></table>';
 }
 $html .= <<<EOF
 <audio id="audio_remote" autoplay="autoplay" />
@@ -180,7 +184,7 @@ $html .= <<<EOF
 </audio>
 EOF;
 		} else {
-			$html = 'WebRTC Phone has not been configured for your extension';
+			$html = _('WebRTC Phone has not been configured for your extension');
 		}
 		return $html;
 	}

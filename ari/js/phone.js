@@ -1,34 +1,12 @@
 var CallEventHandlers = {
-	'progress': function(e){
-		console.log('call is in progress');
-	},
 	'failed': function(e){
-		stopRingTone();
-		stopTimer();
-		callSession = null;
+		endCall(e)
 	},
 	'ended': function(e){
-		stopRingTone();
-		stopTimer();
-		callSession = null;
+		endCall(e)
 	},
 	'started': function(e){
-		var rtcSession = e.sender, call = e.data.session;
-
-		display_name = callSession.remote_identity.display_name || callSession.remote_identity.uri.user;
-		$('#lcd_1').html('Connected to '+display_name+' (<label id="minutes">00</label>:<label id="seconds">00</label>)');
-		//start timer
-		startTimer();
-		//stop ringer
-		stopRingTone();
-		//Hold image in place
-		var el = $('#answer-btn');
-		webrtc_switch_img(el,'push');
-		
-		// Attach remote stream to remoteView
-		if (rtcSession.getRemoteStreams().length > 0) {
-			remoteView.src = window.URL.createObjectURL(rtcSession.getRemoteStreams()[0]);
-		}
+		startCall(e)
 	}
 };
 
@@ -40,11 +18,13 @@ function new_session(e) {
 	        session = callSession;
 
 	display_name = call.remote_identity.display_name || call.remote_identity.uri.user;
-
-	console.log(display_name);
+	display_name = display_name + ' ' + call.remote_identity.uri.user;
 
 	if (call.direction === 'incoming') {
 		status = "incoming";
+		$("#calleridpop" ).fadeIn("fast")
+		$('#calleridname').html()
+		$('#calleridnum').html(display_name);
 	} else {
 		status = "outgoing";
 	}
@@ -62,298 +42,143 @@ function new_session(e) {
 	
 	// Call/Message reception callbacks
 	callSession.on('failed', function(e) {
-		stopRingTone();
-	  callSession = null;
+		if(status == "incoming") {
+			$("#calleridpop" ).fadeOut("fast")
+			$('#calleridname').html()
+			$('#calleridnum').html('');
+		}
+		endCall(e)
 	});
 	
 	// Call/Message reception callbacks
 	callSession.on('ended', function(e) {
-		stopRingTone();
-	  callSession = null;
+		endCall(e)
+	});
+	
+	// Call/Message reception callbacks
+	callSession.on('started', function(e) {
+		startCall(e)
 	});
 }
 
-function create_session(display_name, uri) {
+function muteMicrophone(bEnabled) {
+	//callSession.rtcMediaHandler.localMedia.getAudioTracks()[0].enabled
+    if (callSession != null) {
+        if (callSession.rtcMediaHandler.localMedia.getAudioTracks().length > 0) {
+            for (var nTrack = 0; nTrack < callSession.rtcMediaHandler.localMedia.getAudioTracks().length ; nTrack++) {
+                callSession.rtcMediaHandler.localMedia.getAudioTracks()[nTrack].enabled = bEnabled;
+            }
+		}
+	}
+}
+
+//start ringer
+function startRingTone() {
+    try {
+        $('#ringtone').trigger('play')
+    } catch (e) {}
+}
+
+//stop and reset ringer (to begining of track)
+function stopRingTone() {
+    try {
+        $('#ringtone').trigger('pause')
+		$('#ringtone').trigger('load')
+    } catch (e) {}
+}
+
+//start ring back tone
+function startRingbackTone() {
+    try {
+        $('#ringtone').trigger('play')
+    } catch (e) {}
+}
+
+//stop ring back tone (to begining of track)
+function stopRingbackTone() {
+    try {
+        $('#ringtone').trigger('pause')
+		$('#ringtone').trigger('load')
+    } catch (e) {}
+}
+
+//starts the call timer
+function startTimer() {
+	var sec = 0;
+	function pad ( val ) { return val > 9 ? val : "0" + val; }
+	if(callTimer != null) {
+		//we have a timer running, this is bad so stop it
+		clearInterval(callTimer);
+	}
+	callTimer = setInterval( function(){
+	    $("#seconds").html(pad(++sec%60));
+	    $("#minutes").html(pad(parseInt(sec/60,10)));
+	}, 1000);
+}
+
+function stopTimer() {
+	if(callTimer != null) {
+		clearInterval(callTimer);
+	}
+}
+
+function startCall(e) {
+	var rtcSession = e.sender, call = e.data.session;
+
+	display_name = callSession.remote_identity.display_name || callSession.remote_identity.uri.user;
+	$('#lcd_1').html('Connected to '+display_name+' (<label id="minutes">00</label>:<label id="seconds">00</label>)');
+	//start timer
+	startTimer();
+	//stop ringer
+	stopRingTone();
+	//Hold image in place
+	var el = $('#answer');
+	webrtc_switch_img(el,'push');
+	
+	// Attach remote stream to remoteView
+	if (rtcSession.getRemoteStreams().length > 0) {
+		remoteView.src = window.URL.createObjectURL(rtcSession.getRemoteStreams()[0]);
+	}
+}
+
+function endCall(e) {
+	var rtcSession = e.sender, call = e.data.session;
+	
+	if(callSession != null) {
+		stopRingTone();
+		stopTimer();
+		var el = $('#answer');
+		webrtc_switch_img(el,'std');
+		callSession = null;
+		$('#lcd_1').html('<i>Registered with Sip Server</i>');
+		$('#lcd_2').html('');
+	}
+}
+
+function answer(cSession) {
 	
 }
-/*
-//sipml5 stack
-var sipStack;
-//in progress call session, null if not active
-var callSession = null;
-//the register session, null if not registered
-var registerSession = null;
-//requesting media stream?
-var requesting = false;
-//previous LCD
-var prev_lcd = '';
 
-var eventsListener = function(e){
-	tsk_utils_log_info('==stack event = ' + e.type);
-	switch (e.type) {
-		//All Failed messages below
-		case 'failed_to_start':
-		case 'failed_to_stop':
-		case 'stopping':
-		case 'stopped':
-			callSession = null; //important
-			SipStack = null;
-			myregisterSession = null;
-			$("#lcd_1").html('<i>Disconnected because: </i>' + e.description);
-		break;
-		case 'starting':
-			$("#lcd_1").html('<i>Initalizing Engine...</i>');
-		//SIPML5 Engine Has Started
-		case 'started':
-			//initiate login function
-			login();
-			//hard to say if this is seen or below 'connecting' is seen
-			$("#lcd_1").html('<i>Trying to Connect...</i>');
-		break;
-		//requested browser media
-		case 'm_permission_requested':
-			$('#lcd_1').html('Requesting Media Stream');
-			requesting = true;
-		break;
-		//request to get browser media accepted by user
-		case 'm_permission_accepted':
-			$('#lcd_1').html('Media Stream Authorized')
-			requesting = false;
-			if(prev_lcd != '') {
-				$('#lcd_1').html(prev_lcd);
-			}
-			prev_lcd = '';
-		break;
-		//request to get browser media rejected by user
-		case 'm_permission_refused':
-			//if the user rejects our request then reject the call
-			//e.newSession.reject();
-			$('#lcd_1').html('User Rejected Media Request');
-			callSession = null;
-			//send lcd screen to blank
-			$('#lcd_2').html('');
-			//stop local ring back tone.
-			stopRingbackTone();
-			stopRingTone();
-		break;
-		//login request
-		case 'sent_request':
-			$('#lcd_1').html('Sent Login Request');
-		break;
-		//Engine is calling out or connecting
-		case 'connecting':
-			if(e.session == registerSession) {
+function hangup(cSession) {
+	
+}
 
-			} else {
-				//attempting to call
-				if(!requesting) {
-					$("#lcd_1").html('Calling...');
-				}
-			}
-		break;
-		//connected messages
-		case 'connected':
-			//if the session we are in right now is the register session then display below
-			if(e.session == registerSession) {
-				$("#lcd_1").html('<i>Registered with Sip Server</i>');
-			//otherwise we stop playback as this is also the 'connected to caller' bit
-			} else {
-				//$("#lcd_1").html('');
-				//stop local ring back tone
-				stopRingbackTone();
-			}
-		break;
-		//canceled inbound call from remote party
-		case 'canceled':
-			/*
-			$('#lcd_1').html('<i>Call Canceled</i>');
-			$('#lcd_2').html('');
-			//stop local ring back tone.
-			stopRingbackTone();
-			stopRingTone();
-			//destroy the session
-			callSession = null;
-			//hide window
-			$("#calleridpop" ).fadeOut("fast")
-		break;
-		//usually a hangup from either party
-		case 'terminated':
-			 $("#lcd_1").html('<i>' + e.description + '</i>');
-			//kill our callSession otherwise we can't make another call
-			callSession = null;
-			//send lcd screen to blank
-			$('#lcd_2').html('');
-			//stop local ring back tone.
-			stopRingbackTone();
-			stopRingTone();
-			if(refreshIntervalId != null) {
-				//stop our call timer if it was set
-				clearInterval(refreshIntervalId);
-			}
-			var el = $('#answer');
-			webrtc_switch_img(el,'std')
-		break;
-		//new inbound call
-		case 'i_new_call':
-			if (callSession) {
-				// do not accept the incoming call if we're already 'in a call'
-				//We can accept it, not sure how to manage it with asterisk not dealing with hold correctly
-				e.newSession.reject();
-			} else {
-				//start a new session and place it in the call session
-				callSession = e.newSession;
-				//Start ringing in the browser
-				startRingTone();
-				//Display in the phone lcd who is calling
-				var sRemoteNumber = (callSession.getRemoteFriendlyName() || 'unknown');
-				if(!requesting) {
-					$("#lcd_1").html("Incoming call from [" + sRemoteNumber + "]");
-				} else {
-					prev_lcd = "Incoming call from [" + sRemoteNumber + "]";
-				}
-$("#calleridpop" ).fadeIn("fast")
-				$('#calleridname').html()
-				$('#calleridnum').html(sRemoteNumber);
-			}
-		break;
-		//adding remote audio stream means the call connected
-		case 'm_stream_audio_remote_added':
-			//get the remote caller ID
-			var sRemoteNumber = (callSession.getRemoteFriendlyName() || 'unknown');
-			//display the caller ID and timer on the lcd
-			$("#lcd_1").html('Connected to '+sRemoteNumber+' (<label id="minutes">00</label>:<label id="seconds">00</label>)');
-			//start the clock
-			startTimer();
-			//stop inbrowser ringing
-			stopRingbackTone();
-			stopRingTone();
-		break;
-		//sip notify messages from subscribed states
-		case 'i_notify':
-			console.info('NOTIFY content = ' + e.getContentString());
-			console.info('NOTIFY content-type = ' + e.getContentType());
-			//parse it all from xml to what we want (not xml)
-			if (e.getContentType() == 'application/pidf+xml') {
-				if (window.DOMParser) {
-					var parser = new DOMParser();
-					var xmlDoc = parser ? parser.parseFromString(e.getContentString(), "text/xml") : null;
-					var presenceNode = xmlDoc ? xmlDoc.getElementsByTagName ("presence")[0] : null;
-					if(presenceNode){
-						var entityUri = presenceNode.getAttribute ("entity");
-						var tupleNode = presenceNode.getElementsByTagName ("tuple")[0];
-						if(entityUri && tupleNode){
-							var statusNode = tupleNode.getElementsByTagName ("status")[0];
-							if(statusNode){
-								var basicNode = statusNode.getElementsByTagName ("basic")[0];
-								if(basicNode){
-									console.info('Presence notification: Uri = ' + entityUri + ' status = ' + basicNode.textContent);
-								}
-							}
-						}
-					}
-				}
-			}
-		break;
+function sendDTMF(cSession,DTMF) {
+	if(cSession){
+		cSession.sendDTMF(DTMF);
+	}
+	var pre = $('#lcd_2').html();
+	$('#lcd_2').html(pre+DTMF)
+	switch(DTMF) {
+		case '*':
+			DTMF = '_s';
+			break;
+		case '#':
+			DTMF = '_p';
+			break;
 		default:
-			//log all unknowns
-			console.log(e);
-		break;
+			DTMF = DTMF;
+			break;
 	}
+	$('#adtmf' + DTMF).trigger('play');
 }
-
-//error callback
-var errorCallback = function(e){
-    console.error('Failed to initialize the engine: ' + e.message);
-}
-
-//our login function
-var login = function(){
-    registerSession = sipStack.newSession('register', {
-		events_listener: { events: '*', listener: eventsListener }
-    });
-    registerSession.register();
-}
-
-//logout of server function (not used right now)
-var logout = function(){
-	if(registerSession != null) {
-		registerSession.unregister();
-		registerSession = null;
-		callSession = null;
-	}
-}
-
-//login credentials and junk like that
-function createSipStack(){
-    sipStack = new SIPml.Stack({
-            realm: $('#realm').val(), // mandatory: domain name
-            impi: $('#impi').val(), // mandatory: authorization name (IMS Private Identity)
-            impu: $('#impu').val(), // mandatory: valid SIP Uri (IMS Public Identity)
-            password: $('#password').val(), // optional
-            display_name: $('#display_name').val(), // optional
-            websocket_proxy_url: $('#websocket_proxy_url').val(), // optional
-            enable_rtcweb_breaker: false, // optional
-            events_listener: { events: '*', listener: eventsListener }, // optional: '*' means all events
-            sip_headers: [ // optional
-                    { name: 'User-Agent', value: 'IM-client/OMA1.0 sipML5-v1.0.0.0' },
-                    { name: 'Organization', value: 'FreePBX' }
-            ]
-        }
-    );
-}
-
-//engine ready callback
-var readyCallback = function(e){
-	createSipStack(); // see next section
-};
-
-function muteMicrophone(bEnabled) {
-    if (callSession != null) {
-        if (callSession.o_session != null) {
-            if (callSession.o_session.o_stream_local != null) {
-                if (callSession.o_session.o_stream_local.getAudioTracks().length > 0) {
-                    for (var nTrack = 0; nTrack < callSession.o_session.o_stream_local.getAudioTracks().length ; nTrack++) {
-                        callSession.o_session.o_stream_local.getAudioTracks()[nTrack].enabled = bEnabled;
-                    }
-                }
-            }
-        }
-    }
-}
-
-
-/* FUTURE for VIDEO
-function muteWebCam(bEnabled)
-{
-    console.log("-->>>> muteWebCam = " + bEnabled);
-    if (callSession != null) {
-        // console.log("-->>>> muteWebCam-> callSession is valid");
-        if (callSession.o_session != null) {
-            // console.log("-->>>> muteWebCam-> callSession.o_session is valid");
-            if (callSession.o_session.o_stream_local != null) {
-               // console.log("-->>>> muteWebCam-> callSession.o_session.o_stream_local is valid");
-                if (callSession.o_session.o_stream_local.getVideoTracks().length > 0) {
-                 //   console.log("-->>>> muteWebCam-> callSession.o_session.o_stream_local->Video Tracks Greater than 0");
-                    for (var nTrack = 0; nTrack < callSession.o_session.o_stream_local.getVideoTracks().length ; nTrack++) {
-                   //     console.log("-->>>> muteWebCam-> Setting Video Tracks [" + nTrack + "] to state = " + bEnabled);
-                        callSession.o_session.o_stream_local.getVideoTracks()[nTrack].enabled = bEnabled;
-                    }
-                }
-                else {
-                    console.log("-->>>> muteWebCam-> callSession.o_session.o_stream_local-> NO VIDEO TRACKS");
-                }
-            }
-            else {
-                console.log("-->>>> muteWebCam-> callSession.o_session.o_stream_local is NULL");
-            }
-        }
-        else {
-            console.log("-->>>> muteWebCam-> callSession.o_session is NULL");
-        }
-    }
-    else {
-        console.log("-->>>> muteWebCam-> callSession  is NULL");
-    }
-}
-////////////////////////////////////////////////////////////////////////////////////////////////////
-*/
