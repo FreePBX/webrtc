@@ -4,6 +4,8 @@ var gvolume = 100;
 var callheld = false;
 //global mute state
 var unmuted = true;
+//global transfer state
+var transfer = false;
 //global shift key state
 var shifted = false;
 //call timer holder
@@ -18,18 +20,26 @@ var callSession = null;
 var freePBXPhone = null;
 var remoteView = null;
 $(function() {
-	remoteView =  document.getElementById('audio_remote');
+	if(webrtcDetectedBrowser == 'chrome' && webrtcDetectedVersion > 26) {
+		activate_phone();
+	} else {
+		$('#outter-message').html('Browser ' + webrtcDetectedBrowser + ' ' + webrtcDetectedVersion + ' is not supported at this time');
+	}
+});
+
+function activate_phone() {
+	$('#webrtcphone-container').show();
 	
+	remoteView =  document.getElementById('audio_remote');
+
 	var webrtc_config = {
 	  'ws_servers': $('#websocket_proxy_url').val(),
 	  'uri': $('#impu').val(),
 	  'password': $('#password').val()
 	};
-
 	freePBXPhone = new JsSIP.UA(webrtc_config);
-
 	freePBXPhone.start();
-
+	
 	$(document).keydown(function(e){
 		event = event || window.event;
 		//Keys 0-9
@@ -85,7 +95,7 @@ $(function() {
 		}
 		return false;
 	});
-	
+
 	//webbutton class
 	$('.webrtcbutton')
 		.mouseup(function() { //mouse up
@@ -183,6 +193,16 @@ $(function() {
 				alert('This functionality is currently Disabled')
 			} else if(callSession && aid == 'transfer') {
 				alert('This functionality is currently Disabled')
+				/*
+				if(transfer) {
+					webrtc_switch_img(this,'push')
+					transfer = false;
+					$('#lcd_2').html('Enter Number Then hit Transfer');
+				} else {
+					webrtc_switch_img(this,'std')
+					transfer = true
+				}
+				*/
 			} else if(callSession && aid == 'conference') {
 				alert('This functionality is currently Disabled')
 			//detect hangup (really ignore) on inbound call
@@ -225,37 +245,37 @@ $(function() {
 				webrtc_switch_img(this,'push')
 			}
 		});
-	
+
 	// Call/Message reception callbacks
 	freePBXPhone.on('connected', function(e) {
 	  $("#lcd_1").html('<i>Initalizing Engine...</i>');
 	});
-	
+
 	// Call/Message reception callbacks
 	freePBXPhone.on('disconnected', function(e) {
 	  $("#lcd_1").html('<i>Disconnected</i>');
 	});
-	
+
 	// Call/Message reception callbacks
 	freePBXPhone.on('registered', function(e) {
 	  $("#lcd_1").html('<i>Registered with Sip Server</i>');
 	});
-	
+
 	// Call/Message reception callbacks
 	freePBXPhone.on('unregistered', function(e) {
 	  $("#lcd_1").html('<i>Unregistered</i>');
 	});
-	
+
 	// Call/Message reception callbacks
 	freePBXPhone.on('registrationFailed', function(e) {
 	  $("#lcd_1").html('<i>Registration Failed</i>');
 	});
-	
+
 	// Call/Message reception callbacks
 	freePBXPhone.on('newRTCSession', function(e) {
 		new_session(e);
 	});
-});
+}
 
 function webrtc_switch_img(el, state) {
 	var key = $(el).attr("data-file");
@@ -276,7 +296,7 @@ function popoutphone() {
 	$('#webrtcphone').hide();
 	$('#removeNavLink').hide();
 	$('#message').html('Phone is Currently Broken Out of Window');
-	newwindow=window.open('/recordings/index.php?m=webrtcphone&f=display&hidenav=true','name','height=600,width=750,location=0,toolbar=0');
+	newwindow=window.open('/recordings/index.php?m=webrtcphone&f=display&hidenav=true','name','height=650,width=750,location=0,toolbar=0');
 	if (window.focus) {newwindow.focus()}
 	return false;
 }

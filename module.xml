@@ -1,16 +1,13 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>2.11.0.0beta2</version>
+	<version>2.11.0.0beta3</version>
 	<publisher>Schmoozecom.com</publisher>
 	<license>GPLv2+</license>
 	<description></description>
 	<changelog></changelog>
 	<info></info>
 	<category>Connectivity</category>
-	<menuitems>
-		<webrtc beta="yes">WebRTC</webrtc>
-	</menuitems>
 	<depends>
 		<engine>asterisk 11</engine>
 		<module>core ge 2.11.0.5</module>
