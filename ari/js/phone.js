@@ -25,6 +25,7 @@ function new_session(e) {
 		$("#calleridpop" ).fadeIn("fast")
 		$('#calleridname').html()
 		$('#calleridnum').html(display_name);
+		startRingTone();
 	} else {
 		status = "outgoing";
 	}
@@ -46,6 +47,7 @@ function new_session(e) {
 			$("#calleridpop" ).fadeOut("fast")
 			$('#calleridname').html()
 			$('#calleridnum').html('');
+			stopRingTone();
 		}
 		endCall(e)
 	});
@@ -137,7 +139,7 @@ function startCall(e) {
 	
 	// Attach remote stream to remoteView
 	if (rtcSession.getRemoteStreams().length > 0) {
-		remoteView.src = window.URL.createObjectURL(rtcSession.getRemoteStreams()[0]);
+		remoteAudio.src = window.URL.createObjectURL(rtcSession.getRemoteStreams()[0]);
 	}
 }
 

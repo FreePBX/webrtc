@@ -9,7 +9,7 @@
 	<info></info>
 	<category>Connectivity</category>
 	<depends>
-		<engine>asterisk 11</engine>
+		<engine>asterisk 11.5</engine>
 		<module>core ge 2.11.0.5</module>
 	</depends>
 	<supported>

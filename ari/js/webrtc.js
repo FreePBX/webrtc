@@ -18,7 +18,7 @@ var callOptions = {
 var callSession = null;
 //Phone Handler
 var freePBXPhone = null;
-var remoteView = null;
+var remoteAudio = null;
 $(function() {
 	if(webrtcDetectedBrowser == 'chrome' && webrtcDetectedVersion > 26) {
 		activate_phone();
@@ -30,7 +30,7 @@ $(function() {
 function activate_phone() {
 	$('#webrtcphone-container').show();
 	
-	remoteView =  document.getElementById('audio_remote');
+	remoteAudio =  document.getElementById('audio_remote');
 
 	var webrtc_config = {
 	  'ws_servers': $('#websocket_proxy_url').val(),

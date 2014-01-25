@@ -55,7 +55,7 @@ function webrtc_configpageload($mode) {
 	
 	if(version_compare($amp_conf['ASTVERSION'],'11.5')) {
 		$currentcomponent->addguielem('WebRTC Phone', new gui_selectbox( 'webrtc_enable', $webrtc_select, $webrtc_value,
-		  _('Enable WebRTC ARI Phone'), sprintf(_('Enable User Panel WebRTC Phone Client for this %s'),$mode), false));
+		  _('Enable WebRTC User Control Panel Phone'), sprintf(_('Enable User Panel WebRTC Phone Client for this %s'),$mode), false));
 	} else {
 		$currentcomponent->addguielem('Device Options', new gui_hidden('webrtc_enable', $webrtc_value));
 	}	  
