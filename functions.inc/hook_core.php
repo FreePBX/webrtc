@@ -44,18 +44,20 @@ function webrtc_extensions_configpageload() {
 }
 
 function webrtc_configpageload($mode) {
+	global $amp_conf;
 	global $currentcomponent;
+	
 	$extdisplay = isset($_REQUEST['extdisplay'])?$_REQUEST['extdisplay']:null;
 
 	$webrtc_select = $currentcomponent->getoptlist('webrtc_enable');
 	
 	$webrtc_value = webrtc_get_enabled($extdisplay);
 	
-	if(true) {
+	if(version_compare($amp_conf['ASTVERSION'],'11.5')) {
 		$currentcomponent->addguielem('WebRTC Phone', new gui_selectbox( 'webrtc_enable', $webrtc_select, $webrtc_value,
-		  _('Enable WebRTC ARI Phone'), sprintf(_('Enable ARI WebRTC Phone Client for this %s'),$mode), false));
+		  _('Enable WebRTC User Control Panel Phone'), sprintf(_('Enable User Panel WebRTC Phone Client for this %s'),$mode), false));
 	} else {
-		//$currentcomponent->addguielem('Device Options', new gui_hidden('parkpro_parkinglot', $parkpro_parkinglot));
+		$currentcomponent->addguielem('Device Options', new gui_hidden('webrtc_enable', $webrtc_value));
 	}	  
 }
 

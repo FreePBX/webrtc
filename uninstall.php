@@ -3,7 +3,7 @@
 global $db;
 global $amp_conf;
 
-out(_("Uninstalling Web Softphone Based on SIPML5!"));
+out(_("Uninstalling WebRTC Phone!"));
 if (! function_exists("out")) {
 	function out($text) {
 		echo $text."<br />";
