@@ -70,9 +70,63 @@ class webrtcphone {
 			$html .= '<form>';
 			if(isset($_REQUEST['hidenav'])) {
 				$html .= '<script type="text/javascript">removeNav();</script>';
-				$pop_pos = 140;
+				$html .= '<style>
+					#calleridpop {
+						position:absolute;
+						/*top:118.5px;*/
+						left:140px;
+						background-image:url("theme/webrtcimages/incoming-call-bg.png");
+						background-repeat:no-repeat;
+						display:none
+					}
+					#calleridnum {
+						position:relative;
+						top:35px;
+						left:-120px;
+						color:white;
+						font-size:140%;
+						text-align:center;
+					}
+					#calleridpop-answer {
+						position:relative;
+						top:55px;
+						left:30px
+					}
+					#calleridpop-ignore {
+						position:relative;
+						top:55px;
+						left:70px;
+					}
+					</style>';
 			} else {
-				$pop_pos = 154+140;
+				$html .= '<style>
+					#calleridpop {
+						position:absolute;
+						top:118.5px;
+						left:294px;
+						background-image:url("theme/webrtcimages/incoming-call-bg.png");
+						background-repeat:no-repeat;
+						display:none
+					}
+					#calleridnum {
+						position:relative;
+						top:35px;
+						left:-140px;
+						color:white;
+						font-size:140%;
+						text-align:center;
+					}
+					#calleridpop-answer {
+						position:relative;
+						top:-55px;
+						left:30px
+					}
+					#calleridpop-ignore {
+						position:relative;
+						top:-55px;
+						left:70px;
+					}
+					</style>';
 			}
 			$html .= '<input type="hidden" id="realm" name="realm" value="'.$settings['realm'].'">';
 			$html .= '<input type="hidden" id="impi" name="impi" value="'.$settings['username'].'">';
@@ -106,11 +160,11 @@ class webrtcphone {
 				</tr>
 				<tr>
 					<td valign="top" height="7">
-						<div id="calleridpop" style="position:absolute;top:118.5px;left:{$pop_pos}px;background-image:url('theme/webrtcimages/incoming-call-bg.png');background-repeat:no-repeat;display:none">
+						<div id="calleridpop">
 							<!--<div id="calleridname" style="position:relative;top:20px;left:110px;color:white;font-size:150%"></div>-->
-							<div width="4" id="calleridnum" style="position:relative;top:35px;left:-140px;color:white;font-size:150%;text-align:center">word</div>
-							<img data-audio="answer" data-file="answer-btn2" class="webrtcbutton" style="position:relative;top:-55px;left:30px" src="theme/webrtcimages/answer-btn2.png"/>
-							<img data-audio="ignore" data-file="ignore-btn" class="webrtcbutton" style="position:relative;top:-55px;left:70px" src="theme/webrtcimages/ignore-btn.png"/>
+							<div id="calleridnum" width="4" >word</div>
+							<img id="calleridpop-answer" data-audio="answer" data-file="answer-btn2" class="webrtcbutton" src="theme/webrtcimages/answer-btn2.png"/>
+							<img id="calleridpop-ignore" data-audio="ignore" data-file="ignore-btn" class="webrtcbutton" src="theme/webrtcimages/ignore-btn.png"/>
 							<img src="theme/webrtcimages/incoming-call-bg.png" style="visibility:hidden"/>
 							</div>
 					</td>
@@ -118,7 +172,7 @@ class webrtcphone {
 				<tr>
 					<td align="right" valign="top"><img id="answer" data-audio="answer" data-file="answer-btn" class="webrtcbutton"  src="theme/webrtcimages/answer-btn.png" align="left" /><img data-audio="hangup" data-file="hangup-btn" class="webrtcbutton" src="theme/webrtcimages/hangup-btn.png" /><br />
 						<!--<img data-audio="hold" class="webrtcbutton disabledbutton" data-file="hold-btn" src="theme/webrtcimages/hold-btn.png" align="left" />--><img data-audio="mute" data-file="mute-btn" class="webrtcbutton"  src="theme/webrtcimages/mute-btn.png" /><br />
-						<img data-audio="transfer" class="webrtcbutton disabledbutton" data-file="transfer-btn" src="theme/webrtcimages/transfer-btn.png" align="left" /><img id="voldwn" data-audio="voldwn" data-file="vol-dwn-btn" class="webrtcbutton" src="theme/webrtcimages/vol-dwn-btn.png" /><br />
+						<!-- <img data-audio="transfer" class="webrtcbutton disabledbutton" data-file="transfer-btn" src="theme/webrtcimages/transfer-btn.png" align="left" />--><img id="voldwn" data-audio="voldwn" data-file="vol-dwn-btn" class="webrtcbutton" src="theme/webrtcimages/vol-dwn-btn.png" /><br />
 						<!--<img data-audio="conference" class="webrtcbutton disabledbutton" data-file="conf-btn" src="theme/webrtcimages/conf-btn.png" align="left" />--><img id="volup" data-audio="volup" data-file="vol-up-btn" class="webrtcbutton" src="theme/webrtcimages/vol-up-btn.png" />
 					</td>
 				</tr>
