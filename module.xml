@@ -18,7 +18,7 @@
 	<category>Connectivity</category>
 	<depends>
 		<engine>asterisk 11.5</engine>
-		<module>core ge 2.11.0.10</module>
+		<module>core ge 2.11.0.11</module>
 	</depends>
 	<supported>
 		<version>2.11</version>
