@@ -108,7 +108,7 @@ function webrtc_get_client_settingsByUser($user) {
 	$results['sipuri'] = !empty($results['sipuri']) ? $results['sipuri'] : 'sip:'.$results['username'].'@'.$sip_server;
 	$results['password'] = !empty($results['password']) ? $results['password'] : $dev['secret'];
 	$prefix = $freepbx_conf->get_conf_setting('HTTPPREFIX');
-	$suffix = !empty($prefix) ? "/".$prefix."/ws" : "/ws"
+	$suffix = !empty($prefix) ? "/".$prefix."/ws" : "/ws";
 	$results['websocket'] = !empty($results['websocket']) ? $results['websocket'] : 'ws://'.$sip_server.':'.$freepbx_conf->get_conf_setting('HTTPBINDPORT').$suffix;
 	$results['breaker'] = !empty($results['breaker']) ? (bool)$results['breaker'] : false;
 	$results['cid'] = !empty($results['cid']) ? $results['cid'] : $usr['name'];
