@@ -198,7 +198,9 @@ $html .= $webphone;
 if(!isset($_REQUEST['hidenav'])) {
 	$html .= '<table width="670" id="removeNavLink"><tr><td><center><a style="cursor:pointer" onclick="popoutphone()">'._("Detach Phone From Window").'</a></center></td></td></table>';
 }
+$date = date('Y');
 $html .= <<<EOF
+	<div class="footer" style="text-align: center;">&copy; Copyright 2013-${date} Schmooze Com, Inc.</div>
 <audio id="audio_remote" autoplay="autoplay" />
 <audio id="ringtone"> 
 <source src="theme/webrtcsounds/ring.mp3" type="audio/mpeg">
