@@ -38,3 +38,14 @@ sql($sql);
 if (!$db->getOne("SELECT value FROM webrtc_settings WHERE `key` = 'device_prefix'")) {
 	sql("INSERT INTO webrtc_settings (`key`, `value`) VALUES('device_prefix','99')");
 }
+
+//Remove Old Link if need be
+if(file_exists($amp_conf['ASTETCDIR'].'/http.conf') && is_link($amp_conf['ASTETCDIR'].'/http.conf') && (readlink($amp_conf['ASTETCDIR'].'/http.conf') == dirname(__FILE__).'/etc/httpd.conf')) {
+	unlink($amp_conf['ASTETCDIR'].'/http.conf');
+}
+
+$freepbx_conf =& freepbx_conf::create();
+
+if($freepbx_conf->conf_setting_exists('HTTPENABLED')) {
+	$freepbx_conf->set_conf_values(array('HTTPENABLED' => true),true);
+}
