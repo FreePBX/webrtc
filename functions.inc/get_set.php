@@ -92,6 +92,8 @@ function webrtc_set_client_settings($user,$device) {
 
 function webrtc_get_client_settingsByUser($user) {
 	global $db;
+	$freepbx_conf =& freepbx_conf::create();
+	
 	$user = $db->escapeSimple($user);
 	$sql = "SELECT * FROM webrtc_clients WHERE `user` = '".$user."'";
 	$results = sql($sql,'getRow',DB_FETCHMODE_ASSOC);
@@ -105,7 +107,9 @@ function webrtc_get_client_settingsByUser($user) {
 	$results['username'] = !empty($results['username']) ? $results['username'] : $dev['id'];
 	$results['sipuri'] = !empty($results['sipuri']) ? $results['sipuri'] : 'sip:'.$results['username'].'@'.$sip_server;
 	$results['password'] = !empty($results['password']) ? $results['password'] : $dev['secret'];
-	$results['websocket'] = !empty($results['websocket']) ? $results['websocket'] : 'ws://'.$sip_server.':8088/ws';
+	$prefix = $freepbx_conf->get_conf_setting('HTTPPREFIX');
+	$suffix = !empty($prefix) ? "/".$prefix."/ws" : "/ws"
+	$results['websocket'] = !empty($results['websocket']) ? $results['websocket'] : 'ws://'.$sip_server.':'.$freepbx_conf->get_conf_setting('HTTPBINDPORT').$suffix;
 	$results['breaker'] = !empty($results['breaker']) ? (bool)$results['breaker'] : false;
 	$results['cid'] = !empty($results['cid']) ? $results['cid'] : $usr['name'];
 	return $results;
