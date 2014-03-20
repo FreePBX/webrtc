@@ -29,51 +29,57 @@ $(function() {
 
 function activate_phone() {
 	$('#webrtcphone-container').show();
-	
+
 	remoteAudio =  document.getElementById('audio_remote');
 
 	var webrtc_config = {
-	  'ws_servers': $('#websocket_proxy_url').val(),
-	  'uri': $('#impu').val(),
-	  'password': $('#password').val()
+		'ws_servers': $('#websocket_proxy_url').val(),
+		'uri': $('#impu').val(),
+		'password': $('#password').val()
 	};
 	freePBXPhone = new JsSIP.UA(webrtc_config);
 	freePBXPhone.start();
-	
+
 	$(document).keydown(function(e){
 		event = event || window.event;
 		//Keys 0-9
-		if(e.keyCode >= 48 && e.keyCode <= 57 && !event.shiftKey) {
-			//extract key value from 48
-			var num = (e.keyCode - 48);
+		if(((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) && !event.shiftKey) {
+			//extract key value from 48 if using keyboard top row
+			var num = '';
+			if(e.keyCode >= 48 && e.keyCode <= 57) {
+				num = (e.keyCode - 48);
+			//extract from 96 if using keypad
+			} else {
+				num = (e.keyCode - 96);
+			}
 			//if we are in a call
 			if(num >= 0) {
-				sendDTMF(callSession,num)
+				sendDTMF(callSession,num);
 			}
-			var el = $('#dtmf' + num);
-			webrtc_switch_img(el,'push')
+			webrtc_switch_img($('#dtmf' + num),'push');
 		//keys 3 & 8 with shift (so # & *)
-		} else if((e.keyCode == 51 || e.keyCode == 56) && event.shiftKey) {
+		} else if(((e.keyCode == 51 || e.keyCode == 56) && event.shiftKey) || e.keyCode == 106) {
+			var el = '';
 			if(e.keyCode == 51) {
-				sendDTMF(callSession,'#')
-				var el = $('#dtmf_p');
-			} else {
-				sendDTMF(callSession,'*')
-				var el = $('#dtmf_s');
+				sendDTMF(callSession,'#');
+				el = $('#dtmf_p');
+			} else if(e.keyCode == 56 || e.keyCode == 106) {
+				sendDTMF(callSession,'*');
+				el = $('#dtmf_s');
 			}
-			webrtc_switch_img(el,'push')
+			webrtc_switch_img(el,'push');
 		//backspace key, dont allow backspace while in a call (it doesnt make sense)
 		} else if(e.keyCode == 8 && !callSession) {
 			var pre = $('#lcd_2').html();
 			//dont allow taking off too much of nothing
-			if(pre != '') {
+			if(pre !== '') {
 				pre = pre.substring(0, pre.length -1);
 			}
-			$('#lcd_2').html(pre)
+			$('#lcd_2').html(pre);
 		//enter key
 		} else if(e.keyCode == 13) {
 			var digits = $('#lcd_2').html();
-			if(digits != '') {
+			if(digits !== '') {
 				$('#lcd_1').html('<i>Calling '+digits+'</i>');
 				freePBXPhone.call(digits,callOptions);
 				startRingTone();
@@ -91,7 +97,7 @@ function activate_phone() {
 				shifted = false;
 			}
 			var el = $('#dtmf' + num);
-			webrtc_switch_img(el,'std')
+			webrtc_switch_img(el,'std');
 		}
 		return false;
 	});
@@ -101,7 +107,7 @@ function activate_phone() {
 		.mouseup(function() { //mouse up
 			var btn = $(this).attr("data-file");
 			if(btn != 'mute-btn' && btn != 'answer-btn' && btn != 'hold-btn' && btn != 'transfer-btn' && btn != 'conf-btn') {
-				webrtc_switch_img(this,'std')
+				webrtc_switch_img(this,'std');
 			}
 		})
 		.mousedown(function() { //mouse down
@@ -161,7 +167,7 @@ function activate_phone() {
 			}
 			//if in active call, and number and is a dtmf then send to engine
 			if(dtmf){
-				sendDTMF(callSession,num)
+				sendDTMF(callSession,num);
 			//Volume down
 			} else if(aid == 'voldwn') {
 				//TODO: I think we could use jquery here
@@ -170,10 +176,10 @@ function activate_phone() {
 				if(gvolume > 0) {
 					gvolume = (gvolume - 10);
 					speaker.volume=gvolume/100;
-					$('#voldwn').fadeTo( "fast", 1 )
-					$('#volup').fadeTo( "fast", 1 )
+					$('#voldwn').fadeTo( "fast", 1 );
+					$('#volup').fadeTo( "fast", 1 );
 				} else {
-					$('#voldwn').fadeTo( "fast", 0.3 )
+					$('#voldwn').fadeTo( "fast", 0.3 );
 				}
 			//volume up
 			} else if(aid == 'volup') {
@@ -183,16 +189,16 @@ function activate_phone() {
 				if(gvolume < 100) {
 					gvolume = (gvolume + 10);
 					speaker.volume=gvolume/100;
-					$('#volup').fadeTo( "fast", 1 )
-					$('#voldwn').fadeTo( "fast", 1 )
+					$('#volup').fadeTo( "fast", 1 );
+					$('#voldwn').fadeTo( "fast", 1 );
 				} else {
-					$('#volup').fadeTo( "fast", 0.3 )
+					$('#volup').fadeTo( "fast", 0.3 );
 				}
 			//detect hold button and hold state
 			} else if(callSession && aid == 'hold') {
-				alert('This functionality is currently Disabled')
+				alert('This functionality is currently Disabled');
 			} else if(callSession && aid == 'transfer') {
-				alert('This functionality is currently Disabled')
+				alert('This functionality is currently Disabled');
 				/*
 				if(transfer) {
 					webrtc_switch_img(this,'push')
@@ -204,7 +210,7 @@ function activate_phone() {
 				}
 				*/
 			} else if(callSession && aid == 'conference') {
-				alert('This functionality is currently Disabled')
+				alert('This functionality is currently Disabled');
 			//detect hangup (really ignore) on inbound call
 			} else if(callSession && (aid == 'hangup' || aid == 'ignore')) {
 				//and hang it up....hahang it up
@@ -213,27 +219,27 @@ function activate_phone() {
 				$('#lcd_1').html('<i>Registered with Sip Server</i>');
 				$('#lcd_2').html('');
 				//hide window
-				$("#calleridpop" ).fadeOut("fast")
+				$("#calleridpop" ).fadeOut("fast");
 			//detect answering *inbound* call
 			} else if(callSession && aid == 'answer') {
 				$("#calleridpop" ).fadeOut("fast", function() {
-					$('#calleridname').html()
+					$('#calleridname').html();
 					$('#calleridnum').html('');
 				});
 				callSession.answer(callOptions);
 			//Local Microphone mute state
 			} else if(callSession && aid == 'mute') {
 				if(unmuted) {
-					webrtc_switch_img(this,'push')
+					webrtc_switch_img(this,'push');
 					unmuted = false;
 				} else {
-					webrtc_switch_img(this,'std')
-					unmuted = true
+					webrtc_switch_img(this,'std');
+					unmuted = true;
 				}
 				muteMicrophone(unmuted);
 			} else if(!callSession && aid == 'answer') {
 				var digits = $('#lcd_2').html();
-				if(digits != '') {
+				if(digits !== '') {
 					$('#lcd_1').html('<i>Calling '+digits+'</i>');
 					freePBXPhone.call(digits,callOptions);
 					startRingTone();
@@ -242,33 +248,33 @@ function activate_phone() {
 				$('#lcd_2').html('');
 			}
 			if(aid != 'mute' && aid != 'answer' && aid != 'hold' && aid != 'transfer' && aid != 'conference') {
-				webrtc_switch_img(this,'push')
+				webrtc_switch_img(this,'push');
 			}
 		});
 
 	// Call/Message reception callbacks
 	freePBXPhone.on('connected', function(e) {
-	  $("#lcd_1").html('<i>Initalizing Engine...</i>');
+		$("#lcd_1").html('<i>Initalizing Engine...</i>');
 	});
 
 	// Call/Message reception callbacks
 	freePBXPhone.on('disconnected', function(e) {
-	  $("#lcd_1").html('<i>Disconnected</i>');
+		$("#lcd_1").html('<i>Disconnected</i>');
 	});
 
 	// Call/Message reception callbacks
 	freePBXPhone.on('registered', function(e) {
-	  $("#lcd_1").html('<i>Registered with Sip Server</i>');
+		$("#lcd_1").html('<i>Registered with Sip Server</i>');
 	});
 
 	// Call/Message reception callbacks
 	freePBXPhone.on('unregistered', function(e) {
-	  $("#lcd_1").html('<i>Unregistered</i>');
+		$("#lcd_1").html('<i>Unregistered</i>');
 	});
 
 	// Call/Message reception callbacks
 	freePBXPhone.on('registrationFailed', function(e) {
-	  $("#lcd_1").html('<i>Registration Failed</i>');
+		$("#lcd_1").html('<i>Registration Failed</i>');
 	});
 
 	// Call/Message reception callbacks
@@ -279,10 +285,11 @@ function activate_phone() {
 
 function webrtc_switch_img(el, state) {
 	var key = $(el).attr("data-file");
+	var src = '';
 	if(state == 'push') {
-		var src = $('#push_' + key).attr("src");
+		src = $('#push_' + key).attr("src");
 	} else {
-		var src = $('#std_' + key).attr("src");
+		src = $('#std_' + key).attr("src");
 	}
 	$(el).attr("src", src);
 }
@@ -297,6 +304,6 @@ function popoutphone() {
 	$('#removeNavLink').hide();
 	$('#message').html('Phone is Currently Broken Out of Window');
 	newwindow=window.open('/recordings/index.php?m=webrtcphone&f=display&hidenav=true','name','height=650,width=750,location=0,toolbar=0');
-	if (window.focus) {newwindow.focus()}
+	if (window.focus) { newwindow.focus(); }
 	return false;
 }
