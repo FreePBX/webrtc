@@ -1,9 +1,10 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>2.11.0.0beta5</version>
-	<publisher>Schmoozecom.com</publisher>
-	<license>MPLv1.1+</license>
+	<version>2.11.0.0beta6</version>
+	<publisher>Schmooze Com Inc</publisher>
+	<license>GPLv3+</license>
+	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
 	<repo>standard</repo>
 	<description>
 		The WebRTC Module allows an Administrator to enable a "WebRTC phone" that can be attached to a user's 
