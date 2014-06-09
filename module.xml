@@ -1,20 +1,22 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>2.11.0.0beta6</version>
+	<version>2.11.0.0beta7</version>
 	<publisher>Schmooze Com Inc</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
 	<repo>standard</repo>
 	<description>
-		The WebRTC Module allows an Administrator to enable a "WebRTC phone" that can be attached to a user's 
-		extension which they can connect to through FreePBX User Control Panel, this WebRTC phone will then 
+		The WebRTC Module allows an Administrator to enable a "WebRTC phone" that can be attached to a user's
+		extension which they can connect to through FreePBX User Control Panel, this WebRTC phone will then
 		receive phone calls at the same time as the users extension using user and device mode behind the scenes.
 		If you have User and Device Mode enabled any extension you enable the WebRTC Phone a duplicate extension of 99XXXX
-		will be created (where XXXX is the original extension number), when the user then views the web interface of the WebRTC 
+		will be created (where XXXX is the original extension number), when the user then views the web interface of the WebRTC
 		phone they will be connected to device 99XXXX which will receive calls from the original extension
 	</description>
-	<changelog></changelog>
+	<changelog>
+		*2.11.0.0beta7* FREEI-199
+	</changelog>
 	<info></info>
 	<category>Connectivity</category>
 	<depends>

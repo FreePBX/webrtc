@@ -92,7 +92,7 @@ function webrtc_set_client_settings($user,$device) {
 function webrtc_get_client_settingsByUser($user) {
 	global $db;
 	$freepbx_conf =& freepbx_conf::create();
-	
+
 	$user = $db->escapeSimple($user);
 	$sql = "SELECT * FROM webrtc_clients WHERE `user` = '".$user."'";
 	$results = sql($sql,'getRow',DB_FETCHMODE_ASSOC);
@@ -118,5 +118,11 @@ function webrtc_delete_client_settingsByDevice($extension) {
 	$prefix = webrtc_get_prefix();
 	$sql = "DELETE FROM webrtc_clients WHERE `device` = '".$prefix.$extension."'";
 	$results = sql($sql);
+	return $results;
+}
+
+function webrtc_get_users_enabled() {
+	$sql = "SELECT * from webrtc_clients";
+	$results = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 	return $results;
 }
