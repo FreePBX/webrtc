@@ -60,7 +60,6 @@ function webrtc_delete($extension) {
 function webrtc_delete_device($extension) {
 	$prefix = webrtc_get_prefix();
 	core_devices_del($prefix.$extension);
-	core_devices_delsip($prefix.$extension);
 	webrtc_delete_client_settingsByDevice($extension);
 }
 
