@@ -20,11 +20,14 @@ var callSession = null;
 var freePBXPhone = null;
 var remoteAudio = null;
 $(function() {
+  activate_phone();
+  /*
 	if(webrtcDetectedBrowser == 'chrome' && webrtcDetectedVersion > 26) {
 		activate_phone();
 	} else {
 		$('#outter-message').html('Browser ' + webrtcDetectedBrowser + ' ' + webrtcDetectedVersion + ' is not supported at this time');
 	}
+  */
 });
 
 function activate_phone() {

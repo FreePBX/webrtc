@@ -12,7 +12,8 @@ function webrtc_configpageinit($pagename) {
 	$supported_hardware = array('sip','pjsip','iax2','dahdi');
 
     // We only want to hook the 'extensions' pages.
-	if ($pagename != 'extensions' && in_array(str_replace('_generic','',$_REQUEST['tech_hardware']),$supported_hardware))  {
+	$th = !empty($_REQUEST['tech_hardware']) ? $_REQUEST['tech_hardware'] : '';
+	if ($pagename != 'extensions' && in_array(str_replace('_generic','',$th),$supported_hardware))  {
 		return true;
 	}
 
