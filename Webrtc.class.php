@@ -19,7 +19,6 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 			"media_use_received_transport" => "yes",
 			"use_avpf" => "yes",
 			"ice_support" => "yes",
-			"encryption" => "yes"
 		)
 	);
 
@@ -44,6 +43,7 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		}
 		$this->freepbx = $freepbx;
 		$this->core = $this->freepbx->Core;
+		$this->certman = $this->freepbx->Certman;
 		$this->db = $this->freepbx->Database;
 	}
 
@@ -138,181 +138,6 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		return true;
 	}
 
-	public function createWebRTCDevice($extension) {
-		$settings = array(
-			"dial" => array(
-				"value" => "SIP/991004",
-				"flag" => 25
-			),
-			"devicetype" => array(
-				"value"	=> "fixed",
-			),
-			"user" => array(
-				"value" => "1004",
-			),
-			"description" => array(
-				"value" => "DisplayName WebRTC Client",
-			),
-			"emergency_cid" => array(
-				"value" => ""
-			),
-			"sipdriver" => array(
-				"value" => "chan_sip",
-				"flag" => 2
-			),
-			"secret_origional" => array(
-				"value" => "7f7ac988fbd3d873f63aac7a7f23f211",
-				"flag" => 3
-			),
-			"secret" => array(
-				"value" => "7f7ac988fbd3d873f63aac7a7f23f211",
-				"flag" => 4
-			),
-			"dtmfmod" => array(
-				"value" => "rfc2833",
-				"flag" => 5
-			),
-			"canreinvite" => array(
-				"value" => "no",
-				"flag" => 6
-			),
-			"context" => array(
-				"value" => "from-internal",
-				"flag" => 7
-			),
-			"host" => array(
-				"value" => "dynamic",
-				"flag" => 8
-			),
-			"trustrpid" => array(
-				"value" => "yes",
-				"flag" => 9
-			),
-			"sendrpid" => array(
-				"value" => "no",
-				"flag" => 10
-			),
-			"type" => array(
-				"value" => "friend",
-				"flag" => 11
-			),
-			"nat" => array(
-				"value" => "no",
-				"flag" => 12
-			),
-			"port" => array(
-				"value" => 5060,
-				"flag" => 13
-			),
-			"qualify" => array(
-				"value" => "yes",
-				"flag" => 14
-			),
-			"qualifyfreq" => array(
-				"value" => 60,
-				"flag" => 15
-			),
-			"transport" => array(
-				"value" => "ws",
-				"flag" => 16
-			),
-			"avpf" => array(
-				"value" => "yes",
-				"flag" => 17
-			),
-			"force_avp" => array(
-				"value" => "yes",
-				"flag" => 18
-			),
-			"icesupport" => array(
-				"value" => "yes",
-				"flag" => 19
-			),
-			"encryption" => array(
-				"value" => "yes",
-				"flag" => 20
-			),
-		);
-
-/*
-    [callgroup] => Array
-        (
-            [value] =>
-            [flag] => 21
-        )
-
-    [pickupgroup] => Array
-        (
-            [value] =>
-            [flag] => 22
-        )
-
-    [disallow] => Array
-        (
-            [value] =>
-            [flag] => 23
-        )
-
-    [allow] => Array
-        (
-            [value] =>
-            [flag] => 24
-        )
-
-    [accountcode] => Array
-        (
-            [value] =>
-            [flag] => 26
-        )
-
-    [mailbox] => Array
-        (
-            [value] => 1004@device
-            [flag] => 27
-        )
-
-    [deny] => Array
-        (
-            [value] => 0.0.0.0/0.0.0.0
-            [flag] => 28
-        )
-
-    [permit] => Array
-        (
-            [value] => 0.0.0.0/0.0.0.0
-            [flag] => 29
-        )
-
-    [account] => Array
-        (
-            [value] => 991004
-            [flag] => 30
-        )
-
-    [callerid] => Array
-        (
-            [value] => DisplayName WebRTC Client <991004>
-            [flag] => 31
-        )
-*/
-		$usr = core_users_get($extension);
-		$dev = $this->core->getDevice($extension);
-		if(empty($dev)) {
-			$res = $_REQUEST;
-			//Override the device page here
-			$settings = array('force_avp' => 'yes', 'avpf' => 'yes', 'icesupport' => 'yes', 'encryption' => 'yes', 'transport' => 'ws', 'dial' => 'SIP/'.$prefix.$extension);
-			foreach($settings as $key => $value) {
-				$res['devinfo_'.$key] = $value;
-			}
-			core_devices_add($this->prefix.$extension,'sip','','fixed',$extension,$usr['name'].' WebRTC Client');
-			$this->core->addDevice($this->prefix.$extension,'sip',$settings);
-		}
-	}
-
-	public function removeWebRTCDevice($id) {
-
-	}
-
 	public function getAllSettings() {
 			return $this->getAll();
 	}
@@ -348,7 +173,7 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		$sql = "SELECT * FROM webrtc_clients WHERE `user` = ?";
 		$sth = $this->db->prepare($sql);
 		$sth->execute(array($user));
-		$results = $sth->fetchAll(\PDO::FETCH_ASSOC);
+		$results = $sth->fetch(\PDO::FETCH_ASSOC);
 		if(empty($results)) {
 			return false;
 		}
@@ -380,28 +205,102 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 
 	public function createDevice($extension,$certid) {
 		$id = $this->prefix.$extension;
-		$this->setClientSettings($extension,$id,$certid);
 		$dev = $this->core->getDevice($extension);
-		$settings = $this->core->convertRequest2Array($id,$dev['tech']);
+		$flag = 2;
+		$settings = $this->core->convertRequest2Array($id,$dev['tech'],$flag);
 		$settings['devicetype']['value'] = 'fixed';
 		$settings['user']['value'] = $extension;
 		$settings['description']['value'] = $_REQUEST['name'];
-		switch($settings['sipdriver']['value']) {
-			case 'chan_sip':
+		$c = $this->certman->getCertificateDetails($certid);
+		if(empty($c)) {
+			return false;
+		}
+		$cert = array(
+			"certificate" => $certid,
+			"verify" => "fingerprint",
+			"setup" => "actpass",
+			"rekey" => "0"
+		);
+		//res_pjsip_transport_websocket
+		switch($this->getSocketMode()) {
+			case 'sip':
+				if($settings['sipdriver']['value'] != 'chan_sip') {
+					$settings['force_avp'] = array(
+						"value" => "yes",
+						"flag" => $flag++
+					);
+					$settings['encryption'] = array(
+						"value" => "yes",
+						"flag" => $flag++
+					);
+					$settings['permit'] = array(
+						"value" => "0.0.0.0/0.0.0.0",
+						"flag" => $flag++
+					);
+					$settings['deny'] = array(
+						"value" => "0.0.0.0/0.0.0.0",
+						"flag" => $flag++
+					);
+					$settings['host'] = array(
+						"value" => "dynamic",
+						"flag" => $flag++
+					);
+					$settings['type'] = array(
+						"value" => "friend",
+						"flag" => $flag++
+					);
+					unset($settings['media_use_received_transport']);
+					unset($settings['max_contacts']);
+					unset($settings['rtp_symmetric']);
+					unset($settings['rewrite_contact']);
+					$settings['sipdriver']['value'] = 'chan_sip';
+				}
+				foreach($this->overrides['sip'] as $k => $v) {
+					if(isset($settings[$k]['flag'])) {
+						$settings[$k]['value'] = $v;
+					}
+				}
 				$this->core->addDevice($id,'sip',$settings);
 			break;
-			case 'chan_pjsip':
+			case 'pjsip':
+				return true;
+				if($settings['sipdriver']['value'] != 'chan_pjsip') {
+					//Gotta fix this somehow
+					$settings['sipdriver']['value'] = 'chan_pjsip';
+				}
+				foreach($this->overrides['pjsip'] as $k => $v) {
+					if(isset($settings[$k]['flag'])) {
+						$settings[$k]['value'] = $v;
+					}
+				}
 				$this->core->addDevice($id,'pjsip',$settings);
 			break;
 			default:
 				return true;
 			break;
 		}
+		$this->certman->addDTLSOptions($id, $cert);
+		$this->setClientSettings($extension,$id,$certid);
 	}
 
 	public function removeDevice($extension) {
 		$id = $this->prefix.$extension;
 		$this->removeClientSettingsByUser($extension);
 		$this->core->delDevice($id);
+	}
+
+	public function getSocketMode() {
+		$websocketMode = null;
+		if($this->freepbx->astman->mod_loaded("res_pjsip_transport_websocket")) {
+			$type = $this->freepbx->astman->Command("module show like res_pjsip_transport_websocket");
+			if(preg_match("/Not Running/",$type['data'])) {
+				$websocketMode = 'sip';
+			} else {
+				$websocketMode = 'pjsip';
+			}
+		} else {
+			$websocketMode = 'sip';
+		}
+		return $websocketMode;
 	}
 }

@@ -51,25 +51,31 @@ function webrtc_configpageload($mode) {
 	$mcerts = $certman->getAllManagedCertificates();
 
 	$status = $webrtc->validVersion();
+	$mode = $webrtc->getSocketMode();
 	if($status === true) {
 		if(!empty($mcerts)) {
-			$currentcomponent->addguielem('WebRTC Phone', new gui_selectbox( 'webrtc_enable', $webrtc_select, $webrtc_value,
-			_('Enable WebRTC Old ARI Phone'), sprintf(_('Enables WebRTC for this %s in the Asterisk Recording Interface (ARI). Note: ARI is depreciated in favor of UCP'),$mode), false));
-			$certs = array();
-			foreach($mcerts as $cert) {
-				$certs[] = array(
-					"text" => $cert['basename'],
-					"value" => $cert['cid']
+			if($mode == 'pjsip') {
+				$currentcomponent->addguielem('WebRTC Phone', new gui_label('webrtc_message',_('The WebSockets Interface is running through PJSIP, PJSIP is not supported at this time. Please enable the chan_sip driver (along with pjsip or by itself) or alert the FreePBX Developers')));
+				$currentcomponent->addguielem('Device Options', new gui_hidden('webrtc_enable', $webrtc_value));
+			} else {
+				$currentcomponent->addguielem('WebRTC Phone', new gui_selectbox( 'webrtc_enable', $webrtc_select, $webrtc_value,
+				_('Enable WebRTC Old ARI Phone'), sprintf(_('Enables WebRTC for this %s in the Asterisk Recording Interface (ARI). Note: ARI is depreciated in favor of UCP'),$mode), false));
+				$certs = array();
+				foreach($mcerts as $cert) {
+					$certs[] = array(
+						"text" => $cert['basename'],
+						"value" => $cert['cid']
+					);
+				}
+				$currentcomponent->addguielem('WebRTC Phone', new gui_selectbox(
+					'webrtc_dtls_certificate',
+					$certs,
+					'',
+					_('Use Certificate'),
+					_("The Certificate to use from Certificate Manager"),
+					false)
 				);
 			}
-			$currentcomponent->addguielem('WebRTC Phone', new gui_selectbox(
-				'webrtc_dtls_certificate',
-				$certs,
-				'',
-				_('Use Certificate'),
-				_("The Certificate to use from Certificate Manager"),
-				false)
-			);
 		} else {
 			$currentcomponent->addguielem('WebRTC Phone', new gui_label('webrtc_message',sprintf(_('To utilize WebRTC in ARI you must add at least one certificate %s through Certificate Manager'),$mode)));
 			$currentcomponent->addguielem('Device Options', new gui_hidden('webrtc_enable', $webrtc_value));
@@ -83,7 +89,6 @@ function webrtc_extensions_configprocess() {
 	$action = isset($_REQUEST['action'])?$_REQUEST['action']:null;
 	$extension = isset($_REQUEST['extdisplay'])?$_REQUEST['extdisplay']:null;
 	$webrtc = FreePBX::Webrtc();
-	dbug('something');
 	switch ($action) {
 		case 'add':
 			$extension = isset($_REQUEST['extension']) ? $_REQUEST['extension'] : null;

@@ -31,13 +31,16 @@ class webrtcphone {
 	*/
 	function navMenu($args) {
 		$ari = $_SESSION['ari_user'];
-		if(function_exists('webrtc_get_client_settingsByUser')) {
-			$settings = webrtc_get_client_settingsByUser($ari['extension']);
+		try {
+			$webrtc = FreePBX::Webrtc();
+			$settings = $webrtc->getClientSettingsByUser($ari['extension']);
 			if(!empty($settings)) {
 				$html = "<small><small><a href='" . $_SESSION['ARI_ROOT'] . "?m=webrtcphone&f=display'>" . _("WebRTC Phone") . "</a></small></small>";
 			} else {
-				$html = "";
+				$html = '';
 			}
+		} catch(\Exception $e) {
+			$html = '';
 		}
 		return $html;
 	}
@@ -48,95 +51,97 @@ class webrtcphone {
 	* @param $args
 	*   Common arguments
 	*/
-	
+
 	function display($args) {
 		global $amp_conf, $db;
 		$ari = $_SESSION['ari_user'];
-		$settings = webrtc_get_client_settingsByUser($ari['extension']);
-		if(!empty($settings)) {
-			$preload = $amp_conf['AMPWEBROOT'].'/recordings/theme/webrtcimages/push';
-			if(file_exists($preload)) {
-				foreach (glob($preload."/*.png") as $filename) {
-				   $html .= '<img id="push_'.basename($filename,'.png').'" src="theme/webrtcimages/push/'.basename($filename).'" style="display:none;">';
-				   $html .= '<img id="std_'.basename($filename,'.png').'" src="theme/webrtcimages/'.basename($filename).'" style="display:none;">';
+		try {
+			$webrtc = FreePBX::Webrtc();
+			$settings = $webrtc->getClientSettingsByUser($ari['extension']);
+			if(!empty($settings)) {
+				$preload = $amp_conf['AMPWEBROOT'].'/recordings/theme/webrtcimages/push';
+				if(file_exists($preload)) {
+					foreach (glob($preload."/*.png") as $filename) {
+						$html .= '<img id="push_'.basename($filename,'.png').'" src="theme/webrtcimages/push/'.basename($filename).'" style="display:none;">';
+						$html .= '<img id="std_'.basename($filename,'.png').'" src="theme/webrtcimages/'.basename($filename).'" style="display:none;">';
+					}
 				}
-			}
-			$html .= '<link rel="stylesheet" href="theme/webrtc.css" type="text/css" />';
-			$html .= '<script type="text/javascript" src="theme/js/adaptor.js"></script>';
-			$html .= '<script type="text/javascript" src="theme/js/jssip-devel.js"></script>';
-			$html .= '<script type="text/javascript" src="theme/js/phone.js"></script>';
-			$html .= '<script type="text/javascript" src="theme/js/webrtc.js"></script>';
-			$html .= '<form>';
-			if(isset($_REQUEST['hidenav'])) {
-				$html .= '<script type="text/javascript">removeNav();</script>';
-				$html .= '<style>
-					#calleridpop {
-						position:absolute;
-						/*top:118.5px;*/
-						left:140px;
-						background-image:url("theme/webrtcimages/incoming-call-bg.png");
-						background-repeat:no-repeat;
-						display:none
-					}
-					#calleridnum {
-						position:relative;
-						top:35px;
-						left:-120px;
-						color:white;
-						font-size:140%;
-						text-align:center;
-					}
-					#calleridpop-answer {
-						position:relative;
-						top:55px;
-						left:30px
-					}
-					#calleridpop-ignore {
-						position:relative;
-						top:55px;
-						left:70px;
-					}
-					</style>';
-			} else {
-				$html .= '<style>
-					#calleridpop {
-						position:absolute;
-						top:118.5px;
-						left:294px;
-						background-image:url("theme/webrtcimages/incoming-call-bg.png");
-						background-repeat:no-repeat;
-						display:none
-					}
-					#calleridnum {
-						position:relative;
-						top:35px;
-						left:-140px;
-						color:white;
-						font-size:140%;
-						text-align:center;
-					}
-					#calleridpop-answer {
-						position:relative;
-						top:-55px;
-						left:30px
-					}
-					#calleridpop-ignore {
-						position:relative;
-						top:-55px;
-						left:70px;
-					}
-					</style>';
-			}
-			$html .= '<input type="hidden" id="realm" name="realm" value="'.$settings['realm'].'">';
-			$html .= '<input type="hidden" id="impi" name="impi" value="'.$settings['username'].'">';
-			$html .= '<input type="hidden" id="impu" name="impu" value="'.$settings['sipuri'].'">';
-			$html .= '<input type="hidden" id="password" name="password" value="'.$settings['password'].'">';
-			$html .= '<input type="hidden" id="display_name" name="display_name" value="'.$settings['cid'].'">';
-			$html .= '<input type="hidden" id="websocket_proxy_url" name="websocket_proxy_url" value="'.$settings['websocket'].'">';
-			$html .= '<input type="hidden" name="enable_rtcweb_breaker" value="false">';
-			$html .= '</form>';
-			$html .= '<h1>'._("FreePBX WebRTC Phone").'</h1>';
-			$webphone .= <<<EOF
+				$html .= '<link rel="stylesheet" href="theme/webrtc.css" type="text/css" />';
+				$html .= '<script type="text/javascript" src="theme/js/adaptor.js"></script>';
+				$html .= '<script type="text/javascript" src="theme/js/jssip-devel.js"></script>';
+				$html .= '<script type="text/javascript" src="theme/js/phone.js"></script>';
+				$html .= '<script type="text/javascript" src="theme/js/webrtc.js"></script>';
+				$html .= '<form>';
+				if(isset($_REQUEST['hidenav'])) {
+					$html .= '<script type="text/javascript">removeNav();</script>';
+					$html .= '<style>
+						#calleridpop {
+							position:absolute;
+							/*top:118.5px;*/
+							left:140px;
+							background-image:url("theme/webrtcimages/incoming-call-bg.png");
+							background-repeat:no-repeat;
+							display:none
+						}
+						#calleridnum {
+							position:relative;
+							top:35px;
+							left:-120px;
+							color:white;
+							font-size:140%;
+							text-align:center;
+						}
+						#calleridpop-answer {
+							position:relative;
+							top:55px;
+							left:30px
+						}
+						#calleridpop-ignore {
+							position:relative;
+							top:55px;
+							left:70px;
+						}
+						</style>';
+				} else {
+					$html .= '<style>
+						#calleridpop {
+							position:absolute;
+							top:118.5px;
+							left:294px;
+							background-image:url("theme/webrtcimages/incoming-call-bg.png");
+							background-repeat:no-repeat;
+							display:none
+						}
+						#calleridnum {
+							position:relative;
+							top:35px;
+							left:-140px;
+							color:white;
+							font-size:140%;
+							text-align:center;
+						}
+						#calleridpop-answer {
+							position:relative;
+							top:-55px;
+							left:30px
+						}
+						#calleridpop-ignore {
+							position:relative;
+							top:-55px;
+							left:70px;
+						}
+						</style>';
+				}
+				$html .= '<input type="hidden" id="realm" name="realm" value="'.$settings['realm'].'">';
+				$html .= '<input type="hidden" id="impi" name="impi" value="'.$settings['username'].'">';
+				$html .= '<input type="hidden" id="impu" name="impu" value="'.$settings['sipuri'].'">';
+				$html .= '<input type="hidden" id="password" name="password" value="'.$settings['password'].'">';
+				$html .= '<input type="hidden" id="display_name" name="display_name" value="'.$settings['cid'].'">';
+				$html .= '<input type="hidden" id="websocket_proxy_url" name="websocket_proxy_url" value="'.$settings['websocket'].'">';
+				$html .= '<input type="hidden" name="enable_rtcweb_breaker" value="false">';
+				$html .= '</form>';
+				$html .= '<h1>'._("FreePBX WebRTC Phone").'</h1>';
+				$webphone .= <<<EOF
 <div id="webrtcphone-container" style="display:none">
 	<table id="webrtcphone" width="670" height="544" border="0" align="center" cellpadding="0" cellspacing="0" background="theme/webrtcimages/phone-bg3.png">
 	<tr>
@@ -192,19 +197,19 @@ class webrtcphone {
 	</table>
 <div id="message"></div>
 EOF;
-$html .= $webphone;
+	$html .= $webphone;
 
-if(!isset($_REQUEST['hidenav'])) {
-	$html .= '<table width="670" id="removeNavLink"><tr><td><center><a style="cursor:pointer" onclick="popoutphone()">'._("Detach Phone From Window").'</a></center></td></td></table>';
-}
-$date = date('Y');
-$html .= <<<EOF
-	<div class="footer" style="text-align: center;">&copy; Copyright 2013-${date} Schmooze Com, Inc.</div>
+	if(!isset($_REQUEST['hidenav'])) {
+		$html .= '<table width="670" id="removeNavLink"><tr><td><center><a style="cursor:pointer" onclick="popoutphone()">'._("Detach Phone From Window").'</a></center></td></td></table>';
+	}
+	$date = date('Y');
+	$html .= <<<EOF
+<div class="footer" style="text-align: center;">&copy; Copyright 2013-${date} Schmooze Com, Inc.</div>
 <audio id="audio_remote" autoplay="autoplay" />
-<audio id="ringtone"> 
+<audio id="ringtone">
 <source src="theme/webrtcsounds/ring.mp3" type="audio/mpeg">
 </audio>
-<audio id="adtmf1"> 
+<audio id="adtmf1">
 <source src="theme/webrtcsounds/dtmf1.mp3" type="audio/mpeg">
 </audio>
 <audio id="adtmf2">
@@ -243,8 +248,11 @@ $html .= <<<EOF
 </div>
 <div id="outter-message"></div>
 EOF;
-		} else {
-			$html = _('WebRTC Phone has not been configured for your extension');
+			} else {
+				$html = _('WebRTC Phone has not been configured for your extension');
+			}
+		} catch(\Exception $e) {
+				$html = 'WebRTC is Not enabled';
 		}
 		return $html;
 	}
