@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>2.11.0.0beta7</version>
+	<version>12.0.0alpha2</version>
 	<publisher>Schmooze Com Inc</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -15,15 +15,20 @@
 		phone they will be connected to device 99XXXX which will receive calls from the original extension
 	</description>
 	<changelog>
-		*2.11.0.0beta7* FREEI-199
+		*12.0.0alpha1* Redub for UCP and make it work in ARI (for testing really)
+		*2.11.0.0beta7* FREEI-199 (WebRTC and Bria Extensions Shouldn't be Included in Extension Count)
+		*2.11.0.0beta6* Add Licenses
+		*2.11.0.0beta5* Fix licensing and add copyright and release
 	</changelog>
 	<info></info>
 	<category>Connectivity</category>
 	<depends>
 		<engine>asterisk 11.5</engine>
-		<module>core ge 2.11.0.11</module>
+		<module>certman ge 12.0.0alpha1</module>
+		<module>core ge 12.0.1beta4</module>
+		<version>12.0.1beta21</version>
 	</depends>
 	<supported>
-		<version>2.11</version>
+		<version>12.0</version>
 	</supported>
 </module>

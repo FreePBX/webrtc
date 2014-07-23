@@ -17,21 +17,20 @@ function webrtc_configpageinit($pagename) {
 		return true;
 	}
 
-	if ($tech_hardware != null || $extdisplay != '' || $action == 'add') {
-		$currentcomponent->addoptlistitem('webrtc_enable', 'no', 'No');
-		$currentcomponent->addoptlistitem('webrtc_enable', 'yes', 'Yes');
-		$currentcomponent->setoptlistopts('webrtc_enable', 'sort', false);
+	$fw_ari = FreePBX::Modules()->getInfo('fw_ari');
+	if(!empty($fw_ari['fw_ari']) && $fw_ari['fw_ari']['status'] == MODULE_STATUS_ENABLED) {
+		if ($tech_hardware != null || $extdisplay != '' || $action == 'add') {
+			$currentcomponent->addoptlistitem('webrtc_enable', 'no', 'No');
+			$currentcomponent->addoptlistitem('webrtc_enable', 'yes', 'Yes');
+			$currentcomponent->setoptlistopts('webrtc_enable', 'sort', false);
 
-		$currentcomponent->addguifunc("webrtc_{$pagename}_configpageload");
+			$currentcomponent->addguifunc("webrtc_{$pagename}_configpageload");
 
-		if (!empty($action)) {
-			$currentcomponent->addprocessfunc("webrtc_{$pagename}_configprocess");
+			if (!empty($action)) {
+				$currentcomponent->addprocessfunc("webrtc_{$pagename}_configprocess");
+			}
 		}
 	}
-}
-
-function webrtc_users_configpageload() {
-  webrtc_configpageload('users');
 }
 
 function webrtc_extensions_configpageload() {
@@ -39,18 +38,42 @@ function webrtc_extensions_configpageload() {
 }
 
 function webrtc_configpageload($mode) {
-	global $amp_conf;
 	global $currentcomponent;
+	$webrtc = FreePBX::Webrtc();
+	$certman = FreePBX::Certman();
+
 
 	$extdisplay = isset($_REQUEST['extdisplay'])?$_REQUEST['extdisplay']:null;
 
 	$webrtc_select = $currentcomponent->getoptlist('webrtc_enable');
 
-	$webrtc_value = webrtc_get_enabled($extdisplay);
+	$webrtc_value = $webrtc->checkEnabled($extdisplay) ? 'yes' : 'no';
+	$mcerts = $certman->getAllManagedCertificates();
 
-	if(version_compare($amp_conf['ASTVERSION'],'11.5')) {
-		$currentcomponent->addguielem('WebRTC Phone', new gui_selectbox( 'webrtc_enable', $webrtc_select, $webrtc_value,
-		  _('Enable WebRTC User Control Panel Phone'), sprintf(_('Enable User Panel WebRTC Phone Client for this %s'),$mode), false));
+	$status = $webrtc->validVersion();
+	if($status === true) {
+		if(!empty($mcerts)) {
+			$currentcomponent->addguielem('WebRTC Phone', new gui_selectbox( 'webrtc_enable', $webrtc_select, $webrtc_value,
+			_('Enable WebRTC Old ARI Phone'), sprintf(_('Enables WebRTC for this %s in the Asterisk Recording Interface (ARI). Note: ARI is depreciated in favor of UCP'),$mode), false));
+			$certs = array();
+			foreach($mcerts as $cert) {
+				$certs[] = array(
+					"text" => $cert['basename'],
+					"value" => $cert['cid']
+				);
+			}
+			$currentcomponent->addguielem('WebRTC Phone', new gui_selectbox(
+				'webrtc_dtls_certificate',
+				$certs,
+				'',
+				_('Use Certificate'),
+				_("The Certificate to use from Certificate Manager"),
+				false)
+			);
+		} else {
+			$currentcomponent->addguielem('WebRTC Phone', new gui_label('webrtc_message',sprintf(_('To utilize WebRTC in ARI you must add at least one certificate %s through Certificate Manager'),$mode)));
+			$currentcomponent->addguielem('Device Options', new gui_hidden('webrtc_enable', $webrtc_value));
+		}
 	} else {
 		$currentcomponent->addguielem('Device Options', new gui_hidden('webrtc_enable', $webrtc_value));
 	}
@@ -59,24 +82,21 @@ function webrtc_configpageload($mode) {
 function webrtc_extensions_configprocess() {
 	$action = isset($_REQUEST['action'])?$_REQUEST['action']:null;
 	$extension = isset($_REQUEST['extdisplay'])?$_REQUEST['extdisplay']:null;
+	$webrtc = FreePBX::Webrtc();
+	dbug('something');
 	switch ($action) {
 		case 'add':
 			$extension = isset($_REQUEST['extension']) ? $_REQUEST['extension'] : null;
 		case 'edit':
-			$prev =  ($action != 'add') ? webrtc_get_enabled($extension) : 'no';
-			webrtc_set_enabled($extension, $_REQUEST['webrtc_enable']);
-			if($_REQUEST['webrtc_enable'] == 'yes' && $prev == 'no') {
-				webrtc_create_device($extension);
-			} elseif($_REQUEST['webrtc_enable'] == 'no' && $prev == 'yes') {
-				webrtc_delete_device($extension);
+			$prev =  ($action != 'add') ? $webrtc->checkEnabled($extension) : false;
+			if($_REQUEST['webrtc_enable'] == 'yes' && !$prev) {
+				$webrtc->createDevice($extension,$_REQUEST['webrtc_dtls_certificate']);
+			} elseif($_REQUEST['webrtc_enable'] == 'no' && $prev) {
+				$webrtc->removeDevice($extension);
 			}
 		break;
 		case 'del':
-			webrtc_delete($extension);
+			$webrtc->removeDevice($extension);
 		break;
 	}
-}
-
-function webrtc_users_configprocess() {
-
 }
