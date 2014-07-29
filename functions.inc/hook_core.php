@@ -67,10 +67,12 @@ function webrtc_configpageload($mode) {
 						"value" => $cert['cid']
 					);
 				}
+				$settings = $webrtc->getClientSettingsByUser($extdisplay);
+				$cert = !empty($settings['certid']) ? $settings['certid'] : '';
 				$currentcomponent->addguielem('WebRTC Phone', new gui_selectbox(
 					'webrtc_dtls_certificate',
 					$certs,
-					'',
+					$cert,
 					_('Use Certificate'),
 					_("The Certificate to use from Certificate Manager"),
 					false)

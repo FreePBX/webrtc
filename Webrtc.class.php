@@ -119,9 +119,26 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 	}
 
 	public function processUCPAdminDisplay($user) {
+		if(!empty($user['default_extension']) && $user['default_extension'] != 'none' && !empty($_REQUEST['webrtc|enable']) && $_REQUEST['webrtc|enable'] == 'yes') {
+			if(!$this->checkEnabled($user['default_extension'])) {
+				$this->createDevice($user['default_extension'],$_REQUEST['webrtc|cert']);
+			}
+		} else {
+			if($this->checkEnabled($user['default_extension'])) {
+				$this->removeDevice($user['default_extension']);
+			}
+		}
 	}
 
 	public function getUCPAdminDisplay($user) {
+		$html = array();
+		if(!empty($user['default_extension']) && $user['default_extension'] != 'none') {
+			$settings = $this->getClientSettingsByUser($user['default_extension']);
+			$mcerts = $this->certman->getAllManagedCertificates();
+			$html['description'] = '<a href="#" class="info">'._("Enable WebRTC Phone").':<span>'._("Whether or not to enable the WebRTC Phone for this linked. Additionally you must select a valid certificate to use.").'</span></a>';
+			$html['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("enabled" => !empty($settings), "certs" => $mcerts, "settings" => $settings));
+		}
+		return $html;
 	}
 
 	public function validVersion() {
