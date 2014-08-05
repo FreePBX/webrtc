@@ -27,13 +27,38 @@ use \UCP\Modules as Modules;
 
 class Webrtc extends Modules{
 	protected $module = 'Webrtc';
+	private $ext = 0;
 
 	function __construct($Modules) {
 		$this->Modules = $Modules;
+		$this->webrtc = $this->UCP->FreePBX->Webrtc;
+		$user = $this->UCP->User->getUser();
+		$this->ext = ($user['default_extension'] != 'none') ? $user['default_extension'] : 0;
 	}
 
 	function getDisplay() {
 		$html = '';
 		return $html;
+	}
+
+	function getPresenceAction() {
+
+		return ($this->webrtc->checkEnabled($this->ext)) ? 'fa-phone' : '';
+	}
+
+	function getStaticSettings() {
+		$settings = $this->webrtc->getClientSettingsByUser($this->ext);
+		if(!empty($settings)) {
+			return array(
+				'enabled' => true,
+				'settings' => array(
+					'wsservers' => $settings['websocket'],
+					'uri' => $settings['sipuri'],
+					'password' => $settings['password']
+				)
+			);
+		} else {
+			return array('enabled' => false);
+		}
 	}
 }
