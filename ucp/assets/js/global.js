@@ -117,6 +117,7 @@ var WebrtcC = UCPMC.extend({
 			case "started":
 				this.startCall(event);
 			break;
+			case "connecting":
 			case "progress":
 				this.switchState("progress");
 			break;
@@ -196,6 +197,7 @@ var WebrtcC = UCPMC.extend({
 				input = $("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .window input.dialpad");
 		button.data("type", type);
 		switch (type){
+			case "connecting":
 			case "progress":
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .activeCallSession").hide();
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .contactDisplay").show();

@@ -74,7 +74,7 @@ var LoggerFactory = function() {
     'debug': 3
     },
 
-    level = 0,
+    level = 3,
     builtinEnabled = true,
     connector = null;
 
