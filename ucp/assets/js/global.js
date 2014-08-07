@@ -236,32 +236,42 @@ var WebrtcC = UCPMC.extend({
 	}
 }), Webrtc = new WebrtcC();
 $(document).bind("staticSettingsFinished", function( event ) {
-	if ((typeof Webrtc.staticsettings !== "undefined") && Webrtc.staticsettings.enabled) {
-		$("#footer").append("<audio id=\"audio_remote\" autoplay=\"autoplay\" />");
-		Webrtc.phone = new JsSIP.UA(
-			{
-				"ws_servers": Webrtc.staticsettings.settings.wsservers,
-				"uri": Webrtc.staticsettings.settings.uri,
-				"password": Webrtc.staticsettings.settings.password
-			}
-		);
-		var binds = [
-			"connecting",
-			"connected",
-			"disconnected",
-			"registered",
-			"unregistered",
-			"registrationFailed",
-			"newRTCSession",
-			"newMessage"
-			];
-		$.each(binds, function(i, v) {
-			Webrtc.phone.on(v, function(e) {
-				Webrtc.engineEvent(e);
+	if ((typeof Webrtc.staticsettings !== "undefined") && Webrtc.staticsettings.enabled && Modernizr.getusermedia) {
+		$.getScript("modules/Webrtc/assets/jssiplibs/jssip-devel-0.4.0.js")
+		.done(function( script, textStatus ) {
+			$("#footer").append("<audio id=\"audio_remote\" autoplay=\"autoplay\" />");
+			Webrtc.phone = new JsSIP.UA(
+				{
+					"ws_servers": Webrtc.staticsettings.settings.wsservers,
+					"uri": Webrtc.staticsettings.settings.uri,
+					"password": Webrtc.staticsettings.settings.password
+				}
+			);
+			var binds = [
+				"connecting",
+				"connected",
+				"disconnected",
+				"registered",
+				"unregistered",
+				"registrationFailed",
+				"newRTCSession",
+				"newMessage"
+				];
+			$.each(binds, function(i, v) {
+				Webrtc.phone.on(v, function(e) {
+					Webrtc.engineEvent(e);
+				});
 			});
-		});
 
-		Webrtc.phone.start();
+			Webrtc.phone.start();
+		})
+		.fail(function( jqxhr, settings, exception ) {
+			//could not load script, remove button
+			$("#presence-menu2 .actions div[data-module=\"Webrtc\"]").remove();
+		});
+	} else {
+		//not supported remove button
+		$("#presence-menu2 .actions div[data-module=\"Webrtc\"]").remove();
 	}
 });
 $(document).bind("logIn", function( event ) {
@@ -337,13 +347,13 @@ $(document).bind("phoneWindowAdded", function( event ) {
 	$("#messages-container .phone-box .message-container").textfill();
 });
 $(document).bind("logOut", function( event ) {
-	if ((typeof Webrtc.staticsettings !== "undefined") && Webrtc.staticsettings.enabled && Webrtc.phone.isConnected()) {
+	if (Webrtc.phone !== null && Webrtc.phone.isConnected()) {
 		Webrtc.phone.stop();
 	}
 });
 
 $(window).bind("beforeunload", function() {
-	if ((typeof Webrtc.staticsettings !== "undefined") && Webrtc.staticsettings.enabled && Webrtc.phone.isConnected()) {
+	if (Webrtc.phone !== null && Webrtc.phone.isConnected()) {
 		Webrtc.phone.stop();
 	}
 });
