@@ -4,15 +4,15 @@ var WebrtcC = UCPMC.extend({
 		this.phone = null;
 		this.activeCalls = {};
 		this.activeCallId = null;
+		this.answering = false;
+		this.stick = false;
+		this.enableHold = false;
 		this.callBinds = [
-			"connecting",
 			"progress",
 			"started",
 			"ended",
 			"failed",
-			"newDTMF",
-			"hold",
-			"unhold"
+			"newDTMF"
 		];
 
 		this.callOptions = {
@@ -38,9 +38,12 @@ var WebrtcC = UCPMC.extend({
 			break;
 		}
 	},
-	setPhone: function(s, m) {
-		var message = (typeof m !== undefined) ? m : "",
-				state = (typeof s !== undefined) ? s : "call";
+	setPhone: function(stick, s, m) {
+		if (typeof stick !== "undefined" && stick) {
+			this.stick = true;
+		}
+		var message = (typeof m !== "undefined") ? m : "",
+				state = (typeof s !== "undefined") ? s : "call";
 		if (this.windowId === null) {
 			this.windowId = Math.floor((Math.random() * 1000) + 1);
 		}
@@ -58,6 +61,13 @@ var WebrtcC = UCPMC.extend({
 			Webrtc.switchState(state);
 		}
 	},
+	playRing: function() {
+		$("#ringtone").trigger("play");
+	},
+	stopRing: function() {
+		$("#ringtone").trigger("pause");
+		$("#ringtone").trigger("load");
+	},
 	manageSession: function(e) {
 		var id,
 				cnam,
@@ -71,8 +81,7 @@ var WebrtcC = UCPMC.extend({
 		id = Math.floor((Math.random() * 100000) + 1);
 		// If the session exists with active call reject it.
 		// TODO this can be useful for call waiting
-		if (this.activeCallId) {
-			console.log("I got another call");
+		if (!this.enableHold && this.activeCallId) {
 			call.terminate();
 			return false;
 		}
@@ -87,11 +96,23 @@ var WebrtcC = UCPMC.extend({
 		cnum = this.activeCalls[id].remote_identity.uri.user;
 		displayName = (cnam !== "") ? cnam + " <" + cnum + ">" : cnum;
 		if (this.activeCalls[id].direction === "incoming") {
-			this.setPhone("answer", "From: " + displayName);
+			this.setPhone(false, "answer", "From: " + displayName);
 			if (UCP.notify) {
-				this.notification = new Notify("Call from " + displayName, {
-					body: "You have an incoming call from " + displayName,
-					icon: "modules/Faxpro/assets/images/fax.png"
+				this.notification = new Notify("Incoming call from " + displayName, {
+					body: "Click this window to answer or close this window to ignore",
+					icon: "modules/Faxpro/assets/images/fax.png",
+					notifyClose: function() {
+						if (Webrtc.answering) {
+							Webrtc.answering = false;
+						} else {
+							Webrtc.hangup();
+						}
+					},
+					notifyClick: function() {
+						Webrtc.answering = true;
+						Webrtc.answer();
+						Webrtc.notification.close();
+					}
 				});
 				this.notification.show();
 			}
@@ -126,11 +147,16 @@ var WebrtcC = UCPMC.extend({
 	endCall: function(event) {
 		this.activeCalls[this.activeCallId] = null;
 		this.activeCallId = null;
-		UCP.removePhone(this.windowId);
-		this.windowId = null;
+		if (!this.stick) {
+			UCP.removePhone(this.windowId);
+			this.windowId = null;
+		} else {
+			this.switchState();
+		}
 		if (this.notification !== null) {
 			this.notification.close();
 		}
+		Webrtc.stopRing();
 	},
 	startCall: function(event) {
 		var rtcSession = event.sender,
@@ -139,20 +165,26 @@ var WebrtcC = UCPMC.extend({
 
 		// Attach remote stream to remoteView
 		if (rtcSession.getRemoteStreams().length > 0) {
+			//Create object url is depreciated. warning
 			$("#audio_remote").prop("src", window.URL.createObjectURL(rtcSession.getRemoteStreams()[0]));
 			this.switchState("hangup");
 			if (this.notification !== null) {
 				this.notification.close();
 			}
 		}
+		Webrtc.stopRing();
 	},
 	call: function(number) {
 		if (this.phone.isConnected()) {
+			if (!this.enableHold) {
+				this.switchState("connecting");
+			}
 			this.phone.call(number, this.callOptions);
 		}
 	},
 	answer: function() {
 		if (this.activeCallId !== null) {
+			Webrtc.answering = true;
 			this.activeCalls[this.activeCallId].answer(this.callOptions);
 		}
 	},
@@ -181,6 +213,7 @@ var WebrtcC = UCPMC.extend({
 		if (this.activeCallId !== null) {
 			this.activeCalls[this.activeCallId].terminate();
 		}
+		Webrtc.stopRing();
 	},
 	poll: function(data) {
 
@@ -191,14 +224,16 @@ var WebrtcC = UCPMC.extend({
 	hide: function(event) {
 
 	},
-	switchState: function(type) {
+	switchState: function(t) {
 		var button = $("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .window button.action"),
 				secondbutton = $("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .window button.secondaction"),
-				input = $("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .window input.dialpad");
+				input = $("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .window input.dialpad"),
+				type = (typeof t !== "undefined") ? t : "call";
 		button.data("type", type);
 		switch (type){
 			case "connecting":
 			case "progress":
+				Webrtc.playRing();
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .activeCallSession").hide();
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .contactDisplay").show();
 				input.prop("disabled", true);
@@ -206,6 +241,7 @@ var WebrtcC = UCPMC.extend({
 				button.removeClass().addClass("btn btn-danger action").text("Hangup");
 			break;
 			case "answer":
+				Webrtc.playRing();
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .activeCallSession").hide();
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .contactDisplay").show();
 				secondbutton.removeClass().addClass("btn btn-danger secondaction").text("Ignore");
@@ -215,15 +251,21 @@ var WebrtcC = UCPMC.extend({
 				button.removeClass().addClass("btn btn-success action").text("Answer");
 			break;
 			case "hangup":
+				Webrtc.stopRing();
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .activeCallSession").show();
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .contactDisplay").hide();
-				secondbutton.removeClass().addClass("btn btn-success secondaction").text("Hold");
-				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .window .actions .right").show();
+				if (Webrtc.enableHold) {
+					secondbutton.removeClass().addClass("btn btn-success secondaction").text("Hold");
+					$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .window .actions .right").show();
+				} else {
+					$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .window .actions .right").hide();
+				}
 				input.prop("disabled", false);
 				button.prop("disabled", false);
 				button.removeClass().addClass("btn btn-danger action").text("Hangup");
 			break;
 			default:
+				Webrtc.stopRing();
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .activeCallSession").show();
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .contactDisplay").hide();
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .window .actions .right").hide();
@@ -237,9 +279,12 @@ var WebrtcC = UCPMC.extend({
 }), Webrtc = new WebrtcC();
 $(document).bind("staticSettingsFinished", function( event ) {
 	if ((typeof Webrtc.staticsettings !== "undefined") && Webrtc.staticsettings.enabled && Modernizr.getusermedia) {
-		$.getScript("modules/Webrtc/assets/jssiplibs/jssip-devel-0.4.0.js")
+		Webrtc.enableHold = Webrtc.staticsettings.settings.enableHold;
+		var ver = (Webrtc.enableHold) ? "0.4.0" : "0.3.7";
+		$.getScript("modules/Webrtc/assets/jssiplibs/jssip-devel-" + ver + ".js")
 		.done(function( script, textStatus ) {
 			$("#footer").append("<audio id=\"audio_remote\" autoplay=\"autoplay\" />");
+			$("#footer").append("<audio id=\"ringtone\"><source src=\"modules/Webrtc/assets/sounds/ring.mp3\" type=\"audio/mpeg\"></audio>");
 			Webrtc.phone = new JsSIP.UA(
 				{
 					"ws_servers": Webrtc.staticsettings.settings.wsservers,
@@ -247,8 +292,10 @@ $(document).bind("staticSettingsFinished", function( event ) {
 					"password": Webrtc.staticsettings.settings.password
 				}
 			);
+			if (Webrtc.enableHold) {
+				Webrtc.callBinds.push("hold", "unhold", "connecting");
+			}
 			var binds = [
-				"connecting",
 				"connected",
 				"disconnected",
 				"registered",
@@ -257,6 +304,9 @@ $(document).bind("staticSettingsFinished", function( event ) {
 				"newRTCSession",
 				"newMessage"
 				];
+			if (Webrtc.enableHold) {
+				binds.push("connecting");
+			}
 			$.each(binds, function(i, v) {
 				Webrtc.phone.on(v, function(e) {
 					Webrtc.engineEvent(e);
@@ -276,10 +326,12 @@ $(document).bind("staticSettingsFinished", function( event ) {
 });
 $(document).bind("logIn", function( event ) {
 	$("#presence-menu2 .options .actions div[data-module=\"Webrtc\"]").on("click", function() {
-		Webrtc.setPhone();
+		Webrtc.setPhone(true);
 	});
 });
 $(document).bind("phoneWindowRemoved", function( event ) {
+	Webrtc.stick = false;
+	this.windowId = null;
 	Webrtc.hangup();
 });
 $(document).bind("phoneWindowAdded", function( event ) {
@@ -292,9 +344,9 @@ $(document).bind("phoneWindowAdded", function( event ) {
 			}
 			$("#messages-container .phone-box .dialpad").val(text);
 			Webrtc.sendDTMF($(this).data("num"));
+			button.prop("disabled", false);
+			$("#messages-container .phone-box .message-container").textfill();
 		}
-		button.prop("disabled", false);
-		$("#messages-container .phone-box .message-container").textfill();
 	});
 	$("#messages-container .phone-box .clear-input").click(function() {
 		var button = $(this).parents(".window").find("button.action");

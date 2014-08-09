@@ -128,6 +128,11 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 				$this->removeDevice($user['default_extension']);
 			}
 		}
+		if(!empty($_REQUEST['webrtc|hold']) && $_REQUEST['webrtc|hold'] == 'yes') {
+			$this->freepbx->Ucp->setSetting($user['username'],'Webrtc','hold',true);
+		} else {
+			$this->freepbx->Ucp->setSetting($user['username'],'Webrtc','hold',false);
+		}
 	}
 
 	public function getUCPAdminDisplay($user) {
@@ -136,10 +141,13 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 			$settings = $this->getClientSettingsByUser($user['default_extension']);
 			$mcerts = $this->certman->getAllManagedCertificates();
 			if(!empty($mcerts)) {
+				$hold = $this->freepbx->Ucp->getSetting($user['username'],'Webrtc','hold');
 				$html[0]['description'] = '<a href="#" class="info">'._("Enable WebRTC Phone").':<span>'._("Whether or not to enable the WebRTC Phone for this linked. Additionally you must select a valid certificate to use.").'</span></a>';
 				$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("enabled" => !empty($settings)));
 				$html[1]['description'] = '<a href="#" class="info">'._("WebRTC Certificate").':<span>'._("Which certificate to use for the WebRTC Phone in UCP").'</span></a>';
 				$html[1]['content'] = load_view(dirname(__FILE__)."/views/ucp_config_certs.php",array("certs" => $mcerts, "settings" => $settings));
+				$html[2]['description'] = '<a href="#" class="info">'._("Enable WebRTC Exterimental Hold Support").':<span>'._("Stuff").'</span></a>';
+				$html[2]['content'] = load_view(dirname(__FILE__)."/views/ucp_config_hold.php",array("enabled" => $hold));
 			}
 		}
 		return $html;
@@ -191,6 +199,7 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 	}
 
 	public function getClientSettingsByUser($user) {
+		//TODO need to check certs here
 		$sql = "SELECT * FROM webrtc_clients WHERE `user` = ?";
 		$sth = $this->db->prepare($sql);
 		$sth->execute(array($user));

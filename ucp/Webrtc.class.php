@@ -17,24 +17,27 @@ class Webrtc extends Modules{
 		$this->ext = $this->Modules->getDefaultDevice();
 	}
 
-	function getDisplay() {
-		$html = '';
-		return $html;
-	}
-
+	/**
+	 * Send the Presence Menu Item to UCP
+	 */
 	function getPresenceAction() {
 		return ($this->webrtc->checkEnabled($this->ext)) ? array('icon' => 'fa-phone', 'title' => _("New Phone Call")) : array();
 	}
 
+	/**
+	 * Send settings to UCP upon initalization
+	 */
 	function getStaticSettings() {
 		$settings = $this->webrtc->getClientSettingsByUser($this->ext);
+		$user = $this->UCP->User->getUser();
 		if(!empty($settings)) {
 			return array(
 				'enabled' => true,
 				'settings' => array(
 					'wsservers' => $settings['websocket'],
 					'uri' => $settings['sipuri'],
-					'password' => $settings['password']
+					'password' => $settings['password'],
+					'enableHold' => $this->UCP->getSetting($user['username'],$this->module,'hold')
 				)
 			);
 		} else {
