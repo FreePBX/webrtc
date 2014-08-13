@@ -185,6 +185,7 @@ var WebrtcC = UCPMC.extend({
 	answer: function() {
 		if (this.activeCallId !== null) {
 			Webrtc.answering = true;
+			this.switchState("connecting");
 			this.activeCalls[this.activeCallId].answer(this.callOptions);
 		}
 	},
@@ -232,6 +233,15 @@ var WebrtcC = UCPMC.extend({
 		button.data("type", type);
 		switch (type){
 			case "connecting":
+				Webrtc.stopRing();
+				$(".contactInfo span").text("Connecting Please Wait...");
+				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .activeCallSession").hide();
+                                $("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .contactDisplay").show();
+				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .window .actions .right").hide();
+                                input.prop("disabled", true);
+                                button.prop("disabled", false);
+                                button.removeClass().addClass("btn btn-danger action").text("Hangup");
+			break;
 			case "progress":
 				Webrtc.playRing();
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .activeCallSession").hide();
@@ -289,7 +299,8 @@ $(document).bind("staticSettingsFinished", function( event ) {
 				{
 					"ws_servers": Webrtc.staticsettings.settings.wsservers,
 					"uri": Webrtc.staticsettings.settings.uri,
-					"password": Webrtc.staticsettings.settings.password
+					"password": Webrtc.staticsettings.settings.password,
+					"log": Webrtc.staticsettings.settings.log
 				}
 			);
 			if (Webrtc.enableHold) {

@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>12.0.0alpha5</version>
+	<version>12.0.0alpha6</version>
 	<publisher>Schmooze Com Inc</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -15,6 +15,7 @@
 		phone they will be connected to device 99XXXX which will receive calls from the original extension
 	</description>
 	<changelog>
+		*12.0.0alpha6* Work for terribly slow wireless networks
 		*12.0.0alpha5* Add Experimental hold support
 		*12.0.0alpha4* Remove ability to use webrtc in browsers that don't support it
 		*12.0.0alpha1* Redub for UCP and make it work in ARI (for testing really)

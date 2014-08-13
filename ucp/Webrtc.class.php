@@ -37,7 +37,8 @@ class Webrtc extends Modules{
 					'wsservers' => $settings['websocket'],
 					'uri' => $settings['sipuri'],
 					'password' => $settings['password'],
-					'enableHold' => $this->UCP->getSetting($user['username'],$this->module,'hold')
+					'enableHold' => (int)$this->UCP->getSetting($user['username'],$this->module,'hold'),
+					'log' => 3
 				)
 			);
 		} else {
