@@ -28,7 +28,8 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 	 */
 	private $supported = array(
 		"11" => "11.11.0",
-		"12" => "12.4.0"
+		"12" => "12.4.0",
+		"13" => "13.0.0"
 	);
 
 	/**
@@ -55,7 +56,7 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		$status = $this->validVersion();
 		if($status !== true) {
 			out($status);
-			return false;
+			throw new \Exception($status);
 		}
 		$sql = "CREATE TABLE IF NOT EXISTS `webrtc_clients` (
 						`user` VARCHAR( 255 ) NOT NULL UNIQUE,
@@ -106,7 +107,8 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 	}
 	public function uninstall() {
 		$sql="DROP TABLE webrtc_clients";
-		$this->db->sql($sql);
+		$sth = $this->db->prepare($sql);
+		$sth->execute();
 		return true;
 	}
 	public function backup(){
