@@ -142,7 +142,7 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		if(!empty($user['default_extension']) && $user['default_extension'] != 'none') {
 			$settings = $this->getClientSettingsByUser($user['default_extension']);
 			$mcerts = $this->certman->getAllManagedCertificates();
-			if(!empty($mcerts)) {
+			if($this->validVersion() === true && !empty($mcerts)) {
 				$hold = $this->freepbx->Ucp->getSetting($user['username'],'Webrtc','hold');
 				$html[0]['description'] = '<a href="#" class="info">'._("Enable WebRTC Phone").':<span>'._("Whether or not to enable the WebRTC Phone for this linked. Additionally you must select a valid certificate to use.").'</span></a>';
 				$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("enabled" => !empty($settings)));
@@ -150,6 +150,12 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 				$html[1]['content'] = load_view(dirname(__FILE__)."/views/ucp_config_certs.php",array("certs" => $mcerts, "settings" => $settings));
 				$html[2]['description'] = '<a href="#" class="info">'._("Enable WebRTC Exterimental Hold Support").':<span>'._("Stuff").'</span></a>';
 				$html[2]['content'] = load_view(dirname(__FILE__)."/views/ucp_config_hold.php",array("enabled" => $hold));
+			} elseif($this->validVersion() === true) {
+				$html[0]['description'] = '<a href="#" class="info">'._("Enable WebRTC Phone").':<span>'._("Whether or not to enable the WebRTC Phone for this linked. Additionally you must select a valid certificate to use.").'</span></a>';
+				$html[0]['content'] = _('You have no certificates setup in <a href="config.php?display=certman">Certificate Manager<a/>');
+			} else {
+				$html[0]['description'] = '<a href="#" class="info">'._("Enable WebRTC Phone").':<span>'._("Whether or not to enable the WebRTC Phone for this linked. Additionally you must select a valid certificate to use.").'</span></a>';
+				$html[0]['content'] = $this->validVersion();
 			}
 		}
 		return $html;
@@ -161,10 +167,10 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		$base = $vParts[0];
 		if(isset($this->supported[$base])) {
 			if(!version_compare($version, $this->supported[$base], "ge")) {
-				return sprintf(_("Unsupported Version of Asterisk, You need at least %s"), $this->supported[$base]);
+				return sprintf(_("Unsupported Version of Asterisk, You need at least %s you have %s"), $this->supported[$base], $version);
 			}
 		} else {
-			return sprintf(_("Unsupported Version of Asterisk, You need at least %s"), $this->supported["11"]);
+			return sprintf(_("Unsupported Version of Asterisk, You need at least %s you have &s"), $this->supported["11"], $version);
 		}
 		return true;
 	}
