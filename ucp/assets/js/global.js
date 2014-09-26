@@ -31,10 +31,16 @@ var WebrtcC = UCPMC.extend({
 
 	},
 	engineEvent: function(event) {
-		console.log(event.type);
+		console.log("Engine " + event.type);
 		switch (event.type){
 			case "newRTCSession":
 				this.manageSession(event);
+			break;
+			case "connected":
+				$("#nav-btn-webrtc .fa-phone").css("color", "green");
+			break;
+			case "registrationFailed":
+				$("#nav-btn-webrtc .fa-phone").css("color", "red");
 			break;
 		}
 	},
@@ -125,7 +131,7 @@ var WebrtcC = UCPMC.extend({
 		});
 	},
 	sessionEvent: function(event) {
-		console.log(event.type);
+		console.log("Session " + event.type);
 		switch (event.type){
 			case "failed":
 				this.endCall(event);
@@ -336,7 +342,7 @@ $(document).bind("staticSettingsFinished", function( event ) {
 	}
 });
 $(document).bind("logIn", function( event ) {
-	$("#presence-menu2 .options .actions div[data-module=\"Webrtc\"]").on("click", function() {
+	$("#webrtc-menu a").on("click", function() {
 		Webrtc.setPhone(true);
 	});
 });
