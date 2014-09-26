@@ -17,11 +17,20 @@ class Webrtc extends Modules{
 		$this->ext = $this->Modules->getDefaultDevice();
 	}
 
-	/**
-	 * Send the Presence Menu Item to UCP
-	 */
-	function getPresenceAction() {
-		return ($this->webrtc->checkEnabled($this->ext)) ? array('icon' => 'fa-phone', 'title' => _("New Phone Call")) : array();
+	public function getNavItems() {
+		if(!$this->webrtc->checkEnabled($this->ext)) {
+			return false;
+		}
+		$out = array();
+		$out[] = array(
+			"rawname" => "webrtc",
+			"badge" => false,
+			"icon" => "fa-phone",
+			"menu" => array(
+				"html" => '<li><a>'._("New Phone Call").'</a></li>'
+			)
+		);
+		return $out;
 	}
 
 	/**
