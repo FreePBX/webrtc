@@ -7,6 +7,7 @@ var WebrtcC = UCPMC.extend({
 		this.answering = false;
 		this.stick = false;
 		this.enableHold = false;
+		this.disconnected = false;
 		this.callBinds = [
 			"progress",
 			"started",
@@ -36,9 +37,13 @@ var WebrtcC = UCPMC.extend({
 			case "newRTCSession":
 				this.manageSession(event);
 			break;
+			case "connecting":
+				$("#nav-btn-webrtc .fa-phone").css("color", "yellow");
+			break;
 			case "connected":
 				$("#nav-btn-webrtc .fa-phone").css("color", "green");
 			break;
+			case "unregistered":
 			case "registrationFailed":
 				$("#nav-btn-webrtc .fa-phone").css("color", "red");
 			break;
@@ -290,7 +295,15 @@ var WebrtcC = UCPMC.extend({
 				button.removeClass().addClass("btn btn-primary action").text("Call");
 			break;
 		}
-
+	},
+	connect: function() {
+		if ((typeof this.staticsettings !== "undefined") && this.staticsettings.enabled && Modernizr.getusermedia && this.disconnected) {
+			this.phone.start();
+		}
+	},
+	disconnect: function() {
+		this.disconnected = true;
+		this.phone.stop();
 	}
 }), Webrtc = new WebrtcC();
 $(document).bind("staticSettingsFinished", function( event ) {
@@ -334,11 +347,11 @@ $(document).bind("staticSettingsFinished", function( event ) {
 		})
 		.fail(function( jqxhr, settings, exception ) {
 			//could not load script, remove button
-			$("#presence-menu2 .actions div[data-module=\"Webrtc\"]").remove();
+			$("#nav-btn-webrtc").remove();
 		});
 	} else {
 		//not supported remove button
-		$("#presence-menu2 .actions div[data-module=\"Webrtc\"]").remove();
+		$("#nav-btn-webrtc").remove();
 	}
 });
 $(document).bind("logIn", function( event ) {
