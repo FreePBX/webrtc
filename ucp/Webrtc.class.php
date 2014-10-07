@@ -15,19 +15,78 @@ class Webrtc extends Modules{
 		$this->Modules = $Modules;
 		$this->webrtc = $this->UCP->FreePBX->Webrtc;
 		$this->ext = $this->Modules->getDefaultDevice();
+		$this->astman = $this->UCP->FreePBX->astman;
+		$this->user = $this->UCP->User->getUser();
 	}
 
+
+		/**
+		* Determine what commands are allowed
+		*
+		* Used by Ajax Class to determine what commands are allowed by this class
+		*
+		* @param string $command The command something is trying to perform
+		* @param string $settings The Settings being passed through $_POST or $_PUT
+		* @return bool True if pass
+		*/
+		function ajaxRequest($command, $settings) {
+			switch($command) {
+				case 'originate':
+					return true;
+				break;
+				default:
+					return false;
+				break;
+			}
+		}
+
+		/**
+		* The Handler for all ajax events releated to this class
+		*
+		* Used by Ajax Class to process commands
+		*
+		* @return mixed Output if success, otherwise false will generate a 500 error serverside
+		*/
+		function ajaxHandler() {
+			$return = array("status" => false, "message" => "");
+			switch($_REQUEST['command']) {
+				case "originate":
+					if($this->_checkExtension($_REQUEST['from'])) {
+						$data = $this->UCP->FreePBX->Core->getDevice($_REQUEST['from']);
+						if(!empty($data)) {
+							$this->astman->originate(array(
+								"Channel" => "Local/".$data['id']."@from-internal",
+								"Exten" => $_REQUEST['to'],
+								"Context" => "from-internal",
+								"Priority" => 1,
+								"Async" => "yes",
+								"CallerID" => "UCP <".$data['id'].">"
+							));
+						}
+						$return['status'] = true;
+					}
+				break;
+				default:
+					return false;
+				break;
+			}
+			return $return;
+		}
+
 	public function getNavItems() {
-		if(!$this->webrtc->checkEnabled($this->ext)) {
+		$o = $this->UCP->getSetting($this->user['username'],$this->module,'originate');
+		if(!$this->webrtc->checkEnabled($this->ext) && empty($o)) {
 			return false;
 		}
+		$webrtc = $this->webrtc->checkEnabled($this->ext) ? '<li class="web"><a>'._("New Web Phone Call").'</a></li>': '';
+		$originate = !empty($o) ? '<li class="originate"><a>'._("Originate Call").'</a></li>' : '';
 		$out = array();
 		$out[] = array(
 			"rawname" => "webrtc",
 			"badge" => false,
 			"icon" => "fa-phone",
 			"menu" => array(
-				"html" => '<li><a>'._("New Phone Call").'</a></li>'
+				"html" => $webrtc.$originate
 			)
 		);
 		return $out;
@@ -38,7 +97,7 @@ class Webrtc extends Modules{
 	 */
 	function getStaticSettings() {
 		$settings = $this->webrtc->getClientSettingsByUser($this->ext);
-		$user = $this->UCP->User->getUser();
+		$extensions = $this->UCP->getSetting($this->user['username'],'Settings','assigned');
 		if(!empty($settings)) {
 			return array(
 				'enabled' => true,
@@ -46,12 +105,20 @@ class Webrtc extends Modules{
 					'wsservers' => $settings['websocket'],
 					'uri' => $settings['sipuri'],
 					'password' => $settings['password'],
-					'enableHold' => (int)$this->UCP->getSetting($user['username'],$this->module,'hold'),
+					'enableHold' => (int)$this->UCP->getSetting($this->user['username'],$this->module,'hold'),
 					'log' => 3
-				)
+				),
+				'extensions' => $extensions,
+				'enableOriginate' => (int)$this->UCP->getSetting($this->user['username'],$this->module,'originate')
 			);
 		} else {
 			return array('enabled' => false);
 		}
+	}
+
+	private function _checkExtension($extension) {
+		$user = $this->UCP->User->getUser();
+		$extensions = $this->UCP->getSetting($this->user['username'],'Settings','assigned');
+		return in_array($extension,$extensions);
 	}
 }

@@ -304,6 +304,13 @@ var WebrtcC = UCPMC.extend({
 	disconnect: function() {
 		this.disconnected = true;
 		this.phone.stop();
+	},
+	originate: function() {
+		$.post( "index.php?quietmode=1&module=webrtc&command=originate", { from: $("#originateFrom").val(), to: $("#originateTo").val() }, function( data ) {
+			if (data.status) {
+				UCP.closeDialog();
+			}
+		});
 	}
 }), Webrtc = new WebrtcC();
 $(document).bind("staticSettingsFinished", function( event ) {
@@ -347,16 +354,40 @@ $(document).bind("staticSettingsFinished", function( event ) {
 		})
 		.fail(function( jqxhr, settings, exception ) {
 			//could not load script, remove button
-			$("#nav-btn-webrtc").remove();
+			//$("#nav-btn-webrtc").remove();
+			$("#webrtc-menu li.web").remove();
 		});
 	} else {
 		//not supported remove button
-		$("#nav-btn-webrtc").remove();
+		//$("#nav-btn-webrtc").remove();
+		$("#webrtc-menu li.web").remove();
 	}
 });
 $(document).bind("logIn", function( event ) {
-	$("#webrtc-menu a").on("click", function() {
+	$("#webrtc-menu li.web").on("click", function() {
 		Webrtc.setPhone(true);
+	});
+	$("#webrtc-menu li.originate").on("click", function() {
+		var sfrom = "";
+		$.each(Webrtc.staticsettings.extensions, function(i, v) {
+			sfrom = sfrom + "<option>" + v + "</option>";
+		});
+
+		UCP.showDialog(_("Originate Call"),
+			"<label for=\"originateFrom\">From:</label> <select id=\"originateFrom\" class=\"form-control\">" + sfrom + "</select><label for=\"originateTo\">To:</label><input class=\"form-control\" id=\"originateTo\" type='text'><button class=\"btn btn-default\" id=\"originateCall\" style=\"margin-left: 72px;\">" + _("Originate") + "</button>",
+			200,
+			250,
+			function() {
+				$("#originateCall").click(function() {
+					Webrtc.originate();
+				});
+				$("#originateTo").keypress(function(event) {
+					if (event.keyCode == 13) {
+						Webrtc.originate();
+					}
+				});
+			}
+		);
 	});
 });
 $(document).bind("phoneWindowRemoved", function( event ) {

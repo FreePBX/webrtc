@@ -135,6 +135,11 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		} else {
 			$this->freepbx->Ucp->setSetting($user['username'],'Webrtc','hold',false);
 		}
+		if(!empty($_REQUEST['webrtc|originate']) && $_REQUEST['webrtc|originate'] == 'yes') {
+			$this->freepbx->Ucp->setSetting($user['username'],'Webrtc','originate',true);
+		} else {
+			$this->freepbx->Ucp->setSetting($user['username'],'Webrtc','originate',false);
+		}
 	}
 
 	public function getUCPAdminDisplay($user) {
@@ -148,7 +153,7 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 				$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("enabled" => !empty($settings)));
 				$html[1]['description'] = '<a href="#" class="info">'._("WebRTC Certificate").':<span>'._("Which certificate to use for the WebRTC Phone in UCP").'</span></a>';
 				$html[1]['content'] = load_view(dirname(__FILE__)."/views/ucp_config_certs.php",array("certs" => $mcerts, "settings" => $settings));
-				$html[2]['description'] = '<a href="#" class="info">'._("Enable WebRTC Exterimental Hold Support").':<span>'._("Stuff").'</span></a>';
+				$html[2]['description'] = '<a href="#" class="info">'._("Enable WebRTC Exterimental Hold Support").':<span>'._("Enable experimental hold support. Usually only works in Chrome at this point and is buggy").'</span></a>';
 				$html[2]['content'] = load_view(dirname(__FILE__)."/views/ucp_config_hold.php",array("enabled" => $hold));
 			} elseif($this->validVersion() === true) {
 				$html[0]['description'] = '<a href="#" class="info">'._("Enable WebRTC Phone").':<span>'._("Whether or not to enable the WebRTC Phone for this linked. Additionally you must select a valid certificate to use.").'</span></a>';
@@ -157,6 +162,11 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 				$html[0]['description'] = '<a href="#" class="info">'._("Enable WebRTC Phone").':<span>'._("Whether or not to enable the WebRTC Phone for this linked. Additionally you must select a valid certificate to use.").'</span></a>';
 				$html[0]['content'] = $this->validVersion();
 			}
+			$originate = $this->freepbx->Ucp->getSetting($user['username'],'Webrtc','originate');
+			$html[] = array(
+				'description' => '<a href="#" class="info">'._("Allow Originating Calls").':<span>'._("Allow calls to be originated from UCP").'</span></a>',
+				'content' => load_view(dirname(__FILE__)."/views/ucp_config_originate.php",array("enabled" => $originate))
+			);
 		}
 		return $html;
 	}
