@@ -146,6 +146,7 @@ var WebrtcC = UCPMC.extend({
 				this.endCall(event);
 				UCP.removeGlobalMessage();
 			break;
+			case "confirmed":
 			case "started":
 				this.startCall(event);
 			break;
@@ -316,8 +317,8 @@ var WebrtcC = UCPMC.extend({
 $(document).bind("staticSettingsFinished", function( event ) {
 	if ((typeof Webrtc.staticsettings !== "undefined") && Webrtc.staticsettings.enabled && Modernizr.getusermedia) {
 		Webrtc.enableHold = Webrtc.staticsettings.settings.enableHold;
-		var ver = (Webrtc.enableHold) ? "0.4.0" : "0.3.7";
-		$.getScript("modules/Webrtc/assets/jssiplibs/jssip-devel-" + ver + ".js")
+		var ver = (Webrtc.enableHold) ? "0.4.1" : "devel-0.3.7";
+		$.getScript("modules/Webrtc/assets/jssiplibs/jssip-" + ver + ".js")
 		.done(function( script, textStatus ) {
 			$("#footer").append("<audio id=\"audio_remote\" autoplay=\"autoplay\" />");
 			$("#footer").append("<audio id=\"ringtone\"><source src=\"modules/Webrtc/assets/sounds/ring.mp3\" type=\"audio/mpeg\"></audio>");
@@ -330,7 +331,17 @@ $(document).bind("staticSettingsFinished", function( event ) {
 				}
 			);
 			if (Webrtc.enableHold) {
-				Webrtc.callBinds.push("hold", "unhold", "connecting");
+				Webrtc.callBinds = [
+					"progress",
+					"ended",
+					"failed",
+					"newDTMF",
+					"hold",
+					"unhold",
+					"connecting",
+					"accepted",
+					"confirmed"
+				];
 			}
 			var binds = [
 				"connected",
