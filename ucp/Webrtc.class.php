@@ -32,7 +32,8 @@ class Webrtc extends Modules{
 		function ajaxRequest($command, $settings) {
 			switch($command) {
 				case 'originate':
-					return true;
+					$o = $this->UCP->getSetting($this->user['username'],$this->module,'originate');
+					return !empty($o) ? true : false;
 				break;
 				default:
 					return false;
@@ -74,19 +75,17 @@ class Webrtc extends Modules{
 		}
 
 	public function getNavItems() {
-		$o = $this->UCP->getSetting($this->user['username'],$this->module,'originate');
-		if(!$this->webrtc->checkEnabled($this->ext) && empty($o)) {
+		if(!$this->webrtc->checkEnabled($this->ext)) {
 			return false;
 		}
 		$webrtc = $this->webrtc->checkEnabled($this->ext) ? '<li class="web"><a>'._("New Web Phone Call").'</a></li>': '';
-		$originate = !empty($o) ? '<li class="originate"><a>'._("Originate Call").'</a></li>' : '';
 		$out = array();
 		$out[] = array(
 			"rawname" => "webrtc",
 			"badge" => false,
 			"icon" => "fa-phone",
 			"menu" => array(
-				"html" => $webrtc.$originate
+				"html" => $webrtc
 			)
 		);
 		return $out;

@@ -31,6 +31,40 @@ var WebrtcC = UCPMC.extend({
 	settingsHide: function() {
 
 	},
+	contactOptions: function() {
+		if (!UCP.validMethod("Contactmanager", "lookup")) {
+			return "";
+		}
+		var html = "", item = null, key, replace = new RegExp(/\D/g), test = new RegExp(/^\d*$/), entry;
+		for (i = 0; i < UCP.Modules.Contactmanager.contacts.length; i++) {
+			item = UCP.Modules.Contactmanager.contacts[i];
+			for (key in item) {
+				entry = UCP.Modules.Contactmanager.contacts[i][key];
+				if (entry !== null) {
+					entry = entry.replace(replace, "");
+					if (entry !== "" && entry.displayname !== "" && test.test(entry) && (entry.length == 10 || entry.length == 11)) {
+						html = html + "<option value='" + entry + "' data-type='" + item.type + "'>" + item.displayname + " (" + key + ")</option>";
+					}
+				}
+			}
+		}
+		return html;
+	},
+	replaceContact: function(contact) {
+		var entry = null;
+		if (UCP.validMethod("Contactmanager", "lookup")) {
+			scontact = contact.length == 11 ? contact.substring(1) : contact;
+			entry = UCP.Modules.Contactmanager.lookup(scontact, /\D/g);
+			if (entry !== null && entry !== false) {
+				return entry.displayname;
+			}
+			entry = UCP.Modules.Contactmanager.lookup(contact, /\D/g);
+			if (entry !== null && entry !== false) {
+				return entry.displayname;
+			}
+		}
+		return contact;
+	},
 	engineEvent: function(event) {
 		console.log("Engine " + event.type);
 		switch (event.type){
@@ -59,7 +93,7 @@ var WebrtcC = UCPMC.extend({
 			this.windowId = Math.floor((Math.random() * 1000) + 1);
 		}
 		if ($( "#messages-container .phone-box[data-id=\"" + this.windowId + "\"]").length === 0) {
-			UCP.addPhone("Webrtc", this.windowId, state, message, function(id, state, message) {
+			UCP.addPhone("Webrtc", this.windowId, state, message, this.contactOptions, function(id, state, message) {
 				$("#messages-container .phone-box[data-id=\"" + Webrtc.windowId + "\"] .contactDisplay .contactInfo span").text(message);
 				$("#messages-container .phone-box[data-id=\"" + Webrtc.windowId + "\"] .contactDisplay .contactInfo").textfill();
 				Webrtc.switchState(state);
@@ -307,7 +341,11 @@ var WebrtcC = UCPMC.extend({
 		this.phone.stop();
 	},
 	originate: function() {
-		$.post( "index.php?quietmode=1&module=webrtc&command=originate", { from: $("#originateFrom").val(), to: $("#originateTo").val() }, function( data ) {
+		if ($("#originateTo").val() !== null && $("#originateTo").val()[0] === "") {
+			alert(_("Nothing Entered"));
+			return;
+		}
+		$.post( "index.php?quietmode=1&module=webrtc&command=originate", { from: $("#originateFrom").val(), to: $("#originateTo").val()[0] }, function( data ) {
 			if (data.status) {
 				UCP.closeDialog();
 			}
@@ -378,17 +416,18 @@ $(document).bind("logIn", function( event ) {
 	$("#webrtc-menu li.web").on("click", function() {
 		Webrtc.setPhone(true);
 	});
-	$("#webrtc-menu li.originate").on("click", function() {
+	$("#settings-menu li.originate").on("click", function() {
 		var sfrom = "";
 		$.each(Webrtc.staticsettings.extensions, function(i, v) {
 			sfrom = sfrom + "<option>" + v + "</option>";
 		});
 
 		UCP.showDialog(_("Originate Call"),
-			"<label for=\"originateFrom\">From:</label> <select id=\"originateFrom\" class=\"form-control\">" + sfrom + "</select><label for=\"originateTo\">To:</label><input class=\"form-control\" id=\"originateTo\" type='text'><button class=\"btn btn-default\" id=\"originateCall\" style=\"margin-left: 72px;\">" + _("Originate") + "</button>",
+			"<label for=\"originateFrom\">From:</label> <select id=\"originateFrom\" class=\"form-control\">" + sfrom + "</select><label for=\"originateTo\">To:</label><select class=\"form-control Tokenize Fill\" id=\"originateTo\" multiple>" + Webrtc.contactOptions() + "</select><button class=\"btn btn-default\" id=\"originateCall\" style=\"margin-left: 72px;\">" + _("Originate") + "</button>",
 			200,
 			250,
 			function() {
+				$("#originateTo").tokenize({ maxElements: 1 });
 				$("#originateCall").click(function() {
 					Webrtc.originate();
 				});
