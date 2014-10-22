@@ -35,6 +35,7 @@ var WebrtcC = UCPMC.extend({
 		if (!UCP.validMethod("Contactmanager", "lookup")) {
 			return "";
 		}
+		return "";
 		var html = "", item = null, key, replace = new RegExp(/\D/g), test = new RegExp(/^\d*$/), entry;
 		for (i = 0; i < UCP.Modules.Contactmanager.contacts.length; i++) {
 			item = UCP.Modules.Contactmanager.contacts[i];
