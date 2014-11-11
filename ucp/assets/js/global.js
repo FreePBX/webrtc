@@ -339,7 +339,9 @@ var WebrtcC = UCPMC.extend({
 	},
 	disconnect: function() {
 		this.disconnected = true;
-		this.phone.stop();
+		if (this.phone !== null && this.phone.isConnected()) {
+			this.phone.stop();
+		}
 	},
 	originate: function() {
 		if ($("#originateTo").val() !== null && $("#originateTo").val()[0] === "") {
