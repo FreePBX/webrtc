@@ -106,6 +106,16 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		return true;
 	}
 	public function uninstall() {
+		$sql = "SELECT * FROM webrtc_clients";
+		$sth = $this->db->prepare($sql);
+		$sth->execute();
+		$results = $sth->fetchAll(\PDO::FETCH_ASSOC);
+		if(!empty($results)) {
+			foreach($results as $row) {
+				$this->deleteDevice($row['device']);
+			}
+		}
+
 		$sql="DROP TABLE webrtc_clients";
 		$sth = $this->db->prepare($sql);
 		$sth->execute();
@@ -242,6 +252,8 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 	}
 
 	public function removeClientSettingsByUser($user) {
+		$user = $this->getClientSettingsByUser($user);
+		$this->deleteDevice($user['device']);
 		try {
 			$sql = "DELETE FROM webrtc_clients WHERE `user` = ?";
 			$sth = $this->db->prepare($sql);
@@ -295,12 +307,6 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		$this->setClientSettings($extension,$id,$certid);
 	}
 
-	public function removeDevice($extension) {
-		$id = $this->prefix.$extension;
-		$this->removeClientSettingsByUser($extension);
-		$this->core->delDevice($id);
-	}
-
 	public function getSocketMode() {
 		$websocketMode = null;
 		if($this->freepbx->astman->mod_loaded("res_pjsip_transport_websocket")) {
@@ -314,5 +320,19 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 			$websocketMode = 'sip';
 		}
 		return $websocketMode;
+	}
+
+	public function removeDevice($extension) {
+		$id = $this->prefix.$extension;
+		$this->removeClientSettingsByUser($extension);
+		$this->deleteDevice($id);
+	}
+
+	private function deleteDevice($device) {
+		try {
+			return $this->core->delDevice($device);
+		} catch(\Exception $e) {
+			return false;
+		}
 	}
 }
