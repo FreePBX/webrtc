@@ -252,8 +252,6 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 	}
 
 	public function removeClientSettingsByUser($user) {
-		$user = $this->getClientSettingsByUser($user);
-		$this->deleteDevice($user['device']);
 		try {
 			$sql = "DELETE FROM webrtc_clients WHERE `user` = ?";
 			$sth = $this->db->prepare($sql);
