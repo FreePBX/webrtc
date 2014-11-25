@@ -84,6 +84,7 @@ class Webrtc extends Modules{
 			"rawname" => "webrtc",
 			"badge" => false,
 			"icon" => "fa-phone",
+			"hide" => true,
 			"menu" => array(
 				"html" => $webrtc
 			)

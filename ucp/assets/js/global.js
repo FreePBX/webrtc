@@ -361,6 +361,8 @@ $(document).bind("staticSettingsFinished", function( event ) {
 		var ver = (Webrtc.enableHold) ? "0.4.1" : "devel-0.3.7";
 		$.getScript("modules/Webrtc/assets/jssiplibs/jssip-" + ver + ".js")
 		.done(function( script, textStatus ) {
+			$("#nav-btn-webrtc").removeClass("hidden");
+			UCP.calibrateMenus();
 			$("#footer").append("<audio id=\"audio_remote\" autoplay=\"autoplay\" />");
 			$("#footer").append("<audio id=\"ringtone\"><source src=\"modules/Webrtc/assets/sounds/ring.mp3\" type=\"audio/mpeg\"></audio>");
 			Webrtc.phone = new JsSIP.UA(
@@ -406,20 +408,14 @@ $(document).bind("staticSettingsFinished", function( event ) {
 		})
 		.fail(function( jqxhr, settings, exception ) {
 			//could not load script, remove button
-			//$("#nav-btn-webrtc").remove();
-			$("#webrtc-menu li.web").remove();
 		});
-	} else {
-		//not supported remove button
-		//$("#nav-btn-webrtc").remove();
-		$("#webrtc-menu li.web").remove();
 	}
 });
 $(document).bind("logIn", function( event ) {
 	$("#webrtc-menu li.web").on("click", function() {
 		Webrtc.setPhone(true);
 	});
-	$("#settings-menu li.originate").on("click", function() {
+	$("#settings-menu a.originate").on("click", function() {
 		var sfrom = "";
 		$.each(Webrtc.staticsettings.extensions, function(i, v) {
 			sfrom = sfrom + "<option>" + v + "</option>";
