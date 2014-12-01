@@ -31,40 +31,49 @@ var WebrtcC = UCPMC.extend({
 	settingsHide: function() {
 
 	},
-	contactOptions: function() {
-		if (!UCP.validMethod("Contactmanager", "lookup")) {
-			return "";
+	contactClickOptions: function(type) {
+		if (type != "number" || !this.staticsettings.enableOriginate) {
+			return false;
 		}
-		return "";
-		var html = "", item = null, key, replace = new RegExp(/\D/g), test = new RegExp(/^\d*$/), entry;
-		for (i = 0; i < UCP.Modules.Contactmanager.contacts.length; i++) {
-			item = UCP.Modules.Contactmanager.contacts[i];
-			for (key in item) {
-				entry = UCP.Modules.Contactmanager.contacts[i][key];
-				if (entry !== null) {
-					entry = entry.replace(replace, "");
-					if (entry !== "" && entry.displayname !== "" && test.test(entry) && (entry.length == 10 || entry.length == 11)) {
-						html = html + "<option value='" + entry + "' data-type='" + item.type + "'>" + item.displayname + " (" + key + ")</option>";
-					}
+		return [ { text: _("Originate Call"), function: "contactClickInitiate" } ];
+	},
+	contactClickInitiate: function(did) {
+		var Webrtc = this,
+				sfrom = "",
+				temp = "",
+				name = did,
+				selected = "";
+		if (UCP.validMethod("Contactmanager", "lookup")) {
+			if (typeof UCP.Modules.Contactmanager.lookup(did).displayname !== "undefined") {
+				name = UCP.Modules.Contactmanager.lookup(did).displayname;
+			} else {
+				temp = String(did).length == 11 ? String(did).substring(1) : did;
+				if (typeof UCP.Modules.Contactmanager.lookup(temp).displayname !== "undefined") {
+					name = UCP.Modules.Contactmanager.lookup(temp).displayname;
 				}
 			}
 		}
-		return html;
-	},
-	replaceContact: function(contact) {
-		var entry = null;
-		if (UCP.validMethod("Contactmanager", "lookup")) {
-			scontact = contact.length == 11 ? contact.substring(1) : contact;
-			entry = UCP.Modules.Contactmanager.lookup(scontact, /\D/g);
-			if (entry !== null && entry !== false) {
-				return entry.displayname;
+		$.each(Webrtc.staticsettings.extensions, function(i, v) {
+			sfrom = sfrom + "<option>" + v + "</option>";
+		});
+
+		selected = "<option value=\"" + did + "\" selected>" + name + "</option>";
+			UCP.showDialog(_("Originate Call"),
+			"<label for=\"originateFrom\">From:</label> <select id=\"originateFrom\" class=\"form-control\">" + sfrom + "</select><label for=\"originateTo\">To:</label><select class=\"form-control Tokenize Fill\" id=\"originateTo\" multiple>" + selected + "</select><button class=\"btn btn-default\" id=\"originateCall\" style=\"margin-left: 72px;\">" + _("Originate") + "</button>",
+			200,
+			250,
+			function() {
+				$("#originateTo").tokenize({ maxElements: 1, datas: "index.php?quietmode=1&module=webrtc&command=contacts" });
+				$("#originateCall").click(function() {
+					Webrtc.originate();
+				});
+				$("#originateTo").keypress(function(event) {
+					if (event.keyCode == 13) {
+						Webrtc.originate();
+					}
+				});
 			}
-			entry = UCP.Modules.Contactmanager.lookup(contact, /\D/g);
-			if (entry !== null && entry !== false) {
-				return entry.displayname;
-			}
-		}
-		return contact;
+		);
 	},
 	engineEvent: function(event) {
 		console.log("Engine " + event.type);
@@ -88,7 +97,8 @@ var WebrtcC = UCPMC.extend({
 		if (typeof stick !== "undefined" && stick) {
 			this.stick = true;
 		}
-		var message = (typeof m !== "undefined") ? m : "",
+		var Webrtc = this,
+				message = (typeof m !== "undefined") ? m : "",
 				state = (typeof s !== "undefined") ? s : "call";
 		if (this.windowId === null) {
 			this.windowId = Math.floor((Math.random() * 1000) + 1);
@@ -115,7 +125,8 @@ var WebrtcC = UCPMC.extend({
 		$("#ringtone").trigger("load");
 	},
 	manageSession: function(e) {
-		var id,
+		var Webrtc = this,
+				id,
 				cnam,
 				cnum,
 				displayName,
@@ -203,7 +214,7 @@ var WebrtcC = UCPMC.extend({
 		if (this.notification !== null) {
 			this.notification.close();
 		}
-		Webrtc.stopRing();
+		this.stopRing();
 	},
 	startCall: function(event) {
 		var rtcSession = event.sender,
@@ -219,7 +230,7 @@ var WebrtcC = UCPMC.extend({
 				this.notification.close();
 			}
 		}
-		Webrtc.stopRing();
+		this.stopRing();
 	},
 	call: function(number) {
 		if (this.phone.isConnected()) {
@@ -231,7 +242,7 @@ var WebrtcC = UCPMC.extend({
 	},
 	answer: function() {
 		if (this.activeCallId !== null) {
-			Webrtc.answering = true;
+			this.answering = true;
 			this.switchState("connecting");
 			this.activeCalls[this.activeCallId].answer(this.callOptions);
 		}
@@ -261,7 +272,7 @@ var WebrtcC = UCPMC.extend({
 		if (this.activeCallId !== null) {
 			this.activeCalls[this.activeCallId].terminate();
 		}
-		Webrtc.stopRing();
+		this.stopRing();
 	},
 	poll: function(data) {
 
@@ -280,17 +291,17 @@ var WebrtcC = UCPMC.extend({
 		button.data("type", type);
 		switch (type){
 			case "connecting":
-				Webrtc.stopRing();
+				this.stopRing();
 				$(".contactInfo span").text("Connecting Please Wait...");
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .activeCallSession").hide();
-                                $("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .contactDisplay").show();
+				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .contactDisplay").show();
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .window .actions .right").hide();
-                                input.prop("disabled", true);
-                                button.prop("disabled", false);
-                                button.removeClass().addClass("btn btn-danger action").text("Hangup");
+				input.prop("disabled", true);
+				button.prop("disabled", false);
+				button.removeClass().addClass("btn btn-danger action").text("Hangup");
 			break;
 			case "progress":
-				Webrtc.playRing();
+				this.playRing();
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .activeCallSession").hide();
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .contactDisplay").show();
 				input.prop("disabled", true);
@@ -298,7 +309,7 @@ var WebrtcC = UCPMC.extend({
 				button.removeClass().addClass("btn btn-danger action").text("Hangup");
 			break;
 			case "answer":
-				Webrtc.playRing();
+				this.playRing();
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .activeCallSession").hide();
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .contactDisplay").show();
 				secondbutton.removeClass().addClass("btn btn-danger secondaction").text("Ignore");
@@ -308,10 +319,10 @@ var WebrtcC = UCPMC.extend({
 				button.removeClass().addClass("btn btn-success action").text("Answer");
 			break;
 			case "hangup":
-				Webrtc.stopRing();
+				this.stopRing();
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .activeCallSession").show();
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .contactDisplay").hide();
-				if (Webrtc.enableHold) {
+				if (this.enableHold) {
 					secondbutton.removeClass().addClass("btn btn-success secondaction").text("Hold");
 					$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .window .actions .right").show();
 				} else {
@@ -322,7 +333,7 @@ var WebrtcC = UCPMC.extend({
 				button.removeClass().addClass("btn btn-danger action").text("Hangup");
 			break;
 			default:
-				Webrtc.stopRing();
+				this.stopRing();
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .activeCallSession").show();
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .contactDisplay").hide();
 				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .window .actions .right").hide();
@@ -333,7 +344,10 @@ var WebrtcC = UCPMC.extend({
 		}
 	},
 	connect: function() {
-		if ((typeof this.staticsettings !== "undefined") && this.staticsettings.enabled && Modernizr.getusermedia && this.disconnected) {
+		if ((typeof this.staticsettings !== "undefined") &&
+				this.staticsettings.enabled &&
+				Modernizr.getusermedia &&
+				this.disconnected) {
 			this.phone.start();
 		}
 	},
@@ -348,33 +362,37 @@ var WebrtcC = UCPMC.extend({
 			alert(_("Nothing Entered"));
 			return;
 		}
-		$.post( "index.php?quietmode=1&module=webrtc&command=originate", { from: $("#originateFrom").val(), to: $("#originateTo").val()[0] }, function( data ) {
-			if (data.status) {
-				UCP.closeDialog();
-			}
-		});
+		$.post( "index.php?quietmode=1&module=webrtc&command=originate",
+						{ from: $("#originateFrom").val(),
+						to: $("#originateTo").val()[0] },
+						function( data ) {
+							if (data.status) {
+								UCP.closeDialog();
+							}
+						}
+		);
 	}
-}), Webrtc = new WebrtcC();
+});
 $(document).bind("staticSettingsFinished", function( event ) {
-	if ((typeof Webrtc.staticsettings !== "undefined") && Webrtc.staticsettings.enabled && Modernizr.getusermedia) {
-		Webrtc.enableHold = Webrtc.staticsettings.settings.enableHold;
-		var ver = (Webrtc.enableHold) ? "0.4.1" : "devel-0.3.7";
+	if ((typeof UCP.Modules.Webrtc.staticsettings !== "undefined") && UCP.Modules.Webrtc.staticsettings.enabled && Modernizr.getusermedia) {
+		UCP.Modules.Webrtc.enableHold = UCP.Modules.Webrtc.staticsettings.settings.enableHold;
+		var ver = (UCP.Modules.Webrtc.enableHold) ? "0.4.1" : "devel-0.3.7";
 		$.getScript("modules/Webrtc/assets/jssiplibs/jssip-" + ver + ".js")
 		.done(function( script, textStatus ) {
 			$("#nav-btn-webrtc").removeClass("hidden");
 			UCP.calibrateMenus();
 			$("#footer").append("<audio id=\"audio_remote\" autoplay=\"autoplay\" />");
 			$("#footer").append("<audio id=\"ringtone\"><source src=\"modules/Webrtc/assets/sounds/ring.mp3\" type=\"audio/mpeg\"></audio>");
-			Webrtc.phone = new JsSIP.UA(
+			UCP.Modules.Webrtc.phone = new JsSIP.UA(
 				{
-					"ws_servers": Webrtc.staticsettings.settings.wsservers,
-					"uri": Webrtc.staticsettings.settings.uri,
-					"password": Webrtc.staticsettings.settings.password,
-					"log": Webrtc.staticsettings.settings.log
+					"ws_servers": UCP.Modules.Webrtc.staticsettings.settings.wsservers,
+					"uri": UCP.Modules.Webrtc.staticsettings.settings.uri,
+					"password": UCP.Modules.Webrtc.staticsettings.settings.password,
+					"log": UCP.Modules.Webrtc.staticsettings.settings.log
 				}
 			);
-			if (Webrtc.enableHold) {
-				Webrtc.callBinds = [
+			if (UCP.Modules.Webrtc.enableHold) {
+				UCP.Modules.Webrtc.callBinds = [
 					"progress",
 					"ended",
 					"failed",
@@ -395,16 +413,16 @@ $(document).bind("staticSettingsFinished", function( event ) {
 				"newRTCSession",
 				"newMessage"
 				];
-			if (Webrtc.enableHold) {
+			if (UCP.Modules.Webrtc.enableHold) {
 				binds.push("connecting");
 			}
 			$.each(binds, function(i, v) {
-				Webrtc.phone.on(v, function(e) {
-					Webrtc.engineEvent(e);
+				UCP.Modules.Webrtc.phone.on(v, function(e) {
+					UCP.Modules.Webrtc.engineEvent(e);
 				});
 			});
 
-			Webrtc.phone.start();
+			UCP.Modules.Webrtc.phone.start();
 		})
 		.fail(function( jqxhr, settings, exception ) {
 			//could not load script, remove button
@@ -413,26 +431,26 @@ $(document).bind("staticSettingsFinished", function( event ) {
 });
 $(document).bind("logIn", function( event ) {
 	$("#webrtc-menu li.web").on("click", function() {
-		Webrtc.setPhone(true);
+		UCP.Modules.Webrtc.setPhone(true);
 	});
 	$("#settings-menu a.originate").on("click", function() {
 		var sfrom = "";
-		$.each(Webrtc.staticsettings.extensions, function(i, v) {
+		$.each(UCP.Modules.Webrtc.staticsettings.extensions, function(i, v) {
 			sfrom = sfrom + "<option>" + v + "</option>";
 		});
 
 		UCP.showDialog(_("Originate Call"),
-			"<label for=\"originateFrom\">From:</label> <select id=\"originateFrom\" class=\"form-control\">" + sfrom + "</select><label for=\"originateTo\">To:</label><select class=\"form-control Tokenize Fill\" id=\"originateTo\" multiple>" + Webrtc.contactOptions() + "</select><button class=\"btn btn-default\" id=\"originateCall\" style=\"margin-left: 72px;\">" + _("Originate") + "</button>",
+			"<label for=\"originateFrom\">From:</label> <select id=\"originateFrom\" class=\"form-control\">" + sfrom + "</select><label for=\"originateTo\">To:</label><select class=\"form-control Tokenize Fill\" id=\"originateTo\" multiple></select><button class=\"btn btn-default\" id=\"originateCall\" style=\"margin-left: 72px;\">" + _("Originate") + "</button>",
 			200,
 			250,
 			function() {
-				$("#originateTo").tokenize({ maxElements: 1 });
+				$("#originateTo").tokenize({ maxElements: 1, datas: "index.php?quietmode=1&module=webrtc&command=contacts" });
 				$("#originateCall").click(function() {
-					Webrtc.originate();
+					UCP.Modules.Webrtc.originate();
 				});
 				$("#originateTo").keypress(function(event) {
 					if (event.keyCode == 13) {
-						Webrtc.originate();
+						UCP.Modules.Webrtc.originate();
 					}
 				});
 			}
@@ -440,9 +458,9 @@ $(document).bind("logIn", function( event ) {
 	});
 });
 $(document).bind("phoneWindowRemoved", function( event ) {
-	Webrtc.stick = false;
+	UCP.Modules.Webrtc.stick = false;
 	this.windowId = null;
-	Webrtc.hangup();
+	UCP.Modules.Webrtc.hangup();
 });
 $(document).bind("phoneWindowAdded", function( event ) {
 	$("#messages-container .phone-box .keypad td").click(function() {
@@ -450,10 +468,10 @@ $(document).bind("phoneWindowAdded", function( event ) {
 				button = $(this).parents(".window").find("button.action");
 		if (button.data("type") == "call" || button.data("type") == "hangup") {
 			if (button.data("type") == "call") {
-				$( "#messages-container .phone-box[data-id=\"" + Webrtc.windowId + "\"] .message").text("To: " + text);
+				$( "#messages-container .phone-box[data-id=\"" + UCP.Modules.Webrtc.windowId + "\"] .message").text("To: " + text);
 			}
 			$("#messages-container .phone-box .dialpad").val(text);
-			Webrtc.sendDTMF($(this).data("num"));
+			UCP.Modules.Webrtc.sendDTMF($(this).data("num"));
 			button.prop("disabled", false);
 			$("#messages-container .phone-box .message-container").textfill();
 		}
@@ -462,7 +480,7 @@ $(document).bind("phoneWindowAdded", function( event ) {
 		var button = $(this).parents(".window").find("button.action");
 		$("#messages-container .phone-box .dialpad").val("");
 		if (button.data("type") == "call") {
-			$( "#messages-container .phone-box[data-id=\"" + Webrtc.windowId + "\"] .message").text("");
+			$( "#messages-container .phone-box[data-id=\"" + UCP.Modules.Webrtc.windowId + "\"] .message").text("");
 			button.prop("disabled", true);
 		}
 	});
@@ -470,11 +488,11 @@ $(document).bind("phoneWindowAdded", function( event ) {
 		var button = $(this).parents(".window").find("button.action"),
 				text = $(".phone-box .dialpad").val();
 		if ($(this).val().length === 0 && (button.data("type") == "call")) {
-			$( "#messages-container .phone-box[data-id=\"" + Webrtc.windowId + "\"] .message").text("");
+			$( "#messages-container .phone-box[data-id=\"" + UCP.Modules.Webrtc.windowId + "\"] .message").text("");
 			button.prop("disabled", true);
 		} else {
-			$( "#messages-container .phone-box[data-id=\"" + Webrtc.windowId + "\"] .message").text("To: " + text);
-			Webrtc.sendDTMF(text.slice(-1));
+			$( "#messages-container .phone-box[data-id=\"" + UCP.Modules.Webrtc.windowId + "\"] .message").text("To: " + text);
+			UCP.Modules.Webrtc.sendDTMF(text.slice(-1));
 			button.prop("disabled", false);
 		}
 		$("#messages-container .phone-box .message-container").textfill();
@@ -484,14 +502,14 @@ $(document).bind("phoneWindowAdded", function( event ) {
 				num = $("#messages-container .phone-box .dialpad").val();
 		switch (type) {
 			case "call":
-				Webrtc.call(num);
+				UCP.Modules.Webrtc.call(num);
 			break;
 			case "progress":
 			case "hangup":
-				Webrtc.hangup();
+				UCP.Modules.Webrtc.hangup();
 			break;
 			case "answer":
-				Webrtc.answer();
+				UCP.Modules.Webrtc.answer();
 			break;
 		}
 	});
@@ -499,23 +517,23 @@ $(document).bind("phoneWindowAdded", function( event ) {
 		var type = $("#messages-container .phone-box button.action").data("type");
 		switch (type) {
 			case "hangup":
-				Webrtc.toggleHold();
+				UCP.Modules.Webrtc.toggleHold();
 			break;
 			case "answer":
-				Webrtc.hangup();
+				UCP.Modules.Webrtc.hangup();
 			break;
 		}
 	});
 	$("#messages-container .phone-box .message-container").textfill();
 });
 $(document).bind("logOut", function( event ) {
-	if (Webrtc.phone !== null && Webrtc.phone.isConnected()) {
-		Webrtc.phone.stop();
+	if (UCP.Modules.Webrtc.phone !== null && UCP.Modules.Webrtc.phone.isConnected()) {
+		UCP.Modules.Webrtc.phone.stop();
 	}
 });
 
 $(window).bind("beforeunload", function() {
-	if (Webrtc.phone !== null && Webrtc.phone.isConnected()) {
-		Webrtc.phone.stop();
+	if (UCP.Modules.Webrtc.phone !== null && UCP.Modules.Webrtc.phone.isConnected()) {
+		UCP.Modules.Webrtc.phone.stop();
 	}
 });

@@ -31,6 +31,9 @@ class Webrtc extends Modules{
 		*/
 		function ajaxRequest($command, $settings) {
 			switch($command) {
+				case 'contacts':
+					return true;
+				break;
 				case 'originate':
 					$o = $this->UCP->getSetting($this->user['username'],$this->module,'originate');
 					return !empty($o) ? true : false;
@@ -51,6 +54,25 @@ class Webrtc extends Modules{
 		function ajaxHandler() {
 			$return = array("status" => false, "message" => "");
 			switch($_REQUEST['command']) {
+				case "contacts":
+					$return = array();
+					if($this->Modules->moduleHasMethod('Contactmanager','lookupMultiple')) {
+						$search = !empty($_REQUEST['search']) ? $_REQUEST['search'] : "";
+						$results = $this->Modules->Contactmanager->lookupMultiple($search);
+						if(!empty($results)) {
+							foreach($results as $res) {
+								foreach($res['numbers'] as $type => $num) {
+									if(!empty($num)) {
+										$return[] = array(
+											"value" => $num,
+											"text" => $res['displayname'] . " (".$type.")"
+										);
+									}
+								}
+							}
+						}
+					}
+				break;
 				case "originate":
 					if($this->_checkExtension($_REQUEST['from'])) {
 						$data = $this->UCP->FreePBX->Core->getDevice($_REQUEST['from']);
