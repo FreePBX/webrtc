@@ -120,6 +120,11 @@ class Webrtc extends Modules{
 	function getStaticSettings() {
 		$settings = $this->webrtc->getClientSettingsByUser($this->ext);
 		$extensions = $this->UCP->getSetting($this->user['username'],'Settings','assigned');
+		//force default extension to the top.
+		if(!empty($this->user['default_extension'])) {
+			$extensions = array_diff($extensions, array($this->user['default_extension']));
+			array_unshift($extensions,$this->user['default_extension']);
+		}
 		if(!empty($settings)) {
 			return array(
 				'enabled' => true,
