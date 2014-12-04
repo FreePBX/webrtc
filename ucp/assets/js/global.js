@@ -35,7 +35,7 @@ var WebrtcC = UCPMC.extend({
 		if (type != "number" || !this.staticsettings.enableOriginate) {
 			return false;
 		}
-		return [ { text: _("Originate Call"), function: "contactClickInitiate" } ];
+		return [ { text: _("Originate Call"), function: "contactClickInitiate", type: "phone" } ];
 	},
 	contactClickInitiate: function(did) {
 		var Webrtc = this,
@@ -65,11 +65,15 @@ var WebrtcC = UCPMC.extend({
 			function() {
 				$("#originateTo").tokenize({ maxElements: 1, datas: "index.php?quietmode=1&module=webrtc&command=contacts" });
 				$("#originateCall").click(function() {
-					Webrtc.originate();
+					setTimeout(function() {
+						UCP.Modules.Webrtc.originate();
+					}, 50);
 				});
 				$("#originateTo").keypress(function(event) {
 					if (event.keyCode == 13) {
-						Webrtc.originate();
+						setTimeout(function() {
+							UCP.Modules.Webrtc.originate();
+						}, 50);
 					}
 				});
 			}
@@ -446,11 +450,15 @@ $(document).bind("logIn", function( event ) {
 			function() {
 				$("#originateTo").tokenize({ maxElements: 1, datas: "index.php?quietmode=1&module=webrtc&command=contacts" });
 				$("#originateCall").click(function() {
-					UCP.Modules.Webrtc.originate();
+					setTimeout(function() {
+						UCP.Modules.Webrtc.originate();
+					}, 50);
 				});
 				$("#originateTo").keypress(function(event) {
 					if (event.keyCode == 13) {
-						UCP.Modules.Webrtc.originate();
+						setTimeout(function() {
+							UCP.Modules.Webrtc.originate();
+						}, 50);
 					}
 				});
 			}
