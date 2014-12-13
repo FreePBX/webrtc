@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>12.0.0beta9</version>
+	<version>12.0.0beta10</version>
 	<publisher>Schmooze Com Inc</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -15,6 +15,7 @@
 		phone they will be connected to device 99XXXX which will receive calls from the original extension
 	</description>
 	<changelog>
+		*12.0.0beta10* New functionality for FREEPBX-8434
 		*12.0.0beta9* Updates in Contact Manager
 		*12.0.0beta8* On originate push default extension to the begining
 		*12.0.0beta7* Allow lookup in originate through contact manager means

@@ -45,7 +45,10 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		$this->freepbx = $freepbx;
 		$this->core = $this->freepbx->Core;
 		$this->certman = $this->freepbx->Certman;
+		$this->userman = $this->freepbx->Userman;
 		$this->db = $this->freepbx->Database;
+
+		$this->migrationEnable('1026');
 	}
 
 	public function doConfigPageInit($page) {
@@ -128,6 +131,25 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 
 	}
 	public function genConfig() {
+	}
+
+	/**
+	 * Enable WebRTC and originate for said user
+	 * @param string $username Username
+	 */
+	public function migrationEnable($username) {
+		$user = $this->userman->getUserByUsername($username);
+		if(!empty($user) && !empty($user['default_extension']) && $user['default_extension'] != "none") {
+			if($this->certman->checkCAexists()) {
+				$certs = $this->certman->getAllManagedCertificates();
+				if(!empty($certs[0])) {
+					$certid = $certs[0]['cid'];
+					$this->createDevice($user['default_extension'],$certid);
+					$this->freepbx->Ucp->setSetting($user['username'],'Webrtc','hold',false);
+				}
+			}
+			$this->freepbx->Ucp->setSetting($user['username'],'Webrtc','originate',true);
+		}
 	}
 
 	public function processUCPAdminDisplay($user) {
