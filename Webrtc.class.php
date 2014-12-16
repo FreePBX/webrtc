@@ -47,8 +47,6 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		$this->certman = $this->freepbx->Certman;
 		$this->userman = $this->freepbx->Userman;
 		$this->db = $this->freepbx->Database;
-
-		$this->migrationEnable('1026');
 	}
 
 	public function doConfigPageInit($page) {
