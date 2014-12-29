@@ -252,11 +252,11 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		$sth->execute();
 		$results = $sth->fetchAll(\PDO::FETCH_ASSOC);
 		if(empty($results)) {
-			return false;
+			return array();
 		}
 		return $results;
 	}
-	
+
 	public function getClientSettingsByUser($user) {
 		//TODO need to check certs here
 		$sql = "SELECT * FROM webrtc_clients WHERE `user` = ?";
