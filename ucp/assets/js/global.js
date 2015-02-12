@@ -535,13 +535,13 @@ $(document).bind("phoneWindowAdded", function( event ) {
 	$("#messages-container .phone-box .message-container").textfill();
 });
 $(document).bind("logOut", function( event ) {
-	if (UCP.Modules.Webrtc.phone !== null && UCP.Modules.Webrtc.phone.isConnected()) {
+	if (typeof UCP.Modules.Webrtc !== "undefined" && UCP.Modules.Webrtc.phone !== null && UCP.Modules.Webrtc.phone.isConnected()) {
 		UCP.Modules.Webrtc.phone.stop();
 	}
 });
 
 $(window).bind("beforeunload", function() {
-	if (UCP.Modules.Webrtc.phone !== null && UCP.Modules.Webrtc.phone.isConnected()) {
+	if (typeof UCP.Modules.Webrtc !== "undefined" && UCP.Modules.Webrtc.phone !== null && UCP.Modules.Webrtc.phone.isConnected()) {
 		UCP.Modules.Webrtc.phone.stop();
 	}
 });
