@@ -9,124 +9,140 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 19:16-0500\n"
+"POT-Creation-Date: 2015-02-19 21:56-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /usr/src/freepbx/webrtc/Webrtc.class.php:197
+#: Webrtc.class.php:197
 msgid "Allow Originating Calls"
 msgstr ""
 
-#: /usr/src/freepbx/webrtc/Webrtc.class.php:197
+#: Webrtc.class.php:197
 msgid "Allow calls to be originated from UCP"
 msgstr ""
 
-#: /usr/src/freepbx/webrtc/Webrtc.class.php:186
+#: webrtc.i18n.php:4 webrtc.i18n.php:14
+msgid "Connectivity"
+msgstr ""
+
+#: Webrtc.class.php:186
 msgid "Enable WebRTC Exterimental Hold Support"
 msgstr ""
 
-#: /usr/src/freepbx/webrtc/functions.inc/hook_core.php:62
+#: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
 msgstr ""
 
-#: /usr/src/freepbx/webrtc/Webrtc.class.php:182
-#: /usr/src/freepbx/webrtc/Webrtc.class.php:189
-#: /usr/src/freepbx/webrtc/Webrtc.class.php:192
+#: Webrtc.class.php:182 Webrtc.class.php:189 Webrtc.class.php:192
 msgid "Enable WebRTC Phone"
 msgstr ""
 
-#: /usr/src/freepbx/webrtc/Webrtc.class.php:186
+#: Webrtc.class.php:186
 msgid ""
 "Enable experimental hold support. Usually only works in Chrome at this point "
 "and is buggy"
 msgstr ""
 
-#: /usr/src/freepbx/webrtc/functions.inc/hook_core.php:62
+#: functions.inc/hook_core.php:62
 #, php-format
 msgid ""
 "Enables WebRTC for this %s in the Asterisk Recording Interface (ARI). Note: "
 "ARI is depreciated in favor of UCP"
 msgstr ""
 
-#: /usr/src/freepbx/webrtc/ucp/Webrtc.class.php:103
+#: ucp/Webrtc.class.php:103
 msgid "New Web Phone Call"
 msgstr ""
 
-#: /usr/src/freepbx/webrtc/ucp/assets/js/global.js:366
+#: ucp/assets/js/global.js:366
 msgid "Nothing Entered"
 msgstr ""
 
-#: /usr/src/freepbx/webrtc/ucp/assets/js/global.js:62
-#: /usr/src/freepbx/webrtc/ucp/assets/js/global.js:447
+#: ucp/assets/js/global.js:62 ucp/assets/js/global.js:447
 msgid "Originate"
 msgstr ""
 
-#: /usr/src/freepbx/webrtc/ucp/assets/js/global.js:38
-#: /usr/src/freepbx/webrtc/ucp/assets/js/global.js:61
-#: /usr/src/freepbx/webrtc/ucp/assets/js/global.js:446
+#: ucp/assets/js/global.js:38 ucp/assets/js/global.js:61
+#: ucp/assets/js/global.js:446
 msgid "Originate Call"
 msgstr ""
 
-#: /usr/src/freepbx/webrtc/functions.inc/hook_core.php:77
+#: functions.inc/hook_core.php:77
 msgid "The Certificate to use from Certificate Manager"
 msgstr ""
 
-#: /usr/src/freepbx/webrtc/functions.inc/hook_core.php:58
+#: webrtc.i18n.php:16
+msgid "The WebRTC Module allows an Administrator to enable a "
+msgstr ""
+
+#: webrtc.i18n.php:5
+msgid ""
+"The WebRTC Module allows an Administrator to enable a \"WebRTC phone\" that "
+"can be attached to a user\\'s\n"
+"\t\textension which they can connect to through FreePBX User Control Panel, "
+"this WebRTC phone will then\n"
+"\t\treceive phone calls at the same time as the users extension using user "
+"and device mode behind the scenes.\n"
+"\t\tIf you have User and Device Mode enabled any extension you enable the "
+"WebRTC Phone a duplicate extension of 99XXXX\n"
+"\t\twill be created (where XXXX is the original extension number), when the "
+"user then views the web interface of the WebRTC\n"
+"\t\tphone they will be connected to device 99XXXX which will receive calls "
+"from the original extension"
+msgstr ""
+
+#: functions.inc/hook_core.php:58
 msgid ""
 "The WebSockets Interface is running through PJSIP, PJSIP is not supported at "
 "this time. Please enable the chan_sip driver (along with pjsip or by itself) "
 "or alert the FreePBX Developers"
 msgstr ""
 
-#: /usr/src/freepbx/webrtc/functions.inc/hook_core.php:82
+#: functions.inc/hook_core.php:82
 #, php-format
 msgid ""
 "To utilize WebRTC in ARI you must add at least one certificate %s through "
 "Certificate Manager"
 msgstr ""
 
-#: /usr/src/freepbx/webrtc/Webrtc.class.php:210
+#: Webrtc.class.php:210
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
 
-#: /usr/src/freepbx/webrtc/Webrtc.class.php:213
+#: Webrtc.class.php:213
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have &s"
 msgstr ""
 
-#: /usr/src/freepbx/webrtc/functions.inc/hook_core.php:76
+#: functions.inc/hook_core.php:76
 msgid "Use Certificate"
 msgstr ""
 
-#: /usr/src/freepbx/webrtc/Webrtc.class.php:184
+#: Webrtc.class.php:184
 msgid "WebRTC Certificate"
 msgstr ""
 
-#: /usr/src/freepbx/webrtc/Webrtc.class.php:182
-#: /usr/src/freepbx/webrtc/Webrtc.class.php:189
-#: /usr/src/freepbx/webrtc/Webrtc.class.php:192
+#: webrtc.i18n.php:3 webrtc.i18n.php:12
+msgid "WebRTC Phone"
+msgstr ""
+
+#: Webrtc.class.php:182 Webrtc.class.php:189 Webrtc.class.php:192
 msgid ""
 "Whether or not to enable the WebRTC Phone for this linked. Additionally you "
 "must select a valid certificate to use."
 msgstr ""
 
-#: /usr/src/freepbx/webrtc/Webrtc.class.php:184
+#: Webrtc.class.php:184
 msgid "Which certificate to use for the WebRTC Phone in UCP"
 msgstr ""
 
-#: /usr/src/freepbx/webrtc/Webrtc.class.php:190
+#: Webrtc.class.php:190
 msgid ""
 "You have no certificates setup in <a href=\"config.php?display=certman"
 "\">Certificate Manager<a/>"
-msgstr ""
-
-#: /usr/src/freepbx/webrtc/webrtc.i18n.php:11
-msgid ""
-"}\n"
-"?>"
 msgstr ""
