@@ -1,4 +1,17 @@
 <!--ucp_config.php-->
+<?php if(empty($stunaddr)) {?>
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<strong style='color:red'>
+						<?php echo _("The STUN Server address is blank. In many cases this can cause issues. Please define a valid server in the Asterisk SIP Settings module")?>
+					</strong><br/>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php } ?>
 <div class="element-container">
 	<div class="row">
 		<div class="col-md-12">
@@ -25,4 +38,3 @@
 	</div>
 </div>
 <!--ucp_config.php-->
-
