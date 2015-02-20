@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-19 21:56-0500\n"
+"POT-Creation-Date: 2015-02-20 16:44-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: Webrtc.class.php:197
+#: Webrtc.class.php:206
 msgid "Allow Originating Calls"
 msgstr ""
 
-#: Webrtc.class.php:197
+#: Webrtc.class.php:206
 msgid "Allow calls to be originated from UCP"
 msgstr ""
 
@@ -29,22 +29,12 @@ msgstr ""
 msgid "Connectivity"
 msgstr ""
 
-#: Webrtc.class.php:186
-msgid "Enable WebRTC Exterimental Hold Support"
-msgstr ""
-
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
 msgstr ""
 
-#: Webrtc.class.php:182 Webrtc.class.php:189 Webrtc.class.php:192
+#: Webrtc.class.php:193 Webrtc.class.php:198 Webrtc.class.php:201
 msgid "Enable WebRTC Phone"
-msgstr ""
-
-#: Webrtc.class.php:186
-msgid ""
-"Enable experimental hold support. Usually only works in Chrome at this point "
-"and is buggy"
 msgstr ""
 
 #: functions.inc/hook_core.php:62
@@ -58,21 +48,27 @@ msgstr ""
 msgid "New Web Phone Call"
 msgstr ""
 
-#: ucp/assets/js/global.js:366
+#: ucp/assets/js/global.js:373
 msgid "Nothing Entered"
 msgstr ""
 
-#: ucp/assets/js/global.js:62 ucp/assets/js/global.js:447
+#: ucp/assets/js/global.js:67 ucp/assets/js/global.js:456
 msgid "Originate"
 msgstr ""
 
-#: ucp/assets/js/global.js:38 ucp/assets/js/global.js:61
-#: ucp/assets/js/global.js:446
+#: ucp/assets/js/global.js:43 ucp/assets/js/global.js:66
+#: ucp/assets/js/global.js:455
 msgid "Originate Call"
 msgstr ""
 
 #: functions.inc/hook_core.php:77
 msgid "The Certificate to use from Certificate Manager"
+msgstr ""
+
+#: Webrtc.class.php:113 views/ucp_config.php:3
+msgid ""
+"The STUN Server address is blank. In many cases this can cause issues. "
+"Please define a valid server in the Asterisk SIP Settings module"
 msgstr ""
 
 #: webrtc.i18n.php:16
@@ -109,12 +105,18 @@ msgid ""
 "Certificate Manager"
 msgstr ""
 
-#: Webrtc.class.php:210
+#: ucp/assets/js/global.js:254
+msgid ""
+"Unable to start call. Please allow the WebRTC session in your browser and "
+"refresh"
+msgstr ""
+
+#: Webrtc.class.php:219
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
 
-#: Webrtc.class.php:213
+#: Webrtc.class.php:222
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have &s"
 msgstr ""
@@ -123,7 +125,7 @@ msgstr ""
 msgid "Use Certificate"
 msgstr ""
 
-#: Webrtc.class.php:184
+#: Webrtc.class.php:195
 msgid "WebRTC Certificate"
 msgstr ""
 
@@ -131,17 +133,17 @@ msgstr ""
 msgid "WebRTC Phone"
 msgstr ""
 
-#: Webrtc.class.php:182 Webrtc.class.php:189 Webrtc.class.php:192
+#: Webrtc.class.php:193 Webrtc.class.php:198 Webrtc.class.php:201
 msgid ""
 "Whether or not to enable the WebRTC Phone for this linked. Additionally you "
 "must select a valid certificate to use."
 msgstr ""
 
-#: Webrtc.class.php:184
+#: Webrtc.class.php:195
 msgid "Which certificate to use for the WebRTC Phone in UCP"
 msgstr ""
 
-#: Webrtc.class.php:190
+#: Webrtc.class.php:199
 msgid ""
 "You have no certificates setup in <a href=\"config.php?display=certman"
 "\">Certificate Manager<a/>"
