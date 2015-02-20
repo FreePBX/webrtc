@@ -104,6 +104,15 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		}
 		$sql = "DROP TABLE IF EXISTS `webrtc_settings`";
 		$sth = $this->db->prepare($sql);
+		try {
+			$stunaddr = $this->freepbx->Sipsettings->getConfig("stunaddr");
+		} catch(\Exception $e) {
+			$stunaddr = "";
+		}
+		if(empty($stunaddr)) {
+			out("<strong style='color:red'>"._("The STUN Server address is blank. In many cases this can cause issues. Please define a valid server in the Asterisk SIP Settings module")."</strong>");
+		}
+
 		return true;
 	}
 	public function uninstall() {
@@ -160,16 +169,14 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 				$this->removeDevice($user['default_extension']);
 			}
 		}
-		if(!empty($_REQUEST['webrtc|hold']) && $_REQUEST['webrtc|hold'] == 'yes') {
-			$this->freepbx->Ucp->setSetting($user['username'],'Webrtc','hold',true);
-		} else {
-			$this->freepbx->Ucp->setSetting($user['username'],'Webrtc','hold',false);
-		}
 		if(!empty($_REQUEST['webrtc|originate']) && $_REQUEST['webrtc|originate'] == 'yes') {
 			$this->freepbx->Ucp->setSetting($user['username'],'Webrtc','originate',true);
 		} else {
 			$this->freepbx->Ucp->setSetting($user['username'],'Webrtc','originate',false);
 		}
+
+		//old
+		$this->freepbx->Ucp->setSetting($user['username'],'Webrtc','hold',true);
 	}
 
 	public function getUCPAdminDisplay($user) {
@@ -178,13 +185,15 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 			$settings = $this->getClientSettingsByUser($user['default_extension']);
 			$mcerts = $this->certman->getAllManagedCertificates();
 			if($this->validVersion() === true && !empty($mcerts)) {
-				$hold = $this->freepbx->Ucp->getSetting($user['username'],'Webrtc','hold');
+				try {
+					$stunaddr = $this->freepbx->Sipsettings->getConfig("stunaddr");
+				} catch(\Exception $e) {
+					$stunaddr = "";
+				}
 				$html[0]['description'] = '<a href="#" class="info">'._("Enable WebRTC Phone").':<span>'._("Whether or not to enable the WebRTC Phone for this linked. Additionally you must select a valid certificate to use.").'</span></a>';
-				$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("enabled" => !empty($settings)));
+				$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("enabled" => !empty($settings), "stunaddr" => $stunaddr));
 				$html[1]['description'] = '<a href="#" class="info">'._("WebRTC Certificate").':<span>'._("Which certificate to use for the WebRTC Phone in UCP").'</span></a>';
 				$html[1]['content'] = load_view(dirname(__FILE__)."/views/ucp_config_certs.php",array("certs" => $mcerts, "settings" => $settings));
-				$html[2]['description'] = '<a href="#" class="info">'._("Enable WebRTC Exterimental Hold Support").':<span>'._("Enable experimental hold support. Usually only works in Chrome at this point and is buggy").'</span></a>';
-				$html[2]['content'] = load_view(dirname(__FILE__)."/views/ucp_config_hold.php",array("enabled" => $hold));
 			} elseif($this->validVersion() === true) {
 				$html[0]['description'] = '<a href="#" class="info">'._("Enable WebRTC Phone").':<span>'._("Whether or not to enable the WebRTC Phone for this linked. Additionally you must select a valid certificate to use.").'</span></a>';
 				$html[0]['content'] = _('You have no certificates setup in <a href="config.php?display=certman">Certificate Manager<a/>');

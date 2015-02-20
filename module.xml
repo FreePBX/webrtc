@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>12.0.0beta14</version>
+	<version>12.0.1</version>
 	<publisher>Schmooze Com Inc</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -15,6 +15,8 @@
 		phone they will be connected to device 99XXXX which will receive calls from the original extension
 	</description>
 	<changelog>
+		*12.0.1* FREEPBX-8673 Fix SDP challenges with Chrome, update jssip lib. Remove experimental modes
+		*12.0.0beta15* FREEPBX-8808 Check for valid STUN Server in Sip Settings
 		*12.0.0beta14* Remove settings if device doesnt exist
 		*12.0.0beta13* Fix return type of getClientsEnabled to be an array, not boolean/array
 		*12.0.0beta12* Add ability to get all enabled WebRTC extensions
@@ -49,6 +51,7 @@
 		<module>certman ge 12.0.0alpha1</module>
 		<module>core ge 12.0.1beta9</module>
 		<module>ucp ge 12.0.0beta7</module>
+		<module>sipsettings ge 12.0.9</module>
 		<version>12.0.1beta34</version>
 	</depends>
 	<supported>
