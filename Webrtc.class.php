@@ -269,6 +269,11 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 
 		$sip_server = !empty($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : $_SERVER['SERVER_ADDR'];
 		$dev = $this->core->getDevice($results['device']);
+		if(empty($dev)) {
+			//no device so remove the settings, someone deleted the device basically
+			$this->removeClientSettingsByUser($user);
+			return false;
+		}
 		//$usr = core_users_get($results['user']);
 		$results['realm'] = !empty($results['realm']) ? $results['realm'] : $sip_server;
 		$results['username'] = !empty($results['username']) ? $results['username'] : $dev['id'];
