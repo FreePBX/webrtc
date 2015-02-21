@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-20 16:44-0500\n"
+"POT-Creation-Date: 2015-02-20 20:12-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Allow calls to be originated from UCP"
 msgstr ""
 
-#: webrtc.i18n.php:4 webrtc.i18n.php:14
+#: webrtc.i18n.php:4
 msgid "Connectivity"
 msgstr ""
 
@@ -69,10 +69,6 @@ msgstr ""
 msgid ""
 "The STUN Server address is blank. In many cases this can cause issues. "
 "Please define a valid server in the Asterisk SIP Settings module"
-msgstr ""
-
-#: webrtc.i18n.php:16
-msgid "The WebRTC Module allows an Administrator to enable a "
 msgstr ""
 
 #: webrtc.i18n.php:5
@@ -129,7 +125,7 @@ msgstr ""
 msgid "WebRTC Certificate"
 msgstr ""
 
-#: webrtc.i18n.php:3 webrtc.i18n.php:12
+#: webrtc.i18n.php:3
 msgid "WebRTC Phone"
 msgstr ""
 
