@@ -12,7 +12,7 @@
 						<input type="radio" name="webrtc|originate" id="webrtc|originate_yes" value="yes" <?php echo ($enabled) ? 'checked' : ''?>>
 						<label for="webrtc|originate_yes"><?php echo _("Yes")?></label>
 						<input type="radio" name="webrtc|originate" id="webrtc|originate_no" value="no" <?php echo !($enabled) ? 'checked' : ''?>>
-						<label for="webrtc|originate_no"><?php _("No")?></label>
+						<label for="webrtc|originate_no"><?php echo _("No")?></label>
 					</div>
 				</div>
 			</div>
@@ -25,4 +25,3 @@
 	</div>
 </div>
 <!--ucp_config_originate.php-->
-
