@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-20 20:12-0500\n"
+"POT-Creation-Date: 2015-03-09 12:25-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,11 @@ msgstr ""
 msgid "Allow calls to be originated from UCP"
 msgstr ""
 
-#: webrtc.i18n.php:4
+#: views/ucp_config_certs.php:24
+msgid "Certificate WebRTC Phone should use for this user."
+msgstr ""
+
+#: webrtc.i18n.php:6
 msgid "Connectivity"
 msgstr ""
 
@@ -33,8 +37,21 @@ msgstr ""
 msgid "Enable WebRTC Old ARI Phone"
 msgstr ""
 
+#: views/ucp_config_originate.php:8
+msgid "Enable WebRTC Originate"
+msgstr ""
+
 #: Webrtc.class.php:193 Webrtc.class.php:198 Webrtc.class.php:201
+#: views/ucp_config.php:21
 msgid "Enable WebRTC Phone"
+msgstr ""
+
+#: views/ucp_config_originate.php:23
+msgid "Enable the WebRTC Originate in UCP for this user"
+msgstr ""
+
+#: views/ucp_config.php:36
+msgid "Enable the WebRTC Phone in UCP for this user"
 msgstr ""
 
 #: functions.inc/hook_core.php:62
@@ -46,6 +63,10 @@ msgstr ""
 
 #: ucp/Webrtc.class.php:103
 msgid "New Web Phone Call"
+msgstr ""
+
+#: views/ucp_config.php:28 views/ucp_config_originate.php:15
+msgid "No"
 msgstr ""
 
 #: ucp/assets/js/global.js:373
@@ -65,26 +86,14 @@ msgstr ""
 msgid "The Certificate to use from Certificate Manager"
 msgstr ""
 
-#: Webrtc.class.php:113 views/ucp_config.php:3
+#: Webrtc.class.php:113 views/ucp_config.php:8
 msgid ""
 "The STUN Server address is blank. In many cases this can cause issues. "
 "Please define a valid server in the Asterisk SIP Settings module"
 msgstr ""
 
-#: webrtc.i18n.php:5
-msgid ""
-"The WebRTC Module allows an Administrator to enable a \"WebRTC phone\" that "
-"can be attached to a user\\'s\n"
-"\t\textension which they can connect to through FreePBX User Control Panel, "
-"this WebRTC phone will then\n"
-"\t\treceive phone calls at the same time as the users extension using user "
-"and device mode behind the scenes.\n"
-"\t\tIf you have User and Device Mode enabled any extension you enable the "
-"WebRTC Phone a duplicate extension of 99XXXX\n"
-"\t\twill be created (where XXXX is the original extension number), when the "
-"user then views the web interface of the WebRTC\n"
-"\t\tphone they will be connected to device 99XXXX which will receive calls "
-"from the original extension"
+#: webrtc.i18n.php:8
+msgid "The WebRTC Module allows an Administrator to enable a "
 msgstr ""
 
 #: functions.inc/hook_core.php:58
@@ -121,11 +130,11 @@ msgstr ""
 msgid "Use Certificate"
 msgstr ""
 
-#: Webrtc.class.php:195
+#: Webrtc.class.php:195 views/ucp_config_certs.php:8
 msgid "WebRTC Certificate"
 msgstr ""
 
-#: webrtc.i18n.php:3
+#: webrtc.i18n.php:4
 msgid "WebRTC Phone"
 msgstr ""
 
@@ -137,6 +146,10 @@ msgstr ""
 
 #: Webrtc.class.php:195
 msgid "Which certificate to use for the WebRTC Phone in UCP"
+msgstr ""
+
+#: views/ucp_config.php:26 views/ucp_config_originate.php:13
+msgid "Yes"
 msgstr ""
 
 #: Webrtc.class.php:199
