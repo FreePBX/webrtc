@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-20 20:12-0500\n"
-"PO-Revision-Date: 2015-03-26 00:57+0200\n"
+"PO-Revision-Date: 2015-03-31 01:40+0200\n"
 "Last-Translator: Ernesto <ecasas@sangoma.com>\n"
 "Language-Team: Spanish "
 "<http://weblate.freepbx.org/projects/freepbx/webrtc/es_ES/>\n"
@@ -31,7 +31,7 @@ msgstr "Permitir llamadas originadas desde UCP"
 
 #: webrtc.i18n.php:4
 msgid "Connectivity"
-msgstr "Conectividad"
+msgstr "Conexiones"
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
