@@ -34,10 +34,6 @@ class Webrtc extends Modules{
 				case 'contacts':
 					return true;
 				break;
-				case 'originate':
-					$o = $this->UCP->getSetting($this->user['username'],$this->module,'originate');
-					return !empty($o) ? true : false;
-				break;
 				default:
 					return false;
 				break;
@@ -71,22 +67,6 @@ class Webrtc extends Modules{
 								}
 							}
 						}
-					}
-				break;
-				case "originate":
-					if($this->_checkExtension($_REQUEST['from'])) {
-						$data = $this->UCP->FreePBX->Core->getDevice($_REQUEST['from']);
-						if(!empty($data)) {
-							$this->astman->originate(array(
-								"Channel" => "Local/".$data['id']."@from-internal",
-								"Exten" => $_REQUEST['to'],
-								"Context" => "from-internal",
-								"Priority" => 1,
-								"Async" => "yes",
-								"CallerID" => "UCP <".$data['id'].">"
-							));
-						}
-						$return['status'] = true;
 					}
 				break;
 				default:
@@ -135,8 +115,7 @@ class Webrtc extends Modules{
 					'enableHold' => (int)$this->UCP->getSetting($this->user['username'],$this->module,'hold'),
 					'log' => 3
 				),
-				'extensions' => $extensions,
-				'enableOriginate' => (int)$this->UCP->getSetting($this->user['username'],$this->module,'originate')
+				'extensions' => $extensions
 			);
 		} else {
 			return array('enabled' => false);

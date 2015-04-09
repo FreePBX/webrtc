@@ -160,19 +160,14 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 	}
 
 	public function processUCPAdminDisplay($user) {
-		if(!empty($user['default_extension']) && $user['default_extension'] != 'none' && !empty($_REQUEST['webrtc|enable']) && $_REQUEST['webrtc|enable'] == 'yes') {
+		if(!empty($user['default_extension']) && $user['default_extension'] != 'none' && !empty($_REQUEST['webrtc_enable']) && $_REQUEST['webrtc_enable'] == 'yes') {
 			if(!$this->checkEnabled($user['default_extension'])) {
-				$this->createDevice($user['default_extension'],$_REQUEST['webrtc|cert']);
+				$this->createDevice($user['default_extension'],$_REQUEST['webrtc_cert']);
 			}
 		} else {
 			if($this->checkEnabled($user['default_extension'])) {
 				$this->removeDevice($user['default_extension']);
 			}
-		}
-		if(!empty($_REQUEST['webrtc|originate']) && $_REQUEST['webrtc|originate'] == 'yes') {
-			$this->freepbx->Ucp->setSetting($user['username'],'Webrtc','originate',true);
-		} else {
-			$this->freepbx->Ucp->setSetting($user['username'],'Webrtc','originate',false);
 		}
 
 		//old
@@ -184,28 +179,22 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		if(!empty($user['default_extension']) && $user['default_extension'] != 'none') {
 			$settings = $this->getClientSettingsByUser($user['default_extension']);
 			$mcerts = $this->certman->getAllManagedCertificates();
+			$message = '';
 			if($this->validVersion() === true && !empty($mcerts)) {
 				try {
 					$stunaddr = $this->freepbx->Sipsettings->getConfig("stunaddr");
+					if(empty($stunaddr)) {
+						$message = _("The STUN Server address is blank. In many cases this can cause issues. Please define a valid server in the Asterisk SIP Settings module");
+					}
 				} catch(\Exception $e) {
-					$stunaddr = "";
+					$message = _("The STUN Server address is blank. In many cases this can cause issues. Please define a valid server in the Asterisk SIP Settings module");
 				}
-				$html[0]['description'] = '<a href="#" class="info">'._("Enable WebRTC Phone").':<span>'._("Whether or not to enable the WebRTC Phone for this linked. Additionally you must select a valid certificate to use.").'</span></a>';
-				$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("enabled" => !empty($settings), "stunaddr" => $stunaddr));
-				$html[1]['description'] = '<a href="#" class="info">'._("WebRTC Certificate").':<span>'._("Which certificate to use for the WebRTC Phone in UCP").'</span></a>';
-				$html[1]['content'] = load_view(dirname(__FILE__)."/views/ucp_config_certs.php",array("certs" => $mcerts, "settings" => $settings));
+				$html[0] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("enabled" => !empty($settings), "webrtcmessage" => $message, "certs" => $mcerts, "config" => true));
 			} elseif($this->validVersion() === true) {
-				$html[0]['description'] = '<a href="#" class="info">'._("Enable WebRTC Phone").':<span>'._("Whether or not to enable the WebRTC Phone for this linked. Additionally you must select a valid certificate to use.").'</span></a>';
-				$html[0]['content'] = _('You have no certificates setup in <a href="config.php?display=certman">Certificate Manager<a/>');
+				$html[0] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("enabled" => !empty($settings), "webrtcmessage" => _('You have no certificates setup in Certificate Manager'), "certs" => $mcerts, "config" => false));
 			} else {
-				$html[0]['description'] = '<a href="#" class="info">'._("Enable WebRTC Phone").':<span>'._("Whether or not to enable the WebRTC Phone for this linked. Additionally you must select a valid certificate to use.").'</span></a>';
-				$html[0]['content'] = $this->validVersion();
+				$html[0] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("enabled" => !empty($settings), "webrtcmessage" => $this->validVersion(), "certs" => $mcerts, "config" => false));
 			}
-			$originate = $this->freepbx->Ucp->getSetting($user['username'],'Webrtc','originate');
-			$html[] = array(
-				'description' => '<a href="#" class="info">'._("Allow Originating Calls").':<span>'._("Allow calls to be originated from UCP").'</span></a>',
-				'content' => load_view(dirname(__FILE__)."/views/ucp_config_originate.php",array("enabled" => $originate))
-			);
 		}
 		return $html;
 	}

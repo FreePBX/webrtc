@@ -368,21 +368,6 @@ var WebrtcC = UCPMC.extend({
 			this.phone.stop();
 		}
 	},
-	originate: function() {
-		if ($("#originateTo").val() !== null && $("#originateTo").val()[0] === "") {
-			alert(_("Nothing Entered"));
-			return;
-		}
-		$.post( "index.php?quietmode=1&module=webrtc&command=originate",
-						{ from: $("#originateFrom").val(),
-						to: $("#originateTo").val()[0] },
-						function( data ) {
-							if (data.status) {
-								UCP.closeDialog();
-							}
-						}
-		);
-	},
 	initiateLibrary: function() {
 		var $this = this,
 				ver = "0.6.18";
@@ -445,33 +430,6 @@ $(document).bind("staticSettingsFinished", function( event ) {
 $(document).bind("logIn", function( event ) {
 	$("#webrtc-menu li.web").on("click", function() {
 		UCP.Modules.Webrtc.setPhone(true);
-	});
-	$("#settings-menu a.originate").on("click", function() {
-		var sfrom = "";
-		$.each(UCP.Modules.Webrtc.staticsettings.extensions, function(i, v) {
-			sfrom = sfrom + "<option>" + v + "</option>";
-		});
-
-		UCP.showDialog(_("Originate Call"),
-			"<label for=\"originateFrom\">From:</label> <select id=\"originateFrom\" class=\"form-control\">" + sfrom + "</select><label for=\"originateTo\">To:</label><select class=\"form-control Tokenize Fill\" id=\"originateTo\" multiple></select><button class=\"btn btn-default\" id=\"originateCall\" style=\"margin-left: 72px;\">" + _("Originate") + "</button>",
-			200,
-			250,
-			function() {
-				$("#originateTo").tokenize({ maxElements: 1, datas: "index.php?quietmode=1&module=webrtc&command=contacts" });
-				$("#originateCall").click(function() {
-					setTimeout(function() {
-						UCP.Modules.Webrtc.originate();
-					}, 50);
-				});
-				$("#originateTo").keypress(function(event) {
-					if (event.keyCode == 13) {
-						setTimeout(function() {
-							UCP.Modules.Webrtc.originate();
-						}, 50);
-					}
-				});
-			}
-		);
 	});
 });
 $(document).bind("phoneWindowRemoved", function( event ) {
