@@ -2,9 +2,9 @@
 	<div class="element-container">
 		<div class="row">
 			<div class="col-md-12">
-				<strong style='color:red'>
+				<div class="alert alert-danger" role="alert">
 					<?php echo $webrtcmessage?>
-				</strong>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -45,7 +45,7 @@
 						<i class="fa fa-question-circle fpbx-help-icon" data-for="webrtccert"></i>
 					</div>
 					<div class="col-md-9">
-						<select id="webrtc_cert" name="webrtc_cert" class="form-control">
+						<select id="webrtc_cert" name="webrtc_cert" class="form-control ucp-webrtc" <?php echo !($enabled) ? 'disabled' : ''?>>
 							<?php foreach($certs as $cert) { ?>
 							<option value="<?php echo $cert['cid']?>" <?php echo (!empty($settings['certid']) && $settings['certid'] == $cert['cid']) ? 'selected' : ''?>><?php echo $cert['basename']?></option>
 							<?php } ?>
@@ -62,3 +62,12 @@
 	</div>
 </div>
 <?php } ?>
+<script>
+	$("input[name=webrtc_enable]").change(function() {
+		if($(this).val() == "yes") {
+			$(".ucp-webrtc").prop("disabled",false);
+		} else {
+			$(".ucp-webrtc").prop("disabled",true);
+		}
+	});
+</script>

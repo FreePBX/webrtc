@@ -49,6 +49,17 @@
 		<module>ucp ge 12.0.0beta7</module>
 		<version>12.0.1beta34</version>
 	</depends>
+	<hooks>
+		<ucp class="Ucp">
+			<method namespace="FreePBX\modules" class="Webrtc" callingMethod="constructModuleConfigPages">ucpConfigPage</method>
+			<method namespace="FreePBX\modules" class="Webrtc" callingMethod="addUser">ucpAddUser</method>
+			<method namespace="FreePBX\modules" class="Webrtc" callingMethod="updateUser">ucpUpdateUser</method>
+			<method namespace="FreePBX\modules" class="Webrtc" callingMethod="delUser">ucpDelUser</method>
+			<method namespace="FreePBX\modules" class="Webrtc" callingMethod="addGroup">ucpAddGroup</method>
+			<method namespace="FreePBX\modules" class="Webrtc" callingMethod="updateGroup">ucpUpdateGroup</method>
+			<method namespace="FreePBX\modules" class="Webrtc" callingMethod="delGroup">ucpDelGroup</method>
+		</ucp>
+	</hooks>
 	<supported>
 		<version>13.0</version>
 	</supported>

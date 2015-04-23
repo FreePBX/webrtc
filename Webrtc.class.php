@@ -159,7 +159,52 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		}
 	}
 
-	public function processUCPAdminDisplay($user) {
+	public function ucpDelGroup($id,$display,$data) {
+	}
+
+	public function ucpAddGroup($id, $display, $data) {
+		$this->ucpUpdateGroup($id,$display,$data);
+	}
+
+	public function ucpUpdateGroup($id,$display,$data) {
+		if(isset($_POST['webrtc_enable'])) {
+			if($_POST['webrtc_enable'] == 'yes') {
+				$this->freepbx->Ucp->setSettingByGID($id,'Webrtc','enabled',true);
+			} else {
+				$this->freepbx->Ucp->setSettingByGID($id,'Webrtc','enabled',false);
+			}
+		} else {
+			$this->freepbx->Ucp->setSettingByGID($id,'Webrtc','enabled',true);
+		}
+	}
+
+	/**
+	* Hook functionality from userman when a user is deleted
+	* @param {int} $id      The userman user id
+	* @param {string} $display The display page name where this was executed
+	* @param {array} $data    Array of data to be able to use
+	*/
+	public function ucpDelUser($id, $display, $ucpStatus, $data) {
+
+	}
+
+	/**
+	* Hook functionality from userman when a user is added
+	* @param {int} $id      The userman user id
+	* @param {string} $display The display page name where this was executed
+	* @param {array} $data    Array of data to be able to use
+	*/
+	public function ucpAddUser($id, $display, $ucpStatus, $data) {
+		$this->ucpUpdateUser($id, $display, $ucpStatus, $data);
+	}
+
+	/**
+	* Hook functionality from userman when a user is updated
+	* @param {int} $id      The userman user id
+	* @param {string} $display The display page name where this was executed
+	* @param {array} $data    Array of data to be able to use
+	*/
+	public function ucpUpdateUser($id, $display, $ucpStatus, $data) {
 		if(!empty($user['default_extension']) && $user['default_extension'] != 'none' && !empty($_REQUEST['webrtc_enable']) && $_REQUEST['webrtc_enable'] == 'yes') {
 			if(!$this->checkEnabled($user['default_extension'])) {
 				$this->createDevice($user['default_extension'],$_REQUEST['webrtc_cert']);
@@ -169,32 +214,39 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 				$this->removeDevice($user['default_extension']);
 			}
 		}
-
-		//old
-		$this->freepbx->Ucp->setSetting($user['username'],'Webrtc','hold',true);
 	}
 
-	public function getUCPAdminDisplay($user) {
+	public function ucpConfigPage($mode, $user, $action) {
 		$html = array();
-		if(!empty($user['default_extension']) && $user['default_extension'] != 'none') {
-			$settings = $this->getClientSettingsByUser($user['default_extension']);
-			$mcerts = $this->certman->getAllManagedCertificates();
-			$message = '';
-			if($this->validVersion() === true && !empty($mcerts)) {
-				try {
-					$stunaddr = $this->freepbx->Sipsettings->getConfig("stunaddr");
-					if(empty($stunaddr)) {
-						$message = _("The STUN Server address is blank. In many cases this can cause issues. Please define a valid server in the Asterisk SIP Settings module");
-					}
-				} catch(\Exception $e) {
+		$message = '';
+		$mcerts = $this->certman->getAllManagedCertificates();
+		if($mode == 'group') {
+			$enabled = $this->freepbx->Ucp->getSettingByGID($user['id'],'Webrtc','enabled');
+		} else {
+			if(!empty($user['default_extension']) && $user['default_extension'] != 'none') {
+				$settings = $this->getClientSettingsByUser($user['default_extension']);
+				$enabled = !empty($settings);
+			}
+		}
+		$html[0] = array(
+			"title" => _("WebRTC"),
+			"rawname" => "webrtc",
+			"content" => ""
+		);
+		if($this->validVersion() === true && !empty($mcerts)) {
+			try {
+				$stunaddr = $this->freepbx->Sipsettings->getConfig("stunaddr");
+				if(empty($stunaddr)) {
 					$message = _("The STUN Server address is blank. In many cases this can cause issues. Please define a valid server in the Asterisk SIP Settings module");
 				}
-				$html[0] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("enabled" => !empty($settings), "webrtcmessage" => $message, "certs" => $mcerts, "config" => true));
-			} elseif($this->validVersion() === true) {
-				$html[0] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("enabled" => !empty($settings), "webrtcmessage" => _('You have no certificates setup in Certificate Manager'), "certs" => $mcerts, "config" => false));
-			} else {
-				$html[0] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("enabled" => !empty($settings), "webrtcmessage" => $this->validVersion(), "certs" => $mcerts, "config" => false));
+			} catch(\Exception $e) {
+				$message = _("The STUN Server address is blank. In many cases this can cause issues. Please define a valid server in the Asterisk SIP Settings module");
 			}
+			$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("enabled" => $enabled, "webrtcmessage" => $message, "certs" => $mcerts, "config" => true));
+		} elseif($this->validVersion() === true) {
+			$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("enabled" => $enabled, "webrtcmessage" => _('You have no certificates setup in Certificate Manager'), "certs" => $mcerts, "config" => false));
+		} else {
+			$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("enabled" => $enabled, "webrtcmessage" => $this->validVersion(), "certs" => $mcerts, "config" => false));
 		}
 		return $html;
 	}
