@@ -22,8 +22,12 @@
 					<div class="col-md-9 radioset">
 						<input type="radio" name="webrtc_enable" id="webrtc_enable_yes" value="yes" <?php echo ($enabled) ? 'checked' : ''?>>
 						<label for="webrtc_enable_yes"><?php echo _("Yes")?></label>
-						<input type="radio" name="webrtc_enable" id="webrtc_enable_no" value="no" <?php echo !($enabled) ? 'checked' : ''?>>
+						<input type="radio" name="webrtc_enable" id="webrtc_enable_no" value="no" <?php echo (!is_null($enabled) && !$enabled) ? 'checked' : ''?>>
 						<label for="webrtc_enable_no"><?php echo _("No")?></label>
+						<?php if($mode == "user") {?>
+							<input type="radio" id="webrtc_enable_inherit" name="webrtc_enable" value='inherit' <?php echo is_null($enabled) ? 'checked' : ''?>>
+							<label for="webrtc_enable_inherit"><?php echo _('Inherit')?></label>
+						<?php } ?>
 					</div>
 				</div>
 			</div>
@@ -45,7 +49,7 @@
 						<i class="fa fa-question-circle fpbx-help-icon" data-for="webrtccert"></i>
 					</div>
 					<div class="col-md-9">
-						<select id="webrtc_cert" name="webrtc_cert" class="form-control ucp-webrtc" <?php echo !($enabled) ? 'disabled' : ''?>>
+						<select id="webrtc_cert" name="webrtc_cert" class="form-control ucp-webrtc" <?php echo (!is_null($enabled) && !$enabled) ? 'disabled' : ''?>>
 							<?php foreach($certs as $cert) { ?>
 							<option value="<?php echo $cert['cid']?>" <?php echo (!empty($settings['certid']) && $settings['certid'] == $cert['cid']) ? 'selected' : ''?>><?php echo $cert['basename']?></option>
 							<?php } ?>
@@ -64,7 +68,7 @@
 <?php } ?>
 <script>
 	$("input[name=webrtc_enable]").change(function() {
-		if($(this).val() == "yes") {
+		if($(this).val() == "yes" || $(this).val() == "inherit") {
 			$(".ucp-webrtc").prop("disabled",false);
 		} else {
 			$(".ucp-webrtc").prop("disabled",true);
