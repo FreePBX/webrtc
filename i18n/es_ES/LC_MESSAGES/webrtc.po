@@ -1,0 +1,179 @@
+# This file is part of FreePBX.
+#
+# For licensing information, please see the file named LICENSE located in the module directory
+#
+# FreePBX language template for webrtc
+# Copyright (C) 2008-2015 Sangoma, Inc.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-20 20:12-0500\n"
+"PO-Revision-Date: 2015-04-12 00:16+0200\n"
+"Last-Translator: Daver <daverjorge46@gmail.com>\n"
+"Language-Team: Spanish "
+"<http://weblate.freepbx.org/projects/freepbx/webrtc/es_ES/>\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.2-dev\n"
+
+#: Webrtc.class.php:206
+msgid "Allow Originating Calls"
+msgstr "Permitir originar  llamadas"
+
+#: Webrtc.class.php:206
+msgid "Allow calls to be originated from UCP"
+msgstr "Permitir llamadas originadas desde UCP"
+
+#: webrtc.i18n.php:4
+msgid "Connectivity"
+msgstr "Conectividad"
+
+#: functions.inc/hook_core.php:62
+msgid "Enable WebRTC Old ARI Phone"
+msgstr "Habilitar WebRTC viejo ARI Phone"
+
+#: Webrtc.class.php:193 Webrtc.class.php:198 Webrtc.class.php:201
+msgid "Enable WebRTC Phone"
+msgstr "Habilitar Teléfono WebRTC"
+
+#: functions.inc/hook_core.php:62
+#, php-format
+msgid ""
+"Enables WebRTC for this %s in the Asterisk Recording Interface (ARI). Note: "
+"ARI is depreciated in favor of UCP"
+msgstr ""
+"Habilita WebRTC para este %s en el Asterisk Recording Interface (ARI). Nota: "
+"ARI es obsoleto en favor de UCP"
+
+#: ucp/Webrtc.class.php:103
+msgid "New Web Phone Call"
+msgstr "Nueva llamada Web"
+
+#: ucp/assets/js/global.js:373
+msgid "Nothing Entered"
+msgstr "Nada ha sido entrado"
+
+#: ucp/assets/js/global.js:67 ucp/assets/js/global.js:456
+msgid "Originate"
+msgstr "Originar"
+
+#: ucp/assets/js/global.js:43 ucp/assets/js/global.js:66
+#: ucp/assets/js/global.js:455
+msgid "Originate Call"
+msgstr "Originar Llamada"
+
+#: functions.inc/hook_core.php:77
+msgid "The Certificate to use from Certificate Manager"
+msgstr "Certificado a usar desde el Gestor de Certificados"
+
+#: Webrtc.class.php:113 views/ucp_config.php:3
+msgid ""
+"The STUN Server address is blank. In many cases this can cause issues. "
+"Please define a valid server in the Asterisk SIP Settings module"
+msgstr ""
+"La dirección del servidor STUN esta en blanco. In muchos casos esto puede "
+"causar problemas. Por favor defina un servidor valido en el modulo de "
+"configuración de Asterisk"
+
+#: webrtc.i18n.php:5
+msgid ""
+"The WebRTC Module allows an Administrator to enable a \"WebRTC phone\" that "
+"can be attached to a user\\'s\n"
+"\t\textension which they can connect to through FreePBX User Control Panel, "
+"this WebRTC phone will then\n"
+"\t\treceive phone calls at the same time as the users extension using user "
+"and device mode behind the scenes.\n"
+"\t\tIf you have User and Device Mode enabled any extension you enable the "
+"WebRTC Phone a duplicate extension of 99XXXX\n"
+"\t\twill be created (where XXXX is the original extension number), when the "
+"user then views the web interface of the WebRTC\n"
+"\t\tphone they will be connected to device 99XXXX which will receive calls "
+"from the original extension"
+msgstr ""
+"El Módulo WebRTC permite un Administrador habilitar un \"teléfono WebRTC\" "
+"que se puede asociar a un usuario↵\n"
+"→→ extensión que se pueden conectar a través del Panel de Control de usuario "
+"FreePBX, este teléfono WebRTC podrá entonces↵\n"
+"→→ recibir llamadas de teléfono al mismo tiempo que la extensión de los "
+"usuarios utilizando el modo de usuario y el dispositivo detrás de la "
+"escenas.↵\n"
+"→→ Si tiene el modo de usuario y dispositivo habilitado la extensión que "
+"permita la WebRTC teléfono una extensión de duplicado de 99XXXX↵\n"
+"→→ se crearán (donde XXXX es el número de la extensión original), cuando el "
+"usuario se ve la interfaz web del WebRTC↵\n"
+"→→ teléfono que estarán conectadas a un dispositivo 99XXXX que recibirá las "
+"llamadas de la extensión original"
+
+#: functions.inc/hook_core.php:58
+msgid ""
+"The WebSockets Interface is running through PJSIP, PJSIP is not supported at "
+"this time. Please enable the chan_sip driver (along with pjsip or by itself) "
+"or alert the FreePBX Developers"
+msgstr ""
+"El WebSockets interfaz está ejecutando a través PJSIP, PJSIP no es soportado "
+"en este momento. Por favor, active el driver chan_sip (junto con PJSIP o por "
+"sí mismo) o alertar los desarrolladores de FreePBX"
+
+#: functions.inc/hook_core.php:82
+#, php-format
+msgid ""
+"To utilize WebRTC in ARI you must add at least one certificate %s through "
+"Certificate Manager"
+msgstr ""
+"Para utilizar WebRTC en ARI debe agregar al menos un certificado %s a través "
+"de Administrador de certificados"
+
+#: ucp/assets/js/global.js:254
+msgid ""
+"Unable to start call. Please allow the WebRTC session in your browser and "
+"refresh"
+msgstr ""
+"no se pudo iniciar llamada. Por favor permita la sesión WebRTC en su "
+"navegador y refresque"
+
+#: Webrtc.class.php:219
+#, php-format
+msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
+msgstr "versión de Asterisk no soportada. Usted necesita al menos %s y tiene %s"
+
+#: Webrtc.class.php:222
+#, php-format
+msgid "Unsupported Version of Asterisk, You need at least %s you have &s"
+msgstr "Versión de Asterisk no soportada. Usted necesita al menos %s y tiene &s"
+
+#: functions.inc/hook_core.php:76
+msgid "Use Certificate"
+msgstr "Use Certificado"
+
+#: Webrtc.class.php:195
+msgid "WebRTC Certificate"
+msgstr "Certificado WebRTC"
+
+#: webrtc.i18n.php:3
+msgid "WebRTC Phone"
+msgstr "Teléfono WebRTC"
+
+#: Webrtc.class.php:193 Webrtc.class.php:198 Webrtc.class.php:201
+msgid ""
+"Whether or not to enable the WebRTC Phone for this linked. Additionally you "
+"must select a valid certificate to use."
+msgstr ""
+"Sea o no que permitir que el teléfono WebRTC para esto sea enlazado. Además "
+"debe seleccionar un certificado válido para su uso."
+
+#: Webrtc.class.php:195
+msgid "Which certificate to use for the WebRTC Phone in UCP"
+msgstr "Cual certificado a usar para el teléfono WebRTC en UCP"
+
+#: Webrtc.class.php:199
+msgid ""
+"You have no certificates setup in <a href=\"config.php?display=certman"
+"\">Certificate Manager<a/>"
+msgstr ""
+"Usted no tiene certificados configurados en <a href=\"config.php?display="
+"certman\">Certificate Manager<a/>"
