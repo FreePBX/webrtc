@@ -168,7 +168,7 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		if(isset($_POST['webrtc_enable']) && $_POST['webrtc_enable'] == 'yes') {
 			$this->freepbx->Ucp->setSettingByGID($id,'Webrtc','enabled',true);
 		} else {
-			$this->freepbx->Ucp->setSettingByGID($id,'Webrtc','enabled',null);
+			$this->freepbx->Ucp->setSettingByGID($id,'Webrtc','enabled',false);
 		}
 
 		$group = $this->freepbx->Userman->getGroupByGID($id);
@@ -241,12 +241,17 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		$html = array();
 		$message = '';
 		$mcerts = $this->certman->getAllManagedCertificates();
-		if($mode == 'group') {
-			$enabled = $this->freepbx->Ucp->getSettingByGID($user['id'],'Webrtc','enabled');
-			$enabled = !($enabled) ? false : true;
+		if(empty($user)) {
+			$enabled = ($mode == 'group') ? true : null;
 		} else {
-			$enabled = $this->freepbx->Ucp->getSettingByID($user['id'],'Webrtc','enabled');
+			if($mode == 'group') {
+				$enabled = $this->freepbx->Ucp->getSettingByGID($user['id'],'Webrtc','enabled');
+				$enabled = !($enabled) ? false : true;
+			} else {
+				$enabled = $this->freepbx->Ucp->getSettingByID($user['id'],'Webrtc','enabled');
+			}
 		}
+
 		$html[0] = array(
 			"title" => _("WebRTC"),
 			"rawname" => "webrtc",
