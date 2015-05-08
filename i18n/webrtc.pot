@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-09 12:25-0400\n"
+"POT-Creation-Date: 2015-05-08 19:05-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,42 +17,19 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: Webrtc.class.php:206
-msgid "Allow Originating Calls"
-msgstr ""
-
-#: Webrtc.class.php:206
-msgid "Allow calls to be originated from UCP"
-msgstr ""
-
-#: views/ucp_config_certs.php:24
+#: views/ucp_config.php:64
 msgid "Certificate WebRTC Phone should use for this user."
-msgstr ""
-
-#: webrtc.i18n.php:6
-msgid "Connectivity"
 msgstr ""
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
 msgstr ""
 
-#: views/ucp_config_originate.php:8
-msgid "Enable WebRTC Originate"
-msgstr ""
-
-#: Webrtc.class.php:193
-#: Webrtc.class.php:198
-#: Webrtc.class.php:201
-#: views/ucp_config.php:21
+#: views/ucp_config.php:19
 msgid "Enable WebRTC Phone"
 msgstr ""
 
-#: views/ucp_config_originate.php:23
-msgid "Enable the WebRTC Originate in UCP for this user"
-msgstr ""
-
-#: views/ucp_config.php:36
+#: views/ucp_config.php:38
 msgid "Enable the WebRTC Phone in UCP for this user"
 msgstr ""
 
@@ -63,27 +40,24 @@ msgid ""
 "ARI is depreciated in favor of UCP"
 msgstr ""
 
-#: ucp/Webrtc.class.php:103
+#: views/ucp_config.php:29
+msgid "Inherit"
+msgstr ""
+
+#: ucp/Webrtc.class.php:83
 msgid "New Web Phone Call"
 msgstr ""
 
-#: views/ucp_config.php:28
-#: views/ucp_config_originate.php:15
+#: views/ucp_config.php:26
 msgid "No"
 msgstr ""
 
-#: ucp/assets/js/global.js:373
-msgid "Nothing Entered"
-msgstr ""
-
 #: ucp/assets/js/global.js:67
-#: ucp/assets/js/global.js:456
 msgid "Originate"
 msgstr ""
 
 #: ucp/assets/js/global.js:43
 #: ucp/assets/js/global.js:66
-#: ucp/assets/js/global.js:455
 msgid "Originate Call"
 msgstr ""
 
@@ -92,14 +66,11 @@ msgid "The Certificate to use from Certificate Manager"
 msgstr ""
 
 #: Webrtc.class.php:113
-#: views/ucp_config.php:8
+#: Webrtc.class.php:264
+#: Webrtc.class.php:267
 msgid ""
 "The STUN Server address is blank. In many cases this can cause issues. "
 "Please define a valid server in the Asterisk SIP Settings module"
-msgstr ""
-
-#: webrtc.i18n.php:8
-msgid "The WebRTC Module allows an Administrator to enable a "
 msgstr ""
 
 #: functions.inc/hook_core.php:58
@@ -122,12 +93,12 @@ msgid ""
 "refresh"
 msgstr ""
 
-#: Webrtc.class.php:219
+#: Webrtc.class.php:284
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
 
-#: Webrtc.class.php:222
+#: Webrtc.class.php:287
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have &s"
 msgstr ""
@@ -136,34 +107,18 @@ msgstr ""
 msgid "Use Certificate"
 msgstr ""
 
-#: Webrtc.class.php:195
-#: views/ucp_config_certs.php:8
+#: Webrtc.class.php:256
+msgid "WebRTC"
+msgstr ""
+
+#: views/ucp_config.php:48
 msgid "WebRTC Certificate"
 msgstr ""
 
-#: webrtc.i18n.php:4
-msgid "WebRTC Phone"
-msgstr ""
-
-#: Webrtc.class.php:193
-#: Webrtc.class.php:198
-#: Webrtc.class.php:201
-msgid ""
-"Whether or not to enable the WebRTC Phone for this linked. Additionally you "
-"must select a valid certificate to use."
-msgstr ""
-
-#: Webrtc.class.php:195
-msgid "Which certificate to use for the WebRTC Phone in UCP"
-msgstr ""
-
-#: views/ucp_config.php:26
-#: views/ucp_config_originate.php:13
+#: views/ucp_config.php:24
 msgid "Yes"
 msgstr ""
 
-#: Webrtc.class.php:199
-msgid ""
-"You have no certificates setup in <a href=\"config.php?display=certman"
-"\">Certificate Manager<a/>"
+#: Webrtc.class.php:271
+msgid "You have no certificates setup in Certificate Manager"
 msgstr ""
