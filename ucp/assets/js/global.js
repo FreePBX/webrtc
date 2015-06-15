@@ -370,7 +370,7 @@ var WebrtcC = UCPMC.extend({
 	},
 	initiateLibrary: function() {
 		var $this = this,
-				ver = "0.6.18";
+				ver = "0.6.30";
 		$.getScript("modules/Webrtc/assets/jssiplibs/jssip-" + ver + ".js")
 		.done(function( script, textStatus ) {
 			$("#nav-btn-webrtc").removeClass("hidden");
@@ -410,21 +410,9 @@ var WebrtcC = UCPMC.extend({
 });
 $(document).bind("staticSettingsFinished", function( event ) {
 	if ((typeof UCP.Modules.Webrtc.staticsettings !== "undefined") && UCP.Modules.Webrtc.staticsettings.enabled) {
-		$.getScript("modules/Webrtc/assets/jssiplibs/adapter.js")
-			.done(function( script, textStatus ) {
-				//there are some errors with the plugin will figure out at a later date
-				if(AdapterJS.onwebrtcreadyDone && (webrtcDetectedType == "webkit" || webrtcDetectedType == "moz")) {
-					UCP.Modules.Webrtc.initiateLibrary();
-				} else {
-					AdapterJS.onwebrtcready = function(isUsingPlugin) {
-						// The WebRTC API is ready.
-						//isUsingPlugin: true is the WebRTC plugin is being used, false otherwise
-						UCP.Modules.Webrtc.initiateLibrary();
-					};
-				}
-		}).fail(function( jqxhr, settings, exception ) {
-			//could not load script, remove button
-		});
+		if($("html").hasClass("getusermedia")) {
+			UCP.Modules.Webrtc.initiateLibrary();
+		}
 	}
 });
 $(document).bind("logIn", function( event ) {
