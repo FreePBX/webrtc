@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>13.0.1alpha3</version>
+	<version>13.0.2</version>
 	<publisher>Schmooze Com Inc</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -15,6 +15,7 @@
 		phone they will be connected to device 99XXXX which will receive calls from the original extension
 	</description>
 	<changelog>
+		*13.0.2* Version bump Beta
 		*13.0.1alpha3* FREEPBX-9436 webrtc warning obfuscates UCP menu on iPhone, update jssip lib to 0.6.30
 		*13.0.1alpha2* Usermanager Groups
 		*13.0.1alpha1* Visual Changes
@@ -42,7 +43,7 @@
 		*2.11.0.0beta6* Add Licenses
 		*2.11.0.0beta5* Fix licensing and add copyright and release
 	</changelog>
-	<info></info>
+	<info />
 	<category>Connectivity</category>
 	<depends>
 		<engine>asterisk 11.5</engine>
@@ -53,13 +54,13 @@
 	</depends>
 	<hooks>
 		<ucp class="Ucp">
-			<method namespace="FreePBX\modules" class="Webrtc" callingMethod="constructModuleConfigPages">ucpConfigPage</method>
-			<method namespace="FreePBX\modules" class="Webrtc" callingMethod="addUser">ucpAddUser</method>
-			<method namespace="FreePBX\modules" class="Webrtc" callingMethod="updateUser">ucpUpdateUser</method>
-			<method namespace="FreePBX\modules" class="Webrtc" callingMethod="delUser">ucpDelUser</method>
-			<method namespace="FreePBX\modules" class="Webrtc" callingMethod="addGroup">ucpAddGroup</method>
-			<method namespace="FreePBX\modules" class="Webrtc" callingMethod="updateGroup">ucpUpdateGroup</method>
-			<method namespace="FreePBX\modules" class="Webrtc" callingMethod="delGroup">ucpDelGroup</method>
+			<method callingMethod="constructModuleConfigPages" class="Webrtc" namespace="FreePBX\modules">ucpConfigPage</method>
+			<method callingMethod="addUser" class="Webrtc" namespace="FreePBX\modules">ucpAddUser</method>
+			<method callingMethod="updateUser" class="Webrtc" namespace="FreePBX\modules">ucpUpdateUser</method>
+			<method callingMethod="delUser" class="Webrtc" namespace="FreePBX\modules">ucpDelUser</method>
+			<method callingMethod="addGroup" class="Webrtc" namespace="FreePBX\modules">ucpAddGroup</method>
+			<method callingMethod="updateGroup" class="Webrtc" namespace="FreePBX\modules">ucpUpdateGroup</method>
+			<method callingMethod="delGroup" class="Webrtc" namespace="FreePBX\modules">ucpDelGroup</method>
 		</ucp>
 	</hooks>
 	<supported>
