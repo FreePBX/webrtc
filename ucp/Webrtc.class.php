@@ -98,7 +98,9 @@ class Webrtc extends Modules{
 	 * Send settings to UCP upon initalization
 	 */
 	function getStaticSettings() {
-		return array('enabled' => false);
+		if(!$this->_checkExtension($this->ext)) {
+			return array('enabled' => false);
+		}
 		$settings = $this->webrtc->getClientSettingsByUser($this->ext);
 		$extensions = $this->UCP->getCombinedSettingByID($this->user['id'],'Settings','assigned');
 		//force default extension to the top.
