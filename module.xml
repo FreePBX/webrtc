@@ -2,7 +2,7 @@
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
 	<version>12.0.3</version>
-	<publisher>Schmooze Com Inc</publisher>
+	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
 	<repo>standard</repo>
@@ -46,7 +46,7 @@
 		*2.11.0.0beta6* Add Licenses
 		*2.11.0.0beta5* Fix licensing and add copyright and release
 	</changelog>
-	<info></info>
+	<info/>
 	<category>Connectivity</category>
 	<depends>
 		<engine>asterisk 11.5</engine>
