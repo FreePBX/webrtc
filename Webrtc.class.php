@@ -381,6 +381,7 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		$socket = $this->getSocketMode();
 		$settings = $this->core->generateDefaultDeviceSettings($socket,$id,'WebRTC '.$dev['description']);
 		$settings['devicetype']['value'] = 'fixed';
+		$settings['context']['value'] = $dev['context'];
 		$settings['user']['value'] = $extension;
 		$c = $this->certman->getCertificateDetails($certid);
 		if(empty($c)) {
