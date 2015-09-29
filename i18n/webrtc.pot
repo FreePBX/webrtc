@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-14 22:12-0400\n"
+"POT-Creation-Date: 2015-09-29 09:36-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,8 +66,8 @@ msgid "The Certificate to use from Certificate Manager"
 msgstr ""
 
 #: Webrtc.class.php:113
-#: Webrtc.class.php:264
-#: Webrtc.class.php:267
+#: Webrtc.class.php:288
+#: Webrtc.class.php:291
 msgid ""
 "The STUN Server address is blank. In many cases this can cause issues. "
 "Please define a valid server in the Asterisk SIP Settings module"
@@ -93,12 +93,12 @@ msgid ""
 "refresh"
 msgstr ""
 
-#: Webrtc.class.php:284
+#: Webrtc.class.php:308
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
 
-#: Webrtc.class.php:287
+#: Webrtc.class.php:311
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have &s"
 msgstr ""
@@ -107,7 +107,7 @@ msgstr ""
 msgid "Use Certificate"
 msgstr ""
 
-#: Webrtc.class.php:256
+#: Webrtc.class.php:280
 msgid "WebRTC"
 msgstr ""
 
@@ -119,6 +119,6 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: Webrtc.class.php:271
+#: Webrtc.class.php:295
 msgid "You have no certificates setup in Certificate Manager"
 msgstr ""
