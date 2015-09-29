@@ -158,6 +158,22 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 	}
 
 	public function ucpDelGroup($id,$display,$data) {
+		if(!empty($data['users'])) {
+			foreach($data['users'] as $id) {
+				$enabled = $this->freepbx->Ucp->getCombinedSettingByID($id, 'Webrtc', 'enabled');
+
+				$user = $this->freepbx->Userman->getUserByID($id);
+				if(!empty($user['default_extension']) && $user['default_extension'] != 'none' && $enabled) {
+					if(!$this->checkEnabled($user['default_extension'])) {
+						$this->createDevice($user['default_extension'],$_REQUEST['webrtc_cert']);
+					}
+				} else {
+					if($this->checkEnabled($user['default_extension'])) {
+						$this->removeDevice($user['default_extension']);
+					}
+				}
+			}
+		}
 	}
 
 	public function ucpAddGroup($id, $display, $data) {
@@ -195,7 +211,15 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 	* @param {array} $data    Array of data to be able to use
 	*/
 	public function ucpDelUser($id, $display, $ucpStatus, $data) {
+		$enabled = $this->freepbx->Ucp->getCombinedSettingByID($id, 'Webrtc', 'enabled');
 
+		$user = $this->freepbx->Userman->getUserByID($id);
+		if(!empty($user['default_extension']) && $user['default_extension'] != 'none' && $enabled) {
+		} else {
+			if($this->checkEnabled($user['default_extension'])) {
+				$this->removeDevice($user['default_extension']);
+			}
+		}
 	}
 
 	/**
