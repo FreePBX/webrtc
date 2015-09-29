@@ -443,4 +443,7 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 			return false;
 		}
 	}
+	public function dashboardIgnoreExt(){
+		return array(array('length' => 2, 'value' => '99'));
+	}
 }
