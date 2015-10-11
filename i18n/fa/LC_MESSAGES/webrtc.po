@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-29 09:36-0700\n"
-"PO-Revision-Date: 2015-10-10 11:19+0200\n"
+"PO-Revision-Date: 2015-10-11 14:22+0200\n"
 "Last-Translator: Media <mousavi.media@gmail.com>\n"
 "Language-Team: Persian "
 "<http://weblate.freepbx.org/projects/freepbx/webrtc/fa/>\n"
@@ -46,7 +46,7 @@ msgstr ""
 
 #: views/ucp_config.php:29
 msgid "Inherit"
-msgstr ""
+msgstr "ارث بردن"
 
 #: ucp/Webrtc.class.php:83
 msgid "New Web Phone Call"
