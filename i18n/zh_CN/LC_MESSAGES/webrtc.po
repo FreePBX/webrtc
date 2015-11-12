@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-29 09:36-0700\n"
-"PO-Revision-Date: 2015-10-16 08:22+0200\n"
+"PO-Revision-Date: 2015-11-12 12:42+0200\n"
 "Last-Translator: james <zhulizhong@gmail.com>\n"
 "Language-Team: Simplified Chinese "
 "<http://weblate.freepbx.org/projects/freepbx/webrtc/zh_CN/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: views/ucp_config.php:64
 msgid "Certificate WebRTC Phone should use for this user."
-msgstr ""
+msgstr "此用户使用带证书的WebRTC 电话。"
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
@@ -35,7 +35,7 @@ msgstr "开启 WebRTC 电话"
 
 #: views/ucp_config.php:38
 msgid "Enable the WebRTC Phone in UCP for this user"
-msgstr ""
+msgstr "对此用户开启WebRTC电话"
 
 #: functions.inc/hook_core.php:62
 #, php-format
@@ -54,7 +54,7 @@ msgstr "新的页面电话呼叫"
 
 #: views/ucp_config.php:26
 msgid "No"
-msgstr ""
+msgstr "无"
 
 #: ucp/assets/js/global.js:67
 msgid "Originate"
@@ -122,11 +122,11 @@ msgstr "WebRTC证书"
 
 #: views/ucp_config.php:24
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 #: Webrtc.class.php:295
 msgid "You have no certificates setup in Certificate Manager"
-msgstr ""
+msgstr "在证书管理员中没有证书设置"
 
 #~ msgid ""
 #~ "Whether or not to enable the WebRTC Phone for this linked. Additionally "
