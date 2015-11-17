@@ -149,7 +149,7 @@ msgstr "在证书管理员中没有证书设置"
 #~ msgstr "允许通过UCP发起呼叫"
 
 #~ msgid "Connectivity"
-#~ msgstr "连接"
+#~ msgstr "通信接口连接"
 
 #~ msgid "Nothing Entered"
 #~ msgstr "没有任何输入"
