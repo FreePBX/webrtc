@@ -9,21 +9,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 09:36-0700\n"
+"POT-Creation-Date: 2015-11-18 14:02-0800\n"
 "PO-Revision-Date: 2015-10-23 13:33+0200\n"
 "Last-Translator: Media <mousavi.media@gmail.com>\n"
-"Language-Team: Persian "
-"<http://weblate.freepbx.org/projects/freepbx/webrtc/fa/>\n"
-"Language: fa\n"
+"Language-Team: Persian <http://weblate.freepbx.org/projects/freepbx/webrtc/"
+"fa/>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fa\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.2-dev\n"
 
 #: views/ucp_config.php:64
 msgid "Certificate WebRTC Phone should use for this user."
 msgstr "مجوز WebRTC برای کاربر الزامی است."
+
+#: webrtc.i18n.php:6
+msgid "Connectivity"
+msgstr ""
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
@@ -68,10 +72,14 @@ msgstr "تماس"
 msgid "The Certificate to use from Certificate Manager"
 msgstr "مجوز لازم از مدیریت مجوزها"
 
-#: Webrtc.class.php:113 Webrtc.class.php:288 Webrtc.class.php:291
+#: Webrtc.class.php:113 Webrtc.class.php:289 Webrtc.class.php:292
 msgid ""
 "The STUN Server address is blank. In many cases this can cause issues. "
 "Please define a valid server in the Asterisk SIP Settings module"
+msgstr ""
+
+#: webrtc.i18n.php:8
+msgid "The WebRTC Module allows an Administrator to enable a "
 msgstr ""
 
 #: functions.inc/hook_core.php:58
@@ -94,13 +102,13 @@ msgid ""
 "refresh"
 msgstr "تماس ایجاد نمیشود. لطفا WebRTC را در مرورگر اجرا کنید"
 
-#: Webrtc.class.php:308
+#: Webrtc.class.php:309
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
 "از نسخه استریسک پشتیبانی نمیکند, شما باید نسخه %s را داشته باشین نسخه شما %s"
 
-#: Webrtc.class.php:311
+#: Webrtc.class.php:312
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have &s"
 msgstr ""
@@ -110,7 +118,7 @@ msgstr ""
 msgid "Use Certificate"
 msgstr "استفاده از مجوز"
 
-#: Webrtc.class.php:280
+#: Webrtc.class.php:281
 msgid "WebRTC"
 msgstr "WebRTC"
 
@@ -118,10 +126,14 @@ msgstr "WebRTC"
 msgid "WebRTC Certificate"
 msgstr "مجوز WebRTC"
 
+#: webrtc.i18n.php:4
+msgid "WebRTC Phone"
+msgstr ""
+
 #: views/ucp_config.php:24
 msgid "Yes"
 msgstr "بله"
 
-#: Webrtc.class.php:295
+#: Webrtc.class.php:296
 msgid "You have no certificates setup in Certificate Manager"
 msgstr "شما مجوزی در مدیریت مجوزها نداربد"

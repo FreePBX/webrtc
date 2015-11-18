@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>13.0.6</version>
+	<version>13.0.7</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -15,6 +15,7 @@
 		phone they will be connected to device 99XXXX which will receive calls from the original extension
 	</description>
 	<changelog>
+		*13.0.7* Fixing issue with invalid devices
 		*13.0.6* FREEPBX-10376 Dashboard hook
 		*13.0.5* FREEPBX-8919 Delete WebRTC extension when user or group is deleted
 		*13.0.4* FREEPBX-9563 Use context of original extension during creation

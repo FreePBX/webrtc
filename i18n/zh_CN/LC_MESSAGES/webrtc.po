@@ -9,21 +9,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 09:36-0700\n"
+"POT-Creation-Date: 2015-11-18 14:02-0800\n"
 "PO-Revision-Date: 2015-11-12 12:42+0200\n"
 "Last-Translator: james <zhulizhong@gmail.com>\n"
-"Language-Team: Simplified Chinese "
-"<http://weblate.freepbx.org/projects/freepbx/webrtc/zh_CN/>\n"
-"Language: zh_CN\n"
+"Language-Team: Simplified Chinese <http://weblate.freepbx.org/projects/"
+"freepbx/webrtc/zh_CN/>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 2.2-dev\n"
 
 #: views/ucp_config.php:64
 msgid "Certificate WebRTC Phone should use for this user."
 msgstr "此用户使用带证书的WebRTC 电话。"
+
+#: webrtc.i18n.php:6
+msgid "Connectivity"
+msgstr "通信接口连接"
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
@@ -68,13 +72,17 @@ msgstr "发起呼叫"
 msgid "The Certificate to use from Certificate Manager"
 msgstr "使用的证书来自于证书管理员"
 
-#: Webrtc.class.php:113 Webrtc.class.php:288 Webrtc.class.php:291
+#: Webrtc.class.php:113 Webrtc.class.php:289 Webrtc.class.php:292
 msgid ""
 "The STUN Server address is blank. In many cases this can cause issues. "
 "Please define a valid server in the Asterisk SIP Settings module"
 msgstr ""
 "无STUN 服务器地址。很多情况下，就是因为这个问题导致。请在Asterisk SIP 设置模"
 "块中定义有效的服务器地址"
+
+#: webrtc.i18n.php:8
+msgid "The WebRTC Module allows an Administrator to enable a "
+msgstr ""
 
 #: functions.inc/hook_core.php:58
 msgid ""
@@ -98,12 +106,12 @@ msgid ""
 "refresh"
 msgstr "不能发起呼叫，请在浏览器设置支持WebRTC，或者重新刷新浏览器"
 
-#: Webrtc.class.php:308
+#: Webrtc.class.php:309
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr "不能支持Asterisk的版本，用户至少需要%s, 但是现在的版本是%s"
 
-#: Webrtc.class.php:311
+#: Webrtc.class.php:312
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have &s"
 msgstr "不能支持Asterisk，至少需要版本%s，现在是&s"
@@ -112,7 +120,7 @@ msgstr "不能支持Asterisk，至少需要版本%s，现在是&s"
 msgid "Use Certificate"
 msgstr "使用证书"
 
-#: Webrtc.class.php:280
+#: Webrtc.class.php:281
 msgid "WebRTC"
 msgstr ""
 
@@ -120,11 +128,15 @@ msgstr ""
 msgid "WebRTC Certificate"
 msgstr "WebRTC证书"
 
+#: webrtc.i18n.php:4
+msgid "WebRTC Phone"
+msgstr "WebRTC 电话"
+
 #: views/ucp_config.php:24
 msgid "Yes"
 msgstr "是"
 
-#: Webrtc.class.php:295
+#: Webrtc.class.php:296
 msgid "You have no certificates setup in Certificate Manager"
 msgstr "在证书管理员中没有证书设置"
 
@@ -147,9 +159,6 @@ msgstr "在证书管理员中没有证书设置"
 
 #~ msgid "Allow calls to be originated from UCP"
 #~ msgstr "允许通过UCP发起呼叫"
-
-#~ msgid "Connectivity"
-#~ msgstr "通信接口连接"
 
 #~ msgid "Nothing Entered"
 #~ msgstr "没有任何输入"
@@ -175,6 +184,3 @@ msgstr "在证书管理员中没有证书设置"
 #~ "创建的分机↵\n"
 #~ "→→用户可以通过WebRTC 界面看到电话状态↵\n"
 #~ "→→从原来的分机中可以接听设备99XXXX 电话"
-
-#~ msgid "WebRTC Phone"
-#~ msgstr "WebRTC 电话"
