@@ -1,0 +1,127 @@
+# This file is part of FreePBX.
+#
+# For licensing information, please see the file named LICENSE located in the module directory
+#
+# FreePBX language template for webrtc
+# Copyright (C) 2008-2015 Sangoma, Inc.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-29 09:36-0700\n"
+"PO-Revision-Date: 2015-10-23 13:33+0200\n"
+"Last-Translator: Media <mousavi.media@gmail.com>\n"
+"Language-Team: Persian "
+"<http://weblate.freepbx.org/projects/freepbx/webrtc/fa/>\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.2-dev\n"
+
+#: views/ucp_config.php:64
+msgid "Certificate WebRTC Phone should use for this user."
+msgstr "مجوز WebRTC برای کاربر الزامی است."
+
+#: functions.inc/hook_core.php:62
+msgid "Enable WebRTC Old ARI Phone"
+msgstr "فعال سازی WebRTC برای تلفن تحت وب قدیمی"
+
+#: views/ucp_config.php:19
+msgid "Enable WebRTC Phone"
+msgstr "فعال سازی WebRTC"
+
+#: views/ucp_config.php:38
+msgid "Enable the WebRTC Phone in UCP for this user"
+msgstr "فعال WebRTC در UCP برای این کاربر"
+
+#: functions.inc/hook_core.php:62
+#, php-format
+msgid ""
+"Enables WebRTC for this %s in the Asterisk Recording Interface (ARI). Note: "
+"ARI is depreciated in favor of UCP"
+msgstr ""
+
+#: views/ucp_config.php:29
+msgid "Inherit"
+msgstr "ارث بردن"
+
+#: ucp/Webrtc.class.php:83
+msgid "New Web Phone Call"
+msgstr "تماس تحت وب جدید"
+
+#: views/ucp_config.php:26
+msgid "No"
+msgstr "خیر"
+
+#: ucp/assets/js/global.js:67
+msgid "Originate"
+msgstr "ایجاد"
+
+#: ucp/assets/js/global.js:43 ucp/assets/js/global.js:66
+msgid "Originate Call"
+msgstr "تماس"
+
+#: functions.inc/hook_core.php:77
+msgid "The Certificate to use from Certificate Manager"
+msgstr "مجوز لازم از مدیریت مجوزها"
+
+#: Webrtc.class.php:113 Webrtc.class.php:288 Webrtc.class.php:291
+msgid ""
+"The STUN Server address is blank. In many cases this can cause issues. "
+"Please define a valid server in the Asterisk SIP Settings module"
+msgstr ""
+
+#: functions.inc/hook_core.php:58
+msgid ""
+"The WebSockets Interface is running through PJSIP, PJSIP is not supported at "
+"this time. Please enable the chan_sip driver (along with pjsip or by itself) "
+"or alert the FreePBX Developers"
+msgstr ""
+
+#: functions.inc/hook_core.php:82
+#, php-format
+msgid ""
+"To utilize WebRTC in ARI you must add at least one certificate %s through "
+"Certificate Manager"
+msgstr ""
+
+#: ucp/assets/js/global.js:254
+msgid ""
+"Unable to start call. Please allow the WebRTC session in your browser and "
+"refresh"
+msgstr "تماس ایجاد نمیشود. لطفا WebRTC را در مرورگر اجرا کنید"
+
+#: Webrtc.class.php:308
+#, php-format
+msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
+msgstr ""
+"از نسخه استریسک پشتیبانی نمیکند, شما باید نسخه %s را داشته باشین نسخه شما %s"
+
+#: Webrtc.class.php:311
+#, php-format
+msgid "Unsupported Version of Asterisk, You need at least %s you have &s"
+msgstr ""
+"از نسخه استریسک پشتیبانی نمیکند, شما باید نسخه %s را داشته باشین نسخه شما &s"
+
+#: functions.inc/hook_core.php:76
+msgid "Use Certificate"
+msgstr "استفاده از مجوز"
+
+#: Webrtc.class.php:280
+msgid "WebRTC"
+msgstr "WebRTC"
+
+#: views/ucp_config.php:48
+msgid "WebRTC Certificate"
+msgstr "مجوز WebRTC"
+
+#: views/ucp_config.php:24
+msgid "Yes"
+msgstr "بله"
+
+#: Webrtc.class.php:295
+msgid "You have no certificates setup in Certificate Manager"
+msgstr "شما مجوزی در مدیریت مجوزها نداربد"
