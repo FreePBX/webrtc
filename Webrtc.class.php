@@ -193,10 +193,11 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 
 			$user = $this->freepbx->Userman->getUserByID($user);
 			if(!empty($user['default_extension']) && $user['default_extension'] != 'none' && $enabled) {
-				if(!$this->checkEnabled($user['default_extension'])) {
+				$dev = $this->getDevice($user['default_extension']);
+				if(!empty($dev) && !$this->checkEnabled($user['default_extension'])) {
 					$this->createDevice($user['default_extension'],$_REQUEST['webrtc_cert']);
 				}
-			} else {
+			} elseif($user['default_extension'] != 'none') {
 				if($this->checkEnabled($user['default_extension'])) {
 					$this->removeDevice($user['default_extension']);
 				}
