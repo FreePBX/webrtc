@@ -98,16 +98,7 @@ class Webrtc extends Modules{
 	 * Send settings to UCP upon initalization
 	 */
 	function getStaticSettings() {
-		if(!$this->_checkExtension($this->ext)) {
-			return array('enabled' => false);
-		}
 		$settings = $this->webrtc->getClientSettingsByUser($this->ext);
-		$extensions = $this->UCP->getCombinedSettingByID($this->user['id'],'Settings','assigned');
-		//force default extension to the top.
-		if(!empty($this->user['default_extension'])) {
-			$extensions = array_diff($extensions, array($this->user['default_extension']));
-			array_unshift($extensions,$this->user['default_extension']);
-		}
 		if(!empty($settings)) {
 			return array(
 				'enabled' => true,
@@ -117,16 +108,10 @@ class Webrtc extends Modules{
 					'password' => $settings['password'],
 					'log' => 3
 				),
-				'extensions' => $extensions
+				'extensions' => array($this->user['default_extension'])
 			);
 		} else {
 			return array('enabled' => false);
 		}
-	}
-
-	private function _checkExtension($extension) {
-		$user = $this->UCP->User->getUser();
-		$extensions = $this->UCP->getCombinedSettingByID($this->user['id'],'Settings','assigned');
-		return in_array($extension,$extensions);
 	}
 }
