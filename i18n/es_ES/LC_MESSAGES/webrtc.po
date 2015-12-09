@@ -60,7 +60,7 @@ msgstr "Nueva llamada Web"
 
 #: views/ucp_config.php:26
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: ucp/assets/js/global.js:67
 msgid "Originate"
@@ -144,7 +144,7 @@ msgstr "Teléfono WebRTC"
 
 #: views/ucp_config.php:24
 msgid "Yes"
-msgstr ""
+msgstr "Sí"
 
 #: Webrtc.class.php:296
 msgid "You have no certificates setup in Certificate Manager"
