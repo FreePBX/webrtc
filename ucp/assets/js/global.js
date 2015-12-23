@@ -36,6 +36,7 @@ var WebrtcC = UCPMC.extend({
 	settingsHide: function() {
 
 	},
+	/*
 	contactClickOptions: function(type) {
 		if (type != "number" || !this.staticsettings.enableOriginate) {
 			return false;
@@ -84,6 +85,7 @@ var WebrtcC = UCPMC.extend({
 			}
 		);
 	},
+	*/
 	engineEvent: function(type, event) {
 		console.log("Engine " + type);
 		switch (type){

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-18 14:02-0800\n"
+"POT-Creation-Date: 2015-12-23 09:57-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,11 +56,11 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: ucp/assets/js/global.js:67
+#: ucp/assets/js/global.js:68
 msgid "Originate"
 msgstr ""
 
-#: ucp/assets/js/global.js:43 ucp/assets/js/global.js:66
+#: ucp/assets/js/global.js:67
 msgid "Originate Call"
 msgstr ""
 
@@ -92,7 +92,7 @@ msgid ""
 "Certificate Manager"
 msgstr ""
 
-#: ucp/assets/js/global.js:254
+#: ucp/assets/js/global.js:256
 msgid ""
 "Unable to start call. Please allow the WebRTC session in your browser and "
 "refresh"
