@@ -96,14 +96,17 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 					$this->setConfig($setting['key'], $setting['value']);
 				}
 			}
+			$sql = "DROP TABLE IF EXISTS `webrtc_settings`";
+			$sth = $this->db->prepare($sql);
+			$sth->execute();
 		} catch(\Exception $e) {}
 
 		$prefix = $this->getConfig('prefix');
 		if(empty($prefix)) {
 			$this->setConfig('prefix','99');
 		}
-		$sql = "DROP TABLE IF EXISTS `webrtc_settings`";
-		$sth = $this->db->prepare($sql);
+
+		/*
 		try {
 			$stunaddr = $this->freepbx->Sipsettings->getConfig("stunaddr");
 		} catch(\Exception $e) {
@@ -112,6 +115,7 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		if(empty($stunaddr)) {
 			out("<strong style='color:red'>"._("The STUN Server address is blank. In many cases this can cause issues. Please define a valid server in the Asterisk SIP Settings module")."</strong>");
 		}
+		*/
 
 		return true;
 	}
