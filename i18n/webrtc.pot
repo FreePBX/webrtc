@@ -3,13 +3,13 @@
 # For licensing information, please see the file named LICENSE located in the module directory
 #
 # FreePBX language template for webrtc
-# Copyright (C) 2008-2015 Sangoma, Inc.
+# Copyright (C) 2008-2016 Sangoma, Inc.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-23 09:57-0800\n"
+"POT-Creation-Date: 2016-01-13 10:46-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,9 +68,8 @@ msgstr ""
 msgid "The Certificate to use from Certificate Manager"
 msgstr ""
 
-#: Webrtc.class.php:113
-#: Webrtc.class.php:289
-#: Webrtc.class.php:292
+#: Webrtc.class.php:293
+#: Webrtc.class.php:296
 msgid ""
 "The STUN Server address is blank. In many cases this can cause issues. "
 "Please define a valid server in the Asterisk SIP Settings module"
@@ -100,12 +99,12 @@ msgid ""
 "refresh"
 msgstr ""
 
-#: Webrtc.class.php:309
+#: Webrtc.class.php:313
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
 
-#: Webrtc.class.php:312
+#: Webrtc.class.php:316
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have &s"
 msgstr ""
@@ -114,7 +113,7 @@ msgstr ""
 msgid "Use Certificate"
 msgstr ""
 
-#: Webrtc.class.php:281
+#: Webrtc.class.php:285
 msgid "WebRTC"
 msgstr ""
 
@@ -130,6 +129,6 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: Webrtc.class.php:296
+#: Webrtc.class.php:300
 msgid "You have no certificates setup in Certificate Manager"
 msgstr ""
