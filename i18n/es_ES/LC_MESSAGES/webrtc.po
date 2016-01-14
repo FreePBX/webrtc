@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-13 10:46-0800\n"
+"POT-Creation-Date: 2016-01-14 11:10-0800\n"
 "PO-Revision-Date: 2016-01-03 11:23+0200\n"
 "Last-Translator: Ernesto <ecasas@sangoma.com>\n"
 "Language-Team: Spanish <http://weblate.freepbx.org/projects/freepbx/webrtc/"
@@ -106,7 +106,7 @@ msgstr ""
 "Para utilizar WebRTC en ARI debe agregar al menos un certificado %s a través "
 "de Administrador de certificados"
 
-#: ucp/assets/js/global.js:256
+#: ucp/assets/js/global.js:257
 msgid ""
 "Unable to start call. Please allow the WebRTC session in your browser and "
 "refresh"
