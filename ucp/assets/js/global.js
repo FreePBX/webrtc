@@ -188,7 +188,8 @@ var WebrtcC = UCPMC.extend({
 
 		$.each(this.callBinds, function(i, v) {
 			Webrtc.activeCalls[Webrtc.activeCallId].on(v, function(e) {
-				if(v == "progress" && webrtcDetectedType == "webkit") {
+				if(v == "progress") {
+					//TODO: was webrtcDetectedType == "webkit"
 					e.body = null;
 				}
 				Webrtc.sessionEvent(v, e);

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-13 10:46-0800\n"
+"POT-Creation-Date: 2016-01-14 11:10-0800\n"
 "PO-Revision-Date: 2015-10-23 13:33+0200\n"
 "Last-Translator: Media <mousavi.media@gmail.com>\n"
 "Language-Team: Persian <http://weblate.freepbx.org/projects/freepbx/webrtc/"
@@ -96,7 +96,7 @@ msgid ""
 "Certificate Manager"
 msgstr ""
 
-#: ucp/assets/js/global.js:256
+#: ucp/assets/js/global.js:257
 msgid ""
 "Unable to start call. Please allow the WebRTC session in your browser and "
 "refresh"

@@ -9,7 +9,7 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 	 */
 	private $overrides = array(
 		"sip" => array(
-			"transport" => "ws",
+			"transport" => "wss,ws",
 			"avpf" => "yes",
 			"force_avp" => "yes",
 			"icesupport" => "yes",
@@ -377,6 +377,9 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 			$this->removeClientSettingsByUser($user);
 			return false;
 		}
+		if($this->freepbx->Config->get('HTTPTLSENABLE') && $dev['transport'] == "chan_sip" && ($dev['transport'] != "wss" && $dev['transport'] != "wss,ws")) {
+			return false;
+		}
 		//$usr = core_users_get($results['user']);
 		$results['realm'] = !empty($results['realm']) ? $results['realm'] : $sip_server;
 		$results['username'] = !empty($results['username']) ? $results['username'] : $dev['id'];
@@ -384,7 +387,10 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		$results['password'] = !empty($results['password']) ? $results['password'] : $dev['secret'];
 		$prefix = $this->freepbx->Config->get('HTTPPREFIX');
 		$suffix = !empty($prefix) ? "/".$prefix."/ws" : "/ws";
-		$results['websocket'] = !empty($results['websocket']) ? $results['websocket'] : 'ws://'.$sip_server.':'.$this->freepbx->Config->get('HTTPBINDPORT').$suffix;
+
+		$type = $this->freepbx->Config->get('HTTPTLSENABLE') ? 'wss' : 'ws';
+		$port = $this->freepbx->Config->get('HTTPTLSENABLE') ? $this->freepbx->Config->get('HTTPTLSBINDPORT') : $this->freepbx->Config->get('HTTPBINDPORT');
+		$results['websocket'] = !empty($results['websocket']) ? $results['websocket'] : $type.'://'.$sip_server.':'.$port.$suffix;
 		$results['breaker'] = !empty($results['breaker']) ? (bool)$results['breaker'] : false;
 		$results['cid'] = !empty($results['cid']) ? $results['cid'] : '';
 		return $results;
@@ -426,7 +432,7 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 			case 'sip':
 				$settings['avpf']['value'] = 'yes';
 				$settings['force_avp']['value'] = 'yes';
-				$settings['transport']['value'] = 'ws';
+				$settings['transport']['value'] = 'wss,ws';
 				$settings['icesupport']['value'] = 'yes';
 				$settings['encryption']['value'] = 'yes';
 				$this->core->addDevice($id,'sip',$settings);
