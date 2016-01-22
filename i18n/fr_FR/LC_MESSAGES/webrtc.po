@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-14 11:10-0800\n"
-"PO-Revision-Date: 2016-01-20 07:19+0200\n"
+"PO-Revision-Date: 2016-01-22 09:28+0200\n"
 "Last-Translator: Nicolas <forums@riendeau.org>\n"
 "Language-Team: French "
 "<http://weblate.freepbx.org/projects/freepbx/webrtc/fr_FR/>\n"
@@ -62,11 +62,11 @@ msgstr "Non"
 
 #: ucp/assets/js/global.js:68
 msgid "Originate"
-msgstr ""
+msgstr "Placer un appel"
 
 #: ucp/assets/js/global.js:67
 msgid "Originate Call"
-msgstr ""
+msgstr "Placer un appel"
 
 #: functions.inc/hook_core.php:77
 msgid "The Certificate to use from Certificate Manager"
