@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-14 11:10-0800\n"
-"PO-Revision-Date: 2016-01-22 09:28+0200\n"
+"PO-Revision-Date: 2016-01-23 06:23+0200\n"
 "Last-Translator: Nicolas <forums@riendeau.org>\n"
 "Language-Team: French "
 "<http://weblate.freepbx.org/projects/freepbx/webrtc/fr_FR/>\n"
@@ -27,7 +27,7 @@ msgstr ""
 
 #: webrtc.i18n.php:6
 msgid "Connectivity"
-msgstr "Connectivité"
+msgstr ""
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
