@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-14 11:10-0800\n"
-"PO-Revision-Date: 2016-01-23 06:23+0200\n"
+"PO-Revision-Date: 2016-01-24 06:32+0200\n"
 "Last-Translator: Nicolas <forums@riendeau.org>\n"
 "Language-Team: French "
 "<http://weblate.freepbx.org/projects/freepbx/webrtc/fr_FR/>\n"
@@ -24,10 +24,11 @@ msgstr ""
 #: views/ucp_config.php:64
 msgid "Certificate WebRTC Phone should use for this user."
 msgstr ""
+"Le certificat que le téléphone WebRTC  devrait utiliser pour cet utilisateur."
 
 #: webrtc.i18n.php:6
 msgid "Connectivity"
-msgstr ""
+msgstr "Connectivité"
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
@@ -35,11 +36,11 @@ msgstr ""
 
 #: views/ucp_config.php:19
 msgid "Enable WebRTC Phone"
-msgstr ""
+msgstr "Activer le téléphone WebRTC"
 
 #: views/ucp_config.php:38
 msgid "Enable the WebRTC Phone in UCP for this user"
-msgstr ""
+msgstr "Activer le téléphone WebRTC dans l'UCP pour cet utilisateur"
 
 #: functions.inc/hook_core.php:62
 #, php-format
@@ -54,7 +55,7 @@ msgstr "Hérite"
 
 #: ucp/Webrtc.class.php:83
 msgid "New Web Phone Call"
-msgstr ""
+msgstr "Nouvel appel téléphonique web"
 
 #: views/ucp_config.php:26
 msgid "No"
