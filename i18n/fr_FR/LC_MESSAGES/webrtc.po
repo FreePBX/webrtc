@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-14 11:10-0800\n"
-"PO-Revision-Date: 2016-01-24 06:32+0200\n"
+"PO-Revision-Date: 2016-01-24 19:08+0200\n"
 "Last-Translator: Nicolas <forums@riendeau.org>\n"
 "Language-Team: French "
 "<http://weblate.freepbx.org/projects/freepbx/webrtc/fr_FR/>\n"
@@ -32,7 +32,7 @@ msgstr "Connectivité"
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
-msgstr ""
+msgstr "Activer le téléphone WebRTC ARI (vieux)"
 
 #: views/ucp_config.php:19
 msgid "Enable WebRTC Phone"
@@ -48,6 +48,8 @@ msgid ""
 "Enables WebRTC for this %s in the Asterisk Recording Interface (ARI). Note: "
 "ARI is depreciated in favor of UCP"
 msgstr ""
+"Active WebRTC pour ce %s dans le 'Asterisk Recording Interface (ARI)'. Note :"
+" ARI est déprécié en faveur d'UCP"
 
 #: views/ucp_config.php:29
 msgid "Inherit"
@@ -71,13 +73,16 @@ msgstr "Placer un appel"
 
 #: functions.inc/hook_core.php:77
 msgid "The Certificate to use from Certificate Manager"
-msgstr ""
+msgstr "Le certificat à utiliser du gestionnaire de certificat"
 
 #: Webrtc.class.php:293 Webrtc.class.php:296
 msgid ""
 "The STUN Server address is blank. In many cases this can cause issues. "
 "Please define a valid server in the Asterisk SIP Settings module"
 msgstr ""
+"L'adresse du serveur STUN est vide. Dans plusieurs cas, cela peut causer des "
+"problèmes. S'il vous plait, veuillez définir un serveur valide dans le "
+"module de réglages SIP d'Asterisk"
 
 #: webrtc.i18n.php:8
 msgid "The WebRTC Module allows an Administrator to enable a "
