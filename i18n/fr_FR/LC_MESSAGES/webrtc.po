@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-14 11:10-0800\n"
-"PO-Revision-Date: 2016-01-24 19:08+0200\n"
-"Last-Translator: Nicolas <forums@riendeau.org>\n"
+"PO-Revision-Date: 2016-01-31 05:37+0200\n"
+"Last-Translator: Nicolas Riendeau <forums@riendeau.org>\n"
 "Language-Team: French "
 "<http://weblate.freepbx.org/projects/freepbx/webrtc/fr_FR/>\n"
 "Language: fr_FR\n"
@@ -86,7 +86,7 @@ msgstr ""
 
 #: webrtc.i18n.php:8
 msgid "The WebRTC Module allows an Administrator to enable a "
-msgstr ""
+msgstr "Le module WebRTC permet à un administrateur d'activer un "
 
 #: functions.inc/hook_core.php:58
 msgid ""
@@ -94,6 +94,9 @@ msgid ""
 "this time. Please enable the chan_sip driver (along with pjsip or by itself) "
 "or alert the FreePBX Developers"
 msgstr ""
+"L'interface WebSockets utilise actuellement PJSIP et celui-ci n'est "
+"actuellement pas supporté. S'il vous plaît, activez le pilote chan_sip (avec "
+"ou sans pjsip) ou alertez les développeurs de FreePBX"
 
 #: functions.inc/hook_core.php:82
 #, php-format
@@ -101,38 +104,46 @@ msgid ""
 "To utilize WebRTC in ARI you must add at least one certificate %s through "
 "Certificate Manager"
 msgstr ""
+"Pour utiliser WebRTC avec ARI vous devez ajouter au moins un certificat %s "
+"par l'entremise du gestionnaire de certificat"
 
 #: ucp/assets/js/global.js:257
 msgid ""
 "Unable to start call. Please allow the WebRTC session in your browser and "
 "refresh"
 msgstr ""
+"Incapable de démarrer l'appel. S'il vous plaît veuillez accepter la sessions "
+"WebRTC dans votre navigateur et rafraîchir"
 
 #: Webrtc.class.php:313
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
+"Version non supportée d'Asterisk. Vous devez avoir au minimum %s et vous "
+"avez %s"
 
 #: Webrtc.class.php:316
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have &s"
 msgstr ""
+"Version non supportée d'Asterisk. Vous devez avoir au minimum %s et vous "
+"avez &s"
 
 #: functions.inc/hook_core.php:76
 msgid "Use Certificate"
-msgstr ""
+msgstr "Utiliser le certificat"
 
 #: Webrtc.class.php:285
 msgid "WebRTC"
-msgstr ""
+msgstr "WebRTC"
 
 #: views/ucp_config.php:48
 msgid "WebRTC Certificate"
-msgstr ""
+msgstr "Certificat WebRTC"
 
 #: webrtc.i18n.php:4
 msgid "WebRTC Phone"
-msgstr ""
+msgstr "Téléphone WebRTC"
 
 #: views/ucp_config.php:24
 msgid "Yes"
@@ -141,3 +152,4 @@ msgstr "Oui"
 #: Webrtc.class.php:300
 msgid "You have no certificates setup in Certificate Manager"
 msgstr ""
+"Vous n'avez pas de certificats configurés dans le gestionnaire de certificat"
