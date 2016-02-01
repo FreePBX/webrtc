@@ -313,7 +313,7 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 				return sprintf(_("Unsupported Version of Asterisk, You need at least %s you have %s"), $this->supported[$base], $version);
 			}
 		} else {
-			return sprintf(_("Unsupported Version of Asterisk, You need at least %s you have &s"), $this->supported["11"], $version);
+			return sprintf(_("Unsupported Version of Asterisk, You need at least %s you have %s"), $this->supported["11"], $version);
 		}
 		return true;
 	}
