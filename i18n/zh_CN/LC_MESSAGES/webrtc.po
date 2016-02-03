@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-14 11:10-0800\n"
+"POT-Creation-Date: 2016-02-03 15:50-0800\n"
 "PO-Revision-Date: 2015-11-23 13:55+0200\n"
 "Last-Translator: james <zhulizhong@gmail.com>\n"
 "Language-Team: Simplified Chinese <http://weblate.freepbx.org/projects/"
@@ -106,15 +106,10 @@ msgid ""
 "refresh"
 msgstr "不能发起呼叫，请在浏览器设置支持WebRTC，或者重新刷新浏览器"
 
-#: Webrtc.class.php:313
+#: Webrtc.class.php:313 Webrtc.class.php:316
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr "不能支持Asterisk的版本，用户至少需要%s, 但是现在的版本是%s"
-
-#: Webrtc.class.php:316
-#, php-format
-msgid "Unsupported Version of Asterisk, You need at least %s you have &s"
-msgstr "不能支持Asterisk，至少需要版本%s，现在是&s"
 
 #: functions.inc/hook_core.php:76
 msgid "Use Certificate"
@@ -139,6 +134,9 @@ msgstr "是"
 #: Webrtc.class.php:300
 msgid "You have no certificates setup in Certificate Manager"
 msgstr "在证书管理员中没有证书设置"
+
+#~ msgid "Unsupported Version of Asterisk, You need at least %s you have &s"
+#~ msgstr "不能支持Asterisk，至少需要版本%s，现在是&s"
 
 #~ msgid ""
 #~ "Whether or not to enable the WebRTC Phone for this linked. Additionally "

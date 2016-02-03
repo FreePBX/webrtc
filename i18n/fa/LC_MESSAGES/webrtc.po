@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-14 11:10-0800\n"
+"POT-Creation-Date: 2016-02-03 15:50-0800\n"
 "PO-Revision-Date: 2015-10-23 13:33+0200\n"
 "Last-Translator: Media <mousavi.media@gmail.com>\n"
 "Language-Team: Persian <http://weblate.freepbx.org/projects/freepbx/webrtc/"
@@ -102,17 +102,11 @@ msgid ""
 "refresh"
 msgstr "تماس ایجاد نمیشود. لطفا WebRTC را در مرورگر اجرا کنید"
 
-#: Webrtc.class.php:313
+#: Webrtc.class.php:313 Webrtc.class.php:316
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
 "از نسخه استریسک پشتیبانی نمیکند, شما باید نسخه %s را داشته باشین نسخه شما %s"
-
-#: Webrtc.class.php:316
-#, php-format
-msgid "Unsupported Version of Asterisk, You need at least %s you have &s"
-msgstr ""
-"از نسخه استریسک پشتیبانی نمیکند, شما باید نسخه %s را داشته باشین نسخه شما &s"
 
 #: functions.inc/hook_core.php:76
 msgid "Use Certificate"
@@ -137,3 +131,8 @@ msgstr "بله"
 #: Webrtc.class.php:300
 msgid "You have no certificates setup in Certificate Manager"
 msgstr "شما مجوزی در مدیریت مجوزها نداربد"
+
+#~ msgid "Unsupported Version of Asterisk, You need at least %s you have &s"
+#~ msgstr ""
+#~ "از نسخه استریسک پشتیبانی نمیکند, شما باید نسخه %s را داشته باشین نسخه شما "
+#~ "&s"

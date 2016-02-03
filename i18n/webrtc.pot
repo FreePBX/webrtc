@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-14 11:10-0800\n"
+"POT-Creation-Date: 2016-02-03 15:50-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -100,13 +100,9 @@ msgid ""
 msgstr ""
 
 #: Webrtc.class.php:313
-#, php-format
-msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
-msgstr ""
-
 #: Webrtc.class.php:316
 #, php-format
-msgid "Unsupported Version of Asterisk, You need at least %s you have &s"
+msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
 
 #: functions.inc/hook_core.php:76
