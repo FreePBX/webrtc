@@ -78,6 +78,9 @@
 		<dashboard class="Dashboard" namespace="">
 			<method callingMethod="extIgnoreList" class="Webrtc" namespace="FreePBX\Modules">dashboardIgnoreExt</method>
 		</dashboard>
+		<core class="Core" namespace="FreePBX\modules">
+			<method callingMethod="delUser" class="Webrtc" namespace="FreePBX\modules">delUser</method>
+		</core>
 	</hooks>
 	<supported>
 		<version>13.0</version>
