@@ -435,12 +435,16 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 				$settings['transport']['value'] = 'wss,ws';
 				$settings['icesupport']['value'] = 'yes';
 				$settings['encryption']['value'] = 'yes';
+				$settings['session-timers']['value'] = 'refuse';
+				$settings['videosupport']['value'] = 'no';
 				$this->core->addDevice($id,'sip',$settings);
 			break;
 			case 'pjsip':
 				$settings['use_avpf']['value'] = 'yes';
 				$settings['ice_support']['value'] = 'yes';
 				$settings['media_use_received_transport']['value'] = 'yes';
+				$settings['timers']['value'] = 'no';
+				$settings['media_encryption']['value'] = 'dtls';
 				$this->core->addDevice($id,'pjsip',$settings);
 			break;
 			default:
