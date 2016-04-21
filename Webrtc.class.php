@@ -418,6 +418,7 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		$settings['devicetype']['value'] = 'fixed';
 		$settings['context']['value'] = $dev['context'];
 		$settings['user']['value'] = $extension;
+		//$settings['callerid']['value'] = $dev['description'] . "<".$extension.">";
 		$c = $this->certman->getCertificateDetails($certid);
 		if(empty($c)) {
 			return false;
