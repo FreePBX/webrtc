@@ -10,16 +10,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-03 15:50-0800\n"
-"PO-Revision-Date: 2015-10-23 13:33+0200\n"
+"PO-Revision-Date: 2016-04-14 14:50+0200\n"
 "Last-Translator: Media <mousavi.media@gmail.com>\n"
-"Language-Team: Persian <http://weblate.freepbx.org/projects/freepbx/webrtc/"
-"fa/>\n"
+"Language-Team: Persian (Iran) "
+"<http://weblate.freepbx.org/projects/freepbx/webrtc/fa_IR/>\n"
+"Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fa\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.2-dev\n"
+"X-Generator: Weblate 2.4\n"
 
 #: views/ucp_config.php:64
 msgid "Certificate WebRTC Phone should use for this user."
@@ -27,7 +27,7 @@ msgstr "مجوز WebRTC برای کاربر الزامی است."
 
 #: webrtc.i18n.php:6
 msgid "Connectivity"
-msgstr ""
+msgstr "اتصال"
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
@@ -47,10 +47,12 @@ msgid ""
 "Enables WebRTC for this %s in the Asterisk Recording Interface (ARI). Note: "
 "ARI is depreciated in favor of UCP"
 msgstr ""
+"فعال سازی WebRTC برای این %s در رابط ضبط استریسک (ARI). نکته：ARI در مقابل "
+"UCP کم ارزش است"
 
 #: views/ucp_config.php:29
 msgid "Inherit"
-msgstr "ارث بردن"
+msgstr "ارثی"
 
 #: ucp/Webrtc.class.php:83
 msgid "New Web Phone Call"
@@ -66,7 +68,7 @@ msgstr "ایجاد"
 
 #: ucp/assets/js/global.js:67
 msgid "Originate Call"
-msgstr "تماس"
+msgstr "منبع تماس"
 
 #: functions.inc/hook_core.php:77
 msgid "The Certificate to use from Certificate Manager"
@@ -77,10 +79,12 @@ msgid ""
 "The STUN Server address is blank. In many cases this can cause issues. "
 "Please define a valid server in the Asterisk SIP Settings module"
 msgstr ""
+"آدرس سرور STUN قید نشده است. در بسیاری از موارد این موضوع سبب به وجود آمدن "
+"این خطا میباشد. لطفا یک آدرس معتبر در فایل تنظیمات SIP  استریسک وارد کنید"
 
 #: webrtc.i18n.php:8
 msgid "The WebRTC Module allows an Administrator to enable a "
-msgstr ""
+msgstr "ماژول WebRTC اجازه می دهد تا مدیر فعال کند "
 
 #: functions.inc/hook_core.php:58
 msgid ""
@@ -88,6 +92,8 @@ msgid ""
 "this time. Please enable the chan_sip driver (along with pjsip or by itself) "
 "or alert the FreePBX Developers"
 msgstr ""
+"رابط WebSockets در PJSIP  اجرا میشود، PJSIP در حال حاضر پشتیبانی نمیشود.لطفا "
+"درایور کانال sip را فعال کنید"
 
 #: functions.inc/hook_core.php:82
 #, php-format
@@ -95,6 +101,8 @@ msgid ""
 "To utilize WebRTC in ARI you must add at least one certificate %s through "
 "Certificate Manager"
 msgstr ""
+"برای استفاده از WebRTC در ARI باید حداقل یک مجوز %s در بخش مدیریت مجوز داشته "
+"باشیم"
 
 #: ucp/assets/js/global.js:257
 msgid ""
@@ -114,7 +122,7 @@ msgstr "استفاده از مجوز"
 
 #: Webrtc.class.php:285
 msgid "WebRTC"
-msgstr "WebRTC"
+msgstr "WebRTCi"
 
 #: views/ucp_config.php:48
 msgid "WebRTC Certificate"
@@ -122,7 +130,7 @@ msgstr "مجوز WebRTC"
 
 #: webrtc.i18n.php:4
 msgid "WebRTC Phone"
-msgstr ""
+msgstr "تلفن WebRTC"
 
 #: views/ucp_config.php:24
 msgid "Yes"
