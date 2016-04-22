@@ -370,7 +370,9 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 			return false;
 		}
 
-		$sip_server = !empty($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : $_SERVER['SERVER_ADDR'];
+		$serverparts = explode(":", $_SERVER['HTTP_HOST']); //strip off port because we define it
+		$sip_server = $serverparts[0];
+		$secure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on";
 		$dev = $this->core->getDevice($results['device']);
 		if(empty($dev)) {
 			//no device so remove the settings, someone deleted the device basically
@@ -388,8 +390,8 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		$prefix = $this->freepbx->Config->get('HTTPPREFIX');
 		$suffix = !empty($prefix) ? "/".$prefix."/ws" : "/ws";
 
-		$type = $this->freepbx->Config->get('HTTPTLSENABLE') ? 'wss' : 'ws';
-		$port = $this->freepbx->Config->get('HTTPTLSENABLE') ? $this->freepbx->Config->get('HTTPTLSBINDPORT') : $this->freepbx->Config->get('HTTPBINDPORT');
+		$type = ($this->freepbx->Config->get('HTTPTLSENABLE') && $secure) ? 'wss' : 'ws';
+		$port = ($this->freepbx->Config->get('HTTPTLSENABLE') && $secure) ? $this->freepbx->Config->get('HTTPTLSBINDPORT') : $this->freepbx->Config->get('HTTPBINDPORT');
 		$results['websocket'] = !empty($results['websocket']) ? $results['websocket'] : $type.'://'.$sip_server.':'.$port.$suffix;
 		$results['breaker'] = !empty($results['breaker']) ? (bool)$results['breaker'] : false;
 		$results['cid'] = !empty($results['cid']) ? $results['cid'] : '';

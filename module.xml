@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>13.0.16</version>
+	<version>13.0.17</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -15,6 +15,7 @@
 		phone they will be connected to device 99XXXX which will receive calls from the original extension
 	</description>
 	<changelog>
+		*13.0.17* FREEPBX-11457
 		*13.0.16* FREEPBX-11694 add del_user core hook
 		*13.0.15* Remove en_US Translations
 		*13.0.14* Fix incorrect localization in en_US
@@ -33,36 +34,13 @@
 		*13.0.1alpha3* FREEPBX-9436 webrtc warning obfuscates UCP menu on iPhone, update jssip lib to 0.6.30
 		*13.0.1alpha2* Usermanager Groups
 		*13.0.1alpha1* Visual Changes
-		*12.0.0beta11* Remove debug
-		*12.0.0beta10* New functionality for FREEPBX-8434
-		*12.0.0beta9* Updates in Contact Manager
-		*12.0.0beta8* On originate push default extension to the begining
-		*12.0.0beta7* Allow lookup in originate through contact manager means
-		*12.0.0beta6* Hide phone in UCP if unsupported in browser
-		*12.0.0beta5* Fix ability to disable WebRTC.
-		*12.0.0beta4* Uninstall should delete created extensions
-		*12.0.0beta3* Fix logout process so it doesnt stop the page
-		*12.0.0beta2* Bug fix
-		*12.0.0beta1* Experimental Hold Support Now works in chrome and firefox
-		*12.0.0alpha11* Styling tweaks
-		*12.0.0alpha10* FREEPBX-7974 Allow calls to be originated in UCP
-		*12.0.0alpha9* Tweaks for UCP
-		*12.0.0alpha8* Give more messages to users in User Manager/UCP
-		*12.0.0alpha7* Support for Asterisk 13
-		*12.0.0alpha6* Work for terribly slow wireless networks
-		*12.0.0alpha5* Add Experimental hold support
-		*12.0.0alpha4* Remove ability to use webrtc in browsers that don't support it
-		*12.0.0alpha1* Redub for UCP and make it work in ARI (for testing really)
-		*2.11.0.0beta7* FREEI-199 (WebRTC and Bria Extensions Shouldn't be Included in Extension Count)
-		*2.11.0.0beta6* Add Licenses
-		*2.11.0.0beta5* Fix licensing and add copyright and release
 	</changelog>
 	<info />
 	<category>Connectivity</category>
 	<depends>
 		<engine>asterisk 11.5</engine>
 		<module>certman ge 12.0.0alpha1</module>
-		<module>core ge 13.0.33</module>
+		<module>core ge 13.0.73</module>
 		<module>ucp ge 12.0.0beta7</module>
 		<version>12.0.1beta34</version>
 	</depends>
