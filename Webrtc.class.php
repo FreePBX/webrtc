@@ -424,6 +424,10 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		$results['websocket'] = !empty($results['websocket']) ? $results['websocket'] : $type.'://'.$sip_server.':'.$port.$suffix;
 		$results['breaker'] = !empty($results['breaker']) ? (bool)$results['breaker'] : false;
 		$results['cid'] = !empty($results['cid']) ? $results['cid'] : '';
+		try {
+			$results['stunaddr'] = $this->freepbx->Sipsettings->getConfig("stunaddr");
+		} catch(\Exception $e) {}
+		$results['stunaddr'] = !empty($results['stunaddr']) ? "stun:".$results['stunaddr'] : "stun:stun.l.google.com:19302";
 		return $results;
 	}
 

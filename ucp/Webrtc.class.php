@@ -107,7 +107,7 @@ class Webrtc extends Modules{
 					'uri' => $settings['sipuri'],
 					'password' => $settings['password'],
 					'log' => 3,
-					'iceServers' => array("stun:stun.l.google.com:19302"),
+					'iceServers' => array($settings['stunaddr']),
 					'gatheringTimeout' => 2000
 				),
 				'extensions' => array($this->user['default_extension'])
