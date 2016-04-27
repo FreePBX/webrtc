@@ -117,6 +117,35 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		}
 		*/
 
+		$s = $this->getConfig('upgrade1');
+		if(empty($s)) {
+			$clients = $this->getClientsEnabled();
+			foreach($clients as $client) {
+				$dev = $this->core->getDevice($client['device']);
+				switch($dev['tech']) {
+					case "sip":
+						$dev['sessiontimers'] = 'refuse';
+						$dev['videosupport'] = 'no';
+					break;
+					case "pjsip":
+						$dev['timers'] = 'no';
+						$dev['media_encryption'] = 'dtls';
+					break;
+				}
+				$socket = $this->getSocketMode();
+				$settings = $this->core->generateDefaultDeviceSettings($dev['tech'],$client['device'],$dev['description']);
+				foreach($dev as $key => $value) {
+					if(isset($settings[$key]['value'])) {
+						$settings[$key]['value'] = $value;
+					}
+				}
+				//this is how you update a device in FreePBX... W0W
+				$this->core->delDevice($client['device'],true);
+				$this->core->addDevice($client['device'],$dev['tech'],$settings,true);
+			}
+		}
+		$this->setConfig('upgrade1',1);
+
 		return true;
 	}
 	public function uninstall() {
@@ -438,7 +467,7 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 				$settings['transport']['value'] = 'wss,ws';
 				$settings['icesupport']['value'] = 'yes';
 				$settings['encryption']['value'] = 'yes';
-				$settings['session-timers']['value'] = 'refuse';
+				$settings['sessiontimers']['value'] = 'refuse';
 				$settings['videosupport']['value'] = 'no';
 				$this->core->addDevice($id,'sip',$settings);
 			break;

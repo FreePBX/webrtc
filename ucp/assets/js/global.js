@@ -373,13 +373,14 @@ var WebrtcC = UCPMC.extend({
 	},
 	initiateLibrary: function() {
 		var $this = this,
-				ver = "0.6.30";
+				ver = "0.7.23";
 		$.getScript("modules/Webrtc/assets/jssiplibs/jssip-" + ver + ".js")
 		.done(function( script, textStatus ) {
 			$("#nav-btn-webrtc").removeClass("hidden");
 			UCP.calibrateMenus();
 			$("#footer").append("<audio id=\"audio_remote\" autoplay=\"autoplay\" />");
 			$("#footer").append("<audio id=\"ringtone\"><source src=\"modules/Webrtc/assets/sounds/ring.mp3\" type=\"audio/mpeg\"></audio>");
+			$this.callOptions.pcConfig = { "iceServers": [ {"urls": $this.staticsettings.settings.iceServers } ], "gatheringTimeout": $this.staticsettings.settings.gatheringTimeout };
 			$this.phone = new JsSIP.UA(
 				{
 					"ws_servers": $this.staticsettings.settings.wsservers,

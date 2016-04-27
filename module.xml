@@ -15,6 +15,7 @@
 		phone they will be connected to device 99XXXX which will receive calls from the original extension
 	</description>
 	<changelog>
+		*13.0.18* Fix issues with clients and add upgrade code
 		*13.0.17* FREEPBX-11457
 		*13.0.16* FREEPBX-11694 add del_user core hook
 		*13.0.15* Remove en_US Translations
@@ -40,7 +41,7 @@
 	<depends>
 		<engine>asterisk 11.5</engine>
 		<module>certman ge 12.0.0alpha1</module>
-		<module>core ge 13.0.73</module>
+		<module>core ge 13.0.74</module>
 		<module>ucp ge 12.0.0beta7</module>
 		<version>12.0.1beta34</version>
 	</depends>
