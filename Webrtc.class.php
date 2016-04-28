@@ -122,26 +122,28 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 			$clients = $this->getClientsEnabled();
 			foreach($clients as $client) {
 				$dev = $this->core->getDevice($client['device']);
-				switch($dev['tech']) {
-					case "sip":
-						$dev['sessiontimers'] = 'refuse';
-						$dev['videosupport'] = 'no';
-					break;
-					case "pjsip":
-						$dev['timers'] = 'no';
-						$dev['media_encryption'] = 'dtls';
-					break;
-				}
-				$socket = $this->getSocketMode();
-				$settings = $this->core->generateDefaultDeviceSettings($dev['tech'],$client['device'],$dev['description']);
-				foreach($dev as $key => $value) {
-					if(isset($settings[$key]['value'])) {
-						$settings[$key]['value'] = $value;
+				if(!empty($dev)) {
+					switch($dev['tech']) {
+						case "sip":
+							$dev['sessiontimers'] = 'refuse';
+							$dev['videosupport'] = 'no';
+						break;
+						case "pjsip":
+							$dev['timers'] = 'no';
+							$dev['media_encryption'] = 'dtls';
+						break;
 					}
+					$socket = $this->getSocketMode();
+					$settings = $this->core->generateDefaultDeviceSettings($dev['tech'],$client['device'],$dev['description']);
+					foreach($dev as $key => $value) {
+						if(isset($settings[$key]['value'])) {
+							$settings[$key]['value'] = $value;
+						}
+					}
+					//this is how you update a device in FreePBX... W0W
+					$this->core->delDevice($client['device'],true);
+					$this->core->addDevice($client['device'],$dev['tech'],$settings,true);
 				}
-				//this is how you update a device in FreePBX... W0W
-				$this->core->delDevice($client['device'],true);
-				$this->core->addDevice($client['device'],$dev['tech'],$settings,true);
 			}
 		}
 		$this->setConfig('upgrade1',1);
