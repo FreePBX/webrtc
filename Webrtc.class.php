@@ -216,10 +216,12 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 	}
 
 	public function ucpUpdateGroup($id,$display,$data) {
-		if(isset($_POST['webrtc_enable']) && $_POST['webrtc_enable'] == 'yes') {
-			$this->freepbx->Ucp->setSettingByGID($id,'Webrtc','enabled',true);
-		} else {
-			$this->freepbx->Ucp->setSettingByGID($id,'Webrtc','enabled',false);
+		if($display == "userman") {
+			if(isset($_POST['webrtc_enable']) && $_POST['webrtc_enable'] == 'yes') {
+				$this->freepbx->Ucp->setSettingByGID($id,'Webrtc','enabled',true);
+			} else {
+				$this->freepbx->Ucp->setSettingByGID($id,'Webrtc','enabled',false);
+			}
 		}
 
 		$group = $this->freepbx->Userman->getGroupByGID($id);
@@ -275,12 +277,14 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 	* @param {array} $data    Array of data to be able to use
 	*/
 	public function ucpUpdateUser($id, $display, $ucpStatus, $data) {
-		if(isset($_POST['webrtc_enable']) && $_POST['webrtc_enable'] == 'yes') {
-			$this->freepbx->Ucp->setSettingByID($id,'Webrtc','enabled',true);
-		} elseif(isset($_POST['webrtc_enable']) && $_POST['webrtc_enable'] == 'no') {
-			$this->freepbx->Ucp->setSettingByID($id,'Webrtc','enabled',false);
-		} elseif(isset($_POST['webrtc_enable']) && $_POST['webrtc_enable'] == 'inherit') {
-			$this->freepbx->Ucp->setSettingByID($id,'Webrtc','enabled',null);
+		if($display == "userman") {
+			if(isset($_POST['webrtc_enable']) && $_POST['webrtc_enable'] == 'yes') {
+				$this->freepbx->Ucp->setSettingByID($id,'Webrtc','enabled',true);
+			} elseif(isset($_POST['webrtc_enable']) && $_POST['webrtc_enable'] == 'no') {
+				$this->freepbx->Ucp->setSettingByID($id,'Webrtc','enabled',false);
+			} elseif(isset($_POST['webrtc_enable']) && $_POST['webrtc_enable'] == 'inherit') {
+				$this->freepbx->Ucp->setSettingByID($id,'Webrtc','enabled',null);
+			}
 		}
 
 		$enabled = $this->freepbx->Ucp->getCombinedSettingByID($id, 'Webrtc', 'enabled');
