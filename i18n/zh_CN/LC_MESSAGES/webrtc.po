@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-28 06:56-0700\n"
+"POT-Creation-Date: 2016-05-09 11:07-0700\n"
 "PO-Revision-Date: 2015-11-23 13:55+0200\n"
 "Last-Translator: james <zhulizhong@gmail.com>\n"
 "Language-Team: Simplified Chinese <http://weblate.freepbx.org/projects/"
@@ -72,7 +72,7 @@ msgstr "发起呼叫"
 msgid "The Certificate to use from Certificate Manager"
 msgstr "使用的证书来自于证书管理员"
 
-#: Webrtc.class.php:324 Webrtc.class.php:327
+#: Webrtc.class.php:328 Webrtc.class.php:331
 msgid ""
 "The STUN Server address is blank. In many cases this can cause issues. "
 "Please define a valid server in the Asterisk SIP Settings module"
@@ -106,7 +106,7 @@ msgid ""
 "refresh"
 msgstr "不能发起呼叫，请在浏览器设置支持WebRTC，或者重新刷新浏览器"
 
-#: Webrtc.class.php:344 Webrtc.class.php:347
+#: Webrtc.class.php:348 Webrtc.class.php:351
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr "不能支持Asterisk的版本，用户至少需要%s, 但是现在的版本是%s"
@@ -115,7 +115,7 @@ msgstr "不能支持Asterisk的版本，用户至少需要%s, 但是现在的版
 msgid "Use Certificate"
 msgstr "使用证书"
 
-#: Webrtc.class.php:316
+#: Webrtc.class.php:320
 msgid "WebRTC"
 msgstr ""
 
@@ -131,7 +131,7 @@ msgstr "WebRTC 电话"
 msgid "Yes"
 msgstr "是"
 
-#: Webrtc.class.php:331
+#: Webrtc.class.php:335
 msgid "You have no certificates setup in Certificate Manager"
 msgstr "在证书管理员中没有证书设置"
 
