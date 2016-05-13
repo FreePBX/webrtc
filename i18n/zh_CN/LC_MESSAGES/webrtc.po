@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-09 11:07-0700\n"
+"POT-Creation-Date: 2016-05-13 14:56-0700\n"
 "PO-Revision-Date: 2015-11-23 13:55+0200\n"
 "Last-Translator: james <zhulizhong@gmail.com>\n"
 "Language-Team: Simplified Chinese <http://weblate.freepbx.org/projects/"
@@ -60,13 +60,17 @@ msgstr "新的页面电话呼叫"
 msgid "No"
 msgstr ""
 
-#: ucp/assets/js/global.js:68
+#: ucp/assets/js/global.js:72
 msgid "Originate"
 msgstr "发起"
 
-#: ucp/assets/js/global.js:67
+#: ucp/assets/js/global.js:71
 msgid "Originate Call"
 msgstr "发起呼叫"
+
+#: ucp/Webrtc.class.php:83
+msgid "Silence Ringer"
+msgstr ""
 
 #: functions.inc/hook_core.php:77
 msgid "The Certificate to use from Certificate Manager"
@@ -100,7 +104,7 @@ msgid ""
 "Certificate Manager"
 msgstr "为了使用webRTC，必须通过证书管理员添加证书 %s"
 
-#: ucp/assets/js/global.js:257
+#: ucp/assets/js/global.js:279
 msgid ""
 "Unable to start call. Please allow the WebRTC session in your browser and "
 "refresh"
