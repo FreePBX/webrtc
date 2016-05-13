@@ -8,6 +8,7 @@ var WebrtcC = UCPMC.extend({
 		this.stick = false;
 		this.disconnected = false;
 		this.userBlocked = false;
+		this.silenced = false;
 		this.callBinds = [
 			"progress",
 			"ended",
@@ -29,6 +30,9 @@ var WebrtcC = UCPMC.extend({
 		};
 
 		this.notification = null;
+		var st = $.cookie("webrtc-silenced");
+		st = (st === "1") ? true : false;
+		this.silence(st);
 	},
 	settingsDisplay: function() {
 
@@ -129,7 +133,9 @@ var WebrtcC = UCPMC.extend({
 		}
 	},
 	playRing: function() {
-		$("#ringtone").trigger("play");
+		if(!this.silenced) {
+			$("#ringtone").trigger("play");
+		}
 	},
 	stopRing: function() {
 		$("#ringtone").trigger("pause");
@@ -248,6 +254,22 @@ var WebrtcC = UCPMC.extend({
 			this.notification.close();
 		}
 		this.stopRing();
+	},
+	silence: function(state) {
+		state = (typeof state !== "undefined") ? state : !this.silenced;
+		if(!$("#webrtc-silence").length) {
+			$("#nav-btn-webrtc .fa-phone").after('<i id="webrtc-silence" class="fa fa-ban fa-stack-2x hidden"></i>');
+		}
+		if(state) {
+			this.stopRing();
+			$("#webrtc-silence").removeClass("hidden");
+			$("#webrtc-sr .fa-check").removeClass("hidden");
+		} else {
+			$("#webrtc-silence").addClass("hidden");
+			$("#webrtc-sr .fa-check").addClass("hidden");
+		}
+		$.cookie("webrtc-silenced",(state ? "1" : "0"));
+		this.silenced = state;
 	},
 	call: function(number) {
 		if (this.phone.isConnected() && !this.userBlocked) {
@@ -420,8 +442,11 @@ $(document).bind("staticSettingsFinished", function( event ) {
 	}
 });
 $(document).bind("logIn", function( event ) {
-	$("#webrtc-menu li.web").on("click", function() {
+	$("#webrtc-call").on("click", function() {
 		UCP.Modules.Webrtc.setPhone(true);
+	});
+	$("#webrtc-sr").on("click", function() {
+		UCP.Modules.Webrtc.silence();
 	});
 });
 $(document).bind("phoneWindowRemoved", function( event ) {

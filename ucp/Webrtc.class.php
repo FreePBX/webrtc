@@ -80,7 +80,7 @@ class Webrtc extends Modules{
 		if(!$this->webrtc->checkEnabled($this->ext)) {
 			return false;
 		}
-		$webrtc = $this->webrtc->checkEnabled($this->ext) ? '<li class="web"><a>'._("New Web Phone Call").'</a></li>': '';
+		$webrtc = $this->webrtc->checkEnabled($this->ext) ? '<li id="webrtc-call"><a>'._("New Web Phone Call").'</a></li><li id="webrtc-sr"><a><i class="fa fa-check hidden" aria-hidden="true"></i> '._("Silence Ringer").'</a></li>': '';
 		$out = array();
 		$out[] = array(
 			"rawname" => "webrtc",
