@@ -20426,7 +20426,7 @@ UA.prototype.loadConfig = function(configuration) {
   this.contact = {
     pub_gruu: null,
     temp_gruu: null,
-    uri: new URI('sip', Utils.createRandomToken(8), settings.via_host, null, {transport: 'wss'}),
+    uri: new URI('sip', Utils.createRandomToken(8), settings.via_host, null, {transport: 'ws'}),
     toString: function(options) {
       options = options || {};
 
