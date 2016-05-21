@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-13 14:56-0700\n"
+"POT-Creation-Date: 2016-05-20 17:25-0700\n"
 "PO-Revision-Date: 2016-05-15 03:52+0200\n"
 "Last-Translator: Media <mousavi.media@gmail.com>\n"
 "Language-Team: Persian (Iran) <http://weblate.freepbx.org/projects/freepbx/"
@@ -25,9 +25,18 @@ msgstr ""
 msgid "Certificate WebRTC Phone should use for this user."
 msgstr "مجوزی که تلفن WebRTC برای این کاربر از آن استفاده می کند."
 
+#: ucp/assets/js/global.js:110 ucp/assets/js/global.js:481
+msgid "Connect Phone"
+msgstr ""
+
 #: webrtc.i18n.php:6
 msgid "Connectivity"
 msgstr "اتصال"
+
+#: ucp/Webrtc.class.php:83 ucp/assets/js/global.js:104
+#: ucp/assets/js/global.js:479
+msgid "Disconnect Phone"
+msgstr ""
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
@@ -62,11 +71,11 @@ msgstr "تماس تحت وب جدید"
 msgid "No"
 msgstr "خیر"
 
-#: ucp/assets/js/global.js:72
+#: ucp/assets/js/global.js:75
 msgid "Originate"
 msgstr "ایجاد کردن"
 
-#: ucp/assets/js/global.js:71
+#: ucp/assets/js/global.js:74
 msgid "Originate Call"
 msgstr "تماس گرفتن"
 
@@ -108,7 +117,7 @@ msgstr ""
 "برای استفاده از WebRTC در ARI باید حداقل یک مجوز %s در بخش مدیریت مجوز تعریف "
 "کنید"
 
-#: ucp/assets/js/global.js:279
+#: ucp/assets/js/global.js:305
 msgid ""
 "Unable to start call. Please allow the WebRTC session in your browser and "
 "refresh"

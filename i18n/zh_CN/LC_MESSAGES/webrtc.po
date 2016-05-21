@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-13 14:56-0700\n"
+"POT-Creation-Date: 2016-05-20 17:25-0700\n"
 "PO-Revision-Date: 2015-11-23 13:55+0200\n"
 "Last-Translator: james <zhulizhong@gmail.com>\n"
 "Language-Team: Simplified Chinese <http://weblate.freepbx.org/projects/"
@@ -25,9 +25,18 @@ msgstr ""
 msgid "Certificate WebRTC Phone should use for this user."
 msgstr "此用户使用带证书的WebRTC 电话。"
 
+#: ucp/assets/js/global.js:110 ucp/assets/js/global.js:481
+msgid "Connect Phone"
+msgstr ""
+
 #: webrtc.i18n.php:6
 msgid "Connectivity"
 msgstr "通信接口连接"
+
+#: ucp/Webrtc.class.php:83 ucp/assets/js/global.js:104
+#: ucp/assets/js/global.js:479
+msgid "Disconnect Phone"
+msgstr ""
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
@@ -60,11 +69,11 @@ msgstr "新的页面电话呼叫"
 msgid "No"
 msgstr ""
 
-#: ucp/assets/js/global.js:72
+#: ucp/assets/js/global.js:75
 msgid "Originate"
 msgstr "发起"
 
-#: ucp/assets/js/global.js:71
+#: ucp/assets/js/global.js:74
 msgid "Originate Call"
 msgstr "发起呼叫"
 
@@ -104,7 +113,7 @@ msgid ""
 "Certificate Manager"
 msgstr "为了使用webRTC，必须通过证书管理员添加证书 %s"
 
-#: ucp/assets/js/global.js:279
+#: ucp/assets/js/global.js:305
 msgid ""
 "Unable to start call. Please allow the WebRTC session in your browser and "
 "refresh"

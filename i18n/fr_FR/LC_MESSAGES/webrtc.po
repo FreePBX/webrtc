@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-13 14:56-0700\n"
+"POT-Creation-Date: 2016-05-20 17:25-0700\n"
 "PO-Revision-Date: 2016-01-31 05:57+0200\n"
 "Last-Translator: Nicolas Riendeau <freepbx@riendeau.org>\n"
 "Language-Team: French <http://weblate.freepbx.org/projects/freepbx/webrtc/"
@@ -26,9 +26,18 @@ msgid "Certificate WebRTC Phone should use for this user."
 msgstr ""
 "Le certificat que le téléphone WebRTC  devrait utiliser pour cet utilisateur."
 
+#: ucp/assets/js/global.js:110 ucp/assets/js/global.js:481
+msgid "Connect Phone"
+msgstr ""
+
 #: webrtc.i18n.php:6
 msgid "Connectivity"
 msgstr "Connectivité"
+
+#: ucp/Webrtc.class.php:83 ucp/assets/js/global.js:104
+#: ucp/assets/js/global.js:479
+msgid "Disconnect Phone"
+msgstr ""
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
@@ -63,11 +72,11 @@ msgstr "Nouvel appel téléphonique web"
 msgid "No"
 msgstr "Non"
 
-#: ucp/assets/js/global.js:72
+#: ucp/assets/js/global.js:75
 msgid "Originate"
 msgstr "Placer un appel"
 
-#: ucp/assets/js/global.js:71
+#: ucp/assets/js/global.js:74
 msgid "Originate Call"
 msgstr "Placer un appel"
 
@@ -111,7 +120,7 @@ msgstr ""
 "Pour utiliser WebRTC avec ARI vous devez ajouter au moins un certificat %s "
 "par l'entremise du gestionnaire de certificat"
 
-#: ucp/assets/js/global.js:279
+#: ucp/assets/js/global.js:305
 msgid ""
 "Unable to start call. Please allow the WebRTC session in your browser and "
 "refresh"
