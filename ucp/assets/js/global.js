@@ -6,9 +6,9 @@ var WebrtcC = UCPMC.extend({
 		this.activeCallId = null;
 		this.answering = false;
 		this.stick = false;
-		this.disconnected = false;
 		this.userBlocked = false;
 		this.silenced = false;
+		this.autoRegister = false;
 		this.callBinds = [
 			"progress",
 			"ended",
@@ -33,6 +33,9 @@ var WebrtcC = UCPMC.extend({
 		var st = $.cookie("webrtc-silenced");
 		st = (st === "1") ? true : false;
 		this.silence(st);
+
+		var rg = $.cookie("webrtc-register");
+		this.autoRegister = (typeof rg === "undefined" || rg === "1") ? true : false;
 	},
 	settingsDisplay: function() {
 
@@ -96,15 +99,38 @@ var WebrtcC = UCPMC.extend({
 			case "newRTCSession":
 				this.manageSession(event);
 			break;
-			case "connecting":
-				$("#nav-btn-webrtc .fa-phone").css("color", "yellow");
-			break;
-			case "connected":
+			case "registered":
+				$("#nav-btn-webrtc .fa-phone").removeClass("registering");
+				$("#webrtc-dc a span").text(_("Disconnect Phone"));
 				$("#nav-btn-webrtc .fa-phone").css("color", "green");
 			break;
 			case "unregistered":
 			case "registrationFailed":
+				$("#nav-btn-webrtc .fa-phone").removeClass("registering");
+				$("#webrtc-dc a span").text(_("Connect Phone"));
+				$("#nav-btn-webrtc .fa-phone").css("color", "yellow");
+			break;
+			case "connected":
+				$("#webrtc-dc").removeClass("hidden");
+				$("#nav-btn-webrtc .fa-phone").removeClass("connecting");
+				$("#nav-btn-webrtc .fa-phone").css("color", "yellow");
+				if(this.autoRegister) {
+					$("#nav-btn-webrtc .fa-phone").addClass("registering");
+				}
+			break;
+			case "disconnected":
+				$("#webrtc-dc").addClass("hidden");
+				$("#nav-btn-webrtc .fa-phone").removeClass("connecting");
+				$("#nav-btn-webrtc .fa-phone").removeClass("registering");
 				$("#nav-btn-webrtc .fa-phone").css("color", "red");
+			break;
+			case "connecting":
+				$("#nav-btn-webrtc .fa-phone").css("color", "red");
+				$("#nav-btn-webrtc .fa-phone").addClass("connecting");
+				$("#nav-btn-webrtc .fa-phone").removeClass("registering");
+			break;
+			case "registering": //custom event type
+				$("#nav-btn-webrtc .fa-phone").addClass("registering");
 			break;
 		}
 	},
@@ -383,15 +409,52 @@ var WebrtcC = UCPMC.extend({
 		if ((typeof this.staticsettings !== "undefined") &&
 				this.staticsettings.enabled &&
 				Modernizr.getusermedia &&
-				this.disconnected) {
+				this.phone !== null &&
+				!this.phone.isConnected()) {
 			this.phone.start();
 		}
 	},
 	disconnect: function() {
-		this.disconnected = true;
-		if (this.phone !== null && this.phone.isConnected()) {
+		if (this.phone !== null &&
+				this.phone.isConnected()) {
 			this.phone.stop();
 		}
+	},
+	register: function() {
+		if(!this.phone.isConnected()) {
+			this.connect();
+		}
+		if (this.phone !== null &&
+				!this.phone.isRegistered()) {
+		}
+		this.phone.register();
+	},
+	unregister: function() {
+		if(!this.phone.isConnected()) {
+			throw "Phone is not connected, nothing to register";
+		}
+		if (this.phone !== null &&
+				this.phone.isRegistered()) {
+		}
+		this.phone.unregister();
+	},
+	toggleRegister: function() {
+		if(!this.phone.isConnected()) {
+			return; //nope
+		}
+		if($("#nav-btn-webrtc .fa-phone").hasClass("registering")) {
+			return; //we are already doing something
+		}
+		if(!this.phone.isRegistered()) {
+			this.engineEvent("registering");
+			this.register();
+			$.cookie("webrtc-register",1);
+		} else {
+			this.engineEvent("registering");
+			this.unregister();
+			$.cookie("webrtc-register",0);
+		}
+
 	},
 	initiateLibrary: function() {
 		var $this = this,
@@ -408,9 +471,16 @@ var WebrtcC = UCPMC.extend({
 					"ws_servers": $this.staticsettings.settings.wsservers,
 					"uri": $this.staticsettings.settings.uri,
 					"password": $this.staticsettings.settings.password,
-					"log": $this.staticsettings.settings.log
+					"log": $this.staticsettings.settings.log,
+					"register": $this.autoRegister
 				}
 			);
+			if($this.autoRegister) {
+				$("#webrtc-dc a span").text(_("Disconnect Phone"));
+			} else {
+				$("#webrtc-dc a span").text(_("Connect Phone"));
+			}
+
 			var binds = [
 				"connected",
 				"disconnected",
@@ -427,7 +497,7 @@ var WebrtcC = UCPMC.extend({
 				});
 			});
 
-			$this.phone.start();
+			$this.connect();
 		})
 		.fail(function( jqxhr, settings, exception ) {
 			//could not load script, remove button
@@ -447,6 +517,9 @@ $(document).bind("logIn", function( event ) {
 	});
 	$("#webrtc-sr").on("click", function() {
 		UCP.Modules.Webrtc.silence();
+	});
+	$("#webrtc-dc").on("click", function() {
+		UCP.Modules.Webrtc.toggleRegister();
 	});
 });
 $(document).bind("phoneWindowRemoved", function( event ) {

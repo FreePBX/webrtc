@@ -5,4 +5,40 @@
 		top: 1px;
 		color: red;
 	}
+	.connecting {
+		animation-duration: 400ms;
+		animation-name: webrtc-connect-blink;
+		animation-iteration-count: infinite;
+		animation-direction: alternate;
+	}
+	.registering {
+		animation-duration: 400ms;
+		animation-name: webrtc-register-blink;
+		animation-iteration-count: infinite;
+		animation-direction: alternate;
+	}
+	.connected {
+		color: yellow;
+	}
+	.registered {
+		color: green;
+	}
+}
+
+@keyframes webrtc-connect-blink {
+	from {
+		color: red;
+	}
+	to {
+		color: yellow;
+	}
+}
+
+@keyframes webrtc-register-blink {
+	from {
+		color: yellow;
+	}
+	to {
+		color: green;
+	}
 }
