@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-20 17:25-0700\n"
+"POT-Creation-Date: 2016-05-22 23:15-0700\n"
 "PO-Revision-Date: 2016-01-31 05:57+0200\n"
 "Last-Translator: Nicolas Riendeau <freepbx@riendeau.org>\n"
 "Language-Team: French <http://weblate.freepbx.org/projects/freepbx/webrtc/"
@@ -21,12 +21,21 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 2.2-dev\n"
 
+#: ucp/assets/jssiplibs/sip-0.7.5.min.js:37
+msgid ""
+")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error parsing "
+msgstr ""
+
 #: views/ucp_config.php:64
 msgid "Certificate WebRTC Phone should use for this user."
 msgstr ""
 "Le certificat que le téléphone WebRTC  devrait utiliser pour cet utilisateur."
 
-#: ucp/assets/js/global.js:110 ucp/assets/js/global.js:481
+#: ucp/assets/js/global.js:209
+msgid "Click this window to answer or close this window to ignore"
+msgstr ""
+
+#: ucp/assets/js/global.js:118 ucp/assets/js/global.js:485
 msgid "Connect Phone"
 msgstr ""
 
@@ -34,8 +43,8 @@ msgstr ""
 msgid "Connectivity"
 msgstr "Connectivité"
 
-#: ucp/Webrtc.class.php:83 ucp/assets/js/global.js:104
-#: ucp/assets/js/global.js:479
+#: ucp/Webrtc.class.php:83 ucp/assets/js/global.js:112
+#: ucp/assets/js/global.js:483
 msgid "Disconnect Phone"
 msgstr ""
 
@@ -60,6 +69,11 @@ msgstr ""
 "Active WebRTC pour ce %s dans le 'Asterisk Recording Interface (ARI)'. "
 "Note : ARI est déprécié en faveur d'UCP"
 
+#: ucp/assets/js/global.js:208
+#, perl-format
+msgid "Incoming call from %s"
+msgstr ""
+
 #: views/ucp_config.php:29
 msgid "Inherit"
 msgstr "Hérite"
@@ -72,11 +86,11 @@ msgstr "Nouvel appel téléphonique web"
 msgid "No"
 msgstr "Non"
 
-#: ucp/assets/js/global.js:75
+#: ucp/assets/js/global.js:83
 msgid "Originate"
 msgstr "Placer un appel"
 
-#: ucp/assets/js/global.js:74
+#: ucp/assets/js/global.js:82
 msgid "Originate Call"
 msgstr "Placer un appel"
 
@@ -120,7 +134,7 @@ msgstr ""
 "Pour utiliser WebRTC avec ARI vous devez ajouter au moins un certificat %s "
 "par l'entremise du gestionnaire de certificat"
 
-#: ucp/assets/js/global.js:305
+#: ucp/assets/js/global.js:302
 msgid ""
 "Unable to start call. Please allow the WebRTC session in your browser and "
 "refresh"
