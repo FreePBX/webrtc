@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>13.0.24</version>
+	<version>13.0.25</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -15,7 +15,8 @@
 		phone they will be connected to device 99XXXX which will receive calls from the original extension
 	</description>
 	<changelog>
-		*13.0.24* Add drop down option to allow phone to be unregistered (stored in cookie)
+		*13.0.25* Switch to SIP.js
+		*13.0.24* FREEPBX-11384 Add drop down option to allow phone to be unregistered (stored in cookie)
 		*13.0.23* Work around Asterisk not following spec
 		*13.0.22* FREEPBX-11385 Ability to silence ringer in UCP
 		*13.0.21* FREEPBX-12266 Only update setting when in userman

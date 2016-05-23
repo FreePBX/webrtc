@@ -11,21 +11,29 @@ var WebrtcC = UCPMC.extend({
 		this.autoRegister = false;
 		this.callBinds = [
 			"progress",
-			"ended",
-			"failed",
-			"newDTMF",
-			"hold",
-			"unhold",
-			"connecting",
 			"accepted",
-			"confirmed",
-			"addstream"
+			"rejected",
+			"failed",
+			"terminated",
+			"cancel",
+			"refer",
+			"replaced",
+			"dtmf",
+			"muted",
+			"unmuted",
+			"bye",
+			"addStream"
 		];
 
 		this.callOptions = {
-			"mediaConstraints": {
-				"audio": true,
-				"video": false
+			"media": {
+				"constraints": {
+					"audio": true,
+					"video": false
+				},
+				"render": {
+					"remote": null
+				}
 			}
 		};
 
@@ -96,8 +104,8 @@ var WebrtcC = UCPMC.extend({
 	engineEvent: function(type, event) {
 		console.log("Engine " + type);
 		switch (type){
-			case "newRTCSession":
-				this.manageSession(event);
+			case "invite":
+				this.manageSession(event,"inbound");
 			break;
 			case "registered":
 				$("#nav-btn-webrtc .fa-phone").removeClass("registering");
@@ -167,16 +175,15 @@ var WebrtcC = UCPMC.extend({
 		$("#ringtone").trigger("pause");
 		$("#ringtone").trigger("load");
 	},
-	manageSession: function(e) {
+	manageSession: function(session, direction) {
 		var Webrtc = this,
 				id,
 				cnam,
 				cnum,
 				displayName,
 				status,
-				request = e.request,
-				call = e.session,
-				uri = call.remote_identity.uri;
+				call = session,
+				uri = call.remoteIdentity.uri;
 
 		id = Math.floor((Math.random() * 100000) + 1);
 		// If the session exists with active call reject it.
@@ -192,14 +199,14 @@ var WebrtcC = UCPMC.extend({
 			this.activeCalls[id] = call;
 		}
 
-		cnam = this.activeCalls[id].remote_identity.display_name || "";
-		cnum = this.activeCalls[id].remote_identity.uri.user;
+		cnam = this.activeCalls[id].remoteIdentity.displayName || "";
+		cnum = this.activeCalls[id].remoteIdentity.uri.user;
 		displayName = (cnam !== "") ? cnam + " <" + cnum + ">" : cnum;
-		if (this.activeCalls[id].direction === "incoming") {
+		if (direction === "inbound") {
 			this.setPhone(false, "answer", "From: " + displayName);
 			if (UCP.notify) {
-				this.notification = new Notify("Incoming call from " + displayName, {
-					body: "Click this window to answer or close this window to ignore",
+				this.notification = new Notify(sprintf(_("Incoming call from %s"), displayName), {
+					body: _("Click this window to answer or close this window to ignore"),
 					icon: "modules/Faxpro/assets/images/fax.png",
 					notifyClose: function() {
 						if (Webrtc.answering) {
@@ -219,40 +226,33 @@ var WebrtcC = UCPMC.extend({
 		}
 
 		$.each(this.callBinds, function(i, v) {
-			Webrtc.activeCalls[Webrtc.activeCallId].on(v, function(e) {
-				if(v == "progress") {
-					//TODO: was webrtcDetectedType == "webkit"
-					e.body = null;
-				}
-				Webrtc.sessionEvent(v, e);
+			Webrtc.activeCalls[Webrtc.activeCallId].on(v, function(data, cause) {
+				Webrtc.sessionEvent(v, data, cause);
 			});
 		});
 	},
-	sessionEvent: function(type, event) {
+	sessionEvent: function(type, data, cause) {
 		console.log("Session " + type);
 		switch (type){
-			case "failed":
-				this.endCall(event);
+			case "terminated":
+				this.endCall(data, cause);
 				UCP.removeGlobalMessage();
 			break;
-			case "ended":
-				this.endCall(event);
-				UCP.removeGlobalMessage();
+			case "accepted":
+				this.startCall(data);
 			break;
-			case "confirmed":
-			case "started":
-			break;
-			case "addstream":
-				this.startCall(event);
-			break;
-			case "connecting":
 			case "progress":
 				this.switchState("progress");
 			break;
+			case "dtmf":
+			break;
+			case "muted":
+			break;
+			case "unmuted":
+			break;
 		}
 	},
-	endCall: function(event) {
-
+	endCall: function(message, cause) {
 		this.activeCalls[this.activeCallId] = null;
 		this.activeCallId = null;
 		if (!this.stick) {
@@ -264,17 +264,13 @@ var WebrtcC = UCPMC.extend({
 		if (this.notification !== null) {
 			this.notification.close();
 		}
-		if(typeof event.cause !== "undefined" && event.cause == "User Denied Media Access") {
+		if(typeof cause !== "undefined" && cause === SIP.C.causes.USER_DENIED_MEDIA_ACCESS) {
 			this.userBlocked = true;
 		}
 		$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .btn-primary[data-type=\"call\"]").prop("disabled", false);
 		this.stopRing();
 	},
 	startCall: function(event) {
-		var stream = event.stream;
-
-		// Attach remote stream to remoteView
-		$("#audio_remote").prop("src", window.URL.createObjectURL(stream));
 		this.switchState("hangup");
 		if (this.notification !== null) {
 			this.notification.close();
@@ -300,7 +296,8 @@ var WebrtcC = UCPMC.extend({
 	call: function(number) {
 		if (this.phone.isConnected() && !this.userBlocked) {
 			$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .btn-primary[data-type=\"call\"]").prop("disabled", true);
-			this.phone.call(number, this.callOptions);
+			var session = this.phone.invite(number, this.callOptions);
+			this.manageSession(session,"outbound");
 		} else if(this.phone.isConnected() && this.userBlocked) {
 			alert(_("Unable to start call. Please allow the WebRTC session in your browser and refresh"));
 		}
@@ -309,7 +306,7 @@ var WebrtcC = UCPMC.extend({
 		if (this.activeCallId !== null) {
 			this.answering = true;
 			this.switchState("connecting");
-			this.activeCalls[this.activeCallId].answer(this.callOptions);
+			this.activeCalls[this.activeCallId].accept(this.callOptions);
 		}
 	},
 	toggleHold: function() {
@@ -328,9 +325,9 @@ var WebrtcC = UCPMC.extend({
 			}
 		}
 	},
-	sendDTMF: function(num) {
+	DTMF: function(num) {
 		if (this.activeCallId !== null) {
-			this.activeCalls[this.activeCallId].sendDTMF(num);
+			this.activeCalls[this.activeCallId].dtmf(num);
 		}
 	},
 	hangup: function() {
@@ -437,6 +434,7 @@ var WebrtcC = UCPMC.extend({
 				this.phone.isRegistered()) {
 		}
 		this.phone.unregister();
+		this.switchState("hangup");
 	},
 	toggleRegister: function() {
 		if(!this.phone.isConnected()) {
@@ -458,21 +456,27 @@ var WebrtcC = UCPMC.extend({
 	},
 	initiateLibrary: function() {
 		var $this = this,
-				ver = "0.7.23";
-		$.getScript("modules/Webrtc/assets/jssiplibs/jssip-" + ver + ".js")
+				ver = "0.7.5";
+		$.getScript("modules/Webrtc/assets/jssiplibs/sip-" + ver + ".min.js")
 		.done(function( script, textStatus ) {
 			$("#nav-btn-webrtc").removeClass("hidden");
 			UCP.calibrateMenus();
 			$("#footer").append("<audio id=\"audio_remote\" autoplay=\"autoplay\" />");
 			$("#footer").append("<audio id=\"ringtone\"><source src=\"modules/Webrtc/assets/sounds/ring.mp3\" type=\"audio/mpeg\"></audio>");
-			$this.callOptions.pcConfig = { "iceServers": [ {"urls": $this.staticsettings.settings.iceServers } ], "gatheringTimeout": $this.staticsettings.settings.gatheringTimeout };
-			$this.phone = new JsSIP.UA(
+			$this.callOptions.media.render.remote = document.getElementById('audio_remote');
+			$this.phone = new SIP.UA(
 				{
-					"ws_servers": $this.staticsettings.settings.wsservers,
+					"wsServers": $this.staticsettings.settings.wsservers,
 					"uri": $this.staticsettings.settings.uri,
 					"password": $this.staticsettings.settings.password,
-					"log": $this.staticsettings.settings.log,
-					"register": $this.autoRegister
+					"log": {
+						"builtinEnabled": false,
+						"level": $this.staticsettings.settings.log
+					},
+					"register": $this.autoRegister,
+					"hackWssInTransport": true,
+					"stunServers": $this.staticsettings.settings.iceServers,
+					"iceCheckingTimeout": $this.staticsettings.settings.gatheringTimeout
 				}
 			);
 			if($this.autoRegister) {
@@ -487,8 +491,8 @@ var WebrtcC = UCPMC.extend({
 				"registered",
 				"unregistered",
 				"registrationFailed",
-				"newRTCSession",
-				"newMessage",
+				"invite",
+				"message",
 				"connecting"
 				];
 			$.each(binds, function(i, v) {
@@ -536,7 +540,7 @@ $(document).bind("phoneWindowAdded", function( event ) {
 				$( "#messages-container .phone-box[data-id=\"" + UCP.Modules.Webrtc.windowId + "\"] .message").text("To: " + text);
 			}
 			$("#messages-container .phone-box .dialpad").val(text);
-			UCP.Modules.Webrtc.sendDTMF($(this).data("num"));
+			UCP.Modules.Webrtc.DTMF($(this).data("num"));
 			button.prop("disabled", false);
 			$("#messages-container .phone-box .message-container").textfill();
 		}
@@ -557,7 +561,7 @@ $(document).bind("phoneWindowAdded", function( event ) {
 			button.prop("disabled", true);
 		} else {
 			$( "#messages-container .phone-box[data-id=\"" + UCP.Modules.Webrtc.windowId + "\"] .message").text("To: " + text);
-			UCP.Modules.Webrtc.sendDTMF(text.slice(-1));
+			UCP.Modules.Webrtc.DTMF(text.slice(-1));
 			button.prop("disabled", false);
 		}
 		$("#messages-container .phone-box .message-container").textfill();
