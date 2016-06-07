@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>13.0.26</version>
+	<version>13.0.27</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -15,6 +15,7 @@
 		phone they will be connected to device 99XXXX which will receive calls from the original extension
 	</description>
 	<changelog>
+		*13.0.27* Require higher version of certificate manager
 		*13.0.26* FREEPBX-12319 Fix error with User and Devices
 		*13.0.25* Switch to SIP.js
 		*13.0.24* FREEPBX-11384 Add drop down option to allow phone to be unregistered (stored in cookie)
@@ -48,7 +49,7 @@
 	<category>Connectivity</category>
 	<depends>
 		<engine>asterisk 11.5</engine>
-		<module>certman ge 12.0.0alpha1</module>
+		<module>certman ge 13.0.22</module>
 		<module>core ge 13.0.74</module>
 		<module>ucp ge 12.0.0beta7</module>
 		<version>12.0.1beta34</version>
