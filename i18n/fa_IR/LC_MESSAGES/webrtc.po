@@ -10,27 +10,26 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-22 23:15-0700\n"
-"PO-Revision-Date: 2016-05-26 18:56+0200\n"
+"PO-Revision-Date: 2016-07-06 05:09+0200\n"
 "Last-Translator: Media <mousavi.media@gmail.com>\n"
-"Language-Team: Persian (Iran) <http://weblate.freepbx.org/projects/freepbx/"
-"webrtc/fa_IR/>\n"
+"Language-Team: Persian (Iran) "
+"<http://weblate.freepbx.org/projects/freepbx/webrtc/fa_IR/>\n"
+"Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fa_IR\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.4\n"
 
 #: ucp/assets/jssiplibs/sip-0.7.5.min.js:37
-#, fuzzy
 msgid ""
 ")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error parsing "
 msgstr ""
-")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error parsing "
+")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('خطا در تجزیه "
 
 #: views/ucp_config.php:64
 msgid "Certificate WebRTC Phone should use for this user."
-msgstr "مجوزی که تلفن WebRTC برای این کاربر از آن استفاده می کند."
+msgstr "مجوزی که تلفن WebRTC برای این کاربر می بایست از آن استفاده کند."
 
 #: ucp/assets/js/global.js:209
 msgid "Click this window to answer or close this window to ignore"
@@ -48,11 +47,11 @@ msgstr "اتصال"
 #: ucp/Webrtc.class.php:83 ucp/assets/js/global.js:112
 #: ucp/assets/js/global.js:483
 msgid "Disconnect Phone"
-msgstr "قطع اتصال تلفن"
+msgstr "قطع کردن اتصال تلفن"
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
-msgstr "فعال سازی تلفن WebRTC مبتنی بر ARI قدیمی"
+msgstr "فعال سازی تلفن WebRTC قدیمی مبتنی بر ARI"
 
 #: views/ucp_config.php:19
 msgid "Enable WebRTC Phone"
@@ -60,7 +59,7 @@ msgstr "فعال سازی تلفن WebRTC"
 
 #: views/ucp_config.php:38
 msgid "Enable the WebRTC Phone in UCP for this user"
-msgstr "فعال سازی تلفن WebRTC در UCP برای این کاربر"
+msgstr "تلفن WebRTC را در UCP برای این کاربر فعال نمایید"
 
 #: functions.inc/hook_core.php:62
 #, php-format
@@ -68,8 +67,8 @@ msgid ""
 "Enables WebRTC for this %s in the Asterisk Recording Interface (ARI). Note: "
 "ARI is depreciated in favor of UCP"
 msgstr ""
-"فعال سازی WebRTC برای این %s در رابط ضبط استریسک (ARI). نکته： با معرفی UCP، "
-"واسط ARI منسوخ شده است"
+"WebRTC را برای %s در ARI فعال نمایید. توجه： با معرفی UCP، واسط ARI منسوخ شده "
+"است"
 
 #: ucp/assets/js/global.js:208
 #, perl-format
@@ -78,11 +77,11 @@ msgstr "تماس ورودی از %s"
 
 #: views/ucp_config.php:29
 msgid "Inherit"
-msgstr "ارث بری"
+msgstr "موروثی"
 
 #: ucp/Webrtc.class.php:83
 msgid "New Web Phone Call"
-msgstr "تماس تحت وب جدید"
+msgstr "تماس تحت تلفن وب جدید"
 
 #: views/ucp_config.php:26
 msgid "No"
@@ -90,19 +89,19 @@ msgstr "خیر"
 
 #: ucp/assets/js/global.js:83
 msgid "Originate"
-msgstr "ایجاد کردن"
+msgstr "شروع تماس"
 
 #: ucp/assets/js/global.js:82
 msgid "Originate Call"
-msgstr "تماس گرفتن"
+msgstr "ایجاد یک تماس"
 
 #: ucp/Webrtc.class.php:83
 msgid "Silence Ringer"
-msgstr "سکوت زنگزن"
+msgstr "سکوت زنگ"
 
 #: functions.inc/hook_core.php:77
 msgid "The Certificate to use from Certificate Manager"
-msgstr "مجوز لازم برای بکارگیری مدیریت مجوزها"
+msgstr "مجوزی که از طریق مدیریت مجوزها، مورد استفاده قرار می گیرد"
 
 #: Webrtc.class.php:328 Webrtc.class.php:331
 msgid ""
@@ -114,7 +113,7 @@ msgstr ""
 
 #: webrtc.i18n.php:8
 msgid "The WebRTC Module allows an Administrator to enable a "
-msgstr "ماژول WebRTC به یک مدیر اجازه فعال کردن می دهد "
+msgstr "ماژول WebRTC به یک مدیر اجازه می دهد که فعال کنید یک "
 
 #: functions.inc/hook_core.php:58
 msgid ""
@@ -131,27 +130,27 @@ msgid ""
 "To utilize WebRTC in ARI you must add at least one certificate %s through "
 "Certificate Manager"
 msgstr ""
-"برای استفاده از WebRTC در ARI باید حداقل یک مجوز %s در بخش مدیریت مجوز تعریف "
-"کنید"
+"برای استفاده از WebRTC در ARI می بایست حداقل یک مجوز %s از طریق ماژول مدیریت "
+"مجوز تعریف کنید"
 
 #: ucp/assets/js/global.js:302
 msgid ""
 "Unable to start call. Please allow the WebRTC session in your browser and "
 "refresh"
 msgstr ""
-"عدم امکان برقراری تماس. لطفا WebRTC را در مرورگر خود فعال کرده و مجددا صفحه "
-"را بارگذاری کنید"
+"عدم امکان برقراری تماس. لطفا به اجرای WebRTC در مرورگر خود مجوز داده و مجددا "
+"صفحه را بارگذاری کنید"
 
 #: Webrtc.class.php:348 Webrtc.class.php:351
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
-"عدم پشتیبانی از نسخه استریسک،  شما باید حداقل نسخه %s را داشته باشید در حال "
+"عدم پشتیبانی از نسخه استریسک،  شما باید حداقل نسخه %s را داشته باشید. در حال "
 "حاضر نسخه شما %s است"
 
 #: functions.inc/hook_core.php:76
 msgid "Use Certificate"
-msgstr "استفاده از مجوز"
+msgstr "از مجوز استفاده نمایید"
 
 #: Webrtc.class.php:320
 msgid "WebRTC"
@@ -171,7 +170,7 @@ msgstr "بله"
 
 #: Webrtc.class.php:335
 msgid "You have no certificates setup in Certificate Manager"
-msgstr "شما مجوزی در مدیریت مجوزها ایجاد نکرده اید"
+msgstr "شما مجوزی در ماژول مدیریت مجوزها ایجاد نکرده اید"
 
 #~ msgid "Unsupported Version of Asterisk, You need at least %s you have &s"
 #~ msgstr ""
