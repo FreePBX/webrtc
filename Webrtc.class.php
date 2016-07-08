@@ -60,15 +60,15 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 			throw new \Exception($status);
 		}
 		$sql = "CREATE TABLE IF NOT EXISTS `webrtc_clients` (
-						`user` VARCHAR( 255 ) NOT NULL UNIQUE,
-						`device` VARCHAR( 255 ) NOT NULL UNIQUE ,
+						`user` VARCHAR( 190 ) NOT NULL UNIQUE,
+						`device` VARCHAR( 190 ) NOT NULL UNIQUE ,
 						`realm` varchar(80) NOT NULL,
 						`username` varchar(80) NOT NULL,
 						`sipuri` varchar(80) NOT NULL,
 						`password` varchar(80) NOT NULL,
 						`websocket` varchar(80) NOT NULL,
 						`breaker` varchar(80) NOT NULL,
-						`cid` varchar(80) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+						`cid` varchar(80) NOT NULL,
 						`certid` int(11) NULL
 					)";
 		$sth = $this->db->prepare($sql);
