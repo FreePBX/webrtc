@@ -513,6 +513,8 @@ $(document).bind("staticSettingsFinished", function( event ) {
 		if($("html").hasClass("getusermedia")) {
 			UCP.Modules.Webrtc.initiateLibrary();
 		}
+	} else if(typeof UCP.Modules.Webrtc.staticsettings.message !== "undefined") {
+		console.warn(UCP.Modules.Webrtc.staticsettings.message);
 	}
 });
 $(document).bind("logIn", function( event ) {

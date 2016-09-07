@@ -418,12 +418,17 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 			return false;
 		}
 		//$usr = core_users_get($results['user']);
+		$results['status'] = true;
 		$results['realm'] = !empty($results['realm']) ? $results['realm'] : $sip_server;
 		$results['username'] = !empty($results['username']) ? $results['username'] : $dev['id'];
 		$results['sipuri'] = !empty($results['sipuri']) ? $results['sipuri'] : 'sip:'.$results['username'].'@'.$sip_server;
 		$results['password'] = !empty($results['password']) ? $results['password'] : $dev['secret'];
 		$prefix = $this->freepbx->Config->get('HTTPPREFIX');
 		$suffix = !empty($prefix) ? "/".$prefix."/ws" : "/ws";
+
+		if($secure && !$this->freepbx->Config->get('HTTPTLSENABLE')) {
+			return array("status" => false, "message" => _("HTTPS is not enabled for Asterisk"));
+		}
 
 		$type = ($this->freepbx->Config->get('HTTPTLSENABLE') && $secure) ? 'wss' : 'ws';
 		$port = ($this->freepbx->Config->get('HTTPTLSENABLE') && $secure) ? $this->freepbx->Config->get('HTTPTLSBINDPORT') : $this->freepbx->Config->get('HTTPBINDPORT');

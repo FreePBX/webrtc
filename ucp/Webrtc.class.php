@@ -99,7 +99,7 @@ class Webrtc extends Modules{
 	 */
 	function getStaticSettings() {
 		$settings = $this->webrtc->getClientSettingsByUser($this->ext);
-		if(!empty($settings)) {
+		if(!empty($settings['status'])) {
 			return array(
 				'enabled' => true,
 				'settings' => array(
@@ -113,7 +113,11 @@ class Webrtc extends Modules{
 				'extensions' => array($this->user['default_extension'])
 			);
 		} else {
-			return array('enabled' => false);
+			if(!empty($settings['message'])) {
+				return array('enabled' => false, "message" => $settings['message']);
+			} else {
+				return array('enabled' => false);
+			}
 		}
 	}
 }
