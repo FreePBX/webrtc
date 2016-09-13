@@ -202,6 +202,7 @@ var WebrtcC = UCPMC.extend({
 		cnam = this.activeCalls[id].remoteIdentity.displayName || "";
 		cnum = this.activeCalls[id].remoteIdentity.uri.user;
 		displayName = (cnam !== "") ? cnam + " <" + cnum + ">" : cnum;
+		$("#messages-container .phone-box[data-id=\""+this.windowId+"\"] .window .contactDisplay .contactImage").css("background-image",'url("?quietmode=1&module=Webrtc&command=cimage&did='+cnum+'")');
 		if (direction === "inbound") {
 			this.setPhone(false, "answer", "From: " + displayName);
 			if (UCP.notify) {

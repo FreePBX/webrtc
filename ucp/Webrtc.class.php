@@ -31,11 +31,42 @@ class Webrtc extends Modules{
 		*/
 		function ajaxRequest($command, $settings) {
 			switch($command) {
+				case 'cimage':
 				case 'contacts':
 					return true;
 				break;
 				default:
 					return false;
+				break;
+			}
+		}
+
+		public function ajaxCustomHandler() {
+			switch($_REQUEST['command']) {
+				case "cimage":
+						if($this->UCP->Modules->moduleHasMethod('Contactmanager', 'userDetails')) {
+							$did = $_REQUEST['did'];
+							$result = $this->UCP->FreePBX->Contactmanager->lookupByUserID($this->user['id'], $did,"/\D/");
+							if($result['image']) {
+								dbug($result);
+								$data = $this->UCP->FreePBX->Contactmanager->getImageByID($result['id'],$result['email'], $result['type']);
+								if(!empty($data)) {
+									$finfo = new \finfo(FILEINFO_MIME);
+									header("Cache-Control: no-cache, must-revalidate");
+									header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+									header("Content-type: ".$finfo->buffer($data['image']));
+									echo $data['image'];
+									return true;
+								}
+							}
+						}
+						$contents = file_get_contents(__DIR__."/assets/images/no_user_logo.png");
+						$finfo = new \finfo(FILEINFO_MIME);
+						header("Cache-Control: no-cache, must-revalidate");
+						header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+						header("Content-type: ".$finfo->buffer($contents));
+						echo $contents;
+					return true;
 				break;
 			}
 		}
