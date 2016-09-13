@@ -29,7 +29,8 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 	private $supported = array(
 		"11" => "11.11",
 		"12" => "12.4",
-		"13" => "13"
+		"13" => "13",
+		"14" => "14"
 	);
 
 	/**
