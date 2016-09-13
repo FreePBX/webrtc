@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-07 15:56-0700\n"
+"POT-Creation-Date: 2016-09-13 13:22-0700\n"
 "PO-Revision-Date: 2016-07-06 05:09+0200\n"
 "Last-Translator: Media <mousavi.media@gmail.com>\n"
 "Language-Team: Persian (Iran) <http://weblate.freepbx.org/projects/freepbx/"
@@ -31,12 +31,12 @@ msgstr ""
 msgid "Certificate WebRTC Phone should use for this user."
 msgstr "مجوزی که تلفن WebRTC برای این کاربر می بایست از آن استفاده کند."
 
-#: ucp/assets/js/global.js:209
+#: ucp/assets/js/global.js:210
 msgid "Click this window to answer or close this window to ignore"
 msgstr ""
 "برای پاسخ به تماس روی این پنجره کلیک کنید یا برای رد تماس این پنجره را ببندید"
 
-#: ucp/assets/js/global.js:118 ucp/assets/js/global.js:485
+#: ucp/assets/js/global.js:118 ucp/assets/js/global.js:486
 msgid "Connect Phone"
 msgstr "اتصال تلفن"
 
@@ -44,8 +44,8 @@ msgstr "اتصال تلفن"
 msgid "Connectivity"
 msgstr "اتصال"
 
-#: ucp/Webrtc.class.php:83 ucp/assets/js/global.js:112
-#: ucp/assets/js/global.js:483
+#: ucp/Webrtc.class.php:114 ucp/assets/js/global.js:112
+#: ucp/assets/js/global.js:484
 msgid "Disconnect Phone"
 msgstr "قطع کردن اتصال تلفن"
 
@@ -74,7 +74,7 @@ msgstr ""
 msgid "HTTPS is not enabled for Asterisk"
 msgstr ""
 
-#: ucp/assets/js/global.js:208
+#: ucp/assets/js/global.js:209
 #, perl-format
 msgid "Incoming call from %s"
 msgstr "تماس ورودی از %s"
@@ -83,7 +83,7 @@ msgstr "تماس ورودی از %s"
 msgid "Inherit"
 msgstr "موروثی"
 
-#: ucp/Webrtc.class.php:83
+#: ucp/Webrtc.class.php:114
 msgid "New Web Phone Call"
 msgstr "تماس تحت تلفن وب جدید"
 
@@ -99,7 +99,7 @@ msgstr "شروع تماس"
 msgid "Originate Call"
 msgstr "ایجاد یک تماس"
 
-#: ucp/Webrtc.class.php:83
+#: ucp/Webrtc.class.php:114
 msgid "Silence Ringer"
 msgstr "سکوت زنگ"
 
@@ -137,7 +137,7 @@ msgstr ""
 "برای استفاده از WebRTC در ARI می بایست حداقل یک مجوز %s از طریق ماژول مدیریت "
 "مجوز تعریف کنید"
 
-#: ucp/assets/js/global.js:302
+#: ucp/assets/js/global.js:303
 msgid ""
 "Unable to start call. Please allow the WebRTC session in your browser and "
 "refresh"

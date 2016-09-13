@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-07 15:56-0700\n"
+"POT-Creation-Date: 2016-09-13 13:22-0700\n"
 "PO-Revision-Date: 2015-11-23 13:55+0200\n"
 "Last-Translator: james <zhulizhong@gmail.com>\n"
 "Language-Team: Simplified Chinese <http://weblate.freepbx.org/projects/"
@@ -30,11 +30,11 @@ msgstr ""
 msgid "Certificate WebRTC Phone should use for this user."
 msgstr "此用户使用带证书的WebRTC 电话。"
 
-#: ucp/assets/js/global.js:209
+#: ucp/assets/js/global.js:210
 msgid "Click this window to answer or close this window to ignore"
 msgstr ""
 
-#: ucp/assets/js/global.js:118 ucp/assets/js/global.js:485
+#: ucp/assets/js/global.js:118 ucp/assets/js/global.js:486
 msgid "Connect Phone"
 msgstr ""
 
@@ -42,8 +42,8 @@ msgstr ""
 msgid "Connectivity"
 msgstr "通信接口连接"
 
-#: ucp/Webrtc.class.php:83 ucp/assets/js/global.js:112
-#: ucp/assets/js/global.js:483
+#: ucp/Webrtc.class.php:114 ucp/assets/js/global.js:112
+#: ucp/assets/js/global.js:484
 msgid "Disconnect Phone"
 msgstr ""
 
@@ -70,7 +70,7 @@ msgstr "在ARI中对%s 开启WebRTC。注意：UCP中已经停止使用ARI"
 msgid "HTTPS is not enabled for Asterisk"
 msgstr ""
 
-#: ucp/assets/js/global.js:208
+#: ucp/assets/js/global.js:209
 #, perl-format
 msgid "Incoming call from %s"
 msgstr ""
@@ -79,7 +79,7 @@ msgstr ""
 msgid "Inherit"
 msgstr "继承"
 
-#: ucp/Webrtc.class.php:83
+#: ucp/Webrtc.class.php:114
 msgid "New Web Phone Call"
 msgstr "新的页面电话呼叫"
 
@@ -95,7 +95,7 @@ msgstr "发起"
 msgid "Originate Call"
 msgstr "发起呼叫"
 
-#: ucp/Webrtc.class.php:83
+#: ucp/Webrtc.class.php:114
 msgid "Silence Ringer"
 msgstr ""
 
@@ -131,7 +131,7 @@ msgid ""
 "Certificate Manager"
 msgstr "为了使用webRTC，必须通过证书管理员添加证书 %s"
 
-#: ucp/assets/js/global.js:302
+#: ucp/assets/js/global.js:303
 msgid ""
 "Unable to start call. Please allow the WebRTC session in your browser and "
 "refresh"

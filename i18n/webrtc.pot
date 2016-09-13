@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-07 15:56-0700\n"
+"POT-Creation-Date: 2016-09-13 13:22-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,12 +26,12 @@ msgstr ""
 msgid "Certificate WebRTC Phone should use for this user."
 msgstr ""
 
-#: ucp/assets/js/global.js:209
+#: ucp/assets/js/global.js:210
 msgid "Click this window to answer or close this window to ignore"
 msgstr ""
 
 #: ucp/assets/js/global.js:118
-#: ucp/assets/js/global.js:485
+#: ucp/assets/js/global.js:486
 msgid "Connect Phone"
 msgstr ""
 
@@ -39,9 +39,9 @@ msgstr ""
 msgid "Connectivity"
 msgstr ""
 
-#: ucp/Webrtc.class.php:83
+#: ucp/Webrtc.class.php:114
 #: ucp/assets/js/global.js:112
-#: ucp/assets/js/global.js:483
+#: ucp/assets/js/global.js:484
 msgid "Disconnect Phone"
 msgstr ""
 
@@ -68,7 +68,7 @@ msgstr ""
 msgid "HTTPS is not enabled for Asterisk"
 msgstr ""
 
-#: ucp/assets/js/global.js:208
+#: ucp/assets/js/global.js:209
 #, perl-format
 msgid "Incoming call from %s"
 msgstr ""
@@ -77,7 +77,7 @@ msgstr ""
 msgid "Inherit"
 msgstr ""
 
-#: ucp/Webrtc.class.php:83
+#: ucp/Webrtc.class.php:114
 msgid "New Web Phone Call"
 msgstr ""
 
@@ -93,7 +93,7 @@ msgstr ""
 msgid "Originate Call"
 msgstr ""
 
-#: ucp/Webrtc.class.php:83
+#: ucp/Webrtc.class.php:114
 msgid "Silence Ringer"
 msgstr ""
 
@@ -126,7 +126,7 @@ msgid ""
 "Certificate Manager"
 msgstr ""
 
-#: ucp/assets/js/global.js:302
+#: ucp/assets/js/global.js:303
 msgid ""
 "Unable to start call. Please allow the WebRTC session in your browser and "
 "refresh"
