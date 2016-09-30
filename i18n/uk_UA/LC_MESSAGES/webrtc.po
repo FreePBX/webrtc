@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-13 13:56-0700\n"
-"PO-Revision-Date: 2016-09-30 14:22+0200\n"
+"PO-Revision-Date: 2016-09-30 17:54+0200\n"
 "Last-Translator: Maxim <maxim@ua.fm>\n"
 "Language-Team: Ukrainian "
 "<http://weblate.freepbx.org/projects/freepbx/webrtc/uk_UA/>\n"
@@ -90,7 +90,7 @@ msgstr "Ні"
 
 #: ucp/assets/js/global.js:83
 msgid "Originate"
-msgstr ""
+msgstr "Походить"
 
 #: ucp/assets/js/global.js:82
 msgid "Originate Call"
