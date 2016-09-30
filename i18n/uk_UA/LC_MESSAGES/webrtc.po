@@ -10,14 +10,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-13 13:56-0700\n"
-"PO-Revision-Date: 2016-09-13 13:56-0700\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2016-09-30 14:22+0200\n"
+"Last-Translator: Maxim <maxim@ua.fm>\n"
+"Language-Team: Ukrainian "
+"<http://weblate.freepbx.org/projects/freepbx/webrtc/uk_UA/>\n"
+"Language: uk_UA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 2.4\n"
 
 #: ucp/assets/jssiplibs/sip-0.7.5.min.js:37
 msgid ""
@@ -30,20 +33,20 @@ msgstr ""
 
 #: ucp/assets/js/global.js:210
 msgid "Click this window to answer or close this window to ignore"
-msgstr ""
+msgstr "Натисніть на це вікно, щоб відповісти або зачинить його, щоб ігнорувати"
 
 #: ucp/assets/js/global.js:118 ucp/assets/js/global.js:486
 msgid "Connect Phone"
-msgstr ""
+msgstr "Підключення телефону"
 
 #: webrtc.i18n.php:6
 msgid "Connectivity"
-msgstr ""
+msgstr "Зв'язок"
 
 #: ucp/Webrtc.class.php:114 ucp/assets/js/global.js:112
 #: ucp/assets/js/global.js:484
 msgid "Disconnect Phone"
-msgstr ""
+msgstr "Від'єднайте телефон"
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
@@ -51,7 +54,7 @@ msgstr ""
 
 #: views/ucp_config.php:19
 msgid "Enable WebRTC Phone"
-msgstr ""
+msgstr "Активувати WebRTC телефон"
 
 #: views/ucp_config.php:38
 msgid "Enable the WebRTC Phone in UCP for this user"
@@ -66,24 +69,24 @@ msgstr ""
 
 #: Webrtc.class.php:431
 msgid "HTTPS is not enabled for Asterisk"
-msgstr ""
+msgstr "HTTPS не ввімкнуто для Астеріску"
 
 #: ucp/assets/js/global.js:209
 #, perl-format
 msgid "Incoming call from %s"
-msgstr ""
+msgstr "Вхідний дзвінок від %s"
 
 #: views/ucp_config.php:29
 msgid "Inherit"
-msgstr ""
+msgstr "Успадкувати"
 
 #: ucp/Webrtc.class.php:114
 msgid "New Web Phone Call"
-msgstr ""
+msgstr "Новий Веб-дзвінок"
 
 #: views/ucp_config.php:26
 msgid "No"
-msgstr ""
+msgstr "Ні"
 
 #: ucp/assets/js/global.js:83
 msgid "Originate"
@@ -135,14 +138,16 @@ msgstr ""
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
+"Непідтримувана версія Астеріск, Вам необхідно мінімум %s, встановлено %s"
 
 #: functions.inc/hook_core.php:76
 msgid "Use Certificate"
 msgstr ""
 
 #: Webrtc.class.php:321
+#, fuzzy
 msgid "WebRTC"
-msgstr ""
+msgstr "WebRTC"
 
 #: views/ucp_config.php:48
 msgid "WebRTC Certificate"
@@ -154,7 +159,7 @@ msgstr ""
 
 #: views/ucp_config.php:24
 msgid "Yes"
-msgstr ""
+msgstr "Так"
 
 #: Webrtc.class.php:336
 msgid "You have no certificates setup in Certificate Manager"
