@@ -1,0 +1,161 @@
+# This file is part of FreePBX.
+#
+# For licensing information, please see the file named LICENSE located in the module directory
+#
+# FreePBX language template for webrtc
+# Copyright (C) 2008-2016 Sangoma, Inc.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-13 13:56-0700\n"
+"PO-Revision-Date: 2016-09-13 13:56-0700\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: ucp/assets/jssiplibs/sip-0.7.5.min.js:37
+msgid ""
+")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error parsing "
+msgstr ""
+
+#: views/ucp_config.php:64
+msgid "Certificate WebRTC Phone should use for this user."
+msgstr ""
+
+#: ucp/assets/js/global.js:210
+msgid "Click this window to answer or close this window to ignore"
+msgstr ""
+
+#: ucp/assets/js/global.js:118 ucp/assets/js/global.js:486
+msgid "Connect Phone"
+msgstr ""
+
+#: webrtc.i18n.php:6
+msgid "Connectivity"
+msgstr ""
+
+#: ucp/Webrtc.class.php:114 ucp/assets/js/global.js:112
+#: ucp/assets/js/global.js:484
+msgid "Disconnect Phone"
+msgstr ""
+
+#: functions.inc/hook_core.php:62
+msgid "Enable WebRTC Old ARI Phone"
+msgstr ""
+
+#: views/ucp_config.php:19
+msgid "Enable WebRTC Phone"
+msgstr ""
+
+#: views/ucp_config.php:38
+msgid "Enable the WebRTC Phone in UCP for this user"
+msgstr ""
+
+#: functions.inc/hook_core.php:62
+#, php-format
+msgid ""
+"Enables WebRTC for this %s in the Asterisk Recording Interface (ARI). Note: "
+"ARI is depreciated in favor of UCP"
+msgstr ""
+
+#: Webrtc.class.php:431
+msgid "HTTPS is not enabled for Asterisk"
+msgstr ""
+
+#: ucp/assets/js/global.js:209
+#, perl-format
+msgid "Incoming call from %s"
+msgstr ""
+
+#: views/ucp_config.php:29
+msgid "Inherit"
+msgstr ""
+
+#: ucp/Webrtc.class.php:114
+msgid "New Web Phone Call"
+msgstr ""
+
+#: views/ucp_config.php:26
+msgid "No"
+msgstr ""
+
+#: ucp/assets/js/global.js:83
+msgid "Originate"
+msgstr ""
+
+#: ucp/assets/js/global.js:82
+msgid "Originate Call"
+msgstr ""
+
+#: ucp/Webrtc.class.php:114
+msgid "Silence Ringer"
+msgstr ""
+
+#: functions.inc/hook_core.php:77
+msgid "The Certificate to use from Certificate Manager"
+msgstr ""
+
+#: Webrtc.class.php:329 Webrtc.class.php:332
+msgid ""
+"The STUN Server address is blank. In many cases this can cause issues. "
+"Please define a valid server in the Asterisk SIP Settings module"
+msgstr ""
+
+#: webrtc.i18n.php:8
+msgid "The WebRTC Module allows an Administrator to enable a "
+msgstr ""
+
+#: functions.inc/hook_core.php:58
+msgid ""
+"The WebSockets Interface is running through PJSIP, PJSIP is not supported at "
+"this time. Please enable the chan_sip driver (along with pjsip or by itself) "
+"or alert the FreePBX Developers"
+msgstr ""
+
+#: functions.inc/hook_core.php:82
+#, php-format
+msgid ""
+"To utilize WebRTC in ARI you must add at least one certificate %s through "
+"Certificate Manager"
+msgstr ""
+
+#: ucp/assets/js/global.js:303
+msgid ""
+"Unable to start call. Please allow the WebRTC session in your browser and "
+"refresh"
+msgstr ""
+
+#: Webrtc.class.php:349 Webrtc.class.php:352
+#, php-format
+msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
+msgstr ""
+
+#: functions.inc/hook_core.php:76
+msgid "Use Certificate"
+msgstr ""
+
+#: Webrtc.class.php:321
+msgid "WebRTC"
+msgstr ""
+
+#: views/ucp_config.php:48
+msgid "WebRTC Certificate"
+msgstr ""
+
+#: webrtc.i18n.php:4
+msgid "WebRTC Phone"
+msgstr ""
+
+#: views/ucp_config.php:24
+msgid "Yes"
+msgstr ""
+
+#: Webrtc.class.php:336
+msgid "You have no certificates setup in Certificate Manager"
+msgstr ""
