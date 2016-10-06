@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-13 13:56-0700\n"
-"PO-Revision-Date: 2016-10-03 19:13+0200\n"
+"PO-Revision-Date: 2016-10-05 20:09+0200\n"
 "Last-Translator: Maxim <maxim@ua.fm>\n"
 "Language-Team: Ukrainian "
 "<http://weblate.freepbx.org/projects/freepbx/webrtc/uk_UA/>\n"
@@ -30,6 +30,7 @@ msgstr ""
 #: views/ucp_config.php:64
 msgid "Certificate WebRTC Phone should use for this user."
 msgstr ""
+"Сертифікат WebRTC телефону повинен використовувати для цього користувача."
 
 #: ucp/assets/js/global.js:210
 msgid "Click this window to answer or close this window to ignore"
@@ -58,7 +59,7 @@ msgstr "Активувати WebRTC телефон"
 
 #: views/ucp_config.php:38
 msgid "Enable the WebRTC Phone in UCP for this user"
-msgstr ""
+msgstr "Активує WebRTC телефон для цього користувача в UCP"
 
 #: functions.inc/hook_core.php:62
 #, php-format
@@ -109,6 +110,8 @@ msgid ""
 "The STUN Server address is blank. In many cases this can cause issues. "
 "Please define a valid server in the Asterisk SIP Settings module"
 msgstr ""
+"Адреса STUN сервера порожня. У багатьох випадках це може викликати проблеми. "
+"Будь ласка, визначте допустимий сервер в модулі налаштування SIP Астеріску"
 
 #: webrtc.i18n.php:8
 msgid "The WebRTC Module allows an Administrator to enable a "
@@ -120,6 +123,9 @@ msgid ""
 "this time. Please enable the chan_sip driver (along with pjsip or by itself) "
 "or alert the FreePBX Developers"
 msgstr ""
+"WebSockets Інтерфейс працює через PJSIP, PJSIP не підтримуються в даний час. "
+"Будь ласка, включите драйвер chan_sip (разом з pjsip або сам по собі) або "
+"попередьте розробників FreePBX"
 
 #: functions.inc/hook_core.php:82
 #, php-format
@@ -133,6 +139,8 @@ msgid ""
 "Unable to start call. Please allow the WebRTC session in your browser and "
 "refresh"
 msgstr ""
+"Неможливо розпочати виклик. Будь ласка, дозвольте сеанс WebRTC в вашому "
+"браузері і оновить сторінку"
 
 #: Webrtc.class.php:349 Webrtc.class.php:352
 #, php-format
@@ -142,7 +150,7 @@ msgstr ""
 
 #: functions.inc/hook_core.php:76
 msgid "Use Certificate"
-msgstr ""
+msgstr "Використовувати сертифікат"
 
 #: Webrtc.class.php:321
 #, fuzzy
@@ -151,11 +159,11 @@ msgstr "WebRTC"
 
 #: views/ucp_config.php:48
 msgid "WebRTC Certificate"
-msgstr ""
+msgstr "Сертифікат WebRTC"
 
 #: webrtc.i18n.php:4
 msgid "WebRTC Phone"
-msgstr ""
+msgstr "WebRTC телефон"
 
 #: views/ucp_config.php:24
 msgid "Yes"
