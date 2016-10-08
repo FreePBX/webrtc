@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-13 13:56-0700\n"
-"PO-Revision-Date: 2016-10-08 12:24+0200\n"
+"PO-Revision-Date: 2016-10-08 12:26+0200\n"
 "Last-Translator: psdk <hyavari26@gmail.com>\n"
 "Language-Team: Persian (Iran) "
 "<http://weblate.freepbx.org/projects/freepbx/webrtc/fa_IR/>\n"
@@ -116,7 +116,7 @@ msgstr ""
 
 #: webrtc.i18n.php:8
 msgid "The WebRTC Module allows an Administrator to enable a "
-msgstr "ماژول WebRTC به یک مدیر اجازه می دهد که فعال کنید یک "
+msgstr "ماژول WebRTC به یک مدیر اجازه می دهد که فعال کنید "
 
 #: functions.inc/hook_core.php:58
 msgid ""
