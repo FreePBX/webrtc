@@ -38,11 +38,11 @@ var WebrtcC = UCPMC.extend({
 		};
 
 		this.notification = null;
-		var st = $.cookie("webrtc-silenced");
+		var st = Cookies.get("webrtc-silenced");
 		st = (st === "1") ? true : false;
 		this.silence(st);
 
-		var rg = $.cookie("webrtc-register");
+		var rg = Cookies.get("webrtc-register");
 		this.autoRegister = (typeof rg === "undefined" || rg === "1") ? true : false;
 	},
 	settingsDisplay: function() {
@@ -291,7 +291,7 @@ var WebrtcC = UCPMC.extend({
 			$("#webrtc-silence").addClass("hidden");
 			$("#webrtc-sr .fa-check").addClass("hidden");
 		}
-		$.cookie("webrtc-silenced",(state ? "1" : "0"));
+		Cookies.set("webrtc-silenced",(state ? "1" : "0"));
 		this.silenced = state;
 	},
 	call: function(number) {
@@ -447,11 +447,11 @@ var WebrtcC = UCPMC.extend({
 		if(!this.phone.isRegistered()) {
 			this.engineEvent("registering");
 			this.register();
-			$.cookie("webrtc-register",1);
+			Cookies.set("webrtc-register",1);
 		} else {
 			this.engineEvent("registering");
 			this.unregister();
-			$.cookie("webrtc-register",0);
+			Cookies.set("webrtc-register",0);
 		}
 
 	},
