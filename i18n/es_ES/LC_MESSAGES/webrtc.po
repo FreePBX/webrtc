@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-13 13:56-0700\n"
+"POT-Creation-Date: 2016-10-31 17:17-0700\n"
 "PO-Revision-Date: 2016-06-07 10:27+0200\n"
 "Last-Translator: Ernesto <ecasas@sangoma.com>\n"
 "Language-Team: Spanish <http://weblate.freepbx.org/projects/freepbx/webrtc/"
@@ -68,7 +68,7 @@ msgstr ""
 "Habilita WebRTC para este %s en el Asterisk Recording Interface (ARI). Nota: "
 "ARI es obsoleto en favor de UCP"
 
-#: Webrtc.class.php:431
+#: Webrtc.class.php:435
 msgid "HTTPS is not enabled for Asterisk"
 msgstr ""
 
@@ -105,7 +105,7 @@ msgstr ""
 msgid "The Certificate to use from Certificate Manager"
 msgstr "Certificado a usar desde el Gestor de Certificados"
 
-#: Webrtc.class.php:329 Webrtc.class.php:332
+#: Webrtc.class.php:333 Webrtc.class.php:336
 msgid ""
 "The STUN Server address is blank. In many cases this can cause issues. "
 "Please define a valid server in the Asterisk SIP Settings module"
@@ -145,7 +145,7 @@ msgstr ""
 "no se pudo iniciar llamada. Por favor permita la sesión WebRTC en su "
 "navegador y refresque"
 
-#: Webrtc.class.php:349 Webrtc.class.php:352
+#: Webrtc.class.php:353 Webrtc.class.php:356
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
@@ -155,7 +155,7 @@ msgstr ""
 msgid "Use Certificate"
 msgstr "Use Certificado"
 
-#: Webrtc.class.php:321
+#: Webrtc.class.php:325
 msgid "WebRTC"
 msgstr ""
 
@@ -171,7 +171,7 @@ msgstr "Teléfono WebRTC"
 msgid "Yes"
 msgstr "Si"
 
-#: Webrtc.class.php:336
+#: Webrtc.class.php:340
 msgid "You have no certificates setup in Certificate Manager"
 msgstr ""
 

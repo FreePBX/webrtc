@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-13 13:56-0700\n"
+"POT-Creation-Date: 2016-10-31 17:17-0700\n"
 "PO-Revision-Date: 2016-10-05 20:09+0200\n"
 "Last-Translator: Maxim <maxim@ua.fm>\n"
 "Language-Team: Ukrainian <http://weblate.freepbx.org/projects/freepbx/webrtc/"
@@ -69,7 +69,7 @@ msgid ""
 "ARI is depreciated in favor of UCP"
 msgstr ""
 
-#: Webrtc.class.php:431
+#: Webrtc.class.php:435
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "HTTPS не ввімкнуто для Астеріску"
 
@@ -106,7 +106,7 @@ msgstr ""
 msgid "The Certificate to use from Certificate Manager"
 msgstr ""
 
-#: Webrtc.class.php:329 Webrtc.class.php:332
+#: Webrtc.class.php:333 Webrtc.class.php:336
 msgid ""
 "The STUN Server address is blank. In many cases this can cause issues. "
 "Please define a valid server in the Asterisk SIP Settings module"
@@ -143,7 +143,7 @@ msgstr ""
 "Неможливо розпочати виклик. Будь ласка, дозвольте сеанс WebRTC в вашому "
 "браузері і оновить сторінку"
 
-#: Webrtc.class.php:349 Webrtc.class.php:352
+#: Webrtc.class.php:353 Webrtc.class.php:356
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
@@ -153,7 +153,7 @@ msgstr ""
 msgid "Use Certificate"
 msgstr "Використовувати сертифікат"
 
-#: Webrtc.class.php:321
+#: Webrtc.class.php:325
 #, fuzzy
 msgid "WebRTC"
 msgstr "WebRTC"
@@ -170,6 +170,6 @@ msgstr "WebRTC телефон"
 msgid "Yes"
 msgstr "Так"
 
-#: Webrtc.class.php:336
+#: Webrtc.class.php:340
 msgid "You have no certificates setup in Certificate Manager"
 msgstr ""
