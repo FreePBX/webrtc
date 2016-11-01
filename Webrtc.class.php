@@ -158,11 +158,15 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		$results = $sth->fetchAll(\PDO::FETCH_ASSOC);
 		if(!empty($results)) {
 			foreach($results as $row) {
-				$this->deleteDevice($row['device']);
+				$this->removeDevice($row['user']);
 			}
 		}
 
 		$sql="DROP TABLE webrtc_clients";
+		$sth = $this->db->prepare($sql);
+		$sth->execute();
+
+		$sql="DROP TABLE webrtc_settings";
 		$sth = $this->db->prepare($sql);
 		$sth->execute();
 		return true;
