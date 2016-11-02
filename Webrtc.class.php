@@ -107,17 +107,6 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 			$this->setConfig('prefix','99');
 		}
 
-		/*
-		try {
-			$stunaddr = $this->freepbx->Sipsettings->getConfig("stunaddr");
-		} catch(\Exception $e) {
-			$stunaddr = "";
-		}
-		if(empty($stunaddr)) {
-			out("<strong style='color:red'>"._("The STUN Server address is blank. In many cases this can cause issues. Please define a valid server in the Asterisk SIP Settings module")."</strong>");
-		}
-		*/
-
 		$s = $this->getConfig('upgrade1');
 		if(empty($s)) {
 			$clients = $this->getClientsEnabled();
@@ -328,12 +317,13 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		);
 		if($this->validVersion() === true && !empty($mcerts)) {
 			try {
-				$stunaddr = $this->freepbx->Sipsettings->getConfig("stunaddr");
+				$stunaddr = $this->freepbx->Sipsettings->getConfig("webrtcstunaddr");
+				$stunaddr = !empty($stunaddr) ? $stunaddr : $this->freepbx->Sipsettings->getConfig("stunaddr");
 				if(empty($stunaddr)) {
-					$message = _("The STUN Server address is blank. In many cases this can cause issues. Please define a valid server in the Asterisk SIP Settings module");
+					$message = _("The STUN Server address is blank. In many cases this can cause issues. Please define a valid server in the Asterisk SIP Settings module under WebRTC Settings");
 				}
 			} catch(\Exception $e) {
-				$message = _("The STUN Server address is blank. In many cases this can cause issues. Please define a valid server in the Asterisk SIP Settings module");
+				$message = _("The STUN Server address is blank. In many cases this can cause issues. Please define a valid server in the Asterisk SIP Settings module under WebRTC Settings");
 			}
 			$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("mode" => $mode, "enabled" => $enabled, "webrtcmessage" => $message, "certs" => $mcerts, "config" => true));
 		} elseif($this->validVersion() === true) {
@@ -441,7 +431,9 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		$results['breaker'] = !empty($results['breaker']) ? (bool)$results['breaker'] : false;
 		$results['cid'] = !empty($results['cid']) ? $results['cid'] : '';
 		try {
-			$results['stunaddr'] = $this->freepbx->Sipsettings->getConfig("stunaddr");
+			$stunaddr = $this->freepbx->Sipsettings->getConfig("webrtcstunaddr");
+			$stunaddr = !empty($stunaddr) ? $stunaddr : $this->freepbx->Sipsettings->getConfig("stunaddr");
+			$results['stunaddr'] = $stunaddr;
 		} catch(\Exception $e) {}
 		$results['stunaddr'] = !empty($results['stunaddr']) ? "stun:".$results['stunaddr'] : "stun:stun.l.google.com:19302";
 		return $results;
