@@ -316,16 +316,7 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 			"content" => ""
 		);
 		if($this->validVersion() === true && !empty($mcerts)) {
-			try {
-				$stunaddr = $this->freepbx->Sipsettings->getConfig("webrtcstunaddr");
-				$stunaddr = !empty($stunaddr) ? $stunaddr : $this->freepbx->Sipsettings->getConfig("stunaddr");
-				if(empty($stunaddr)) {
-					$message = _("The STUN Server address is blank. In many cases this can cause issues. Please define a valid server in the Asterisk SIP Settings module under WebRTC Settings");
-				}
-			} catch(\Exception $e) {
-				$message = _("The STUN Server address is blank. In many cases this can cause issues. Please define a valid server in the Asterisk SIP Settings module under WebRTC Settings");
-			}
-			$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("mode" => $mode, "enabled" => $enabled, "webrtcmessage" => $message, "certs" => $mcerts, "config" => true));
+			$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("mode" => $mode, "enabled" => $enabled, "webrtcmessage" => '', "certs" => $mcerts, "config" => true));
 		} elseif($this->validVersion() === true) {
 			$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("mode" => $mode, "enabled" => $enabled, "webrtcmessage" => _('You have no certificates setup in Certificate Manager'), "certs" => $mcerts, "config" => false));
 		} else {
