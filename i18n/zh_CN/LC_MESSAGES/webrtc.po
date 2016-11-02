@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-31 17:17-0700\n"
+"POT-Creation-Date: 2016-11-02 09:25-0700\n"
 "PO-Revision-Date: 2015-11-23 13:55+0200\n"
 "Last-Translator: james <zhulizhong@gmail.com>\n"
 "Language-Team: Simplified Chinese <http://weblate.freepbx.org/projects/"
@@ -66,7 +66,7 @@ msgid ""
 "ARI is depreciated in favor of UCP"
 msgstr "在ARI中对%s 开启WebRTC。注意：UCP中已经停止使用ARI"
 
-#: Webrtc.class.php:435
+#: Webrtc.class.php:425
 msgid "HTTPS is not enabled for Asterisk"
 msgstr ""
 
@@ -103,13 +103,12 @@ msgstr ""
 msgid "The Certificate to use from Certificate Manager"
 msgstr "使用的证书来自于证书管理员"
 
-#: Webrtc.class.php:333 Webrtc.class.php:336
+#: Webrtc.class.php:323 Webrtc.class.php:326
 msgid ""
 "The STUN Server address is blank. In many cases this can cause issues. "
-"Please define a valid server in the Asterisk SIP Settings module"
+"Please define a valid server in the Asterisk SIP Settings module under "
+"WebRTC Settings"
 msgstr ""
-"无STUN 服务器地址。很多情况下，就是因为这个问题导致。请在Asterisk SIP 设置模"
-"块中定义有效的服务器地址"
 
 #: webrtc.i18n.php:8
 msgid "The WebRTC Module allows an Administrator to enable a "
@@ -137,7 +136,7 @@ msgid ""
 "refresh"
 msgstr "不能发起呼叫，请在浏览器设置支持WebRTC，或者重新刷新浏览器"
 
-#: Webrtc.class.php:353 Webrtc.class.php:356
+#: Webrtc.class.php:343 Webrtc.class.php:346
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr "不能支持Asterisk的版本，用户至少需要%s, 但是现在的版本是%s"
@@ -146,7 +145,7 @@ msgstr "不能支持Asterisk的版本，用户至少需要%s, 但是现在的版
 msgid "Use Certificate"
 msgstr "使用证书"
 
-#: Webrtc.class.php:325
+#: Webrtc.class.php:314
 msgid "WebRTC"
 msgstr ""
 
@@ -162,9 +161,16 @@ msgstr "WebRTC 电话"
 msgid "Yes"
 msgstr "是"
 
-#: Webrtc.class.php:340
+#: Webrtc.class.php:330
 msgid "You have no certificates setup in Certificate Manager"
 msgstr "在证书管理员中没有证书设置"
+
+#~ msgid ""
+#~ "The STUN Server address is blank. In many cases this can cause issues. "
+#~ "Please define a valid server in the Asterisk SIP Settings module"
+#~ msgstr ""
+#~ "无STUN 服务器地址。很多情况下，就是因为这个问题导致。请在Asterisk SIP 设置"
+#~ "模块中定义有效的服务器地址"
 
 #~ msgid "Unsupported Version of Asterisk, You need at least %s you have &s"
 #~ msgstr "不能支持Asterisk，至少需要版本%s，现在是&s"
