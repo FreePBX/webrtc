@@ -524,7 +524,7 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 	}
 	public function delUser($extension, $editmode=false) {
 		if(!$editmode) {
-			$this->deleteDevice($extension);
+			$this->removeDevice($extension);
 		}
 	}
 }
