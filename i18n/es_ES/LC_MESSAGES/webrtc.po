@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-02 12:13-0700\n"
-"PO-Revision-Date: 2016-12-10 22:42+0200\n"
+"PO-Revision-Date: 2016-12-11 06:55+0200\n"
 "Last-Translator: Ernesto <ecasas@sangoma.com>\n"
 "Language-Team: Spanish "
 "<http://weblate.freepbx.org/projects/freepbx/webrtc/es_ES/>\n"
@@ -25,18 +25,20 @@ msgstr ""
 msgid ""
 ")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error parsing "
 msgstr ""
+")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error parsing "
 
 #: views/ucp_config.php:64
 msgid "Certificate WebRTC Phone should use for this user."
-msgstr ""
+msgstr "Certificado del teléfono WebRTC debe utilizar para este usuario."
 
 #: ucp/assets/js/global.js:210
 msgid "Click this window to answer or close this window to ignore"
 msgstr ""
+"Haga clic en esta ventana para responder o cerrar esta ventana para ignorar"
 
 #: ucp/assets/js/global.js:118 ucp/assets/js/global.js:486
 msgid "Connect Phone"
-msgstr ""
+msgstr "Conectar el teléfono"
 
 #: webrtc.i18n.php:6
 msgid "Connectivity"
@@ -45,7 +47,7 @@ msgstr "Conectividad"
 #: ucp/Webrtc.class.php:114 ucp/assets/js/global.js:112
 #: ucp/assets/js/global.js:484
 msgid "Disconnect Phone"
-msgstr ""
+msgstr "Desconectar Teléfono"
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
@@ -57,7 +59,7 @@ msgstr "Habilitar Teléfono WebRTC"
 
 #: views/ucp_config.php:38
 msgid "Enable the WebRTC Phone in UCP for this user"
-msgstr ""
+msgstr "Habilitar el teléfono WebRTC en UCP para este usuario"
 
 #: functions.inc/hook_core.php:62
 #, php-format
@@ -70,12 +72,12 @@ msgstr ""
 
 #: Webrtc.class.php:416
 msgid "HTTPS is not enabled for Asterisk"
-msgstr ""
+msgstr "HTTPS no está habilitado para Asterisk"
 
 #: ucp/assets/js/global.js:209
 #, perl-format
 msgid "Incoming call from %s"
-msgstr ""
+msgstr "Llamada entrante de %s"
 
 #: views/ucp_config.php:29
 msgid "Inherit"
@@ -99,7 +101,7 @@ msgstr "Originar Llamada"
 
 #: ucp/Webrtc.class.php:114
 msgid "Silence Ringer"
-msgstr ""
+msgstr "Silenciar Timbrado"
 
 #: functions.inc/hook_core.php:77
 msgid "The Certificate to use from Certificate Manager"
@@ -107,7 +109,7 @@ msgstr "Certificado a usar desde el Gestor de Certificados"
 
 #: webrtc.i18n.php:8
 msgid "The WebRTC Module allows an Administrator to enable a "
-msgstr ""
+msgstr "El Módulo WebRTC permite a un Administrador habilitar un "
 
 #: functions.inc/hook_core.php:58
 msgid ""
@@ -148,7 +150,7 @@ msgstr "Use Certificado"
 
 #: Webrtc.class.php:314
 msgid "WebRTC"
-msgstr ""
+msgstr "WebRTC"
 
 #: views/ucp_config.php:48
 msgid "WebRTC Certificate"
@@ -165,6 +167,7 @@ msgstr "Si"
 #: Webrtc.class.php:321
 msgid "You have no certificates setup in Certificate Manager"
 msgstr ""
+"No tiene configuración de certificados en el Administrador de certificados"
 
 #~ msgid ""
 #~ "The STUN Server address is blank. In many cases this can cause issues. "
