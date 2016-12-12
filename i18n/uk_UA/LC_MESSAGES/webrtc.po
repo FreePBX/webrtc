@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-02 12:13-0700\n"
-"PO-Revision-Date: 2016-12-09 20:30+0200\n"
+"PO-Revision-Date: 2016-12-12 15:34+0200\n"
 "Last-Translator: Maxim <maxim@ua.fm>\n"
 "Language-Team: Ukrainian "
 "<http://weblate.freepbx.org/projects/freepbx/webrtc/uk_UA/>\n"
@@ -80,7 +80,7 @@ msgstr "Вхідний дзвінок від %s"
 
 #: views/ucp_config.php:29
 msgid "Inherit"
-msgstr "Успадкувати"
+msgstr "Успадковувати"
 
 #: ucp/Webrtc.class.php:114
 msgid "New Web Phone Call"
