@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-02 12:13-0700\n"
-"PO-Revision-Date: 2016-12-12 21:58+0200\n"
+"PO-Revision-Date: 2016-12-13 01:12+0200\n"
 "Last-Translator: Alexander <alexander.schley@paranagua.pr.gov.br>\n"
 "Language-Team: Portuguese (Brazil) "
 "<http://weblate.freepbx.org/projects/freepbx/webrtc/pt_BR/>\n"
@@ -85,7 +85,7 @@ msgstr ""
 
 #: views/ucp_config.php:26
 msgid "No"
-msgstr "Não"
+msgstr "Yes"
 
 #: ucp/assets/js/global.js:83
 msgid "Originate"
