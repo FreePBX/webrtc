@@ -1,14 +1,15 @@
 var WebrtcC = UCPMC.extend({
 	init: function() {
-		this.windowId = null;
 		this.phone = null;
 		this.activeCalls = {};
 		this.activeCallId = null;
 		this.answering = false;
-		this.stick = false;
 		this.userBlocked = false;
 		this.silenced = false;
 		this.autoRegister = false;
+		this.displayState = null;
+		this.state = null;
+		this.timerObject = null;
 		this.callBinds = [
 			"progress",
 			"accepted",
@@ -51,120 +52,150 @@ var WebrtcC = UCPMC.extend({
 	settingsHide: function() {
 
 	},
-	/*
-	contactClickOptions: function(type) {
-		if (type != "number" || !this.staticsettings.enableOriginate) {
-			return false;
-		}
-		return [ { text: _("Originate Call"), function: "contactClickInitiate", type: "phone" } ];
+	addSimpleWidget: function(widget_id) {
+		this.initiateLibrary();
 	},
-	contactClickInitiate: function(did) {
-		var Webrtc = this,
-				sfrom = "",
-				temp = "",
-				name = did,
-				selected = "";
-		if (UCP.validMethod("Contactmanager", "lookup")) {
-			if (typeof UCP.Modules.Contactmanager.lookup(did).displayname !== "undefined") {
-				name = UCP.Modules.Contactmanager.lookup(did).displayname;
-			} else {
-				temp = String(did).length == 11 ? String(did).substring(1) : did;
-				if (typeof UCP.Modules.Contactmanager.lookup(temp).displayname !== "undefined") {
-					name = UCP.Modules.Contactmanager.lookup(temp).displayname;
-				}
-			}
-		}
-		$.each(Webrtc.staticsettings.extensions, function(i, v) {
-			sfrom = sfrom + "<option>" + v + "</option>";
+	displaySimpleWidget: function(widget_id) {
+		var $this = this;
+		$("#menu_webrtc .status span").text(this.displayState);
+
+		var st = Cookies.get("webrtc-silenced");
+		st = (st === "1") ? true : false;
+
+		$("#webrtc-silence-switch").prop("checked",st);
+
+		$("#webrtc-silence-switch").bootstrapToggle('destroy');
+		$("#webrtc-silence-switch").bootstrapToggle({
+			on: _("Enable"),
+			off: _("Disable")
 		});
 
-		selected = "<option value=\"" + did + "\" selected>" + name + "</option>";
-			UCP.showDialog(_("Originate Call"),
-			"<label for=\"originateFrom\">From:</label> <select id=\"originateFrom\" class=\"form-control\">" + sfrom + "</select><label for=\"originateTo\">To:</label><select class=\"form-control Tokenize Fill\" id=\"originateTo\" multiple>" + selected + "</select><button class=\"btn btn-default\" id=\"originateCall\" style=\"margin-left: 72px;\">" + _("Originate") + "</button>",
-			200,
-			250,
-			function() {
-				$("#originateTo").tokenize({ maxElements: 1, datas: "index.php?quietmode=1&module=webrtc&command=contacts" });
-				$("#originateCall").click(function() {
-					setTimeout(function() {
-						UCP.Modules.Webrtc.originate();
-					}, 50);
-				});
-				$("#originateTo").keypress(function(event) {
-					if (event.keyCode == 13) {
-						setTimeout(function() {
-							UCP.Modules.Webrtc.originate();
-						}, 50);
-					}
-				});
+		$("#webrtc-disconnect-switch").prop("checked",!this.autoRegister);
+
+		$("#webrtc-disconnect-switch").bootstrapToggle('destroy');
+		$("#webrtc-disconnect-switch").bootstrapToggle({
+			on: _("Enable"),
+			off: _("Disable")
+		});
+
+		$("#webrtc-silence-switch").change(function() {
+			$this.silence();
+		});
+		$("#webrtc-disconnect-switch").change(function(e) {
+			$this.toggleRegister();
+		});
+
+		if(this.state == "hold") {
+			this.switchState('accepted');
+			this.switchState('hold');
+		} else {
+			this.switchState(this.state);
+		}
+
+		if(typeof this.phone === "object" && this.phone.isRegistered()) {
+			$("#menu_webrtc .action").prop("disable",false);
+		}
+
+		$("#menu_webrtc .keypad td").click(function() {
+			var text = $("#menu_webrtc .dialpad").val() + $(this).data("num"),
+					button = $("#menu_webrtc button.action");
+			if ($this.state == "registered" || $this.state == "accepted") {
+				if ($this.state == "registered") {
+					$( "#menu_webrtc .message").text("To: " + text);
+				}
+				$("#menu_webrtc .dialpad").val(text);
+				$this.DTMF($(this).data("num"));
+				button.prop("disabled", false);
+				$("#menu_webrtc .message-container").textfill();
 			}
-		);
+		});
+
+		$("#menu_webrtc .clear-input").click(function() {
+			var button = $("#menu_webrtc button.action");
+			$("#menu_webrtc .dialpad").val("");
+			if ($this.state == "registered") {
+				$( "#menu_webrtc .message").text("");
+				button.prop("disabled", true);
+			}
+		});
+		$("#menu_webrtc .dialpad").keyup(function() {
+			var button = $(this).parents(".window").find("button.action"),
+					text = $("#menu_webrtc .dialpad").val();
+			if ($(this).val().length === 0 && ($this.state == "accepted")) {
+				$( "#menu_webrtc .message").text("");
+				button.prop("disabled", true);
+			} else {
+				$( "#menu_webrtc .message").text("To: " + text);
+				$this.DTMF(text.slice(-1));
+				button.prop("disabled", false);
+			}
+			$("#menu_webrtc .message-container").textfill();
+		});
+		$("#menu_webrtc button.action").click(function() {
+			switch ($this.state) {
+				case "registered":
+					$this.call($("#menu_webrtc .dialpad").val());
+				break;
+				case "hold":
+				case "accepted":
+					$this.hangup();
+				break;
+				case "invite":
+					$this.answer();
+				break;
+			}
+		});
+		$("#menu_webrtc button.secondaction").click(function() {
+			switch ($this.state) {
+				case "hold":
+				case "accepted":
+					$this.toggleHold();
+				break;
+				case "invite":
+					$this.hangup();
+				break;
+			}
+		});
+		$("#menu_webrtc .message-container").textfill();
 	},
-	*/
+	deleteSimpleWidget: function(widget_id) {
+		if(this.phone !== null) {
+			this.disconnect();
+		}
+	},
 	engineEvent: function(type, event) {
 		console.log("Engine " + type);
 		switch (type){
 			case "invite":
 				this.manageSession(event,"inbound");
+				this.switchState("invite");
 			break;
 			case "registered":
-				$("#nav-btn-webrtc .fa-phone").removeClass("registering");
-				$("#webrtc-dc a span").text(_("Disconnect Phone"));
-				$("#nav-btn-webrtc .fa-phone").css("color", "green");
+				this.switchState("registered");
 			break;
 			case "unregistered":
+				this.switchState("unregistered");
+			break;
 			case "registrationFailed":
-				$("#nav-btn-webrtc .fa-phone").removeClass("registering");
-				$("#webrtc-dc a span").text(_("Connect Phone"));
-				$("#nav-btn-webrtc .fa-phone").css("color", "yellow");
+				this.switchState("registrationfailed");
 			break;
 			case "connected":
-				$("#webrtc-dc").removeClass("hidden");
-				$("#nav-btn-webrtc .fa-phone").removeClass("connecting");
-				$("#nav-btn-webrtc .fa-phone").css("color", "yellow");
-				if(this.autoRegister) {
-					$("#nav-btn-webrtc .fa-phone").addClass("registering");
-				}
+				this.switchState("connected");
 			break;
 			case "disconnected":
-				$("#webrtc-dc").addClass("hidden");
-				$("#nav-btn-webrtc .fa-phone").removeClass("connecting");
-				$("#nav-btn-webrtc .fa-phone").removeClass("registering");
-				$("#nav-btn-webrtc .fa-phone").css("color", "red");
+				this.switchState("disconnected");
 			break;
 			case "connecting":
-				$("#nav-btn-webrtc .fa-phone").css("color", "red");
-				$("#nav-btn-webrtc .fa-phone").addClass("connecting");
-				$("#nav-btn-webrtc .fa-phone").removeClass("registering");
+				this.switchState("connecting");
 			break;
 			case "registering": //custom event type
-				$("#nav-btn-webrtc .fa-phone").addClass("registering");
+				this.switchState("registering");
 			break;
 		}
 	},
-	setPhone: function(stick, s, m) {
-		if (typeof stick !== "undefined" && stick) {
-			this.stick = true;
-		}
-		var Webrtc = this,
-				message = (typeof m !== "undefined") ? m : "",
-				state = (typeof s !== "undefined") ? s : "call";
-		if (this.windowId === null) {
-			this.windowId = Math.floor((Math.random() * 1000) + 1);
-		}
-		if ($( "#messages-container .phone-box[data-id=\"" + this.windowId + "\"]").length === 0) {
-			UCP.addPhone("Webrtc", this.windowId, state, message, this.contactOptions, function(id, state, message) {
-				$("#messages-container .phone-box[data-id=\"" + Webrtc.windowId + "\"] .contactDisplay .contactInfo span").text(message);
-				$("#messages-container .phone-box[data-id=\"" + Webrtc.windowId + "\"] .contactDisplay .contactInfo").textfill();
-				Webrtc.switchState(state);
-			});
-		} else {
-			$( "#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .message").text(message);
-			$("#messages-container .phone-box .message-container").textfill();
-			$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .contactDisplay .contactInfo span").text(message);
-			$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .contactDisplay .contactInfo").textfill();
-			Webrtc.switchState(state);
-		}
+	setDisplayState: function(state) {
+		this.displayState = state;
+		$("#menu_webrtc .status span").text(this.displayState);
 	},
 	playRing: function() {
 		if(!this.silenced) {
@@ -178,12 +209,11 @@ var WebrtcC = UCPMC.extend({
 	manageSession: function(session, direction) {
 		var Webrtc = this,
 				id,
-				cnam,
-				cnum,
 				displayName,
 				status,
-				call = session,
-				uri = call.remoteIdentity.uri;
+				cnum,
+				cnam,
+				call = session;
 
 		id = Math.floor((Math.random() * 100000) + 1);
 		// If the session exists with active call reject it.
@@ -199,16 +229,16 @@ var WebrtcC = UCPMC.extend({
 			this.activeCalls[id] = call;
 		}
 
-		cnam = this.activeCalls[id].remoteIdentity.displayName || "";
 		cnum = this.activeCalls[id].remoteIdentity.uri.user;
+		cnam = this.activeCalls[this.activeCallId].remoteIdentity.displayName || "";
 		displayName = (cnam !== "") ? cnam + " <" + cnum + ">" : cnum;
-		$("#messages-container .phone-box[data-id=\""+this.windowId+"\"] .window .contactDisplay .contactImage").css("background-image",'url("?quietmode=1&module=Webrtc&command=cimage&did='+cnum+'")');
+		$("#menu_webrtc .contactDisplay .contactImage").css("background-image",'url("?quietmode=1&module=Webrtc&command=cimage&did='+cnum+'")');
+		Webrtc.answering = false;
 		if (direction === "inbound") {
-			this.setPhone(false, "answer", "From: " + displayName);
 			if (UCP.notify) {
 				this.notification = new Notify(sprintf(_("Incoming call from %s"), displayName), {
 					body: _("Click this window to answer or close this window to ignore"),
-					icon: "modules/Faxpro/assets/images/fax.png",
+					icon: "modules/Webrtc/assets/images/no_user_logo.png", //TODO: get the user logo
 					notifyClose: function() {
 						if (Webrtc.answering) {
 							Webrtc.answering = false;
@@ -219,6 +249,7 @@ var WebrtcC = UCPMC.extend({
 					notifyClick: function() {
 						Webrtc.answering = true;
 						Webrtc.answer();
+						$(".custom-widget[data-widget_rawname=webrtc]").click();
 						Webrtc.notification.close();
 					}
 				});
@@ -236,43 +267,40 @@ var WebrtcC = UCPMC.extend({
 		console.log("Session " + type);
 		switch (type){
 			case "terminated":
+				this.switchState("terminated");
 				this.endCall(data, cause);
-				UCP.removeGlobalMessage();
 			break;
 			case "accepted":
+				this.switchState("accepted");
 				this.startCall(data);
 			break;
 			case "progress":
 				this.switchState("progress");
 			break;
 			case "dtmf":
+				this.switchState("dtmf");
 			break;
 			case "muted":
+				this.switchState("muted");
 			break;
 			case "unmuted":
+				this.switchState("unmuted");
 			break;
 		}
 	},
 	endCall: function(message, cause) {
 		this.activeCalls[this.activeCallId] = null;
 		this.activeCallId = null;
-		if (!this.stick) {
-			UCP.removePhone(this.windowId);
-			this.windowId = null;
-		} else {
-			this.switchState();
-		}
 		if (this.notification !== null) {
 			this.notification.close();
 		}
 		if(typeof cause !== "undefined" && cause === SIP.C.causes.USER_DENIED_MEDIA_ACCESS) {
 			this.userBlocked = true;
 		}
-		$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .btn-primary[data-type=\"call\"]").prop("disabled", false);
+		$("#menu_webrtc .btn-primary").prop("disabled", false);
 		this.stopRing();
 	},
 	startCall: function(event) {
-		this.switchState("hangup");
 		if (this.notification !== null) {
 			this.notification.close();
 		}
@@ -281,22 +309,22 @@ var WebrtcC = UCPMC.extend({
 	silence: function(state) {
 		state = (typeof state !== "undefined") ? state : !this.silenced;
 		if(!$("#webrtc-silence").length) {
-			$("#nav-btn-webrtc .fa-phone").after('<i id="webrtc-silence" class="fa fa-ban fa-stack-2x hidden"></i>');
+			$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").after('<i id="webrtc-silence" class="fa fa-ban fa-stack-2x hidden"></i>');
 		}
 		if(state) {
 			this.stopRing();
 			$("#webrtc-silence").removeClass("hidden");
-			$("#webrtc-sr .fa-check").removeClass("hidden");
+			$("#webrtc-silence .fa-check").removeClass("hidden");
 		} else {
 			$("#webrtc-silence").addClass("hidden");
-			$("#webrtc-sr .fa-check").addClass("hidden");
+			$("#webrtc-silence .fa-check").addClass("hidden");
 		}
 		Cookies.set("webrtc-silenced",(state ? "1" : "0"));
 		this.silenced = state;
 	},
 	call: function(number) {
 		if (this.phone.isConnected() && !this.userBlocked) {
-			$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .btn-primary[data-type=\"call\"]").prop("disabled", true);
+			$("#menu_webrtc .btn-primary").prop("disabled", true);
 			var session = this.phone.invite(number, this.callOptions);
 			this.manageSession(session,"outbound");
 		} else if(this.phone.isConnected() && this.userBlocked) {
@@ -306,33 +334,29 @@ var WebrtcC = UCPMC.extend({
 	answer: function() {
 		if (this.activeCallId !== null) {
 			this.answering = true;
-			this.switchState("connecting");
 			this.activeCalls[this.activeCallId].accept(this.callOptions);
 		}
 	},
 	toggleHold: function() {
 		if (this.activeCallId !== null) {
 			var call = this.activeCalls[this.activeCallId],
-					holds = this.activeCalls[this.activeCallId].isOnHold(),
-					button = $("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .window button.secondaction");
+					holds = this.activeCalls[this.activeCallId].isOnHold();
 			if (!holds.local) {
-				button.removeClass().addClass("btn btn-warning secondaction");
-				button.text("Unhold");
+				this.switchState("hold");
 				call.hold();
 			} else {
-				button.removeClass().addClass("btn btn-success secondaction");
-				button.text("Hold");
+				this.switchState("unhold");
 				call.unhold();
 			}
 		}
 	},
 	DTMF: function(num) {
-		if (this.activeCallId !== null) {
+		if (this.state == "accepted" && this.activeCallId !== null) {
 			this.activeCalls[this.activeCallId].dtmf(num);
 		}
 	},
 	hangup: function() {
-		if (this.activeCallId !== null) {
+		if ((this.state == "accepted" || this.state == "invite") && this.activeCallId !== null) {
 			this.activeCalls[this.activeCallId].terminate();
 		}
 		this.stopRing();
@@ -347,59 +371,168 @@ var WebrtcC = UCPMC.extend({
 
 	},
 	switchState: function(t) {
-		var button = $("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .window button.action"),
-				secondbutton = $("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .window button.secondaction"),
-				input = $("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .window input.dialpad"),
-				type = (typeof t !== "undefined") ? t : "call";
+		var button = $("#menu_webrtc button.action"),
+				secondbutton = $("#menu_webrtc button.secondaction"),
+				input = $("#menu_webrtc input.dialpad"),
+				type = (typeof t !== "undefined" && t !== null) ? t : "registered",
+				$this = this;
+		this.state = type;
+		console.log(type);
 		button.data("type", type);
 		switch (type){
 			case "connecting":
 				this.stopRing();
-				$(".contactInfo span").text("Connecting Please Wait...");
-				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .activeCallSession").hide();
-				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .contactDisplay").show();
-				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .window .actions .right").hide();
+				$("#menu_webrtc .activeCallSession .keypad").hide();
+				$("#menu_webrtc .activeCallSession .input-container").hide();
+				$("#menu_webrtc .contactDisplay").show();
+				$("#menu_webrtc .actions .right").hide();
 				input.prop("disabled", true);
 				button.prop("disabled", false);
 				button.removeClass().addClass("btn btn-danger action").text("Hangup");
 			break;
-			case "progress":
+			case "invite":
+				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").addClass("shake");
 				this.playRing();
-				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .activeCallSession").hide();
-				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .contactDisplay").show();
-				input.prop("disabled", true);
-				button.prop("disabled", false);
-				button.removeClass().addClass("btn btn-danger action").text("Hangup");
-			break;
-			case "answer":
-				this.playRing();
-				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .activeCallSession").hide();
-				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .contactDisplay").show();
+				$("#menu_webrtc .activeCallSession .keypad").hide();
+				$("#menu_webrtc .activeCallSession .input-container").hide();
+				$("#menu_webrtc .contactDisplay").show();
 				secondbutton.removeClass().addClass("btn btn-danger secondaction").text("Ignore");
-				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .window .actions .right").show();
-				input.prop("disabled", true);
-				button.prop("disabled", false);
+				$("#menu_webrtc .actions .right").show();
 				button.removeClass().addClass("btn btn-success action").text("Answer");
+				button.prop("disabled", false);
 			break;
-			case "hangup":
-				this.stopRing();
-				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .activeCallSession").show();
-				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .contactDisplay").hide();
+			case "hold":
+				secondbutton.removeClass().addClass("btn btn-success secondaction").text("UnHold");
+				secondbutton.css("background-color","orange");
+				if(!$("#webrtc-hold").length) {
+					$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").after('<i id="webrtc-hold" class="fa fa-pause fa-stack-2x blink hidden"></i>');
+				}
+				$("#webrtc-hold").removeClass("hidden");
+			break;
+			case "unhold":
 				secondbutton.removeClass().addClass("btn btn-success secondaction").text("Hold");
-				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .window .actions .right").show();
+				secondbutton.css("background-color","");
+				if($("#webrtc-hold").length) {
+					$("#webrtc-hold").addClass("hidden");
+				}
+
+				this.state = "accepted";
+			break;
+			case "accepted":
+				this.stopRing();
+				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").removeClass("shake");
+				$("#menu_webrtc .contactDisplay").hide();
+				$("#menu_webrtc .activeCallSession .keypad").show();
+				$("#menu_webrtc .activeCallSession .input-container").show();
+				secondbutton.removeClass().addClass("btn btn-success secondaction").text("Hold");
+				secondbutton.css("color","");
+				$("#menu_webrtc .actions .right").show();
 
 				input.prop("disabled", false);
 				button.prop("disabled", false);
 				button.removeClass().addClass("btn btn-danger action").text("Hangup");
+				$("#menu_webrtc .contact-info").addClass("in");
+				$("#webrtc-timer-container").remove();
+				clearInterval(this.timerObject);
+				$('#webrtc-disconnect-switch').bootstrapToggle('disable');
+				var updateTimer = function() {
+					if($this.activeCallId === null) {
+						clearInterval($this.timerObject);
+						$("#menu_webrtc .contact-info").removeClass("in");
+						$('#webrtc-disconnect-switch').bootstrapToggle('enable');
+						return;
+					}
+					//
+					var start = moment($this.activeCalls[$this.activeCallId].startTime);
+					var end = moment();
+					var duration = moment.duration(end.diff(start));
+
+					var padLeft = function(nr){
+						return Array(2-String(nr).length+1).join('0')+nr;
+					};
+
+					var time = padLeft(duration.hours())+":"+padLeft(duration.minutes())+":"+padLeft(duration.seconds());
+
+					if($("#menu_webrtc .contact-info .timer").is(":visible")) {
+						$("#menu_webrtc .contact-info .timer").text(time);
+					} else {
+						if(!$("#webrtc-timer-container").length) {
+							$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").after('<div id="webrtc-timer-container"><div class="timer">'+time+'</div></div>');
+						} else {
+							$("#webrtc-timer-container .timer").text(time);
+						}
+					}
+				};
+				updateTimer();
+				this.timerObject = setInterval(updateTimer,1000);
+
+				var cnam = this.activeCalls[this.activeCallId].remoteIdentity.displayName || "",
+						cnum = this.activeCalls[this.activeCallId].remoteIdentity.uri.user,
+						displayName = (cnam !== "") ? cnam + " <" + cnum + ">" : cnum;
+				$("#menu_webrtc .contact-info .contact").text(displayName);
 			break;
-			default:
+			case "terminated":
 				this.stopRing();
-				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .activeCallSession").show();
-				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .contactDisplay").hide();
-				$("#messages-container .phone-box[data-id=\"" + this.windowId + "\"] .window .actions .right").hide();
-				input.prop("disabled", false);
-				button.prop("disabled", true);
+				$("#menu_webrtc .actions .right").hide();
+				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").removeClass("shake");
+				$("#menu_webrtc .activeCallSession .keypad").show();
+				$("#menu_webrtc .activeCallSession .input-container").show();
+				$("#menu_webrtc .contactDisplay").hide();
 				button.removeClass().addClass("btn btn-primary action").text("Call");
+				$("#menu_webrtc .contact-info .contact").text("");
+				this.state = "registered";
+			break;
+			case "registered":
+				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").removeClass("registering");
+				this.setDisplayState(_("Registered"));
+				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").css("color", "green");
+				input.prop("disabled", false);
+				input.val("");
+				$("#menu_webrtc .keypad").removeClass("disable");
+				button.prop("disabled", true);
+				$("#menu_webrtc .actions .right").hide();
+				button.removeClass().addClass("btn btn-primary action").text("Call");
+			break;
+			case "unregistered":
+				this.setDisplayState(_("Unregistered"));
+				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").removeClass("registering");
+				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").css("color", "yellow");
+				$("#menu_webrtc .keypad").addClass("disable");
+				input.prop("disabled", true);
+				input.val("");
+			break;
+			case "registrationfailed":
+				this.setDisplayState(_("Registration Failed"));
+				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").removeClass("registering");
+				$("#webrtc-dc a span").text(_("Connect Phone"));
+				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").css("color", "red");
+				$("#menu_webrtc .keypad").addClass("disable");
+				input.prop("disabled", true);
+				input.val("");
+			break;
+			case "connected":
+				this.setDisplayState(_("Unregistered"));
+				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").removeClass("connecting");
+				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").css("color", "yellow");
+			break;
+			case "disconnected":
+				this.setDisplayState(_("Disconnected"));
+				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").removeClass("connecting");
+				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").removeClass("registering");
+				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").css("color", "red");
+				$("#menu_webrtc .keypad").addClass("disable");
+				input.prop("disabled", true);
+				input.val("");
+			break;
+			case "connecting":
+				this.setDisplayState(_("Connecting to socket..."));
+				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").css("color", "red");
+				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").addClass("connecting");
+				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").removeClass("registering");
+			break;
+			case "registering": //custom event type
+				this.setDisplayState(_("Registering..."));
+				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").addClass("registering");
 			break;
 		}
 	},
@@ -435,21 +568,18 @@ var WebrtcC = UCPMC.extend({
 				this.phone.isRegistered()) {
 		}
 		this.phone.unregister();
-		this.switchState("hangup");
 	},
 	toggleRegister: function() {
 		if(!this.phone.isConnected()) {
 			return; //nope
 		}
-		if($("#nav-btn-webrtc .fa-phone").hasClass("registering")) {
+		if($(".custom-widget[data-widget_rawname=webrtc] .fa-phone").hasClass("registering")) {
 			return; //we are already doing something
 		}
 		if(!this.phone.isRegistered()) {
-			this.engineEvent("registering");
 			this.register();
 			Cookies.set("webrtc-register",1);
 		} else {
-			this.engineEvent("registering");
 			this.unregister();
 			Cookies.set("webrtc-register",0);
 		}
@@ -458,33 +588,59 @@ var WebrtcC = UCPMC.extend({
 	initiateLibrary: function() {
 		var $this = this,
 				ver = "0.7.5";
+
+		if(typeof SIP === "object") {
+			return;
+		}
+
+		if(!$("html").hasClass("getusermedia")) {
+			this.setDisplayState(_("Not supported in this browser"));
+			console.warn("WebRTC is not supported in this browser");
+			return;
+		}
+
+		if(document.location.protocol !== "https:") {
+			this.setDisplayState(_("Not supported in http"));
+			console.warn("WebRTC is not supported in non-SSL mode");
+			//return;
+		}
+
+		if(!$(".custom-widget[data-widget_rawname=webrtc]").length) {
+			console.warn("WebRTC Widget has not been added");
+			return;
+		}
+
+		if(typeof moduleSettings.Webrtc === "undefined") {
+			console.warn("WebRTC is not configured properly");
+			return;
+		}
+
+		if(!moduleSettings.Webrtc.enabled) {
+			console.warn(moduleSettings.Webrtc.message);
+			this.setDisplayState(moduleSettings.Webrtc.message);
+			return;
+		}
+
 		$.getScript("modules/Webrtc/assets/jssiplibs/sip-" + ver + ".min.js")
 		.done(function( script, textStatus ) {
-			$("#nav-btn-webrtc").removeClass("hidden");
-			UCP.calibrateMenus();
 			$("#footer").append("<audio id=\"audio_remote\" autoplay=\"autoplay\" />");
 			$("#footer").append("<audio id=\"ringtone\"><source src=\"modules/Webrtc/assets/sounds/ring.mp3\" type=\"audio/mpeg\"></audio>");
 			$this.callOptions.media.render.remote = document.getElementById('audio_remote');
 			$this.phone = new SIP.UA(
 				{
-					"wsServers": $this.staticsettings.settings.wsservers,
-					"uri": $this.staticsettings.settings.uri,
-					"password": $this.staticsettings.settings.password,
+					"wsServers": moduleSettings.Webrtc.settings.wsservers,
+					"uri": moduleSettings.Webrtc.settings.uri,
+					"password": moduleSettings.Webrtc.settings.password,
 					"log": {
 						"builtinEnabled": false,
-						"level": $this.staticsettings.settings.log
+						"level": moduleSettings.Webrtc.settings.log
 					},
 					"register": $this.autoRegister,
 					"hackWssInTransport": true,
-					"stunServers": $this.staticsettings.settings.iceServers,
-					"iceCheckingTimeout": $this.staticsettings.settings.gatheringTimeout
+					"stunServers": moduleSettings.Webrtc.settings.iceServers,
+					"iceCheckingTimeout": moduleSettings.Webrtc.settings.gatheringTimeout
 				}
 			);
-			if($this.autoRegister) {
-				$("#webrtc-dc a span").text(_("Disconnect Phone"));
-			} else {
-				$("#webrtc-dc a span").text(_("Connect Phone"));
-			}
 
 			var binds = [
 				"connected",
@@ -503,109 +659,24 @@ var WebrtcC = UCPMC.extend({
 			});
 
 			$this.connect();
-		})
-		.fail(function( jqxhr, settings, exception ) {
+		}).fail(function( jqxhr, settings, exception ) {
 			//could not load script, remove button
 		});
 	}
 });
-$(document).bind("staticSettingsFinished", function( event ) {
-	if ((typeof UCP.Modules.Webrtc.staticsettings !== "undefined") && UCP.Modules.Webrtc.staticsettings.enabled) {
-		if($("html").hasClass("getusermedia")) {
-			UCP.Modules.Webrtc.initiateLibrary();
-		}
-	} else if(typeof UCP.Modules.Webrtc.staticsettings.message !== "undefined") {
-		console.warn(UCP.Modules.Webrtc.staticsettings.message);
-	}
-});
+
 $(document).bind("logIn", function( event ) {
-	$("#webrtc-call").on("click", function() {
-		UCP.Modules.Webrtc.setPhone(true);
-	});
-	$("#webrtc-sr").on("click", function() {
-		UCP.Modules.Webrtc.silence();
-	});
-	$("#webrtc-dc").on("click", function() {
-		UCP.Modules.Webrtc.toggleRegister();
-	});
+	console.log("loggedin");
 });
-$(document).bind("phoneWindowRemoved", function( event ) {
-	UCP.Modules.Webrtc.stick = false;
-	this.windowId = null;
-	UCP.Modules.Webrtc.hangup();
-});
-$(document).bind("phoneWindowAdded", function( event ) {
-	$("#messages-container .phone-box .keypad td").click(function() {
-		var text = $(".phone-box .dialpad").val() + $(this).data("num"),
-				button = $(this).parents(".window").find("button.action");
-		if (button.data("type") == "call" || button.data("type") == "hangup") {
-			if (button.data("type") == "call") {
-				$( "#messages-container .phone-box[data-id=\"" + UCP.Modules.Webrtc.windowId + "\"] .message").text("To: " + text);
-			}
-			$("#messages-container .phone-box .dialpad").val(text);
-			UCP.Modules.Webrtc.DTMF($(this).data("num"));
-			button.prop("disabled", false);
-			$("#messages-container .phone-box .message-container").textfill();
-		}
-	});
-	$("#messages-container .phone-box .clear-input").click(function() {
-		var button = $(this).parents(".window").find("button.action");
-		$("#messages-container .phone-box .dialpad").val("");
-		if (button.data("type") == "call") {
-			$( "#messages-container .phone-box[data-id=\"" + UCP.Modules.Webrtc.windowId + "\"] .message").text("");
-			button.prop("disabled", true);
-		}
-	});
-	$("#messages-container .phone-box .dialpad").keyup(function() {
-		var button = $(this).parents(".window").find("button.action"),
-				text = $(".phone-box .dialpad").val();
-		if ($(this).val().length === 0 && (button.data("type") == "call")) {
-			$( "#messages-container .phone-box[data-id=\"" + UCP.Modules.Webrtc.windowId + "\"] .message").text("");
-			button.prop("disabled", true);
-		} else {
-			$( "#messages-container .phone-box[data-id=\"" + UCP.Modules.Webrtc.windowId + "\"] .message").text("To: " + text);
-			UCP.Modules.Webrtc.DTMF(text.slice(-1));
-			button.prop("disabled", false);
-		}
-		$("#messages-container .phone-box .message-container").textfill();
-	});
-	$("#messages-container .phone-box button.action").click(function() {
-		var type = $(this).data("type"),
-				num = $("#messages-container .phone-box .dialpad").val();
-		switch (type) {
-			case "call":
-				UCP.Modules.Webrtc.call(num);
-			break;
-			case "progress":
-			case "hangup":
-				UCP.Modules.Webrtc.hangup();
-			break;
-			case "answer":
-				UCP.Modules.Webrtc.answer();
-			break;
-		}
-	});
-	$("#messages-container .phone-box button.secondaction").click(function() {
-		var type = $("#messages-container .phone-box button.action").data("type");
-		switch (type) {
-			case "hangup":
-				UCP.Modules.Webrtc.toggleHold();
-			break;
-			case "answer":
-				UCP.Modules.Webrtc.hangup();
-			break;
-		}
-	});
-	$("#messages-container .phone-box .message-container").textfill();
-});
+
 $(document).bind("logOut", function( event ) {
 	if (typeof UCP.Modules.Webrtc !== "undefined" && UCP.Modules.Webrtc.phone !== null && UCP.Modules.Webrtc.phone.isConnected()) {
-		UCP.Modules.Webrtc.phone.stop();
+		UCP.Modules.Webrtc.disconnect();
 	}
 });
 
 $(window).bind("beforeunload", function() {
 	if (typeof UCP.Modules.Webrtc !== "undefined" && UCP.Modules.Webrtc.phone !== null && UCP.Modules.Webrtc.phone.isConnected()) {
-		UCP.Modules.Webrtc.phone.stop();
+		UCP.Modules.Webrtc.disconnect();
 	}
 });

@@ -19,6 +19,26 @@ class Webrtc extends Modules{
 		$this->user = $this->UCP->User->getUser();
 	}
 
+	public function getSimpleWidgetList() {
+		return array(
+			"rawname" => "webrtc",
+			"display" => _("Phone"),
+			"icon" => "fa fa-phone",
+			"list" => array(
+				"phone" => array(
+					"display" => "Phone",
+				)
+			)
+		);
+	}
+
+	public function getSimpleWidgetDisplay($id) {
+		return array(
+			'title' => _("Phone"),
+			'html' => load_view(__DIR__."/views/phone.php",array())
+		);
+	}
+
 
 		/**
 		* Determine what commands are allowed
