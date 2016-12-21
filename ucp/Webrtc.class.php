@@ -27,6 +27,7 @@ class Webrtc extends Modules{
 			"list" => array(
 				"phone" => array(
 					"display" => "Phone",
+					"hasSettings" => true
 				)
 			)
 		);
@@ -37,6 +38,18 @@ class Webrtc extends Modules{
 			'title' => _("Phone"),
 			'html' => load_view(__DIR__."/views/phone.php",array())
 		);
+	}
+
+	public function getSimpleWidgetSettingsDisplay($id) {
+		$displayvars = array();
+		$display = array(
+			'title' => _("WebRTC"),
+			'html' => $this->load_view(__DIR__.'/views/settings.php',$displayvars)
+		);
+
+		dbug($display);
+
+		return $display;
 	}
 
 

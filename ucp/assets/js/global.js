@@ -55,9 +55,8 @@ var WebrtcC = UCPMC.extend({
 	addSimpleWidget: function(widget_id) {
 		this.initiateLibrary();
 	},
-	displaySimpleWidget: function(widget_id) {
+	displaySimpleWidgetSettings: function(widget_id) {
 		var $this = this;
-		$("#menu_webrtc .status span").text(this.displayState);
 
 		var st = Cookies.get("webrtc-silenced");
 		st = (st === "1") ? true : false;
@@ -78,12 +77,27 @@ var WebrtcC = UCPMC.extend({
 			off: _("Disable")
 		});
 
+		if(this.phone === null) {
+			$("#webrtc-silence-switch").bootstrapToggle('disable');
+			$("#webrtc-disconnect-switch").bootstrapToggle('disable');
+			return;
+		}
+
 		$("#webrtc-silence-switch").change(function() {
 			$this.silence();
 		});
 		$("#webrtc-disconnect-switch").change(function(e) {
 			$this.toggleRegister();
 		});
+	},
+	displaySimpleWidget: function(widget_id) {
+		var $this = this;
+		$("#menu_webrtc_phone .status span").text(this.displayState);
+
+		if(this.phone === null) {
+			$("#menu_webrtc_phone input.dialpad").prop("disabled",true);
+			return;
+		}
 
 		if(this.state == "hold") {
 			this.switchState('accepted');
@@ -92,49 +106,49 @@ var WebrtcC = UCPMC.extend({
 			this.switchState(this.state);
 		}
 
-		if(typeof this.phone === "object" && this.phone.isRegistered()) {
-			$("#menu_webrtc .action").prop("disable",false);
+		if(typeof this.phone === "object" && this.phone !== null && this.phone.isRegistered()) {
+			$("#menu_webrtc_phone .action").prop("disable",false);
 		}
 
-		$("#menu_webrtc .keypad td").click(function() {
-			var text = $("#menu_webrtc .dialpad").val() + $(this).data("num"),
-					button = $("#menu_webrtc button.action");
+		$("#menu_webrtc_phone .keypad td").click(function() {
+			var text = $("#menu_webrtc_phone .dialpad").val() + $(this).data("num"),
+					button = $("#menu_webrtc_phone button.action");
 			if ($this.state == "registered" || $this.state == "accepted") {
 				if ($this.state == "registered") {
-					$( "#menu_webrtc .message").text("To: " + text);
+					$( "#menu_webrtc_phone .message").text("To: " + text);
 				}
-				$("#menu_webrtc .dialpad").val(text);
+				$("#menu_webrtc_phone .dialpad").val(text);
 				$this.DTMF($(this).data("num"));
 				button.prop("disabled", false);
-				$("#menu_webrtc .message-container").textfill();
+				$("#menu_webrtc_phone .message-container").textfill();
 			}
 		});
 
-		$("#menu_webrtc .clear-input").click(function() {
-			var button = $("#menu_webrtc button.action");
-			$("#menu_webrtc .dialpad").val("");
+		$("#menu_webrtc_phone .clear-input").click(function() {
+			var button = $("#menu_webrtc_phone button.action");
+			$("#menu_webrtc_phone .dialpad").val("");
 			if ($this.state == "registered") {
-				$( "#menu_webrtc .message").text("");
+				$( "#menu_webrtc_phone .message").text("");
 				button.prop("disabled", true);
 			}
 		});
-		$("#menu_webrtc .dialpad").keyup(function() {
+		$("#menu_webrtc_phone .dialpad").keyup(function() {
 			var button = $(this).parents(".window").find("button.action"),
-					text = $("#menu_webrtc .dialpad").val();
+					text = $("#menu_webrtc_phone .dialpad").val();
 			if ($(this).val().length === 0 && ($this.state == "accepted")) {
-				$( "#menu_webrtc .message").text("");
+				$( "#menu_webrtc_phone .message").text("");
 				button.prop("disabled", true);
 			} else {
-				$( "#menu_webrtc .message").text("To: " + text);
+				$( "#menu_webrtc_phone .message").text("To: " + text);
 				$this.DTMF(text.slice(-1));
 				button.prop("disabled", false);
 			}
-			$("#menu_webrtc .message-container").textfill();
+			$("#menu_webrtc_phone .message-container").textfill();
 		});
-		$("#menu_webrtc button.action").click(function() {
+		$("#menu_webrtc_phone button.action").click(function() {
 			switch ($this.state) {
 				case "registered":
-					$this.call($("#menu_webrtc .dialpad").val());
+					$this.call($("#menu_webrtc_phone .dialpad").val());
 				break;
 				case "hold":
 				case "accepted":
@@ -145,7 +159,7 @@ var WebrtcC = UCPMC.extend({
 				break;
 			}
 		});
-		$("#menu_webrtc button.secondaction").click(function() {
+		$("#menu_webrtc_phone button.secondaction").click(function() {
 			switch ($this.state) {
 				case "hold":
 				case "accepted":
@@ -156,7 +170,7 @@ var WebrtcC = UCPMC.extend({
 				break;
 			}
 		});
-		$("#menu_webrtc .message-container").textfill();
+		$("#menu_webrtc_phone .message-container").textfill();
 	},
 	deleteSimpleWidget: function(widget_id) {
 		if(this.phone !== null) {
@@ -195,7 +209,7 @@ var WebrtcC = UCPMC.extend({
 	},
 	setDisplayState: function(state) {
 		this.displayState = state;
-		$("#menu_webrtc .status span").text(this.displayState);
+		$("#menu_webrtc_phone .status span").text(this.displayState);
 	},
 	playRing: function() {
 		if(!this.silenced) {
@@ -232,7 +246,7 @@ var WebrtcC = UCPMC.extend({
 		cnum = this.activeCalls[id].remoteIdentity.uri.user;
 		cnam = this.activeCalls[this.activeCallId].remoteIdentity.displayName || "";
 		displayName = (cnam !== "") ? cnam + " <" + cnum + ">" : cnum;
-		$("#menu_webrtc .contactDisplay .contactImage").css("background-image",'url("?quietmode=1&module=Webrtc&command=cimage&did='+cnum+'")');
+		$("#menu_webrtc_phone .contactDisplay .contactImage").css("background-image",'url("?quietmode=1&module=Webrtc&command=cimage&did='+cnum+'")');
 		Webrtc.answering = false;
 		if (direction === "inbound") {
 			if (UCP.notify) {
@@ -297,7 +311,7 @@ var WebrtcC = UCPMC.extend({
 		if(typeof cause !== "undefined" && cause === SIP.C.causes.USER_DENIED_MEDIA_ACCESS) {
 			this.userBlocked = true;
 		}
-		$("#menu_webrtc .btn-primary").prop("disabled", false);
+		$("#menu_webrtc_phone .btn-primary").prop("disabled", false);
 		this.stopRing();
 	},
 	startCall: function(event) {
@@ -324,7 +338,7 @@ var WebrtcC = UCPMC.extend({
 	},
 	call: function(number) {
 		if (this.phone.isConnected() && !this.userBlocked) {
-			$("#menu_webrtc .btn-primary").prop("disabled", true);
+			$("#menu_webrtc_phone .btn-primary").prop("disabled", true);
 			var session = this.phone.invite(number, this.callOptions);
 			this.manageSession(session,"outbound");
 		} else if(this.phone.isConnected() && this.userBlocked) {
@@ -371,33 +385,23 @@ var WebrtcC = UCPMC.extend({
 
 	},
 	switchState: function(t) {
-		var button = $("#menu_webrtc button.action"),
-				secondbutton = $("#menu_webrtc button.secondaction"),
-				input = $("#menu_webrtc input.dialpad"),
+		var button = $("#menu_webrtc_phone button.action"),
+				secondbutton = $("#menu_webrtc_phone button.secondaction"),
+				input = $("#menu_webrtc_phone input.dialpad"),
 				type = (typeof t !== "undefined" && t !== null) ? t : "registered",
 				$this = this;
 		this.state = type;
 		console.log(type);
 		button.data("type", type);
 		switch (type){
-			case "connecting":
-				this.stopRing();
-				$("#menu_webrtc .activeCallSession .keypad").hide();
-				$("#menu_webrtc .activeCallSession .input-container").hide();
-				$("#menu_webrtc .contactDisplay").show();
-				$("#menu_webrtc .actions .right").hide();
-				input.prop("disabled", true);
-				button.prop("disabled", false);
-				button.removeClass().addClass("btn btn-danger action").text("Hangup");
-			break;
 			case "invite":
 				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").addClass("shake");
 				this.playRing();
-				$("#menu_webrtc .activeCallSession .keypad").hide();
-				$("#menu_webrtc .activeCallSession .input-container").hide();
-				$("#menu_webrtc .contactDisplay").show();
+				$("#menu_webrtc_phone .activeCallSession .keypad").hide();
+				$("#menu_webrtc_phone .activeCallSession .input-container").hide();
+				$("#menu_webrtc_phone .contactDisplay").show();
 				secondbutton.removeClass().addClass("btn btn-danger secondaction").text("Ignore");
-				$("#menu_webrtc .actions .right").show();
+				$("#menu_webrtc_phone .actions .right").show();
 				button.removeClass().addClass("btn btn-success action").text("Answer");
 				button.prop("disabled", false);
 			break;
@@ -421,24 +425,24 @@ var WebrtcC = UCPMC.extend({
 			case "accepted":
 				this.stopRing();
 				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").removeClass("shake");
-				$("#menu_webrtc .contactDisplay").hide();
-				$("#menu_webrtc .activeCallSession .keypad").show();
-				$("#menu_webrtc .activeCallSession .input-container").show();
+				$("#menu_webrtc_phone .contactDisplay").hide();
+				$("#menu_webrtc_phone .activeCallSession .keypad").show();
+				$("#menu_webrtc_phone .activeCallSession .input-container").show();
 				secondbutton.removeClass().addClass("btn btn-success secondaction").text("Hold");
 				secondbutton.css("color","");
-				$("#menu_webrtc .actions .right").show();
+				$("#menu_webrtc_phone .actions .right").show();
 
 				input.prop("disabled", false);
 				button.prop("disabled", false);
 				button.removeClass().addClass("btn btn-danger action").text("Hangup");
-				$("#menu_webrtc .contact-info").addClass("in");
+				$("#menu_webrtc_phone .contact-info").addClass("in");
 				$("#webrtc-timer-container").remove();
 				clearInterval(this.timerObject);
 				$('#webrtc-disconnect-switch').bootstrapToggle('disable');
 				var updateTimer = function() {
 					if($this.activeCallId === null) {
 						clearInterval($this.timerObject);
-						$("#menu_webrtc .contact-info").removeClass("in");
+						$("#menu_webrtc_phone .contact-info").removeClass("in");
 						$('#webrtc-disconnect-switch').bootstrapToggle('enable');
 						return;
 					}
@@ -453,8 +457,8 @@ var WebrtcC = UCPMC.extend({
 
 					var time = padLeft(duration.hours())+":"+padLeft(duration.minutes())+":"+padLeft(duration.seconds());
 
-					if($("#menu_webrtc .contact-info .timer").is(":visible")) {
-						$("#menu_webrtc .contact-info .timer").text(time);
+					if($("#menu_webrtc_phone .contact-info .timer").is(":visible")) {
+						$("#menu_webrtc_phone .contact-info .timer").text(time);
 					} else {
 						if(!$("#webrtc-timer-container").length) {
 							$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").after('<div id="webrtc-timer-container"><div class="timer">'+time+'</div></div>');
@@ -469,17 +473,17 @@ var WebrtcC = UCPMC.extend({
 				var cnam = this.activeCalls[this.activeCallId].remoteIdentity.displayName || "",
 						cnum = this.activeCalls[this.activeCallId].remoteIdentity.uri.user,
 						displayName = (cnam !== "") ? cnam + " <" + cnum + ">" : cnum;
-				$("#menu_webrtc .contact-info .contact").text(displayName);
+				$("#menu_webrtc_phone .contact-info .contact").text(displayName);
 			break;
 			case "terminated":
 				this.stopRing();
-				$("#menu_webrtc .actions .right").hide();
+				$("#menu_webrtc_phone .actions .right").hide();
 				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").removeClass("shake");
-				$("#menu_webrtc .activeCallSession .keypad").show();
-				$("#menu_webrtc .activeCallSession .input-container").show();
-				$("#menu_webrtc .contactDisplay").hide();
+				$("#menu_webrtc_phone .activeCallSession .keypad").show();
+				$("#menu_webrtc_phone .activeCallSession .input-container").show();
+				$("#menu_webrtc_phone .contactDisplay").hide();
 				button.removeClass().addClass("btn btn-primary action").text("Call");
-				$("#menu_webrtc .contact-info .contact").text("");
+				$("#menu_webrtc_phone .contact-info .contact").text("");
 				this.state = "registered";
 			break;
 			case "registered":
@@ -488,16 +492,16 @@ var WebrtcC = UCPMC.extend({
 				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").css("color", "green");
 				input.prop("disabled", false);
 				input.val("");
-				$("#menu_webrtc .keypad").removeClass("disable");
+				$("#menu_webrtc_phone .keypad").removeClass("disable");
 				button.prop("disabled", true);
-				$("#menu_webrtc .actions .right").hide();
+				$("#menu_webrtc_phone .actions .right").hide();
 				button.removeClass().addClass("btn btn-primary action").text("Call");
 			break;
 			case "unregistered":
 				this.setDisplayState(_("Unregistered"));
 				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").removeClass("registering");
 				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").css("color", "yellow");
-				$("#menu_webrtc .keypad").addClass("disable");
+				$("#menu_webrtc_phone .keypad").addClass("disable");
 				input.prop("disabled", true);
 				input.val("");
 			break;
@@ -506,7 +510,7 @@ var WebrtcC = UCPMC.extend({
 				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").removeClass("registering");
 				$("#webrtc-dc a span").text(_("Connect Phone"));
 				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").css("color", "red");
-				$("#menu_webrtc .keypad").addClass("disable");
+				$("#menu_webrtc_phone .keypad").addClass("disable");
 				input.prop("disabled", true);
 				input.val("");
 			break;
@@ -520,7 +524,7 @@ var WebrtcC = UCPMC.extend({
 				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").removeClass("connecting");
 				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").removeClass("registering");
 				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").css("color", "red");
-				$("#menu_webrtc .keypad").addClass("disable");
+				$("#menu_webrtc_phone .keypad").addClass("disable");
 				input.prop("disabled", true);
 				input.val("");
 			break;
@@ -594,28 +598,33 @@ var WebrtcC = UCPMC.extend({
 		}
 
 		if(!$("html").hasClass("getusermedia")) {
+			$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").css("color", "red");
 			this.setDisplayState(_("Not supported in this browser"));
 			console.warn("WebRTC is not supported in this browser");
 			return;
 		}
 
 		if(document.location.protocol !== "https:") {
-			this.setDisplayState(_("Not supported in http"));
+			$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").css("color", "red");
+			this.setDisplayState(_("Only supported over HTTPS"));
 			console.warn("WebRTC is not supported in non-SSL mode");
-			//return;
+			return;
 		}
 
 		if(!$(".custom-widget[data-widget_rawname=webrtc]").length) {
+			$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").css("color", "red");
 			console.warn("WebRTC Widget has not been added");
 			return;
 		}
 
 		if(typeof moduleSettings.Webrtc === "undefined") {
+			$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").css("color", "red");
 			console.warn("WebRTC is not configured properly");
 			return;
 		}
 
 		if(!moduleSettings.Webrtc.enabled) {
+			$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").css("color", "red");
 			console.warn(moduleSettings.Webrtc.message);
 			this.setDisplayState(moduleSettings.Webrtc.message);
 			return;
