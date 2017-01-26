@@ -51,7 +51,7 @@
 					<div class="col-md-9">
 						<select id="webrtc_cert" name="webrtc_cert" class="form-control ucp-webrtc" <?php echo (!is_null($enabled) && !$enabled) ? 'disabled' : ''?>>
 							<?php foreach($certs as $cert) { ?>
-							<option value="<?php echo $cert['cid']?>" <?php echo (!empty($settings['certid']) && $settings['certid'] == $cert['cid']) ? 'selected' : ''?>><?php echo $cert['basename']?></option>
+							<option value="<?php echo $cert['cid']?>" <?php echo (!empty($certificate) && $certificate == $cert['cid']) ? 'selected' : ''?>><?php echo $cert['basename']?></option>
 							<?php } ?>
 						</select>
 					</div>
