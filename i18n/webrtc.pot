@@ -3,13 +3,13 @@
 # For licensing information, please see the file named LICENSE located in the module directory
 #
 # FreePBX language template for webrtc
-# Copyright (C) 2008-2016 Sangoma, Inc.
+# Copyright (C) 2008-2017 Sangoma, Inc.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-02 12:13-0700\n"
+"POT-Creation-Date: 2017-01-26 11:54-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgid ""
 "ARI is depreciated in favor of UCP"
 msgstr ""
 
-#: Webrtc.class.php:416
+#: Webrtc.class.php:429
 msgid "HTTPS is not enabled for Asterisk"
 msgstr ""
 
@@ -125,8 +125,8 @@ msgid ""
 "refresh"
 msgstr ""
 
-#: Webrtc.class.php:334
-#: Webrtc.class.php:337
+#: Webrtc.class.php:347
+#: Webrtc.class.php:350
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
@@ -135,7 +135,7 @@ msgstr ""
 msgid "Use Certificate"
 msgstr ""
 
-#: Webrtc.class.php:314
+#: Webrtc.class.php:327
 msgid "WebRTC"
 msgstr ""
 
@@ -151,6 +151,6 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: Webrtc.class.php:321
+#: Webrtc.class.php:334
 msgid "You have no certificates setup in Certificate Manager"
 msgstr ""
