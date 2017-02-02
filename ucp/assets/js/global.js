@@ -591,7 +591,7 @@ var WebrtcC = UCPMC.extend({
 	},
 	initiateLibrary: function() {
 		var $this = this,
-				ver = "0.7.5";
+				ver = "0.7.6";
 
 		if(typeof SIP === "object") {
 			return;

@@ -47,8 +47,6 @@ class Webrtc extends Modules{
 			'html' => $this->load_view(__DIR__.'/views/settings.php',$displayvars)
 		);
 
-		dbug($display);
-
 		return $display;
 	}
 
