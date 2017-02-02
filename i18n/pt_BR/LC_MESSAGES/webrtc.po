@@ -1,0 +1,169 @@
+# This file is part of FreePBX.
+#
+# For licensing information, please see the file named LICENSE located in the module directory
+#
+# FreePBX language template for webrtc
+# Copyright (C) 2008-2016 Sangoma, Inc.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-26 11:54-0800\n"
+"PO-Revision-Date: 2016-12-20 23:26+0200\n"
+"Last-Translator: Alexander <alexander.schley@paranagua.pr.gov.br>\n"
+"Language-Team: Portuguese (Brazil) <http://weblate.freepbx.org/projects/"
+"freepbx/webrtc/pt_BR/>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.4\n"
+
+#: ucp/assets/jssiplibs/sip-0.7.5.min.js:37
+msgid ""
+")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error parsing "
+msgstr ""
+")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error parsing "
+
+#: views/ucp_config.php:64
+msgid "Certificate WebRTC Phone should use for this user."
+msgstr "Certificado de Telefone WebRTC deve ser utilizado para este usuário."
+
+#: ucp/assets/js/global.js:210
+msgid "Click this window to answer or close this window to ignore"
+msgstr "Clique nesta janela para responder ou feche esta janela para ignorar"
+
+#: ucp/assets/js/global.js:118 ucp/assets/js/global.js:486
+msgid "Connect Phone"
+msgstr "Conectar Telefone"
+
+#: webrtc.i18n.php:6
+msgid "Connectivity"
+msgstr "Conectividade"
+
+#: ucp/Webrtc.class.php:114 ucp/assets/js/global.js:112
+#: ucp/assets/js/global.js:484
+msgid "Disconnect Phone"
+msgstr "Desconectar Telefone"
+
+#: functions.inc/hook_core.php:62
+msgid "Enable WebRTC Old ARI Phone"
+msgstr "Habilitar WebRTC antigo Telefone ARI"
+
+#: views/ucp_config.php:19
+msgid "Enable WebRTC Phone"
+msgstr "Habilitar Telefone WebRTC"
+
+#: views/ucp_config.php:38
+msgid "Enable the WebRTC Phone in UCP for this user"
+msgstr "Habilitar telefone WebRTC no PCU para este usuário"
+
+#: functions.inc/hook_core.php:62
+#, php-format
+msgid ""
+"Enables WebRTC for this %s in the Asterisk Recording Interface (ARI). Note: "
+"ARI is depreciated in favor of UCP"
+msgstr ""
+"Habilita o WebRTC para este %s na Interface de Gravação Asterisk (ARI). "
+"Nota: ARI obsoleto em favor do PCU"
+
+#: Webrtc.class.php:429
+msgid "HTTPS is not enabled for Asterisk"
+msgstr "HTTPS não está habilitado para o Asterisk"
+
+#: ucp/assets/js/global.js:209
+#, perl-format
+msgid "Incoming call from %s"
+msgstr "Chamada recebida de %s"
+
+#: views/ucp_config.php:29
+msgid "Inherit"
+msgstr "Herdar"
+
+#: ucp/Webrtc.class.php:114
+msgid "New Web Phone Call"
+msgstr "Nova Chamada Telefônica Web"
+
+#: views/ucp_config.php:26
+msgid "No"
+msgstr "Não"
+
+#: ucp/assets/js/global.js:83
+msgid "Originate"
+msgstr "Originar"
+
+#: ucp/assets/js/global.js:82
+msgid "Originate Call"
+msgstr "Originar Chamada"
+
+#: ucp/Webrtc.class.php:114
+msgid "Silence Ringer"
+msgstr "Silenciar Toque"
+
+#: functions.inc/hook_core.php:77
+msgid "The Certificate to use from Certificate Manager"
+msgstr "Certificado a ser usado pelo Gerenciador de Certificados"
+
+#: webrtc.i18n.php:8
+msgid "The WebRTC Module allows an Administrator to enable a "
+msgstr "O Módulo WebRTC permite que um Administrador habilite um "
+
+#: functions.inc/hook_core.php:58
+msgid ""
+"The WebSockets Interface is running through PJSIP, PJSIP is not supported at "
+"this time. Please enable the chan_sip driver (along with pjsip or by itself) "
+"or alert the FreePBX Developers"
+msgstr ""
+"A Interface do WebSockets está sendo executada através de PJSIP, PJSIP não é "
+"suportado neste momento. Habilite o driver chan_sip (juntamente com o pjsip "
+"ou sozinho) ou avise os Desenvolvedores FreePBX"
+
+#: functions.inc/hook_core.php:82
+#, php-format
+msgid ""
+"To utilize WebRTC in ARI you must add at least one certificate %s through "
+"Certificate Manager"
+msgstr ""
+"Para utilizar o WebRTC no ARI, você deve adicionar pelo menos um certificado "
+"%s através do Gerenciador de Certificados"
+
+#: ucp/assets/js/global.js:303
+msgid ""
+"Unable to start call. Please allow the WebRTC session in your browser and "
+"refresh"
+msgstr ""
+"Não é possível iniciar a chamada. Permita a sessão WebRTC no seu navegador e "
+"atualize"
+
+#: Webrtc.class.php:347 Webrtc.class.php:350
+#, php-format
+msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
+msgstr "Versão não suportada do Asterisk, você precisa ao menos %s você tem %s"
+
+#: functions.inc/hook_core.php:76
+msgid "Use Certificate"
+msgstr "Usar Certificado"
+
+#: Webrtc.class.php:327
+msgid "WebRTC"
+msgstr "WebRTC"
+
+#: views/ucp_config.php:48
+msgid "WebRTC Certificate"
+msgstr "Certificado WebRTC"
+
+#: webrtc.i18n.php:4
+msgid "WebRTC Phone"
+msgstr "Telefone WebRTC"
+
+#: views/ucp_config.php:24
+msgid "Yes"
+msgstr "Sim"
+
+#: Webrtc.class.php:334
+msgid "You have no certificates setup in Certificate Manager"
+msgstr ""
+"Você não tem nenhuma configuração de certificados no Gerenciador de "
+"Certificados"
