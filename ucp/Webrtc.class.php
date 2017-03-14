@@ -20,6 +20,9 @@ class Webrtc extends Modules{
 	}
 
 	public function getSimpleWidgetList() {
+		if(!$this->webrtc->checkEnabled($this->ext)) {
+			return array();
+		}
 		return array(
 			"rawname" => "webrtc",
 			"display" => _("Phone"),
@@ -34,6 +37,9 @@ class Webrtc extends Modules{
 	}
 
 	public function getSimpleWidgetDisplay($id) {
+		if(!$this->webrtc->checkEnabled($this->ext)) {
+			return array();
+		}
 		return array(
 			'title' => _("Phone"),
 			'html' => load_view(__DIR__."/views/phone.php",array())
@@ -41,6 +47,9 @@ class Webrtc extends Modules{
 	}
 
 	public function getSimpleWidgetSettingsDisplay($id) {
+		if(!$this->webrtc->checkEnabled($this->ext)) {
+			return array();
+		}
 		$displayvars = array();
 		$display = array(
 			'title' => _("WebRTC"),
@@ -137,24 +146,6 @@ class Webrtc extends Modules{
 			}
 			return $return;
 		}
-
-	public function getNavItems() {
-		if(!$this->webrtc->checkEnabled($this->ext)) {
-			return false;
-		}
-		$webrtc = $this->webrtc->checkEnabled($this->ext) ? '<li id="webrtc-call"><a>'._("New Web Phone Call").'</a></li><li id="webrtc-sr"><a><i class="fa fa-check hidden" aria-hidden="true"></i> '._("Silence Ringer").'</a></li><li id="webrtc-dc"><a><i class="fa fa-check hidden" aria-hidden="true"></i><span> '._("Disconnect Phone").'<span></a></li>': '';
-		$out = array();
-		$out[] = array(
-			"rawname" => "webrtc",
-			"badge" => false,
-			"icon" => "fa-phone",
-			"hide" => true,
-			"menu" => array(
-				"html" => $webrtc
-			)
-		);
-		return $out;
-	}
 
 	/**
 	 * Send settings to UCP upon initalization

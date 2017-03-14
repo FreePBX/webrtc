@@ -591,7 +591,7 @@ var WebrtcC = UCPMC.extend({
 	},
 	initiateLibrary: function() {
 		var $this = this,
-				ver = "0.7.6";
+				ver = "0.7.7";
 
 		if(typeof SIP === "object") {
 			return;
@@ -647,7 +647,12 @@ var WebrtcC = UCPMC.extend({
 					"register": $this.autoRegister,
 					"hackWssInTransport": true,
 					"stunServers": moduleSettings.Webrtc.settings.iceServers,
-					"iceCheckingTimeout": moduleSettings.Webrtc.settings.gatheringTimeout
+					"iceCheckingTimeout": moduleSettings.Webrtc.settings.gatheringTimeout,
+					// The rtcpMuxPolicy option is being considered for removal and may be removed no earlier than M60, around August 2017.
+					// If you depend on it, please see https://www.chromestatus.com/features/5654810086866944 for more details.
+					// https://nimblea.pe/monkey-business/2017/01/19/webrtc-asterisk-and-chrome-57/
+					// https://issues.asterisk.org/jira/browse/ASTERISK-26732
+					"rtcpMuxPolicy": "negotiate"
 				}
 			);
 

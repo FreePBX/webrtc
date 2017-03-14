@@ -60,28 +60,11 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 			out($status);
 			throw new \Exception($status);
 		}
-		$sql = "CREATE TABLE IF NOT EXISTS `webrtc_clients` (
-						`user` VARCHAR( 190 ) NOT NULL UNIQUE,
-						`device` VARCHAR( 190 ) NOT NULL UNIQUE ,
-						`realm` varchar(80) NOT NULL,
-						`username` varchar(80) NOT NULL,
-						`sipuri` varchar(80) NOT NULL,
-						`password` varchar(80) NOT NULL,
-						`websocket` varchar(80) NOT NULL,
-						`breaker` varchar(80) NOT NULL,
-						`cid` varchar(80) NOT NULL,
-						`certid` int(11) NULL
-					)";
-		$sth = $this->db->prepare($sql);
-		$sth->execute();
 		//Remove Old Link if need be
 		if(file_exists($this->freepbx->Config->get('ASTETCDIR').'/http.conf') && is_link($this->freepbx->Config->get('ASTETCDIR').'/http.conf') && (readlink($this->freepbx->Config->get('ASTETCDIR').'/http.conf') == dirname(__FILE__).'/etc/httpd.conf')) {
 			unlink($this->freepbx->Config->get('ASTETCDIR').'/http.conf');
 		}
 
-		if (!$this->db->sql('SHOW COLUMNS FROM webrtc_clients WHERE FIELD = "certid"','getAll')) {
-			$this->db->query("ALTER TABLE `webrtc_clients` ADD COLUMN `certid` int(11) NULL");
-		}
 
 		if($this->freepbx->Config->conf_setting_exists('HTTPENABLED')) {
 			$this->freepbx->Config->set_conf_values(array('HTTPENABLED' => true),true);
@@ -150,14 +133,6 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 				$this->removeDevice($row['user']);
 			}
 		}
-
-		$sql="DROP TABLE webrtc_clients";
-		$sth = $this->db->prepare($sql);
-		$sth->execute();
-
-		$sql="DROP TABLE webrtc_settings";
-		$sth = $this->db->prepare($sql);
-		$sth->execute();
 		return true;
 	}
 	public function backup(){
@@ -178,9 +153,8 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		if(!empty($user) && !empty($user['default_extension']) && $user['default_extension'] != "none") {
 			if($this->certman->checkCAexists()) {
 				$certs = $this->certman->getAllManagedCertificates();
-				if(!empty($certs[0])) {
-					$certid = $certs[0]['cid'];
-					$this->createDevice($user['default_extension'],$certid);
+				if(!empty($certs)) {
+					$this->createDevice($user['default_extension']);
 				}
 			}
 		}
@@ -216,9 +190,7 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 			} else {
 				$this->freepbx->Ucp->setSettingByGID($id,'Webrtc','enabled',false);
 			}
-			$this->setConfig("group-".$id."-cert",$_REQUEST['webrtc_cert']);
 		}
-		$cert = $this->getConfig("group-".$id."-cert");
 
 		$group = $this->freepbx->Userman->getGroupByGID($id);
 		foreach($group['users'] as $user) {
@@ -229,8 +201,13 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 				$dev = $this->freepbx->Core->getDevice($user['default_extension']);
 				$id = $this->prefix.$user['default_extension'];
 				$settings = $this->freepbx->Certman->getDTLSOptions($id);
-				if(!empty($dev) && (!$this->checkEnabled($user['default_extension']) || (!empty($cert) && $this->checkEnabled($user['default_extension']) && $cert !== $settings['cid']))) {
-					$this->createDevice($user['default_extension'],$cert);
+				$defaultCert = $this->certman->getDefaultCertDetails();
+				if(empty($defaultCert)) {
+					return false;
+				}
+
+				if(!empty($dev) && (!$this->checkEnabled($user['default_extension']) || ($this->checkEnabled($user['default_extension']) && $settings['cid'] != $defaultCert['cid']))) {
+					$this->createDevice($user['default_extension']);
 				}
 			} elseif($user['default_extension'] != 'none') {
 				if($this->checkEnabled($user['default_extension'])) {
@@ -284,7 +261,6 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 			} elseif(isset($_POST['webrtc_enable']) && $_POST['webrtc_enable'] == 'inherit') {
 				$this->freepbx->Ucp->setSettingByID($id,'Webrtc','enabled',null);
 			}
-			$cert = $_REQUEST['webrtc_cert'];
 		}
 
 		$enabled = $this->freepbx->Ucp->getCombinedSettingByID($id, 'Webrtc', 'enabled');
@@ -292,9 +268,13 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		$user = $this->freepbx->Userman->getUserByID($id);
 		if(!empty($user['default_extension']) && $user['default_extension'] != 'none' && $enabled) {
 			$id = $this->prefix.$user['default_extension'];
+			$defaultCert = $this->certman->getDefaultCertDetails();
+			if(empty($defaultCert)) {
+				return false;
+			}
 			$settings = $this->freepbx->Certman->getDTLSOptions($id);
-			if(!$this->checkEnabled($user['default_extension']) || (!empty($cert) && $this->checkEnabled($user['default_extension']) && $cert !== $settings['cid'])) {
-				$this->createDevice($user['default_extension'],$cert);
+			if(!$this->checkEnabled($user['default_extension']) || ($this->checkEnabled($user['default_extension']) && $settings['cid'] != $defaultCert['cid'])) {
+				$this->createDevice($user['default_extension']);
 			}
 		} else {
 			if($this->checkEnabled($user['default_extension'])) {
@@ -306,34 +286,29 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 	public function ucpConfigPage($mode, $user, $action) {
 		$html = array();
 		$message = '';
-		$mcerts = $this->certman->getAllManagedCertificates();
-		$certificate = '';
+		$defaultCert = $this->certman->getDefaultCertDetails();
 		if(empty($user)) {
 			$enabled = ($mode == 'group') ? true : null;
 		} else {
 			if($mode == 'group') {
 				$enabled = $this->freepbx->Ucp->getSettingByGID($user['id'],'Webrtc','enabled');
 				$enabled = !($enabled) ? false : true;
-				$certificate = $this->getConfig("group-".$user['id']."-cert");
 			} else {
 				$enabled = $this->freepbx->Ucp->getSettingByID($user['id'],'Webrtc','enabled');
-				$id = $this->prefix.$user['default_extension'];
-				$settings = $this->freepbx->Certman->getDTLSOptions($id);
-				$certificate = $settings['cid'];
 			}
 		}
 
 		$html[0] = array(
-			"title" => _("WebRTC"),
+			"title" => _("Phone"),
 			"rawname" => "webrtc",
 			"content" => ""
 		);
-		if($this->validVersion() === true && !empty($mcerts)) {
-			$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("mode" => $mode, "enabled" => $enabled, "certificate" => $certificate, "webrtcmessage" => '', "certs" => $mcerts, "config" => true));
+		if($this->validVersion() === true && !empty($defaultCert)) {
+			$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("mode" => $mode, "enabled" => $enabled, "webrtcmessage" => '', "config" => true));
 		} elseif($this->validVersion() === true) {
-			$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("mode" => $mode, "enabled" => $enabled, "certificate" => $certificate, "webrtcmessage" => _('You have no certificates setup in Certificate Manager'), "certs" => $mcerts, "config" => false));
+			$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("mode" => $mode, "enabled" => $enabled, "webrtcmessage" => sprintf(_('You have no default certificates setup in %s'),'<a href="?display=certman">'._('Certificate Manager').'</a>'), "config" => false));
 		} else {
-			$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("mode" => $mode, "enabled" => $enabled, "certificate" => $certificate, "webrtcmessage" => $this->validVersion(), "certs" => $mcerts, "config" => false));
+			$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("mode" => $mode, "enabled" => $enabled, "webrtcmessage" => $this->validVersion(), "config" => false));
 		}
 		return $html;
 	}
@@ -373,11 +348,11 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		return !empty($settings);
 	}
 
-	public function setClientSettings($user,$device,$certid) {
+	public function setClientSettings($user,$device) {
 		try {
-			$sql = "REPLACE INTO webrtc_clients (`user`, `device`, `certid`) VALUES(?,?,?)";
+			$sql = "REPLACE INTO webrtc_clients (`user`, `device`) VALUES(?,?)";
 			$sth = $this->db->prepare($sql);
-			return $sth->execute(array($user,$device,$certid));
+			return $sth->execute(array($user,$device));
 		} catch(\Exception $e) {
 			return false;
 		}
@@ -395,7 +370,6 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 	}
 
 	public function getClientSettingsByUser($user) {
-		//TODO need to check certs here
 		$sql = "SELECT * FROM webrtc_clients WHERE `user` = ?";
 		$sth = $this->db->prepare($sql);
 		$sth->execute(array($user));
@@ -432,8 +406,6 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		$type = ($this->freepbx->Config->get('HTTPTLSENABLE') && $secure) ? 'wss' : 'ws';
 		$port = ($this->freepbx->Config->get('HTTPTLSENABLE') && $secure) ? $this->freepbx->Config->get('HTTPTLSBINDPORT') : $this->freepbx->Config->get('HTTPBINDPORT');
 		$results['websocket'] = !empty($results['websocket']) ? $results['websocket'] : $type.'://'.$sip_server.':'.$port.$suffix;
-		$results['breaker'] = !empty($results['breaker']) ? (bool)$results['breaker'] : false;
-		$results['cid'] = !empty($results['cid']) ? $results['cid'] : '';
 		try {
 			$stunaddr = $this->freepbx->Sipsettings->getConfig("webrtcstunaddr");
 			$stunaddr = !empty($stunaddr) ? $stunaddr : $this->freepbx->Sipsettings->getConfig("stunaddr");
@@ -453,7 +425,7 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		}
 	}
 
-	public function createDevice($extension,$certid) {
+	public function createDevice($extension) {
 		$id = $this->prefix.$extension;
 		$check = $this->core->getDevice($id);
 		if(!empty($check)) {
@@ -467,12 +439,12 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		$settings['context']['value'] = !empty($dev['context']) ? $dev['context'] : "from-internal";
 		$settings['user']['value'] = $extension;
 		//$settings['callerid']['value'] = $dev['description'] . "<".$extension.">";
-		$c = $this->certman->getCertificateDetails($certid);
-		if(empty($c)) {
+		$defaultCert = $this->certman->getDefaultCertDetails();
+		if(empty($defaultCert)) {
 			return false;
 		}
 		$cert = array(
-			"certificate" => $certid,
+			"certificate" => $defaultCert['cid'],
 			"verify" => "fingerprint",
 			"setup" => "actpass",
 			"rekey" => "0"

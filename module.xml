@@ -79,6 +79,19 @@
 			<method callingMethod="delUser" class="Webrtc" namespace="FreePBX\modules">delUser</method>
 		</core>
 	</hooks>
+	<database>
+		<table name="webrtc_clients">
+			<field name="user" type="string" length="255"/>
+			<field name="device" type="string" length="255"/>
+			<field name="certid" type="integer" notnull="false"/>
+			<key name="user" type="unique">
+				<column name="user"/>
+			</key>
+			<key name="device" type="unique">
+				<column name="device"/>
+			</key>
+		</table>
+	</database>
 	<supported>
 		<version>14.0</version>
 	</supported>
