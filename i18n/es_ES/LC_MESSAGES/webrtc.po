@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-01 19:00-0800\n"
+"POT-Creation-Date: 2017-03-14 17:35-0700\n"
 "PO-Revision-Date: 2016-06-07 10:27+0200\n"
 "Last-Translator: Ernesto <ecasas@sangoma.com>\n"
 "Language-Team: Spanish <http://weblate.freepbx.org/projects/freepbx/webrtc/"
@@ -29,8 +29,8 @@ msgstr ""
 msgid "Call"
 msgstr ""
 
-#: views/ucp_config.php:64
-msgid "Certificate WebRTC Phone should use for this user."
+#: Webrtc.class.php:309
+msgid "Certificate Manager"
 msgstr ""
 
 #: ucp/assets/js/global.js:254
@@ -57,7 +57,7 @@ msgstr ""
 msgid "Disable"
 msgstr ""
 
-#: ucp/Webrtc.class.php:145 ucp/views/settings.php:7
+#: ucp/views/settings.php:7
 msgid "Disconnect Phone"
 msgstr ""
 
@@ -69,16 +69,16 @@ msgstr ""
 msgid "Enable"
 msgstr ""
 
+#: views/ucp_config.php:19
+msgid "Enable Phone"
+msgstr ""
+
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
 msgstr "Habilitar WebRTC viejo ARI Phone"
 
-#: views/ucp_config.php:19
-msgid "Enable WebRTC Phone"
-msgstr "Habilitar Teléfono WebRTC"
-
 #: views/ucp_config.php:38
-msgid "Enable the WebRTC Phone in UCP for this user"
+msgid "Enable the phone in UCP for this user"
 msgstr ""
 
 #: functions.inc/hook_core.php:62
@@ -94,7 +94,7 @@ msgstr ""
 msgid "GHI"
 msgstr ""
 
-#: Webrtc.class.php:429
+#: Webrtc.class.php:403
 msgid "HTTPS is not enabled for Asterisk"
 msgstr ""
 
@@ -119,10 +119,6 @@ msgstr ""
 msgid "MNO"
 msgstr ""
 
-#: ucp/Webrtc.class.php:145
-msgid "New Web Phone Call"
-msgstr "Nueva llamada Web"
-
 #: views/ucp_config.php:26
 msgid "No"
 msgstr "No"
@@ -143,7 +139,7 @@ msgstr ""
 msgid "PQRS"
 msgstr ""
 
-#: ucp/Webrtc.class.php:25 ucp/Webrtc.class.php:38
+#: Webrtc.class.php:302 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
 msgid "Phone"
 msgstr ""
 
@@ -163,7 +159,7 @@ msgstr ""
 msgid "Registration Failed"
 msgstr ""
 
-#: ucp/Webrtc.class.php:145 ucp/views/settings.php:3
+#: ucp/views/settings.php:3
 msgid "Silence Ringer"
 msgstr ""
 
@@ -202,7 +198,7 @@ msgstr ""
 msgid "Unregistered"
 msgstr ""
 
-#: Webrtc.class.php:347 Webrtc.class.php:350
+#: Webrtc.class.php:322 Webrtc.class.php:325
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
@@ -216,13 +212,9 @@ msgstr "Use Certificado"
 msgid "WXYZ"
 msgstr ""
 
-#: Webrtc.class.php:327 ucp/Webrtc.class.php:46
+#: ucp/Webrtc.class.php:55
 msgid "WebRTC"
 msgstr ""
-
-#: views/ucp_config.php:48
-msgid "WebRTC Certificate"
-msgstr "Certificado WebRTC"
 
 #: webrtc.i18n.php:4
 msgid "WebRTC Phone"
@@ -232,9 +224,19 @@ msgstr "Teléfono WebRTC"
 msgid "Yes"
 msgstr "Si"
 
-#: Webrtc.class.php:334
-msgid "You have no certificates setup in Certificate Manager"
+#: Webrtc.class.php:309
+#, php-format
+msgid "You have no default certificates setup in %s"
 msgstr ""
+
+#~ msgid "Enable WebRTC Phone"
+#~ msgstr "Habilitar Teléfono WebRTC"
+
+#~ msgid "New Web Phone Call"
+#~ msgstr "Nueva llamada Web"
+
+#~ msgid "WebRTC Certificate"
+#~ msgstr "Certificado WebRTC"
 
 #~ msgid "Originate"
 #~ msgstr "Originar"

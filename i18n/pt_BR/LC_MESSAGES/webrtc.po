@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-01 19:00-0800\n"
+"POT-Creation-Date: 2017-03-14 17:35-0700\n"
 "PO-Revision-Date: 2016-12-20 23:26+0200\n"
 "Last-Translator: Alexander <alexander.schley@paranagua.pr.gov.br>\n"
 "Language-Team: Portuguese (Brazil) <http://weblate.freepbx.org/projects/"
@@ -29,9 +29,9 @@ msgstr ""
 msgid "Call"
 msgstr ""
 
-#: views/ucp_config.php:64
-msgid "Certificate WebRTC Phone should use for this user."
-msgstr "Certificado de Telefone WebRTC deve ser utilizado para este usuário."
+#: Webrtc.class.php:309
+msgid "Certificate Manager"
+msgstr ""
 
 #: ucp/assets/js/global.js:254
 msgid "Click this window to answer or close this window to ignore"
@@ -57,7 +57,7 @@ msgstr ""
 msgid "Disable"
 msgstr ""
 
-#: ucp/Webrtc.class.php:145 ucp/views/settings.php:7
+#: ucp/views/settings.php:7
 msgid "Disconnect Phone"
 msgstr "Desconectar Telefone"
 
@@ -69,17 +69,17 @@ msgstr ""
 msgid "Enable"
 msgstr ""
 
+#: views/ucp_config.php:19
+msgid "Enable Phone"
+msgstr ""
+
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
 msgstr "Habilitar WebRTC antigo Telefone ARI"
 
-#: views/ucp_config.php:19
-msgid "Enable WebRTC Phone"
-msgstr "Habilitar Telefone WebRTC"
-
 #: views/ucp_config.php:38
-msgid "Enable the WebRTC Phone in UCP for this user"
-msgstr "Habilitar telefone WebRTC no PCU para este usuário"
+msgid "Enable the phone in UCP for this user"
+msgstr ""
 
 #: functions.inc/hook_core.php:62
 #, php-format
@@ -94,7 +94,7 @@ msgstr ""
 msgid "GHI"
 msgstr ""
 
-#: Webrtc.class.php:429
+#: Webrtc.class.php:403
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "HTTPS não está habilitado para o Asterisk"
 
@@ -119,10 +119,6 @@ msgstr ""
 msgid "MNO"
 msgstr ""
 
-#: ucp/Webrtc.class.php:145
-msgid "New Web Phone Call"
-msgstr "Nova Chamada Telefônica Web"
-
 #: views/ucp_config.php:26
 msgid "No"
 msgstr "Não"
@@ -143,7 +139,7 @@ msgstr ""
 msgid "PQRS"
 msgstr ""
 
-#: ucp/Webrtc.class.php:25 ucp/Webrtc.class.php:38
+#: Webrtc.class.php:302 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
 msgid "Phone"
 msgstr ""
 
@@ -163,7 +159,7 @@ msgstr ""
 msgid "Registration Failed"
 msgstr ""
 
-#: ucp/Webrtc.class.php:145 ucp/views/settings.php:3
+#: ucp/views/settings.php:3
 msgid "Silence Ringer"
 msgstr "Silenciar Toque"
 
@@ -202,7 +198,7 @@ msgstr ""
 msgid "Unregistered"
 msgstr ""
 
-#: Webrtc.class.php:347 Webrtc.class.php:350
+#: Webrtc.class.php:322 Webrtc.class.php:325
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr "Versão não suportada do Asterisk, você precisa ao menos %s você tem %s"
@@ -215,13 +211,9 @@ msgstr "Usar Certificado"
 msgid "WXYZ"
 msgstr ""
 
-#: Webrtc.class.php:327 ucp/Webrtc.class.php:46
+#: ucp/Webrtc.class.php:55
 msgid "WebRTC"
 msgstr "WebRTC"
-
-#: views/ucp_config.php:48
-msgid "WebRTC Certificate"
-msgstr "Certificado WebRTC"
 
 #: webrtc.i18n.php:4
 msgid "WebRTC Phone"
@@ -231,11 +223,31 @@ msgstr "Telefone WebRTC"
 msgid "Yes"
 msgstr "Sim"
 
-#: Webrtc.class.php:334
-msgid "You have no certificates setup in Certificate Manager"
+#: Webrtc.class.php:309
+#, php-format
+msgid "You have no default certificates setup in %s"
 msgstr ""
-"Você não tem nenhuma configuração de certificados no Gerenciador de "
-"Certificados"
+
+#~ msgid "Certificate WebRTC Phone should use for this user."
+#~ msgstr ""
+#~ "Certificado de Telefone WebRTC deve ser utilizado para este usuário."
+
+#~ msgid "Enable WebRTC Phone"
+#~ msgstr "Habilitar Telefone WebRTC"
+
+#~ msgid "Enable the WebRTC Phone in UCP for this user"
+#~ msgstr "Habilitar telefone WebRTC no PCU para este usuário"
+
+#~ msgid "New Web Phone Call"
+#~ msgstr "Nova Chamada Telefônica Web"
+
+#~ msgid "WebRTC Certificate"
+#~ msgstr "Certificado WebRTC"
+
+#~ msgid "You have no certificates setup in Certificate Manager"
+#~ msgstr ""
+#~ "Você não tem nenhuma configuração de certificados no Gerenciador de "
+#~ "Certificados"
 
 #~ msgid ""
 #~ ")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error "
