@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-26 11:54-0800\n"
+"POT-Creation-Date: 2017-04-19 11:08-0400\n"
 "PO-Revision-Date: 2016-12-11 06:55+0200\n"
 "Last-Translator: Ernesto <ecasas@sangoma.com>\n"
 "Language-Team: Spanish <http://weblate.freepbx.org/projects/freepbx/webrtc/"
@@ -36,7 +36,7 @@ msgid "Click this window to answer or close this window to ignore"
 msgstr ""
 "Haga clic en esta ventana para responder o cerrar esta ventana para ignorar"
 
-#: ucp/assets/js/global.js:118 ucp/assets/js/global.js:486
+#: ucp/assets/js/global.js:118 ucp/assets/js/global.js:491
 msgid "Connect Phone"
 msgstr "Conectar el teléfono"
 
@@ -45,7 +45,7 @@ msgid "Connectivity"
 msgstr "Conectividad"
 
 #: ucp/Webrtc.class.php:114 ucp/assets/js/global.js:112
-#: ucp/assets/js/global.js:484
+#: ucp/assets/js/global.js:489
 msgid "Disconnect Phone"
 msgstr "Desconectar Teléfono"
 
