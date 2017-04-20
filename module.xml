@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>13.0.32.4</version>
+	<version>13.0.32.5</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -15,6 +15,7 @@
 		phone they will be connected to device 99XXXX which will receive calls from the original extension
 	</description>
 	<changelog>
+		*13.0.32.5* Update library to support rtcpMuxPolicy
 		*13.0.32.4* Add rtcpMuxPolicy for Chrome 57
 		*13.0.32.3* FREEPBX-13915 Cant change webrtc certificate for webrtc user without disabling webrtc first
 		*13.0.32.2* FREEPBX-13712 Remove linked extension when deleted

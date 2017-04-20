@@ -457,7 +457,7 @@ var WebrtcC = UCPMC.extend({
 	},
 	initiateLibrary: function() {
 		var $this = this,
-				ver = "0.7.5";
+				ver = "0.7.7";
 		$.getScript("modules/Webrtc/assets/jssiplibs/sip-" + ver + ".min.js")
 		.done(function( script, textStatus ) {
 			$("#nav-btn-webrtc").removeClass("hidden");
