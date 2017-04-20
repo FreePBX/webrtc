@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-19 11:08-0400\n"
+"POT-Creation-Date: 2017-04-20 13:45-0400\n"
 "PO-Revision-Date: 2017-03-12 17:22+0200\n"
 "Last-Translator: Nicolas <freepbx@riendeau.org>\n"
 "Language-Team: French <http://weblate.freepbx.org/projects/freepbx/webrtc/"
@@ -22,6 +22,7 @@ msgstr ""
 "X-Generator: Weblate 2.4\n"
 
 #: ucp/assets/jssiplibs/sip-0.7.5.min.js:37
+#: ucp/assets/jssiplibs/sip-0.7.7.min.js:37
 msgid ""
 ")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error parsing "
 msgstr ""
