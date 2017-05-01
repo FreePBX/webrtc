@@ -465,26 +465,25 @@ var WebrtcC = UCPMC.extend({
 			$("#footer").append("<audio id=\"audio_remote\" autoplay=\"autoplay\" />");
 			$("#footer").append("<audio id=\"ringtone\"><source src=\"modules/Webrtc/assets/sounds/ring.mp3\" type=\"audio/mpeg\"></audio>");
 			$this.callOptions.media.render.remote = document.getElementById('audio_remote');
-			$this.phone = new SIP.UA(
-				{
-					"wsServers": $this.staticsettings.settings.wsservers,
-					"uri": $this.staticsettings.settings.uri,
-					"password": $this.staticsettings.settings.password,
-					"log": {
-						"builtinEnabled": false,
-						"level": $this.staticsettings.settings.log
-					},
-					"register": $this.autoRegister,
-					"hackWssInTransport": true,
-					"stunServers": $this.staticsettings.settings.iceServers,
-					"iceCheckingTimeout": $this.staticsettings.settings.gatheringTimeout,
-					// The rtcpMuxPolicy option is being considered for removal and may be removed no earlier than M60, around August 2017.
-					// If you depend on it, please see https://www.chromestatus.com/features/5654810086866944 for more details.
-					// https://nimblea.pe/monkey-business/2017/01/19/webrtc-asterisk-and-chrome-57/
-					// https://issues.asterisk.org/jira/browse/ASTERISK-26732
-					"rtcpMuxPolicy": "negotiate"
-				}
-			);
+			var config = {
+				"wsServers": $this.staticsettings.settings.wsservers,
+				"uri": $this.staticsettings.settings.uri,
+				"password": $this.staticsettings.settings.password,
+				"log": {
+					"builtinEnabled": false,
+					"level": $this.staticsettings.settings.log
+				},
+				"register": $this.autoRegister,
+				"hackWssInTransport": true,
+				"stunServers": $this.staticsettings.settings.iceServers,
+				"iceCheckingTimeout": $this.staticsettings.settings.gatheringTimeout,
+				// The rtcpMuxPolicy option is being considered for removal and may be removed no earlier than M60, around August 2017.
+				// If you depend on it, please see https://www.chromestatus.com/features/5654810086866944 for more details.
+				// https://nimblea.pe/monkey-business/2017/01/19/webrtc-asterisk-and-chrome-57/
+				// https://issues.asterisk.org/jira/browse/ASTERISK-26732
+			};
+			config.rtcpMuxPolicy = "negotiate";
+			$this.phone = new SIP.UA(config);
 			if($this.autoRegister) {
 				$("#webrtc-dc a span").text(_("Disconnect Phone"));
 			} else {
