@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-20 13:45-0400\n"
+"POT-Creation-Date: 2017-05-01 16:41-0400\n"
 "PO-Revision-Date: 2016-12-12 15:34+0200\n"
 "Last-Translator: Maxim <maxim@ua.fm>\n"
 "Language-Team: Ukrainian <http://weblate.freepbx.org/projects/freepbx/webrtc/"
@@ -38,7 +38,7 @@ msgid "Click this window to answer or close this window to ignore"
 msgstr ""
 "Натисніть на це вікно, щоб відповісти або зачинить його, щоб ігнорувати"
 
-#: ucp/assets/js/global.js:118 ucp/assets/js/global.js:491
+#: ucp/assets/js/global.js:118 ucp/assets/js/global.js:490
 msgid "Connect Phone"
 msgstr "Підключення телефону"
 
@@ -47,7 +47,7 @@ msgid "Connectivity"
 msgstr "Зв'язок"
 
 #: ucp/Webrtc.class.php:114 ucp/assets/js/global.js:112
-#: ucp/assets/js/global.js:489
+#: ucp/assets/js/global.js:488
 msgid "Disconnect Phone"
 msgstr "Від'єднайте телефон"
 
@@ -70,7 +70,7 @@ msgid ""
 "ARI is depreciated in favor of UCP"
 msgstr ""
 
-#: Webrtc.class.php:429
+#: Webrtc.class.php:431
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "HTTPS не ввімкнуто для Астеріску"
 
@@ -138,7 +138,7 @@ msgstr ""
 "Неможливо розпочати виклик. Будь ласка, дозвольте сеанс WebRTC в вашому "
 "браузері і оновить сторінку"
 
-#: Webrtc.class.php:347 Webrtc.class.php:350
+#: Webrtc.class.php:349 Webrtc.class.php:352
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
@@ -148,7 +148,7 @@ msgstr ""
 msgid "Use Certificate"
 msgstr "Використовувати сертифікат"
 
-#: Webrtc.class.php:327
+#: Webrtc.class.php:329
 msgid "WebRTC"
 msgstr "WebRTC"
 
@@ -164,7 +164,7 @@ msgstr "WebRTC телефон"
 msgid "Yes"
 msgstr "Так"
 
-#: Webrtc.class.php:334
+#: Webrtc.class.php:336
 msgid "You have no certificates setup in Certificate Manager"
 msgstr "У вас немає встановлених сертифікатів в диспетчері сертифікатів"
 
