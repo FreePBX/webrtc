@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 16:41-0400\n"
+"POT-Creation-Date: 2017-05-22 17:02-0400\n"
 "PO-Revision-Date: 2016-10-08 12:26+0200\n"
 "Last-Translator: psdk <hyavari26@gmail.com>\n"
 "Language-Team: Persian (Iran) <http://weblate.freepbx.org/projects/freepbx/"
@@ -70,7 +70,7 @@ msgid ""
 msgstr ""
 "فعال سازی WebRTC برای %s در ARI. توجه： با معرفی UCP، واسط ARI منسوخ شده است"
 
-#: Webrtc.class.php:431
+#: Webrtc.class.php:404
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "سرویس HTTPS برای استریسک فعال نشده است"
 
@@ -137,7 +137,7 @@ msgstr ""
 "عدم امکان برقراری تماس. لطفا به اجرای WebRTC در مرورگر خود مجوز داده و مجددا "
 "صفحه را بارگذاری کنید"
 
-#: Webrtc.class.php:349 Webrtc.class.php:352
+#: Webrtc.class.php:322 Webrtc.class.php:325
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
@@ -148,7 +148,7 @@ msgstr ""
 msgid "Use Certificate"
 msgstr "از مجوز استفاده نمایید"
 
-#: Webrtc.class.php:329
+#: Webrtc.class.php:302
 msgid "WebRTC"
 msgstr "ارتباط WebRTC"
 
@@ -164,7 +164,7 @@ msgstr "تلفن WebRTC"
 msgid "Yes"
 msgstr "بله"
 
-#: Webrtc.class.php:336
+#: Webrtc.class.php:309
 msgid "You have no certificates setup in Certificate Manager"
 msgstr "شما مجوزی در ماژول مدیریت مجوزها ایجاد نکرده اید"
 

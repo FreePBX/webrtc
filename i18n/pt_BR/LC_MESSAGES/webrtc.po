@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 16:41-0400\n"
+"POT-Creation-Date: 2017-05-22 17:02-0400\n"
 "PO-Revision-Date: 2017-03-08 21:13+0200\n"
 "Last-Translator: Kingvoice <suporte@kingvoice.com.br>\n"
 "Language-Team: Portuguese (Brazil) <http://weblate.freepbx.org/projects/"
@@ -70,7 +70,7 @@ msgstr ""
 "Habilita o WebRTC para este %s na Interface de Gravação Asterisk (ARI). "
 "Nota: ARI obsoleto em favor do PCU"
 
-#: Webrtc.class.php:431
+#: Webrtc.class.php:404
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "HTTPS não está habilitado para o Asterisk"
 
@@ -138,7 +138,7 @@ msgstr ""
 "Não é possível iniciar a chamada. Permita a sessão WebRTC no seu navegador e "
 "atualize"
 
-#: Webrtc.class.php:349 Webrtc.class.php:352
+#: Webrtc.class.php:322 Webrtc.class.php:325
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr "Versão não suportada do Asterisk, você precisa ao menos %s você tem %s"
@@ -147,7 +147,7 @@ msgstr "Versão não suportada do Asterisk, você precisa ao menos %s você tem 
 msgid "Use Certificate"
 msgstr "Usar Certificado"
 
-#: Webrtc.class.php:329
+#: Webrtc.class.php:302
 msgid "WebRTC"
 msgstr "WebRTC"
 
@@ -163,7 +163,7 @@ msgstr "Telefone WebRTC"
 msgid "Yes"
 msgstr "Sim"
 
-#: Webrtc.class.php:336
+#: Webrtc.class.php:309
 msgid "You have no certificates setup in Certificate Manager"
 msgstr ""
 "Você não tem nenhuma configuração de certificados no Gerenciador de "
