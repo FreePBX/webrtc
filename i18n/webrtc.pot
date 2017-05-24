@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-14 17:35-0700\n"
+"POT-Creation-Date: 2017-05-23 17:09-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "Call"
 msgstr ""
 
-#: Webrtc.class.php:309
+#: Webrtc.class.php:284
 msgid "Certificate Manager"
 msgstr ""
 
@@ -91,7 +91,7 @@ msgstr ""
 msgid "GHI"
 msgstr ""
 
-#: Webrtc.class.php:403
+#: Webrtc.class.php:378
 msgid "HTTPS is not enabled for Asterisk"
 msgstr ""
 
@@ -136,7 +136,7 @@ msgstr ""
 msgid "PQRS"
 msgstr ""
 
-#: Webrtc.class.php:302
+#: Webrtc.class.php:277
 #: ucp/Webrtc.class.php:28
 #: ucp/Webrtc.class.php:44
 msgid "Phone"
@@ -193,8 +193,8 @@ msgstr ""
 msgid "Unregistered"
 msgstr ""
 
-#: Webrtc.class.php:322
-#: Webrtc.class.php:325
+#: Webrtc.class.php:297
+#: Webrtc.class.php:300
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
@@ -219,7 +219,7 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: Webrtc.class.php:309
+#: Webrtc.class.php:284
 #, php-format
 msgid "You have no default certificates setup in %s"
 msgstr ""
