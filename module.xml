@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>13.0.32.7</version>
+	<version>13.0.32.8</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -15,6 +15,7 @@
 		phone they will be connected to device 99XXXX which will receive calls from the original extension
 	</description>
 	<changelog>
+		*13.0.32.8* Depend on core
 		*13.0.32.7* FREEPBX-14649
 		*13.0.32.6* FREEPBX-14681 Support rtcp mux
 		*13.0.32.5* Update library to support rtcpMuxPolicy
@@ -64,7 +65,7 @@
 	<depends>
 		<engine>asterisk 11.5</engine>
 		<module>certman ge 13.0.34.8</module>
-		<module>core ge 13.0.119.8</module>
+		<module>core ge 13.0.119.12</module>
 		<module>ucp ge 12.0.0beta7</module>
 		<version>12.0.1beta34</version>
 	</depends>
