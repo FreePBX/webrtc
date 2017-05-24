@@ -13,12 +13,14 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 			"avpf" => "yes",
 			"force_avp" => "yes",
 			"icesupport" => "yes",
-			"encryption" => "yes"
+			"encryption" => "yes",
+			"rtcp_mux" => "yes"
 		),
 		"pjsip" => array(
 			"media_use_received_transport" => "yes",
-			"use_avpf" => "yes",
-			"ice_support" => "yes",
+			"avpf" => "yes",
+			"icesupport" => "yes",
+			"rtcp_mux" => "yes"
 		)
 	);
 
@@ -90,36 +92,10 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 			$this->setConfig('prefix','99');
 		}
 
-		$s = $this->getConfig('upgrade1');
-		if(empty($s)) {
-			$clients = $this->getClientsEnabled();
-			foreach($clients as $client) {
-				$dev = $this->core->getDevice($client['device']);
-				if(!empty($dev)) {
-					switch($dev['tech']) {
-						case "sip":
-							$dev['sessiontimers'] = 'refuse';
-							$dev['videosupport'] = 'no';
-						break;
-						case "pjsip":
-							$dev['timers'] = 'no';
-							$dev['media_encryption'] = 'dtls';
-						break;
-					}
-					$socket = $this->getSocketMode();
-					$settings = $this->core->generateDefaultDeviceSettings($dev['tech'],$client['device'],$dev['description']);
-					foreach($dev as $key => $value) {
-						if(isset($settings[$key]['value'])) {
-							$settings[$key]['value'] = $value;
-						}
-					}
-					//this is how you update a device in FreePBX... W0W
-					$this->core->delDevice($client['device'],true);
-					$this->core->addDevice($client['device'],$dev['tech'],$settings,true);
-				}
-			}
+		$clients = $this->getClientsEnabled();
+		foreach($clients as $client) {
+			$this->createDevice($client['device'],$client['certid']);
 		}
-		$this->setConfig('upgrade1',1);
 
 		return true;
 	}
@@ -195,7 +171,6 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		$group = $this->freepbx->Userman->getGroupByGID($id);
 		foreach($group['users'] as $user) {
 			$enabled = $this->freepbx->Ucp->getCombinedSettingByID($user, 'Webrtc', 'enabled');
-
 			$user = $this->freepbx->Userman->getUserByID($user);
 			if(!empty($user['default_extension']) && $user['default_extension'] != 'none' && $enabled) {
 				$dev = $this->freepbx->Core->getDevice($user['default_extension']);
@@ -427,14 +402,18 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 
 	public function createDevice($extension) {
 		$id = $this->prefix.$extension;
-		$check = $this->core->getDevice($id);
-		if(!empty($check)) {
+		$previous = $this->core->getDevice($id);
+		if(!empty($previous)) {
 			$this->core->delDevice($id);
 		}
+		$version = $this->freepbx->Config->get('ASTVERSION');
 		$user = $this->core->getUser($extension);
 		$dev = $this->core->getDevice($extension);
 		$socket = $this->getSocketMode();
 		$settings = $this->core->generateDefaultDeviceSettings($socket,$id,'WebRTC '.$user['name']);
+		if(!empty($previous['secret'])) {
+			$settings['secret']['value'] = $previous['secret'];
+		}
 		$settings['devicetype']['value'] = 'fixed';
 		$settings['context']['value'] = !empty($dev['context']) ? $dev['context'] : "from-internal";
 		$settings['user']['value'] = $extension;
@@ -458,14 +437,20 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 				$settings['encryption']['value'] = 'yes';
 				$settings['sessiontimers']['value'] = 'refuse';
 				$settings['videosupport']['value'] = 'no';
+				if((version_compare($version,'13.15.0','ge') && version_compare($version,'14.0','lt')) || version_compare($version,'14.4.0','ge')) {
+					$settings['rtcp_mux']['value'] = 'yes';
+				}
 				$this->core->addDevice($id,'sip',$settings);
 			break;
 			case 'pjsip':
-				$settings['use_avpf']['value'] = 'yes';
-				$settings['ice_support']['value'] = 'yes';
+				$settings['avpf']['value'] = 'yes';
+				$settings['icesupport']['value'] = 'yes';
 				$settings['media_use_received_transport']['value'] = 'yes';
 				$settings['timers']['value'] = 'no';
 				$settings['media_encryption']['value'] = 'dtls';
+				if((version_compare($version,'13.15.0','ge') && version_compare($version,'14.0','lt')) || version_compare($version,'14.4.0','ge')) {
+					$settings['rtcp_mux']['value'] = 'yes';
+				}
 				$this->core->addDevice($id,'pjsip',$settings);
 			break;
 			default:
@@ -474,6 +459,7 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		}
 		$this->certman->addDTLSOptions($id, $cert);
 		$this->setClientSettings($extension,$id,$certid);
+		return true;
 	}
 
 	public function getSocketMode() {
