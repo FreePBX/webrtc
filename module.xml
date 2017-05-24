@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>14.0.3.2</version>
+	<version>14.0.3.3</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -15,6 +15,7 @@
 		phone they will be connected to device 99XXXX which will receive calls from the original extension
 	</description>
 	<changelog>
+		*14.0.3.3* Depend on core
 		*14.0.3.2* Merge from 13
 		*14.0.3.1* Reduce key length
 		*14.0.3* Remove need to define certificate for UCP
@@ -61,7 +62,7 @@
 	<depends>
 		<engine>asterisk 11.5</engine>
 		<module>certman ge 13.0.22</module>
-		<module>core ge 13.0.74</module>
+		<module>core ge 14.0.1rc1.8</module>
 		<module>ucp ge 12.0.0beta7</module>
 		<version>12.0.1beta34</version>
 	</depends>
