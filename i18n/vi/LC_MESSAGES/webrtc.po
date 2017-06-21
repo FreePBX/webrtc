@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-22 17:02-0400\n"
-"PO-Revision-Date: 2017-06-19 21:09+0200\n"
+"PO-Revision-Date: 2017-06-21 16:03+0200\n"
 "Last-Translator: PETER <ftek@ymail.com>\n"
 "Language-Team: Vietnamese "
 "<http://weblate.freepbx.org/projects/freepbx/webrtc/vi/>\n"
@@ -41,7 +41,7 @@ msgstr ""
 
 #: webrtc.i18n.php:6
 msgid "Connectivity"
-msgstr ""
+msgstr "Khả năng kết nối"
 
 #: ucp/Webrtc.class.php:114 ucp/assets/js/global.js:112
 #: ucp/assets/js/global.js:488
