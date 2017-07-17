@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-22 17:02-0400\n"
-"PO-Revision-Date: 2017-07-10 19:59+0200\n"
+"PO-Revision-Date: 2017-07-17 15:04+0200\n"
 "Last-Translator: PETER <ftek@ymail.com>\n"
 "Language-Team: Vietnamese "
 "<http://weblate.freepbx.org/projects/freepbx/webrtc/vi/>\n"
@@ -90,11 +90,11 @@ msgstr "Không"
 
 #: ucp/assets/js/global.js:83
 msgid "Originate"
-msgstr ""
+msgstr "Khởi tạo"
 
 #: ucp/assets/js/global.js:82
 msgid "Originate Call"
-msgstr ""
+msgstr "Khởi tạo cuộc gọi"
 
 #: ucp/Webrtc.class.php:114
 msgid "Silence Ringer"
