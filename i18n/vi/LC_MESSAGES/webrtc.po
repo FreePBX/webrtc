@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-22 17:02-0400\n"
-"PO-Revision-Date: 2017-07-17 15:04+0200\n"
+"PO-Revision-Date: 2017-07-18 09:56+0200\n"
 "Last-Translator: PETER <ftek@ymail.com>\n"
 "Language-Team: Vietnamese "
 "<http://weblate.freepbx.org/projects/freepbx/webrtc/vi/>\n"
@@ -26,18 +26,19 @@ msgstr ""
 msgid ""
 ")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error parsing "
 msgstr ""
+")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error parsing "
 
 #: views/ucp_config.php:64
 msgid "Certificate WebRTC Phone should use for this user."
-msgstr ""
+msgstr "Giấy chứng nhận điện thoại WebRTC nên sử dụng cho người dùng này."
 
 #: ucp/assets/js/global.js:210
 msgid "Click this window to answer or close this window to ignore"
-msgstr ""
+msgstr "Kích vào cửa sổ này để trả lời hoặc đóng cửa sổ để bỏ qua"
 
 #: ucp/assets/js/global.js:118 ucp/assets/js/global.js:490
 msgid "Connect Phone"
-msgstr ""
+msgstr "Kết nối điện thoại"
 
 #: webrtc.i18n.php:6
 msgid "Connectivity"
@@ -46,19 +47,20 @@ msgstr "Khả năng kết nối"
 #: ucp/Webrtc.class.php:114 ucp/assets/js/global.js:112
 #: ucp/assets/js/global.js:488
 msgid "Disconnect Phone"
-msgstr ""
+msgstr "Ngắt kết nối điện thoại"
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
-msgstr ""
+msgstr "Kích hoạt WebRTC Old ARI Phone"
 
 #: views/ucp_config.php:19
 msgid "Enable WebRTC Phone"
-msgstr ""
+msgstr "Kích hoạt WebRTC Phone"
 
 #: views/ucp_config.php:38
 msgid "Enable the WebRTC Phone in UCP for this user"
 msgstr ""
+"Kích hoạt WebRTC Phone tại bảng điều khiển người dùng cho người dùng này"
 
 #: functions.inc/hook_core.php:62
 #, php-format
@@ -66,15 +68,17 @@ msgid ""
 "Enables WebRTC for this %s in the Asterisk Recording Interface (ARI). Note: "
 "ARI is depreciated in favor of UCP"
 msgstr ""
+"Kích hoạt WebRTC cho %s này tại giao diện ghi âm Asterisk ( ẢI). Lưu ý: ARI "
+"bị sụt giảm để có lợi cho Bảng điều khiển"
 
 #: Webrtc.class.php:404
 msgid "HTTPS is not enabled for Asterisk"
-msgstr ""
+msgstr "HTTPS không được kích hoạt cho Asterisk"
 
 #: ucp/assets/js/global.js:209
 #, perl-format
 msgid "Incoming call from %s"
-msgstr ""
+msgstr "Cuộc gọi đến từ %s"
 
 #: views/ucp_config.php:29
 msgid "Inherit"
@@ -82,7 +86,7 @@ msgstr "Kế thừa"
 
 #: ucp/Webrtc.class.php:114
 msgid "New Web Phone Call"
-msgstr ""
+msgstr "Cuộc gọi Web Phone mới"
 
 #: views/ucp_config.php:26
 msgid "No"
@@ -98,7 +102,7 @@ msgstr "Khởi tạo cuộc gọi"
 
 #: ucp/Webrtc.class.php:114
 msgid "Silence Ringer"
-msgstr ""
+msgstr "Để chuông chế độ im lặng"
 
 #: functions.inc/hook_core.php:77
 msgid "The Certificate to use from Certificate Manager"
@@ -106,7 +110,7 @@ msgstr "Chứng thực sử dụng từ trình quản lý chứng thực"
 
 #: webrtc.i18n.php:8
 msgid "The WebRTC Module allows an Administrator to enable a "
-msgstr ""
+msgstr "Mô đun WebRTC cho phép một quản trị viên kích hoạt một "
 
 #: functions.inc/hook_core.php:58
 msgid ""
