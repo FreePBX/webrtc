@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-22 17:02-0400\n"
-"PO-Revision-Date: 2017-07-18 10:22+0200\n"
+"PO-Revision-Date: 2017-07-18 10:23+0200\n"
 "Last-Translator: PETER <ftek@ymail.com>\n"
 "Language-Team: Vietnamese "
 "<http://weblate.freepbx.org/projects/freepbx/webrtc/vi/>\n"
@@ -151,7 +151,7 @@ msgstr "Sử dụng chứng thực"
 
 #: Webrtc.class.php:302
 msgid "WebRTC"
-msgstr "WebRTC"
+msgstr "WebRTC (web API được phát triển bởi World Wide Web Consortium)"
 
 #: views/ucp_config.php:48
 msgid "WebRTC Certificate"
