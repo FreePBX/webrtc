@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-22 17:02-0400\n"
-"PO-Revision-Date: 2017-07-18 09:56+0200\n"
+"PO-Revision-Date: 2017-07-18 10:22+0200\n"
 "Last-Translator: PETER <ftek@ymail.com>\n"
 "Language-Team: Vietnamese "
 "<http://weblate.freepbx.org/projects/freepbx/webrtc/vi/>\n"
@@ -118,6 +118,9 @@ msgid ""
 "this time. Please enable the chan_sip driver (along with pjsip or by itself) "
 "or alert the FreePBX Developers"
 msgstr ""
+"Giao diện WebSocket đang chạy qua PJSIP, PJSIP không được hỗ trợ tại thời "
+"điểm này. Vui lòng kích hoạt driver  chan_sip ( kèm với pjsip hoặc chính nó) "
+"hoặc cảnh báo những nhà phát triển FreePBX"
 
 #: functions.inc/hook_core.php:82
 #, php-format
@@ -125,17 +128,22 @@ msgid ""
 "To utilize WebRTC in ARI you must add at least one certificate %s through "
 "Certificate Manager"
 msgstr ""
+"Để sử dụng WebRTC trong ARI, bạn phải thêm ít nhất một chứng thực %s qua "
+"Trình Quản lý Chứng thực"
 
 #: ucp/assets/js/global.js:303
 msgid ""
 "Unable to start call. Please allow the WebRTC session in your browser and "
 "refresh"
 msgstr ""
+"Không thể bắt đầu cuộc gọi. Vui lòng cho phép phiên WebRTC trên trình duyệt "
+"của bạn và làm mới nó"
 
 #: Webrtc.class.php:322 Webrtc.class.php:325
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
+"Phiên bản không được hỗ trợ của Asterisk. Bạn cần ít nhất %s để bạn có %s"
 
 #: functions.inc/hook_core.php:76
 msgid "Use Certificate"
@@ -143,15 +151,15 @@ msgstr "Sử dụng chứng thực"
 
 #: Webrtc.class.php:302
 msgid "WebRTC"
-msgstr ""
+msgstr "WebRTC"
 
 #: views/ucp_config.php:48
 msgid "WebRTC Certificate"
-msgstr ""
+msgstr "Chứng thực WebRTC"
 
 #: webrtc.i18n.php:4
 msgid "WebRTC Phone"
-msgstr ""
+msgstr "Điện thoại WebRTC"
 
 #: views/ucp_config.php:24
 msgid "Yes"
@@ -159,4 +167,4 @@ msgstr "Có"
 
 #: Webrtc.class.php:309
 msgid "You have no certificates setup in Certificate Manager"
-msgstr ""
+msgstr "Bạn không có chứng thực được cài đặt trong trình quản lý chứng thực"
