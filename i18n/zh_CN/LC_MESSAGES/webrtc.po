@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-23 17:09-0700\n"
+"POT-Creation-Date: 2017-07-25 09:05-0700\n"
 "PO-Revision-Date: 2015-11-23 13:55+0200\n"
 "Last-Translator: james <zhulizhong@gmail.com>\n"
 "Language-Team: Simplified Chinese <http://weblate.freepbx.org/projects/"
@@ -21,11 +21,11 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 2.2-dev\n"
 
-#: ucp/views/phone.php:23
+#: ucp/views/phone.php:24
 msgid "ABC"
 msgstr ""
 
-#: ucp/views/phone.php:77
+#: ucp/views/phone.php:78
 msgid "Call"
 msgstr ""
 
@@ -49,7 +49,7 @@ msgstr ""
 msgid "Connectivity"
 msgstr "通信接口连接"
 
-#: ucp/views/phone.php:27
+#: ucp/views/phone.php:28
 msgid "DEF"
 msgstr ""
 
@@ -88,7 +88,7 @@ msgid ""
 "ARI is depreciated in favor of UCP"
 msgstr "在ARI中对%s 开启WebRTC。注意：UCP中已经停止使用ARI"
 
-#: ucp/views/phone.php:33
+#: ucp/views/phone.php:34
 msgid "GHI"
 msgstr ""
 
@@ -96,7 +96,7 @@ msgstr ""
 msgid "HTTPS is not enabled for Asterisk"
 msgstr ""
 
-#: ucp/views/phone.php:80
+#: ucp/views/phone.php:81
 msgid "Hold"
 msgstr ""
 
@@ -109,11 +109,11 @@ msgstr ""
 msgid "Inherit"
 msgstr "继承"
 
-#: ucp/views/phone.php:37
+#: ucp/views/phone.php:38
 msgid "JKL"
 msgstr ""
 
-#: ucp/views/phone.php:41
+#: ucp/views/phone.php:42
 msgid "MNO"
 msgstr ""
 
@@ -125,7 +125,7 @@ msgstr ""
 msgid "Not supported in this browser"
 msgstr ""
 
-#: ucp/views/phone.php:87
+#: ucp/views/phone.php:88
 msgid "Note: An Active call will not be dropped when this window is closed"
 msgstr ""
 
@@ -133,7 +133,7 @@ msgstr ""
 msgid "Only supported over HTTPS"
 msgstr ""
 
-#: ucp/views/phone.php:47
+#: ucp/views/phone.php:48
 msgid "PQRS"
 msgstr ""
 
@@ -141,7 +141,7 @@ msgstr ""
 msgid "Phone"
 msgstr ""
 
-#: ucp/views/phone.php:85
+#: ucp/views/phone.php:86
 msgid "Phone Status"
 msgstr ""
 
@@ -161,7 +161,7 @@ msgstr ""
 msgid "Silence Ringer"
 msgstr ""
 
-#: ucp/views/phone.php:51
+#: ucp/views/phone.php:52
 msgid "TUV"
 msgstr ""
 
@@ -202,7 +202,7 @@ msgstr "不能支持Asterisk的版本，用户至少需要%s, 但是现在的版
 msgid "Use Certificate"
 msgstr "使用证书"
 
-#: ucp/views/phone.php:55
+#: ucp/views/phone.php:56
 msgid "WXYZ"
 msgstr ""
 

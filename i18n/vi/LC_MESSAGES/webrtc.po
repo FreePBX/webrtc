@@ -9,11 +9,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-22 17:02-0400\n"
+"POT-Creation-Date: 2017-07-25 09:05-0700\n"
 "PO-Revision-Date: 2017-07-18 10:23+0200\n"
 "Last-Translator: PETER <ftek@ymail.com>\n"
-"Language-Team: Vietnamese "
-"<http://weblate.freepbx.org/projects/freepbx/webrtc/vi/>\n"
+"Language-Team: Vietnamese <http://weblate.freepbx.org/projects/freepbx/"
+"webrtc/vi/>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,46 +21,65 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 2.4\n"
 
-#: ucp/assets/jssiplibs/sip-0.7.5.min.js:37
-#: ucp/assets/jssiplibs/sip-0.7.7.min.js:37
-msgid ""
-")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error parsing "
+#: ucp/views/phone.php:24
+msgid "ABC"
 msgstr ""
-")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error parsing "
 
-#: views/ucp_config.php:64
-msgid "Certificate WebRTC Phone should use for this user."
-msgstr "Giấy chứng nhận điện thoại WebRTC nên sử dụng cho người dùng này."
+#: ucp/views/phone.php:78
+msgid "Call"
+msgstr ""
 
-#: ucp/assets/js/global.js:210
+#: Webrtc.class.php:284
+msgid "Certificate Manager"
+msgstr ""
+
+#: ucp/assets/js/global.js:254
 msgid "Click this window to answer or close this window to ignore"
 msgstr "Kích vào cửa sổ này để trả lời hoặc đóng cửa sổ để bỏ qua"
 
-#: ucp/assets/js/global.js:118 ucp/assets/js/global.js:490
+#: ucp/assets/js/global.js:511
 msgid "Connect Phone"
 msgstr "Kết nối điện thoại"
+
+#: ucp/assets/js/global.js:532
+msgid "Connecting to socket..."
+msgstr ""
 
 #: webrtc.i18n.php:6
 msgid "Connectivity"
 msgstr "Khả năng kết nối"
 
-#: ucp/Webrtc.class.php:114 ucp/assets/js/global.js:112
-#: ucp/assets/js/global.js:488
+#: ucp/views/phone.php:28
+msgid "DEF"
+msgstr ""
+
+#: ucp/assets/js/global.js:69 ucp/assets/js/global.js:77
+msgid "Disable"
+msgstr ""
+
+#: ucp/views/settings.php:7
 msgid "Disconnect Phone"
 msgstr "Ngắt kết nối điện thoại"
+
+#: ucp/assets/js/global.js:523
+msgid "Disconnected"
+msgstr ""
+
+#: ucp/assets/js/global.js:68 ucp/assets/js/global.js:76
+msgid "Enable"
+msgstr ""
+
+#: views/ucp_config.php:19
+msgid "Enable Phone"
+msgstr ""
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
 msgstr "Kích hoạt WebRTC Old ARI Phone"
 
-#: views/ucp_config.php:19
-msgid "Enable WebRTC Phone"
-msgstr "Kích hoạt WebRTC Phone"
-
 #: views/ucp_config.php:38
-msgid "Enable the WebRTC Phone in UCP for this user"
+msgid "Enable the phone in UCP for this user"
 msgstr ""
-"Kích hoạt WebRTC Phone tại bảng điều khiển người dùng cho người dùng này"
 
 #: functions.inc/hook_core.php:62
 #, php-format
@@ -71,11 +90,19 @@ msgstr ""
 "Kích hoạt WebRTC cho %s này tại giao diện ghi âm Asterisk ( ẢI). Lưu ý: ARI "
 "bị sụt giảm để có lợi cho Bảng điều khiển"
 
-#: Webrtc.class.php:404
+#: ucp/views/phone.php:34
+msgid "GHI"
+msgstr ""
+
+#: Webrtc.class.php:378
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "HTTPS không được kích hoạt cho Asterisk"
 
-#: ucp/assets/js/global.js:209
+#: ucp/views/phone.php:81
+msgid "Hold"
+msgstr ""
+
+#: ucp/assets/js/global.js:253
 #, perl-format
 msgid "Incoming call from %s"
 msgstr "Cuộc gọi đến từ %s"
@@ -84,25 +111,61 @@ msgstr "Cuộc gọi đến từ %s"
 msgid "Inherit"
 msgstr "Kế thừa"
 
-#: ucp/Webrtc.class.php:114
-msgid "New Web Phone Call"
-msgstr "Cuộc gọi Web Phone mới"
+#: ucp/views/phone.php:38
+msgid "JKL"
+msgstr ""
+
+#: ucp/views/phone.php:42
+msgid "MNO"
+msgstr ""
 
 #: views/ucp_config.php:26
 msgid "No"
 msgstr "Không"
 
-#: ucp/assets/js/global.js:83
-msgid "Originate"
-msgstr "Khởi tạo"
+#: ucp/assets/js/global.js:602
+msgid "Not supported in this browser"
+msgstr ""
 
-#: ucp/assets/js/global.js:82
-msgid "Originate Call"
-msgstr "Khởi tạo cuộc gọi"
+#: ucp/views/phone.php:88
+msgid "Note: An Active call will not be dropped when this window is closed"
+msgstr ""
 
-#: ucp/Webrtc.class.php:114
+#: ucp/assets/js/global.js:609
+msgid "Only supported over HTTPS"
+msgstr ""
+
+#: ucp/views/phone.php:48
+msgid "PQRS"
+msgstr ""
+
+#: Webrtc.class.php:277 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
+msgid "Phone"
+msgstr ""
+
+#: ucp/views/phone.php:86
+msgid "Phone Status"
+msgstr ""
+
+#: ucp/assets/js/global.js:491
+msgid "Registered"
+msgstr ""
+
+#: ucp/assets/js/global.js:538
+msgid "Registering..."
+msgstr ""
+
+#: ucp/assets/js/global.js:509
+msgid "Registration Failed"
+msgstr ""
+
+#: ucp/views/settings.php:3
 msgid "Silence Ringer"
 msgstr "Để chuông chế độ im lặng"
+
+#: ucp/views/phone.php:52
+msgid "TUV"
+msgstr ""
 
 #: functions.inc/hook_core.php:77
 msgid "The Certificate to use from Certificate Manager"
@@ -131,15 +194,11 @@ msgstr ""
 "Để sử dụng WebRTC trong ARI, bạn phải thêm ít nhất một chứng thực %s qua "
 "Trình Quản lý Chứng thực"
 
-#: ucp/assets/js/global.js:303
-msgid ""
-"Unable to start call. Please allow the WebRTC session in your browser and "
-"refresh"
+#: ucp/assets/js/global.js:501 ucp/assets/js/global.js:518
+msgid "Unregistered"
 msgstr ""
-"Không thể bắt đầu cuộc gọi. Vui lòng cho phép phiên WebRTC trên trình duyệt "
-"của bạn và làm mới nó"
 
-#: Webrtc.class.php:322 Webrtc.class.php:325
+#: Webrtc.class.php:297 Webrtc.class.php:300
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
@@ -149,13 +208,13 @@ msgstr ""
 msgid "Use Certificate"
 msgstr "Sử dụng chứng thực"
 
-#: Webrtc.class.php:302
+#: ucp/views/phone.php:56
+msgid "WXYZ"
+msgstr ""
+
+#: ucp/Webrtc.class.php:55
 msgid "WebRTC"
 msgstr "WebRTC (web API được phát triển bởi World Wide Web Consortium)"
-
-#: views/ucp_config.php:48
-msgid "WebRTC Certificate"
-msgstr "Chứng thực WebRTC"
 
 #: webrtc.i18n.php:4
 msgid "WebRTC Phone"
@@ -165,6 +224,46 @@ msgstr "Điện thoại WebRTC"
 msgid "Yes"
 msgstr "Có"
 
-#: Webrtc.class.php:309
-msgid "You have no certificates setup in Certificate Manager"
-msgstr "Bạn không có chứng thực được cài đặt trong trình quản lý chứng thực"
+#: Webrtc.class.php:284
+#, php-format
+msgid "You have no default certificates setup in %s"
+msgstr ""
+
+#~ msgid ""
+#~ ")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error "
+#~ "parsing "
+#~ msgstr ""
+#~ ")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error "
+#~ "parsing "
+
+#~ msgid "Certificate WebRTC Phone should use for this user."
+#~ msgstr "Giấy chứng nhận điện thoại WebRTC nên sử dụng cho người dùng này."
+
+#~ msgid "Enable WebRTC Phone"
+#~ msgstr "Kích hoạt WebRTC Phone"
+
+#~ msgid "Enable the WebRTC Phone in UCP for this user"
+#~ msgstr ""
+#~ "Kích hoạt WebRTC Phone tại bảng điều khiển người dùng cho người dùng này"
+
+#~ msgid "New Web Phone Call"
+#~ msgstr "Cuộc gọi Web Phone mới"
+
+#~ msgid "Originate"
+#~ msgstr "Khởi tạo"
+
+#~ msgid "Originate Call"
+#~ msgstr "Khởi tạo cuộc gọi"
+
+#~ msgid ""
+#~ "Unable to start call. Please allow the WebRTC session in your browser and "
+#~ "refresh"
+#~ msgstr ""
+#~ "Không thể bắt đầu cuộc gọi. Vui lòng cho phép phiên WebRTC trên trình "
+#~ "duyệt của bạn và làm mới nó"
+
+#~ msgid "WebRTC Certificate"
+#~ msgstr "Chứng thực WebRTC"
+
+#~ msgid "You have no certificates setup in Certificate Manager"
+#~ msgstr "Bạn không có chứng thực được cài đặt trong trình quản lý chứng thực"

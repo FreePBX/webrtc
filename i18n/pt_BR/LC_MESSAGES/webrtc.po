@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-23 17:09-0700\n"
+"POT-Creation-Date: 2017-07-25 09:05-0700\n"
 "PO-Revision-Date: 2016-12-20 23:26+0200\n"
 "Last-Translator: Alexander <alexander.schley@paranagua.pr.gov.br>\n"
 "Language-Team: Portuguese (Brazil) <http://weblate.freepbx.org/projects/"
@@ -21,11 +21,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.4\n"
 
-#: ucp/views/phone.php:23
+#: ucp/views/phone.php:24
 msgid "ABC"
 msgstr ""
 
-#: ucp/views/phone.php:77
+#: ucp/views/phone.php:78
 msgid "Call"
 msgstr ""
 
@@ -49,7 +49,7 @@ msgstr ""
 msgid "Connectivity"
 msgstr "Conectividade"
 
-#: ucp/views/phone.php:27
+#: ucp/views/phone.php:28
 msgid "DEF"
 msgstr ""
 
@@ -90,7 +90,7 @@ msgstr ""
 "Habilita o WebRTC para este %s na Interface de Gravação Asterisk (ARI). "
 "Nota: ARI obsoleto em favor do PCU"
 
-#: ucp/views/phone.php:33
+#: ucp/views/phone.php:34
 msgid "GHI"
 msgstr ""
 
@@ -98,7 +98,7 @@ msgstr ""
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "HTTPS não está habilitado para o Asterisk"
 
-#: ucp/views/phone.php:80
+#: ucp/views/phone.php:81
 msgid "Hold"
 msgstr ""
 
@@ -111,11 +111,11 @@ msgstr "Chamada recebida de %s"
 msgid "Inherit"
 msgstr "Herdar"
 
-#: ucp/views/phone.php:37
+#: ucp/views/phone.php:38
 msgid "JKL"
 msgstr ""
 
-#: ucp/views/phone.php:41
+#: ucp/views/phone.php:42
 msgid "MNO"
 msgstr ""
 
@@ -127,7 +127,7 @@ msgstr "Não"
 msgid "Not supported in this browser"
 msgstr ""
 
-#: ucp/views/phone.php:87
+#: ucp/views/phone.php:88
 msgid "Note: An Active call will not be dropped when this window is closed"
 msgstr ""
 
@@ -135,7 +135,7 @@ msgstr ""
 msgid "Only supported over HTTPS"
 msgstr ""
 
-#: ucp/views/phone.php:47
+#: ucp/views/phone.php:48
 msgid "PQRS"
 msgstr ""
 
@@ -143,7 +143,7 @@ msgstr ""
 msgid "Phone"
 msgstr ""
 
-#: ucp/views/phone.php:85
+#: ucp/views/phone.php:86
 msgid "Phone Status"
 msgstr ""
 
@@ -163,7 +163,7 @@ msgstr ""
 msgid "Silence Ringer"
 msgstr "Silenciar Toque"
 
-#: ucp/views/phone.php:51
+#: ucp/views/phone.php:52
 msgid "TUV"
 msgstr ""
 
@@ -207,7 +207,7 @@ msgstr "Versão não suportada do Asterisk, você precisa ao menos %s você tem 
 msgid "Use Certificate"
 msgstr "Usar Certificado"
 
-#: ucp/views/phone.php:55
+#: ucp/views/phone.php:56
 msgid "WXYZ"
 msgstr ""
 
