@@ -132,10 +132,10 @@ var WebrtcC = UCPMC.extend({
 				button.prop("disabled", true);
 			}
 		});
-		$("#menu_webrtc_phone .dialpad").keyup(function() {
-			var button = $(this).parents(".window").find("button.action"),
-					text = $("#menu_webrtc_phone .dialpad").val();
-			if ($(this).val().length === 0 && ($this.state == "accepted")) {
+		$("#menu_webrtc_phone .dialpad").on('keyup paste', function() {
+			var button = $("#menu_webrtc_phone button.action"),
+				text = $("#menu_webrtc_phone .dialpad").val();
+			if ($(this).val().length === 0 && ($this.state == "accepted" || $this.state == "registered")) {
 				$( "#menu_webrtc_phone .message").text("");
 				button.prop("disabled", true);
 			} else {
@@ -391,9 +391,11 @@ var WebrtcC = UCPMC.extend({
 				type = (typeof t !== "undefined" && t !== null) ? t : "registered",
 				$this = this;
 		this.state = type;
-		console.log(type);
 		button.data("type", type);
 		switch (type){
+			case "dtmf":
+				this.state = "accepted";
+			break;
 			case "invite":
 				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").addClass("shake");
 				this.playRing();
