@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>14.0.3.3</version>
+	<version>14.0.3.4</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -15,6 +15,7 @@
 		phone they will be connected to device 99XXXX which will receive calls from the original extension
 	</description>
 	<changelog>
+		*14.0.3.4* Fix phone loading in UCP
 		*14.0.3.3* Depend on core
 		*14.0.3.2* Merge from 13
 		*14.0.3.1* Reduce key length
