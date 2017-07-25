@@ -1,0 +1,170 @@
+# This file is part of FreePBX.
+#
+# For licensing information, please see the file named LICENSE located in the module directory
+#
+# FreePBX language template for webrtc
+# Copyright (C) 2008-2017 Sangoma Technologies, Inc.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-22 17:02-0400\n"
+"PO-Revision-Date: 2017-07-18 10:23+0200\n"
+"Last-Translator: PETER <ftek@ymail.com>\n"
+"Language-Team: Vietnamese "
+"<http://weblate.freepbx.org/projects/freepbx/webrtc/vi/>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.4\n"
+
+#: ucp/assets/jssiplibs/sip-0.7.5.min.js:37
+#: ucp/assets/jssiplibs/sip-0.7.7.min.js:37
+msgid ""
+")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error parsing "
+msgstr ""
+")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error parsing "
+
+#: views/ucp_config.php:64
+msgid "Certificate WebRTC Phone should use for this user."
+msgstr "Giấy chứng nhận điện thoại WebRTC nên sử dụng cho người dùng này."
+
+#: ucp/assets/js/global.js:210
+msgid "Click this window to answer or close this window to ignore"
+msgstr "Kích vào cửa sổ này để trả lời hoặc đóng cửa sổ để bỏ qua"
+
+#: ucp/assets/js/global.js:118 ucp/assets/js/global.js:490
+msgid "Connect Phone"
+msgstr "Kết nối điện thoại"
+
+#: webrtc.i18n.php:6
+msgid "Connectivity"
+msgstr "Khả năng kết nối"
+
+#: ucp/Webrtc.class.php:114 ucp/assets/js/global.js:112
+#: ucp/assets/js/global.js:488
+msgid "Disconnect Phone"
+msgstr "Ngắt kết nối điện thoại"
+
+#: functions.inc/hook_core.php:62
+msgid "Enable WebRTC Old ARI Phone"
+msgstr "Kích hoạt WebRTC Old ARI Phone"
+
+#: views/ucp_config.php:19
+msgid "Enable WebRTC Phone"
+msgstr "Kích hoạt WebRTC Phone"
+
+#: views/ucp_config.php:38
+msgid "Enable the WebRTC Phone in UCP for this user"
+msgstr ""
+"Kích hoạt WebRTC Phone tại bảng điều khiển người dùng cho người dùng này"
+
+#: functions.inc/hook_core.php:62
+#, php-format
+msgid ""
+"Enables WebRTC for this %s in the Asterisk Recording Interface (ARI). Note: "
+"ARI is depreciated in favor of UCP"
+msgstr ""
+"Kích hoạt WebRTC cho %s này tại giao diện ghi âm Asterisk ( ẢI). Lưu ý: ARI "
+"bị sụt giảm để có lợi cho Bảng điều khiển"
+
+#: Webrtc.class.php:404
+msgid "HTTPS is not enabled for Asterisk"
+msgstr "HTTPS không được kích hoạt cho Asterisk"
+
+#: ucp/assets/js/global.js:209
+#, perl-format
+msgid "Incoming call from %s"
+msgstr "Cuộc gọi đến từ %s"
+
+#: views/ucp_config.php:29
+msgid "Inherit"
+msgstr "Kế thừa"
+
+#: ucp/Webrtc.class.php:114
+msgid "New Web Phone Call"
+msgstr "Cuộc gọi Web Phone mới"
+
+#: views/ucp_config.php:26
+msgid "No"
+msgstr "Không"
+
+#: ucp/assets/js/global.js:83
+msgid "Originate"
+msgstr "Khởi tạo"
+
+#: ucp/assets/js/global.js:82
+msgid "Originate Call"
+msgstr "Khởi tạo cuộc gọi"
+
+#: ucp/Webrtc.class.php:114
+msgid "Silence Ringer"
+msgstr "Để chuông chế độ im lặng"
+
+#: functions.inc/hook_core.php:77
+msgid "The Certificate to use from Certificate Manager"
+msgstr "Chứng thực sử dụng từ trình quản lý chứng thực"
+
+#: webrtc.i18n.php:8
+msgid "The WebRTC Module allows an Administrator to enable a "
+msgstr "Mô đun WebRTC cho phép một quản trị viên kích hoạt một "
+
+#: functions.inc/hook_core.php:58
+msgid ""
+"The WebSockets Interface is running through PJSIP, PJSIP is not supported at "
+"this time. Please enable the chan_sip driver (along with pjsip or by itself) "
+"or alert the FreePBX Developers"
+msgstr ""
+"Giao diện WebSocket đang chạy qua PJSIP, PJSIP không được hỗ trợ tại thời "
+"điểm này. Vui lòng kích hoạt driver  chan_sip ( kèm với pjsip hoặc chính nó) "
+"hoặc cảnh báo những nhà phát triển FreePBX"
+
+#: functions.inc/hook_core.php:82
+#, php-format
+msgid ""
+"To utilize WebRTC in ARI you must add at least one certificate %s through "
+"Certificate Manager"
+msgstr ""
+"Để sử dụng WebRTC trong ARI, bạn phải thêm ít nhất một chứng thực %s qua "
+"Trình Quản lý Chứng thực"
+
+#: ucp/assets/js/global.js:303
+msgid ""
+"Unable to start call. Please allow the WebRTC session in your browser and "
+"refresh"
+msgstr ""
+"Không thể bắt đầu cuộc gọi. Vui lòng cho phép phiên WebRTC trên trình duyệt "
+"của bạn và làm mới nó"
+
+#: Webrtc.class.php:322 Webrtc.class.php:325
+#, php-format
+msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
+msgstr ""
+"Phiên bản không được hỗ trợ của Asterisk. Bạn cần ít nhất %s để bạn có %s"
+
+#: functions.inc/hook_core.php:76
+msgid "Use Certificate"
+msgstr "Sử dụng chứng thực"
+
+#: Webrtc.class.php:302
+msgid "WebRTC"
+msgstr "WebRTC (web API được phát triển bởi World Wide Web Consortium)"
+
+#: views/ucp_config.php:48
+msgid "WebRTC Certificate"
+msgstr "Chứng thực WebRTC"
+
+#: webrtc.i18n.php:4
+msgid "WebRTC Phone"
+msgstr "Điện thoại WebRTC"
+
+#: views/ucp_config.php:24
+msgid "Yes"
+msgstr "Có"
+
+#: Webrtc.class.php:309
+msgid "You have no certificates setup in Certificate Manager"
+msgstr "Bạn không có chứng thực được cài đặt trong trình quản lý chứng thực"
