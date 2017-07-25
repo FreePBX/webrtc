@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-25 09:05-0700\n"
+"POT-Creation-Date: 2017-07-25 10:52-0700\n"
 "PO-Revision-Date: 2016-10-05 20:09+0200\n"
 "Last-Translator: Maxim <maxim@ua.fm>\n"
 "Language-Team: Ukrainian <http://weblate.freepbx.org/projects/freepbx/webrtc/"
@@ -39,11 +39,11 @@ msgid "Click this window to answer or close this window to ignore"
 msgstr ""
 "Натисніть на це вікно, щоб відповісти або зачинить його, щоб ігнорувати"
 
-#: ucp/assets/js/global.js:511
+#: ucp/assets/js/global.js:513
 msgid "Connect Phone"
 msgstr "Підключення телефону"
 
-#: ucp/assets/js/global.js:532
+#: ucp/assets/js/global.js:534
 msgid "Connecting to socket..."
 msgstr ""
 
@@ -63,7 +63,7 @@ msgstr ""
 msgid "Disconnect Phone"
 msgstr "Від'єднайте телефон"
 
-#: ucp/assets/js/global.js:523
+#: ucp/assets/js/global.js:525
 msgid "Disconnected"
 msgstr ""
 
@@ -123,7 +123,7 @@ msgstr ""
 msgid "No"
 msgstr "Ні"
 
-#: ucp/assets/js/global.js:602
+#: ucp/assets/js/global.js:604
 msgid "Not supported in this browser"
 msgstr ""
 
@@ -131,7 +131,7 @@ msgstr ""
 msgid "Note: An Active call will not be dropped when this window is closed"
 msgstr ""
 
-#: ucp/assets/js/global.js:609
+#: ucp/assets/js/global.js:611
 msgid "Only supported over HTTPS"
 msgstr ""
 
@@ -147,15 +147,15 @@ msgstr ""
 msgid "Phone Status"
 msgstr ""
 
-#: ucp/assets/js/global.js:491
+#: ucp/assets/js/global.js:493
 msgid "Registered"
 msgstr ""
 
-#: ucp/assets/js/global.js:538
+#: ucp/assets/js/global.js:540
 msgid "Registering..."
 msgstr ""
 
-#: ucp/assets/js/global.js:509
+#: ucp/assets/js/global.js:511
 msgid "Registration Failed"
 msgstr ""
 
@@ -192,7 +192,7 @@ msgid ""
 "Certificate Manager"
 msgstr ""
 
-#: ucp/assets/js/global.js:501 ucp/assets/js/global.js:518
+#: ucp/assets/js/global.js:503 ucp/assets/js/global.js:520
 msgid "Unregistered"
 msgstr ""
 
