@@ -458,7 +458,7 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 			break;
 		}
 		$this->certman->addDTLSOptions($id, $cert);
-		$this->setClientSettings($extension,$id,$certid);
+		$this->setClientSettings($extension,$id);
 		return true;
 	}
 
