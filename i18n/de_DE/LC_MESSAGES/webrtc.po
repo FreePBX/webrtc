@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-22 17:02-0400\n"
-"PO-Revision-Date: 2017-11-12 16:21+0200\n"
-"Last-Translator: hammer125 <auswertung@aon.at>\n"
+"PO-Revision-Date: 2017-12-08 21:58+0200\n"
+"Last-Translator: tranlsated <noemi@translated.net>\n"
 "Language-Team: German "
 "<http://weblate.freepbx.org/projects/freepbx/webrtc/de_DE/>\n"
 "Language: de_DE\n"
@@ -78,7 +78,7 @@ msgstr ""
 
 #: views/ucp_config.php:29
 msgid "Inherit"
-msgstr "Geerbt"
+msgstr "Erben"
 
 #: ucp/Webrtc.class.php:114
 msgid "New Web Phone Call"
