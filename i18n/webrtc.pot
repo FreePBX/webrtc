@@ -3,13 +3,13 @@
 # For licensing information, please see the file named LICENSE located in the module directory
 #
 # FreePBX language template for webrtc
-# Copyright (C) 2008-2017 Sangoma Technologies, Inc.
+# Copyright (C) 2008-2018 Sangoma Technologies, Inc.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-25 10:52-0700\n"
+"POT-Creation-Date: 2018-01-16 17:29-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "Call"
 msgstr ""
 
-#: Webrtc.class.php:284
+#: Webrtc.class.php:285
 msgid "Certificate Manager"
 msgstr ""
 
@@ -91,7 +91,7 @@ msgstr ""
 msgid "GHI"
 msgstr ""
 
-#: Webrtc.class.php:378
+#: Webrtc.class.php:379
 msgid "HTTPS is not enabled for Asterisk"
 msgstr ""
 
@@ -136,7 +136,7 @@ msgstr ""
 msgid "PQRS"
 msgstr ""
 
-#: Webrtc.class.php:277
+#: Webrtc.class.php:278
 #: ucp/Webrtc.class.php:28
 #: ucp/Webrtc.class.php:44
 msgid "Phone"
@@ -193,8 +193,8 @@ msgstr ""
 msgid "Unregistered"
 msgstr ""
 
-#: Webrtc.class.php:297
-#: Webrtc.class.php:300
+#: Webrtc.class.php:298
+#: Webrtc.class.php:301
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
@@ -219,7 +219,7 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: Webrtc.class.php:284
+#: Webrtc.class.php:285
 #, php-format
 msgid "You have no default certificates setup in %s"
 msgstr ""
