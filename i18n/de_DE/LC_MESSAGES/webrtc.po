@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-22 17:02-0400\n"
-"PO-Revision-Date: 2017-12-14 16:40+0200\n"
+"PO-Revision-Date: 2018-02-02 06:51+0200\n"
 "Last-Translator: tranlsated <noemi@translated.net>\n"
 "Language-Team: German "
 "<http://weblate.freepbx.org/projects/freepbx/webrtc/de_DE/>\n"
@@ -56,15 +56,15 @@ msgstr "Telefonverbindung trennen"
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
-msgstr "WebRTC Old ARI Telefon aktivieren"
+msgstr "WebRTC Old ARI-Telefon aktivieren"
 
 #: views/ucp_config.php:19
 msgid "Enable WebRTC Phone"
-msgstr "WebRTC Telefon aktivieren"
+msgstr "WebRTC-Telefon aktivieren"
 
 #: views/ucp_config.php:38
 msgid "Enable the WebRTC Phone in UCP for this user"
-msgstr "WebRTC Telefon in UCP für diesen Benutzer aktivieren"
+msgstr "WebRTC-Telefon in UCP für diesen Benutzer aktivieren"
 
 #: functions.inc/hook_core.php:62
 #, php-format
@@ -114,7 +114,7 @@ msgstr "Das zu verwendende Zertifikat des Zertifikatmanagers"
 
 #: webrtc.i18n.php:8
 msgid "The WebRTC Module allows an Administrator to enable a "
-msgstr "Das WebRTC Modul ermöglicht einem Administrator die Aktivierung von "
+msgstr "Das WebRTC-Modul ermöglicht einem Administrator die Aktivierung von "
 
 #: functions.inc/hook_core.php:58
 msgid ""
@@ -140,14 +140,14 @@ msgid ""
 "Unable to start call. Please allow the WebRTC session in your browser and "
 "refresh"
 msgstr ""
-"Kann Anruf nicht starten. Bitte ermöglichen Sie eine WebRTC-Sitzung in Ihrem "
+"Anruf kann nicht gestartet werden. Erlauben Sie die WebRTC-Sitzung in Ihrem "
 "Browser und aktualisieren Sie"
 
 #: Webrtc.class.php:322 Webrtc.class.php:325
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
-"Nicht untersützte Version von Asterisk. Sie benötigen mindestens %s. Sie "
+"Nicht unterstützte Version von Asterisk. Sie benötigen mindestens %s. Sie "
 "haben %s"
 
 #: functions.inc/hook_core.php:76
@@ -160,11 +160,11 @@ msgstr "WebRTC"
 
 #: views/ucp_config.php:48
 msgid "WebRTC Certificate"
-msgstr "WebRTC Zertifikat"
+msgstr "WebRTC-Zertifikat"
 
 #: webrtc.i18n.php:4
 msgid "WebRTC Phone"
-msgstr "WebRTC Telefon"
+msgstr "WebRTC-Telefon"
 
 #: views/ucp_config.php:24
 msgid "Yes"
@@ -172,4 +172,4 @@ msgstr "Ja"
 
 #: Webrtc.class.php:309
 msgid "You have no certificates setup in Certificate Manager"
-msgstr "Sie haben keine Zertifikate in Certificate Manager erstellt"
+msgstr "Sie haben keine Zertifikate im Zertifikatmanager erstellt"
