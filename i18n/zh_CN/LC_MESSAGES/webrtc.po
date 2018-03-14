@@ -10,16 +10,16 @@ msgstr ""
 "Project-Id-Version: FreePBX 2.5 Chinese Translation\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-22 17:02-0400\n"
-"PO-Revision-Date: 2017-07-31 07:35+0800\n"
+"PO-Revision-Date: 2018-03-14 14:39+0200\n"
 "Last-Translator: james <zhulizhong@gmail.com>\n"
 "Language-Team: Simplified Chinese "
-"<http://weblate.freepbx.org/projects/freepbx/framework/zh_CN/>\n"
+"<http://weblate.freepbx.org/projects/freepbx/webrtc/zh_CN/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.2-dev\n"
+"X-Generator: Weblate 2.4\n"
 
 #: ucp/assets/jssiplibs/sip-0.7.5.min.js:37
 #: ucp/assets/jssiplibs/sip-0.7.7.min.js:37
@@ -33,11 +33,11 @@ msgstr "此用户使用带证书的WebRTC 电话。"
 
 #: ucp/assets/js/global.js:210
 msgid "Click this window to answer or close this window to ignore"
-msgstr ""
+msgstr "点击此窗口应答或忽略关闭窗口"
 
 #: ucp/assets/js/global.js:118 ucp/assets/js/global.js:490
 msgid "Connect Phone"
-msgstr ""
+msgstr "连接电话终端"
 
 #: webrtc.i18n.php:6
 msgid "Connectivity"
@@ -46,7 +46,7 @@ msgstr "通信接口连接"
 #: ucp/Webrtc.class.php:114 ucp/assets/js/global.js:112
 #: ucp/assets/js/global.js:488
 msgid "Disconnect Phone"
-msgstr ""
+msgstr "对电话挂机"
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
@@ -69,12 +69,12 @@ msgstr "在ARI中对%s 开启WebRTC。注意：UCP中已经停止使用ARI"
 
 #: Webrtc.class.php:404
 msgid "HTTPS is not enabled for Asterisk"
-msgstr ""
+msgstr "没有对Asterisk开启HTTPS"
 
 #: ucp/assets/js/global.js:209
 #, perl-format
 msgid "Incoming call from %s"
-msgstr ""
+msgstr "从 %s 进入的呼叫"
 
 #: views/ucp_config.php:29
 msgid "Inherit"
