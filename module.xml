@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>14.0.3.7</version>
+	<version>15.0.1</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -15,51 +15,7 @@
 		phone they will be connected to device 99XXXX which will receive calls from the original extension
 	</description>
 	<changelog>
-		*14.0.3.7* FREEPBX-16242
-		*14.0.3.6* FREEPBX-15664
-		*14.0.3.5* Detect paste and keyup
-		*14.0.3.4* Fix phone loading in UCP
-		*14.0.3.3* Depend on core
-		*14.0.3.2* Merge from 13
-		*14.0.3.1* Reduce key length
-		*14.0.3* Remove need to define certificate for UCP
-		*14.0.2* UCP 14
-		*14.0.1* Initial Release for FreePBX 14
-		*13.0.31.2* FREEPBX-13478 uninstalling webrtc module should remove all webrtc extensions
-		*13.0.31.1* FREEPBX-13397 - Add unit test for Ast14 check.
-		*13.0.31* Support Asterisk 14 during install
-		*13.0.30* FREEPBX-12961 add contact image support to phone
-		*13.0.29* Message if no secure transport
-		*13.0.28* Table sizing
-		*13.0.27* Require higher version of certificate manager
-		*13.0.26* FREEPBX-12319 Fix error with User and Devices
-		*13.0.25* Switch to SIP.js
-		*13.0.24* FREEPBX-11384 Add drop down option to allow phone to be unregistered (stored in cookie)
-		*13.0.23* Work around Asterisk not following spec
-		*13.0.22* FREEPBX-11385 Ability to silence ringer in UCP
-		*13.0.21* FREEPBX-12266 Only update setting when in userman
-		*13.0.20* FREEPBX-12173 fix whoops error
-		*13.0.19* Use stun server from sip settings if defined
-		*13.0.18* Fix issues with clients and add upgrade code
-		*13.0.17* FREEPBX-11457
-		*13.0.16* FREEPBX-11694 add del_user core hook
-		*13.0.15* Remove en_US Translations
-		*13.0.14* Fix incorrect localization in en_US
-		*13.0.13* Invalid string
-		*13.0.12* Support TLS
-		*13.0.11* Remove STUN server notice
-		*13.0.10* FREEPBX-11041
-		*13.0.9* Resolves whoops error
-		*13.0.8* Call the right command from Core not from self
-		*13.0.7* Fixing issue with invalid devices
-		*13.0.6* FREEPBX-10376 Dashboard hook
-		*13.0.5* FREEPBX-8919 Delete WebRTC extension when user or group is deleted
-		*13.0.4* FREEPBX-9563 Use context of original extension during creation
-		*13.0.3* FREEPBX-9540 stop returning false in check statement
-		*13.0.2* Version bump Beta
-		*13.0.1alpha3* FREEPBX-9436 webrtc warning obfuscates UCP menu on iPhone, update jssip lib to 0.6.30
-		*13.0.1alpha2* Usermanager Groups
-		*13.0.1alpha1* Visual Changes
+		*15.0.1* Backup 15.0
 	</changelog>
 	<info />
 	<category>Connectivity</category>
@@ -101,6 +57,6 @@
 		</table>
 	</database>
 	<supported>
-		<version>14.0</version>
+		<version>15.0</version>
 	</supported>
 </module>
