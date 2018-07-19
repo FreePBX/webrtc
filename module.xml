@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>13.0.32.8</version>
+	<version>14.0.3.7</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -15,15 +15,16 @@
 		phone they will be connected to device 99XXXX which will receive calls from the original extension
 	</description>
 	<changelog>
-		*13.0.32.8* Depend on core
-		*13.0.32.7* FREEPBX-14649
-		*13.0.32.6* FREEPBX-14681 Support rtcp mux
-		*13.0.32.5* Update library to support rtcpMuxPolicy
-		*13.0.32.4* Add rtcpMuxPolicy for Chrome 57
-		*13.0.32.3* FREEPBX-13915 Cant change webrtc certificate for webrtc user without disabling webrtc first
-		*13.0.32.2* FREEPBX-13712 Remove linked extension when deleted
-		*13.0.32.1* Remove STUN Server warning in User Manager
-		*13.0.32* Look for new WebRTC Stun Server settings in Asterisk SIP Settings
+		*14.0.3.7* FREEPBX-16242
+		*14.0.3.6* FREEPBX-15664
+		*14.0.3.5* Detect paste and keyup
+		*14.0.3.4* Fix phone loading in UCP
+		*14.0.3.3* Depend on core
+		*14.0.3.2* Merge from 13
+		*14.0.3.1* Reduce key length
+		*14.0.3* Remove need to define certificate for UCP
+		*14.0.2* UCP 14
+		*14.0.1* Initial Release for FreePBX 14
 		*13.0.31.2* FREEPBX-13478 uninstalling webrtc module should remove all webrtc extensions
 		*13.0.31.1* FREEPBX-13397 - Add unit test for Ast14 check.
 		*13.0.31* Support Asterisk 14 during install
@@ -64,8 +65,8 @@
 	<category>Connectivity</category>
 	<depends>
 		<engine>asterisk 11.5</engine>
-		<module>certman ge 13.0.34.8</module>
-		<module>core ge 13.0.119.12</module>
+		<module>certman ge 13.0.22</module>
+		<module>core ge 14.0.1rc1.8</module>
 		<module>ucp ge 12.0.0beta7</module>
 		<version>12.0.1beta34</version>
 	</depends>
@@ -86,7 +87,20 @@
 			<method callingMethod="delUser" class="Webrtc" namespace="FreePBX\modules">delUser</method>
 		</core>
 	</hooks>
+	<database>
+		<table name="webrtc_clients">
+			<field name="user" type="string" length="190"/>
+			<field name="device" type="string" length="190"/>
+			<field name="certid" type="integer" notnull="false"/>
+			<key name="user" type="unique">
+				<column name="user"/>
+			</key>
+			<key name="device" type="unique">
+				<column name="device"/>
+			</key>
+		</table>
+	</database>
 	<supported>
-		<version>13.0</version>
+		<version>14.0</version>
 	</supported>
 </module>

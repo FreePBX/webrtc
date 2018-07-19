@@ -1,27 +1,91 @@
-#nav-bar-background #top-dashboard-nav-right .nav-btns #nav-btn-webrtc {
-	left: 3px;
-	.fa-stack-2x {
-		font-size: 196%;
-		top: 1px;
-		color: red;
+.custom-widget[data-widget_rawname=webrtc] {
+	#webrtc-timer-container {
+		background-color: rgb(0, 0, 0);
+		height: 12px;
+		border-radius: 10px;
+		width: 42px;
+		position: absolute;
+		left: 8px;
+		top: 21px;
+		.timer {
+			position: relative;
+			font-size: 9px;
+			top: -3px;
+			color: white;
+		}
 	}
-	.connecting {
-		animation-duration: 400ms;
-		animation-name: webrtc-connect-blink;
-		animation-iteration-count: infinite;
-		animation-direction: alternate;
+
+	a {
+		.fa-ban.fa-stack-2x {
+			font-size: 165%;
+			top: 1px;
+			color: red;
+			text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+		}
+		.fa-pause.fa-stack-2x {
+			font-size: 63%;
+			top: 19px;
+			left: 6px;
+			color: red;
+			text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+		}
+		.connecting {
+			animation-duration: 400ms;
+			animation-name: webrtc-connect-blink;
+			animation-iteration-count: infinite;
+			animation-direction: alternate;
+		}
+		.registering {
+			animation-duration: 400ms;
+			animation-name: webrtc-register-blink;
+			animation-iteration-count: infinite;
+			animation-direction: alternate;
+		}
+		.blink {
+			animation-duration: 800ms;
+			animation-name: webrtc-image-blink;
+			animation-iteration-count: infinite;
+			animation-direction: alternate;
+		}
+		.shake {
+			animation-duration: 800ms;
+			animation-name: webrtc-shake-icon;
+			animation-iteration-count: infinite;
+			animation-direction: alternate;
+		}
+		.connected {
+			color: yellow;
+		}
+		.registered {
+			color: green;
+		}
 	}
-	.registering {
-		animation-duration: 400ms;
-		animation-name: webrtc-register-blink;
-		animation-iteration-count: infinite;
-		animation-direction: alternate;
+}
+
+@keyframes webrtc-shake-icon {
+	10%, 90% {
+		transform: translate3d(-1px, 0, 0);
 	}
-	.connected {
-		color: yellow;
+
+	20%, 80% {
+		transform: translate3d(2px, 0, 0);
 	}
-	.registered {
-		color: green;
+
+	30%, 50%, 70% {
+		transform: translate3d(-4px, 0, 0);
+	}
+
+	40%, 60% {
+		transform: translate3d(4px, 0, 0);
+	}
+}
+
+@keyframes webrtc-image-blink {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
 	}
 }
 
@@ -40,5 +104,124 @@
 	}
 	to {
 		color: green;
+	}
+}
+
+#menu_webrtc_phone {
+	.contact-info {
+		.contact {
+			font-weight: bold;
+		}
+	}
+	font-family: 'lato';
+	table.keypad {
+		margin: auto;
+		position: relative;
+		margin-top: 7px;
+		table-layout: fixed;
+		td {
+			cursor: pointer;
+			border: 1px solid rgb(201, 201, 201);
+			width: 64px;
+			height: 43px;
+			text-align: center;
+			border-radius: 0px;
+			.num {
+				font-weight: bold;
+			}
+			.letters {
+				font-size: 86%;
+				color: rgb(172, 172, 172);
+				margin-top: -4px;
+			}
+		}
+		td.upper-left {
+			border-top-left-radius: 4px;
+		}
+		td.upper-right {
+			border-top-right-radius: 4px;
+		}
+		td.lower-left {
+			border-bottom-left-radius: 4px;
+		}
+		td.lower-right {
+			border-bottom-right-radius: 4px;
+		}
+	}
+	table.keypad.disable {
+		td {
+			cursor: not-allowed;
+		}
+	}
+	.activeCallSession {
+		position: relative;
+		width: 100%;
+		margin-top: 1px;
+	}
+	.contactDisplay {
+		display: none;
+		width: 99%;
+		z-index: 50;
+		padding-left: 17px;
+		padding-right: 17px;
+		padding-top: 7px;
+		.contactImage {
+			border: 1px solid rgb(187, 187, 187);
+			/* TODO: this is wrong */
+			background-image: url('/ucp/modules/Webrtc/assets/images/no_user_logo.png');
+			background-position: center;
+			height: 163px;
+			border: 1px solid rgb(187, 187, 187);
+			background-size: contain;
+			background-repeat: no-repeat;
+			position: relative;
+		}
+	}
+	.input-container {
+		width: 191px;
+		margin-top: 1px;
+		position: relative;
+		left: 25px;
+	}
+	.actions {
+		position: relative;
+		margin-top: 6px;
+		left: 24px;
+		width: 192px;
+		table-layout: fixed;
+		td {
+			padding-left: 1px;
+			padding-right: 1px;
+			.right {
+				display: none;
+			}
+		}
+		button.action {
+			width: 100%;
+		}
+		button.secondaction {
+			width: 100%;
+		}
+	}
+
+	.status {
+		position: relative;
+		margin-top: 6px;
+		text-align: left;
+		left: 26px;
+		font-weight: bold;
+		width: 193px;
+		span {
+			font-weight: normal;
+		}
+	}
+	.settings {
+		position: relative;
+		text-align: left;
+		margin-top: 15px;
+		left: 26px;
+		.form-group {
+			margin-bottom: 3px;
+		}
 	}
 }

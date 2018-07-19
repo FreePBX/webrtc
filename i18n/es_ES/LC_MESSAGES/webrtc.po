@@ -9,58 +9,77 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-22 17:02-0400\n"
-"PO-Revision-Date: 2016-12-11 06:55+0200\n"
+"POT-Creation-Date: 2018-01-16 17:29-0500\n"
+"PO-Revision-Date: 2016-06-07 10:27+0200\n"
 "Last-Translator: Ernesto <ecasas@sangoma.com>\n"
 "Language-Team: Spanish <http://weblate.freepbx.org/projects/freepbx/webrtc/"
 "es_ES/>\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es_ES\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.4\n"
 
-#: ucp/assets/jssiplibs/sip-0.7.5.min.js:37
-#: ucp/assets/jssiplibs/sip-0.7.7.min.js:37
-msgid ""
-")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error parsing "
+#: ucp/views/phone.php:24
+msgid "ABC"
 msgstr ""
-")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error parsing "
 
-#: views/ucp_config.php:64
-msgid "Certificate WebRTC Phone should use for this user."
-msgstr "Certificado del teléfono WebRTC debe utilizar para este usuario."
+#: ucp/views/phone.php:78
+msgid "Call"
+msgstr ""
 
-#: ucp/assets/js/global.js:210
+#: Webrtc.class.php:285
+msgid "Certificate Manager"
+msgstr ""
+
+#: ucp/assets/js/global.js:254
 msgid "Click this window to answer or close this window to ignore"
 msgstr ""
-"Haga clic en esta ventana para responder o cerrar esta ventana para ignorar"
 
-#: ucp/assets/js/global.js:118 ucp/assets/js/global.js:490
+#: ucp/assets/js/global.js:513
 msgid "Connect Phone"
-msgstr "Conectar el teléfono"
+msgstr ""
+
+#: ucp/assets/js/global.js:534
+msgid "Connecting to socket..."
+msgstr ""
 
 #: webrtc.i18n.php:6
 msgid "Connectivity"
 msgstr "Conectividad"
 
-#: ucp/Webrtc.class.php:114 ucp/assets/js/global.js:112
-#: ucp/assets/js/global.js:488
+#: ucp/views/phone.php:28
+msgid "DEF"
+msgstr ""
+
+#: ucp/assets/js/global.js:69 ucp/assets/js/global.js:77
+msgid "Disable"
+msgstr ""
+
+#: ucp/views/settings.php:7
 msgid "Disconnect Phone"
-msgstr "Desconectar Teléfono"
+msgstr ""
+
+#: ucp/assets/js/global.js:525
+msgid "Disconnected"
+msgstr ""
+
+#: ucp/assets/js/global.js:68 ucp/assets/js/global.js:76
+msgid "Enable"
+msgstr ""
+
+#: views/ucp_config.php:19
+msgid "Enable Phone"
+msgstr ""
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
 msgstr "Habilitar WebRTC viejo ARI Phone"
 
-#: views/ucp_config.php:19
-msgid "Enable WebRTC Phone"
-msgstr "Habilitar Teléfono WebRTC"
-
 #: views/ucp_config.php:38
-msgid "Enable the WebRTC Phone in UCP for this user"
-msgstr "Habilitar el teléfono WebRTC en UCP para este usuario"
+msgid "Enable the phone in UCP for this user"
+msgstr ""
 
 #: functions.inc/hook_core.php:62
 #, php-format
@@ -71,38 +90,82 @@ msgstr ""
 "Habilita WebRTC para este %s en el Asterisk Recording Interface (ARI). Nota: "
 "ARI es obsoleto en favor de UCP"
 
-#: Webrtc.class.php:404
-msgid "HTTPS is not enabled for Asterisk"
-msgstr "HTTPS no está habilitado para Asterisk"
+#: ucp/views/phone.php:34
+msgid "GHI"
+msgstr ""
 
-#: ucp/assets/js/global.js:209
+#: Webrtc.class.php:379
+msgid "HTTPS is not enabled for Asterisk"
+msgstr ""
+
+#: ucp/views/phone.php:81
+msgid "Hold"
+msgstr ""
+
+#: ucp/assets/js/global.js:253
 #, perl-format
 msgid "Incoming call from %s"
-msgstr "Llamada entrante de %s"
+msgstr ""
 
 #: views/ucp_config.php:29
 msgid "Inherit"
-msgstr "Heredar"
+msgstr "heredado"
 
-#: ucp/Webrtc.class.php:114
-msgid "New Web Phone Call"
-msgstr "Nueva llamada Web"
+#: ucp/views/phone.php:38
+msgid "JKL"
+msgstr ""
+
+#: ucp/views/phone.php:42
+msgid "MNO"
+msgstr ""
 
 #: views/ucp_config.php:26
 msgid "No"
 msgstr "No"
 
-#: ucp/assets/js/global.js:83
-msgid "Originate"
-msgstr "Originar"
+#: ucp/assets/js/global.js:604
+msgid "Not supported in this browser"
+msgstr ""
 
-#: ucp/assets/js/global.js:82
-msgid "Originate Call"
-msgstr "Originar Llamada"
+#: ucp/views/phone.php:88
+msgid "Note: An Active call will not be dropped when this window is closed"
+msgstr ""
 
-#: ucp/Webrtc.class.php:114
+#: ucp/assets/js/global.js:611
+msgid "Only supported over HTTPS"
+msgstr ""
+
+#: ucp/views/phone.php:48
+msgid "PQRS"
+msgstr ""
+
+#: Webrtc.class.php:278 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
+msgid "Phone"
+msgstr ""
+
+#: ucp/views/phone.php:86
+msgid "Phone Status"
+msgstr ""
+
+#: ucp/assets/js/global.js:493
+msgid "Registered"
+msgstr ""
+
+#: ucp/assets/js/global.js:540
+msgid "Registering..."
+msgstr ""
+
+#: ucp/assets/js/global.js:511
+msgid "Registration Failed"
+msgstr ""
+
+#: ucp/views/settings.php:3
 msgid "Silence Ringer"
-msgstr "Silenciar Timbrado"
+msgstr ""
+
+#: ucp/views/phone.php:52
+msgid "TUV"
+msgstr ""
 
 #: functions.inc/hook_core.php:77
 msgid "The Certificate to use from Certificate Manager"
@@ -110,7 +173,7 @@ msgstr "Certificado a usar desde el Gestor de Certificados"
 
 #: webrtc.i18n.php:8
 msgid "The WebRTC Module allows an Administrator to enable a "
-msgstr "El Módulo WebRTC permite a un Administrador habilitar un "
+msgstr ""
 
 #: functions.inc/hook_core.php:58
 msgid ""
@@ -131,15 +194,11 @@ msgstr ""
 "Para utilizar WebRTC en ARI debe agregar al menos un certificado %s a través "
 "de Administrador de certificados"
 
-#: ucp/assets/js/global.js:303
-msgid ""
-"Unable to start call. Please allow the WebRTC session in your browser and "
-"refresh"
+#: ucp/assets/js/global.js:503 ucp/assets/js/global.js:520
+msgid "Unregistered"
 msgstr ""
-"no se pudo iniciar llamada. Por favor permita la sesión WebRTC en su "
-"navegador y refresque"
 
-#: Webrtc.class.php:322 Webrtc.class.php:325
+#: Webrtc.class.php:298 Webrtc.class.php:301
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
@@ -149,13 +208,13 @@ msgstr ""
 msgid "Use Certificate"
 msgstr "Use Certificado"
 
-#: Webrtc.class.php:302
-msgid "WebRTC"
-msgstr "WebRTC"
+#: ucp/views/phone.php:56
+msgid "WXYZ"
+msgstr ""
 
-#: views/ucp_config.php:48
-msgid "WebRTC Certificate"
-msgstr "Certificado WebRTC"
+#: ucp/Webrtc.class.php:55
+msgid "WebRTC"
+msgstr ""
 
 #: webrtc.i18n.php:4
 msgid "WebRTC Phone"
@@ -165,10 +224,32 @@ msgstr "Teléfono WebRTC"
 msgid "Yes"
 msgstr "Si"
 
-#: Webrtc.class.php:309
-msgid "You have no certificates setup in Certificate Manager"
+#: Webrtc.class.php:285
+#, php-format
+msgid "You have no default certificates setup in %s"
 msgstr ""
-"No tiene configuración de certificados en el Administrador de certificados"
+
+#~ msgid "Enable WebRTC Phone"
+#~ msgstr "Habilitar Teléfono WebRTC"
+
+#~ msgid "New Web Phone Call"
+#~ msgstr "Nueva llamada Web"
+
+#~ msgid "WebRTC Certificate"
+#~ msgstr "Certificado WebRTC"
+
+#~ msgid "Originate"
+#~ msgstr "Originar"
+
+#~ msgid "Originate Call"
+#~ msgstr "Originar Llamada"
+
+#~ msgid ""
+#~ "Unable to start call. Please allow the WebRTC session in your browser and "
+#~ "refresh"
+#~ msgstr ""
+#~ "no se pudo iniciar llamada. Por favor permita la sesión WebRTC en su "
+#~ "navegador y refresque"
 
 #~ msgid ""
 #~ "The STUN Server address is blank. In many cases this can cause issues. "
