@@ -68,7 +68,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 
 		try {
 			$sql = "SELECT * FROM webrtc_settings";
-			$sth = $this->FreePBX->Database->prepare($sql);
+			$sth = $this->Database->prepare($sql);
 			$sth->execute();
 			$settings = $sth->fetchAll(PDO::FETCH_ASSOC);
 			if(!empty($settings)) {
@@ -77,7 +77,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 				}
 			}
 			$sql = "DROP TABLE IF EXISTS `webrtc_settings`";
-			$sth = $this->FreePBX->Database->prepare($sql);
+			$sth = $this->Database->prepare($sql);
 			$sth->execute();
 		} catch(Exception $e) {}
 
@@ -95,7 +95,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 	}
 	public function uninstall() {
 		$sql = "SELECT * FROM webrtc_clients";
-		$sth = $this->FreePBX->Database->prepare($sql);
+		$sth = $this->Database->prepare($sql);
 		$sth->execute();
 		$results = $sth->fetchAll(PDO::FETCH_ASSOC);
 		if(!empty($results)) {
@@ -313,7 +313,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 	public function setClientSettings($user,$device) {
 		try {
 			$sql = "REPLACE INTO webrtc_clients (`user`, `device`) VALUES(?,?)";
-			$sth = $this->FreePBX->Database->prepare($sql);
+			$sth = $this->Database->prepare($sql);
 			return $sth->execute(array($user,$device));
 		} catch(Exception $e) {
 			return false;
@@ -324,7 +324,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 	public function upsertClientSettings($user,$device,$certid) {
 		try {
 			$sql = "REPLACE INTO webrtc_clients (`user`, `device`, `certid`) VALUES(?,?,?)";
-			$sth = $this->FreePBX->Database->prepare($sql);
+			$sth = $this->Database->prepare($sql);
 			return $sth->execute(array($user,$device,$certid));
 		} catch(Exception $e) {
 			return false;
@@ -333,7 +333,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 
 	public function getClientsEnabled() {
 		$sql = "SELECT * FROM webrtc_clients";
-		$sth = $this->FreePBX->Database->prepare($sql);
+		$sth = $this->Database->prepare($sql);
 		$sth->execute();
 		$results = $sth->fetchAll(PDO::FETCH_ASSOC);
 		if(empty($results)) {
@@ -344,7 +344,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 
 	public function getClientSettingsByUser($user) {
 		$sql = "SELECT * FROM webrtc_clients WHERE `user` = ?";
-		$sth = $this->FreePBX->Database->prepare($sql);
+		$sth = $this->Database->prepare($sql);
 		$sth->execute(array($user));
 		$results = $sth->fetch(PDO::FETCH_ASSOC);
 		if(empty($results)) {
@@ -391,7 +391,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 	public function removeClientSettingsByUser($user) {
 		try {
 			$sql = "DELETE FROM webrtc_clients WHERE `user` = ?";
-			$sth = $this->FreePBX->Database->prepare($sql);
+			$sth = $this->Database->prepare($sql);
 			return $sth->execute(array($user));
 		} catch(Exception $e) {
 			return true;
@@ -415,7 +415,6 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		$settings['devicetype']['value'] = 'fixed';
 		$settings['context']['value'] = !empty($dev['context']) ? $dev['context'] : "from-internal";
 		$settings['user']['value'] = $extension;
-		//$settings['callerid']['value'] = $dev['description'] . "<".$extension.">";
 		$defaultCert = $this->FreePBX->Certman->getDefaultCertDetails();
 		if(empty($defaultCert)) {
 			return false;
@@ -495,5 +494,15 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		if(!$editmode) {
 			$this->removeDevice($extension);
 		}
+	}
+
+	public function setDatabase($pdo){
+		$this->Database = $pdo;
+		return $this;
+	}
+	
+	public function resetDatabase(){
+		$this->Database = $this->FreePBX->Database;
+		return $this;
 	}
 }

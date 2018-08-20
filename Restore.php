@@ -9,4 +9,26 @@ class Restore Extends Base\RestoreBase{
         $this->FreePBX->Webrtc->upsertClientSettings($client['user'], $client['device'], $client['certid']);
     }
   }
+
+  public function processLegacy($pdo, $data, $tables, $unknownTables, $tmpfiledir){
+    $tables = array_flip($tables+$unknownTables);
+    if(!isset(tables['webrtc_users'])){
+      return $this;
+    }
+    $bmo = $this->FreePBX->Webrtc;
+    $bmo->setDatabase($pdo);
+    $configs = [
+      'settings' => $bmo->getAll(),
+      'clients' => $bmo->getClientsEnabled(),
+    ];
+    $bmo->resetDatabase();
+    $configs = reset($configs);
+    foreach ($configs['clients'] as $client) {
+      $bmo->upsertClientSettings($client['user'], $client['device'], $client['certid']);
+    }
+    $this->transformLegacyKV($pdo, 'webrtc', $this->FreePBX)
+      ->transformNamespacedKV($pdo, 'webrtc', $this->FreePBX);
+    return $this;
+  }
+
 }
