@@ -22,7 +22,6 @@ class Restore Extends Base\RestoreBase{
       'clients' => $bmo->getClientsEnabled(),
     ];
     $bmo->resetDatabase();
-    $configs = reset($configs);
     foreach ($configs['clients'] as $client) {
       $bmo->upsertClientSettings($client['user'], $client['device'], $client['certid']);
     }
