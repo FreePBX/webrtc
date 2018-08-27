@@ -1,0 +1,225 @@
+# This file is part of FreePBX.
+#
+# For licensing information, please see the file named LICENSE located in the module directory
+#
+# FreePBX language template for webrtc
+# Copyright (C) 2008-2018 Sangoma Technologies, Inc.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-16 17:29-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ucp/views/phone.php:24
+msgid "ABC"
+msgstr ""
+
+#: ucp/views/phone.php:78
+msgid "Call"
+msgstr ""
+
+#: Webrtc.class.php:285
+msgid "Certificate Manager"
+msgstr ""
+
+#: ucp/assets/js/global.js:254
+msgid "Click this window to answer or close this window to ignore"
+msgstr ""
+
+#: ucp/assets/js/global.js:513
+msgid "Connect Phone"
+msgstr ""
+
+#: ucp/assets/js/global.js:534
+msgid "Connecting to socket..."
+msgstr ""
+
+#: webrtc.i18n.php:6
+msgid "Connectivity"
+msgstr ""
+
+#: ucp/views/phone.php:28
+msgid "DEF"
+msgstr ""
+
+#: ucp/assets/js/global.js:69
+#: ucp/assets/js/global.js:77
+msgid "Disable"
+msgstr ""
+
+#: ucp/views/settings.php:7
+msgid "Disconnect Phone"
+msgstr ""
+
+#: ucp/assets/js/global.js:525
+msgid "Disconnected"
+msgstr ""
+
+#: ucp/assets/js/global.js:68
+#: ucp/assets/js/global.js:76
+msgid "Enable"
+msgstr ""
+
+#: views/ucp_config.php:19
+msgid "Enable Phone"
+msgstr ""
+
+#: functions.inc/hook_core.php:62
+msgid "Enable WebRTC Old ARI Phone"
+msgstr ""
+
+#: views/ucp_config.php:38
+msgid "Enable the phone in UCP for this user"
+msgstr ""
+
+#: functions.inc/hook_core.php:62
+#, php-format
+msgid ""
+"Enables WebRTC for this %s in the Asterisk Recording Interface (ARI). Note: "
+"ARI is depreciated in favor of UCP"
+msgstr ""
+
+#: ucp/views/phone.php:34
+msgid "GHI"
+msgstr ""
+
+#: Webrtc.class.php:379
+msgid "HTTPS is not enabled for Asterisk"
+msgstr ""
+
+#: ucp/views/phone.php:81
+msgid "Hold"
+msgstr ""
+
+#: ucp/assets/js/global.js:253
+#, perl-format
+msgid "Incoming call from %s"
+msgstr ""
+
+#: views/ucp_config.php:29
+msgid "Inherit"
+msgstr ""
+
+#: ucp/views/phone.php:38
+msgid "JKL"
+msgstr ""
+
+#: ucp/views/phone.php:42
+msgid "MNO"
+msgstr ""
+
+#: views/ucp_config.php:26
+msgid "No"
+msgstr ""
+
+#: ucp/assets/js/global.js:604
+msgid "Not supported in this browser"
+msgstr ""
+
+#: ucp/views/phone.php:88
+msgid "Note: An Active call will not be dropped when this window is closed"
+msgstr ""
+
+#: ucp/assets/js/global.js:611
+msgid "Only supported over HTTPS"
+msgstr ""
+
+#: ucp/views/phone.php:48
+msgid "PQRS"
+msgstr ""
+
+#: Webrtc.class.php:278
+#: ucp/Webrtc.class.php:28
+#: ucp/Webrtc.class.php:44
+msgid "Phone"
+msgstr ""
+
+#: ucp/views/phone.php:86
+msgid "Phone Status"
+msgstr ""
+
+#: ucp/assets/js/global.js:493
+msgid "Registered"
+msgstr ""
+
+#: ucp/assets/js/global.js:540
+msgid "Registering..."
+msgstr ""
+
+#: ucp/assets/js/global.js:511
+msgid "Registration Failed"
+msgstr ""
+
+#: ucp/views/settings.php:3
+msgid "Silence Ringer"
+msgstr ""
+
+#: ucp/views/phone.php:52
+msgid "TUV"
+msgstr ""
+
+#: functions.inc/hook_core.php:77
+msgid "The Certificate to use from Certificate Manager"
+msgstr ""
+
+#: webrtc.i18n.php:8
+msgid "The WebRTC Module allows an Administrator to enable a "
+msgstr ""
+
+#: functions.inc/hook_core.php:58
+msgid ""
+"The WebSockets Interface is running through PJSIP, PJSIP is not supported at "
+"this time. Please enable the chan_sip driver (along with pjsip or by itself) "
+"or alert the FreePBX Developers"
+msgstr ""
+
+#: functions.inc/hook_core.php:82
+#, php-format
+msgid ""
+"To utilize WebRTC in ARI you must add at least one certificate %s through "
+"Certificate Manager"
+msgstr ""
+
+#: ucp/assets/js/global.js:503
+#: ucp/assets/js/global.js:520
+msgid "Unregistered"
+msgstr ""
+
+#: Webrtc.class.php:298
+#: Webrtc.class.php:301
+#, php-format
+msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
+msgstr ""
+
+#: functions.inc/hook_core.php:76
+msgid "Use Certificate"
+msgstr ""
+
+#: ucp/views/phone.php:56
+msgid "WXYZ"
+msgstr ""
+
+#: ucp/Webrtc.class.php:55
+msgid "WebRTC"
+msgstr ""
+
+#: webrtc.i18n.php:4
+msgid "WebRTC Phone"
+msgstr ""
+
+#: views/ucp_config.php:24
+msgid "Yes"
+msgstr ""
+
+#: Webrtc.class.php:285
+#, php-format
+msgid "You have no default certificates setup in %s"
+msgstr ""
