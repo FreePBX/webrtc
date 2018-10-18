@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-22 17:02-0400\n"
-"PO-Revision-Date: 2018-06-01 14:24+0000\n"
-"Last-Translator: Nils Heckenkamp <nheckenkamp@sangoma.com>\n"
+"PO-Revision-Date: 2018-10-19 13:00+0000\n"
+"Last-Translator: Bastian Mertgen <b.mertgen@bastian-mertgen.de>\n"
 "Language-Team: German <http://*/projects/freepbx/webrtc/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.19.1\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #: ucp/assets/jssiplibs/sip-0.7.5.min.js:37
 #: ucp/assets/jssiplibs/sip-0.7.7.min.js:37
@@ -84,7 +84,7 @@ msgstr "Eingehender Anruf von %s"
 
 #: views/ucp_config.php:29
 msgid "Inherit"
-msgstr "Übernehmen"
+msgstr "Erben"
 
 #: ucp/Webrtc.class.php:114
 msgid "New Web Phone Call"
