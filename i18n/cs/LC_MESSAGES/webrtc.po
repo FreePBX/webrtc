@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-26 15:14-0400\n"
+"POT-Creation-Date: 2018-10-26 15:16-0400\n"
 "PO-Revision-Date: 2018-09-04 08:42+0000\n"
 "Last-Translator: Petr Varvarovsky <petrv@atlantis.cz>\n"
 "Language-Team: Czech <http://*/projects/freepbx/webrtc/cs/>\n"
@@ -28,7 +28,7 @@ msgstr "ABC"
 msgid "Call"
 msgstr "Volat"
 
-#: Webrtc.class.php:287
+#: Webrtc.class.php:273
 msgid "Certificate Manager"
 msgstr "Správce certifikátů"
 
@@ -95,7 +95,7 @@ msgstr ""
 msgid "GHI"
 msgstr "GHI"
 
-#: Webrtc.class.php:381
+#: Webrtc.class.php:378
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "HTTPS není pro Asterisk povoleno"
 
@@ -140,7 +140,7 @@ msgstr "Podporováno pouze přes protokol HTTPS"
 msgid "PQRS"
 msgstr "PQRS"
 
-#: Webrtc.class.php:280 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
+#: Webrtc.class.php:266 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
 msgid "Phone"
 msgstr "Telefon"
 
@@ -199,7 +199,7 @@ msgstr ""
 msgid "Unregistered"
 msgstr "Neregistrován"
 
-#: Webrtc.class.php:300 Webrtc.class.php:303
+#: Webrtc.class.php:286 Webrtc.class.php:289
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr "Nepodporovaná verze Asterisku, potřebujete alespoň %s, vy máte %s"
@@ -224,7 +224,7 @@ msgstr "WebRTC telefon"
 msgid "Yes"
 msgstr "Ano"
 
-#: Webrtc.class.php:287
+#: Webrtc.class.php:273
 #, php-format
 msgid "You have no default certificates setup in %s"
 msgstr "Nemáte žádné výchozí nastavení certifikátů v %s"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-20 14:02-0400\n"
+"POT-Creation-Date: 2018-10-26 15:16-0400\n"
 "PO-Revision-Date: 2016-10-05 20:09+0200\n"
 "Last-Translator: Maxim <maxim@ua.fm>\n"
 "Language-Team: Ukrainian <http://weblate.freepbx.org/projects/freepbx/webrtc/"
@@ -30,7 +30,7 @@ msgstr ""
 msgid "Call"
 msgstr ""
 
-#: Webrtc.class.php:271
+#: Webrtc.class.php:273
 msgid "Certificate Manager"
 msgstr ""
 
@@ -94,7 +94,7 @@ msgstr ""
 msgid "GHI"
 msgstr ""
 
-#: Webrtc.class.php:376
+#: Webrtc.class.php:378
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "HTTPS не ввімкнуто для Астеріску"
 
@@ -139,7 +139,7 @@ msgstr ""
 msgid "PQRS"
 msgstr ""
 
-#: Webrtc.class.php:264 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
+#: Webrtc.class.php:266 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
 msgid "Phone"
 msgstr ""
 
@@ -196,7 +196,7 @@ msgstr ""
 msgid "Unregistered"
 msgstr ""
 
-#: Webrtc.class.php:284 Webrtc.class.php:287
+#: Webrtc.class.php:286 Webrtc.class.php:289
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
@@ -223,7 +223,7 @@ msgstr "WebRTC телефон"
 msgid "Yes"
 msgstr "Так"
 
-#: Webrtc.class.php:271
+#: Webrtc.class.php:273
 #, php-format
 msgid "You have no default certificates setup in %s"
 msgstr ""
