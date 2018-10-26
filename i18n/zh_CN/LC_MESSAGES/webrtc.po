@@ -9,11 +9,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreePBX 2.5 Chinese Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-22 17:02-0400\n"
+"POT-Creation-Date: 2018-10-26 15:14-0400\n"
 "PO-Revision-Date: 2018-03-14 14:52+0200\n"
 "Last-Translator: james <zhulizhong@gmail.com>\n"
-"Language-Team: Simplified Chinese "
-"<http://weblate.freepbx.org/projects/freepbx/framework/zh_CN/>\n"
+"Language-Team: Simplified Chinese <http://weblate.freepbx.org/projects/"
+"freepbx/framework/zh_CN/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,44 +21,65 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 2.4\n"
 
-#: ucp/assets/jssiplibs/sip-0.7.5.min.js:37
-#: ucp/assets/jssiplibs/sip-0.7.7.min.js:37
-msgid ""
-")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error parsing "
+#: ucp/views/phone.php:24
+msgid "ABC"
 msgstr ""
 
-#: views/ucp_config.php:64
-msgid "Certificate WebRTC Phone should use for this user."
-msgstr "此用户使用带证书的WebRTC 电话。"
+#: ucp/views/phone.php:78
+msgid "Call"
+msgstr ""
 
-#: ucp/assets/js/global.js:210
+#: Webrtc.class.php:287
+msgid "Certificate Manager"
+msgstr ""
+
+#: ucp/assets/js/global.js:254
 msgid "Click this window to answer or close this window to ignore"
 msgstr "点击此窗口应答或忽略关闭窗口"
 
-#: ucp/assets/js/global.js:118 ucp/assets/js/global.js:490
+#: ucp/assets/js/global.js:513
 msgid "Connect Phone"
 msgstr "连接电话终端"
+
+#: ucp/assets/js/global.js:534
+msgid "Connecting to socket..."
+msgstr ""
 
 #: webrtc.i18n.php:6
 msgid "Connectivity"
 msgstr "通信接口连接"
 
-#: ucp/Webrtc.class.php:114 ucp/assets/js/global.js:112
-#: ucp/assets/js/global.js:488
+#: ucp/views/phone.php:28
+msgid "DEF"
+msgstr ""
+
+#: ucp/assets/js/global.js:69 ucp/assets/js/global.js:77
+msgid "Disable"
+msgstr ""
+
+#: ucp/views/settings.php:7
 msgid "Disconnect Phone"
 msgstr "对电话挂机"
+
+#: ucp/assets/js/global.js:525
+msgid "Disconnected"
+msgstr ""
+
+#: ucp/assets/js/global.js:68 ucp/assets/js/global.js:76
+msgid "Enable"
+msgstr ""
+
+#: views/ucp_config.php:19
+msgid "Enable Phone"
+msgstr ""
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
 msgstr "开启WebRTC 以前的 ARI 电话"
 
-#: views/ucp_config.php:19
-msgid "Enable WebRTC Phone"
-msgstr "开启 WebRTC 电话"
-
 #: views/ucp_config.php:38
-msgid "Enable the WebRTC Phone in UCP for this user"
-msgstr "对此用户开启WebRTC电话"
+msgid "Enable the phone in UCP for this user"
+msgstr ""
 
 #: functions.inc/hook_core.php:62
 #, php-format
@@ -67,11 +88,19 @@ msgid ""
 "ARI is depreciated in favor of UCP"
 msgstr "在ARI中对%s 开启WebRTC。注意：UCP中已经停止使用ARI"
 
-#: Webrtc.class.php:404
+#: ucp/views/phone.php:34
+msgid "GHI"
+msgstr ""
+
+#: Webrtc.class.php:381
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "没有对Asterisk开启HTTPS"
 
-#: ucp/assets/js/global.js:209
+#: ucp/views/phone.php:81
+msgid "Hold"
+msgstr ""
+
+#: ucp/assets/js/global.js:253
 #, perl-format
 msgid "Incoming call from %s"
 msgstr "从 %s 进入的呼叫"
@@ -80,24 +109,60 @@ msgstr "从 %s 进入的呼叫"
 msgid "Inherit"
 msgstr "继承"
 
-#: ucp/Webrtc.class.php:114
-msgid "New Web Phone Call"
-msgstr "新的页面电话呼叫"
+#: ucp/views/phone.php:38
+msgid "JKL"
+msgstr ""
+
+#: ucp/views/phone.php:42
+msgid "MNO"
+msgstr ""
 
 #: views/ucp_config.php:26
 msgid "No"
 msgstr "否"
 
-#: ucp/assets/js/global.js:83
-msgid "Originate"
-msgstr "发起"
+#: ucp/assets/js/global.js:604
+msgid "Not supported in this browser"
+msgstr ""
 
-#: ucp/assets/js/global.js:82
-msgid "Originate Call"
-msgstr "发起呼叫"
+#: ucp/views/phone.php:88
+msgid "Note: An Active call will not be dropped when this window is closed"
+msgstr ""
 
-#: ucp/Webrtc.class.php:114
+#: ucp/assets/js/global.js:611
+msgid "Only supported over HTTPS"
+msgstr ""
+
+#: ucp/views/phone.php:48
+msgid "PQRS"
+msgstr ""
+
+#: Webrtc.class.php:280 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
+msgid "Phone"
+msgstr ""
+
+#: ucp/views/phone.php:86
+msgid "Phone Status"
+msgstr ""
+
+#: ucp/assets/js/global.js:493
+msgid "Registered"
+msgstr ""
+
+#: ucp/assets/js/global.js:540
+msgid "Registering..."
+msgstr ""
+
+#: ucp/assets/js/global.js:511
+msgid "Registration Failed"
+msgstr ""
+
+#: ucp/views/settings.php:3
 msgid "Silence Ringer"
+msgstr ""
+
+#: ucp/views/phone.php:52
+msgid "TUV"
 msgstr ""
 
 #: functions.inc/hook_core.php:77
@@ -124,13 +189,11 @@ msgid ""
 "Certificate Manager"
 msgstr "为了使用webRTC，必须通过证书管理员添加证书 %s"
 
-#: ucp/assets/js/global.js:303
-msgid ""
-"Unable to start call. Please allow the WebRTC session in your browser and "
-"refresh"
-msgstr "不能发起呼叫，请在浏览器设置支持WebRTC，或者重新刷新浏览器"
+#: ucp/assets/js/global.js:503 ucp/assets/js/global.js:520
+msgid "Unregistered"
+msgstr ""
 
-#: Webrtc.class.php:322 Webrtc.class.php:325
+#: Webrtc.class.php:300 Webrtc.class.php:303
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr "不能支持Asterisk的版本，用户至少需要%s, 但是现在的版本是%s"
@@ -139,13 +202,13 @@ msgstr "不能支持Asterisk的版本，用户至少需要%s, 但是现在的版
 msgid "Use Certificate"
 msgstr "使用证书"
 
-#: Webrtc.class.php:302
-msgid "WebRTC"
+#: ucp/views/phone.php:56
+msgid "WXYZ"
 msgstr ""
 
-#: views/ucp_config.php:48
-msgid "WebRTC Certificate"
-msgstr "WebRTC证书"
+#: ucp/Webrtc.class.php:55
+msgid "WebRTC"
+msgstr ""
 
 #: webrtc.i18n.php:4
 msgid "WebRTC Phone"
@@ -155,9 +218,39 @@ msgstr "WebRTC 电话"
 msgid "Yes"
 msgstr "是"
 
-#: Webrtc.class.php:309
-msgid "You have no certificates setup in Certificate Manager"
-msgstr "在证书管理员中没有证书设置"
+#: Webrtc.class.php:287
+#, php-format
+msgid "You have no default certificates setup in %s"
+msgstr ""
+
+#~ msgid "Certificate WebRTC Phone should use for this user."
+#~ msgstr "此用户使用带证书的WebRTC 电话。"
+
+#~ msgid "Enable WebRTC Phone"
+#~ msgstr "开启 WebRTC 电话"
+
+#~ msgid "Enable the WebRTC Phone in UCP for this user"
+#~ msgstr "对此用户开启WebRTC电话"
+
+#~ msgid "New Web Phone Call"
+#~ msgstr "新的页面电话呼叫"
+
+#~ msgid "Originate"
+#~ msgstr "发起"
+
+#~ msgid "Originate Call"
+#~ msgstr "发起呼叫"
+
+#~ msgid ""
+#~ "Unable to start call. Please allow the WebRTC session in your browser and "
+#~ "refresh"
+#~ msgstr "不能发起呼叫，请在浏览器设置支持WebRTC，或者重新刷新浏览器"
+
+#~ msgid "WebRTC Certificate"
+#~ msgstr "WebRTC证书"
+
+#~ msgid "You have no certificates setup in Certificate Manager"
+#~ msgstr "在证书管理员中没有证书设置"
 
 #~ msgid ""
 #~ "The STUN Server address is blank. In many cases this can cause issues. "
