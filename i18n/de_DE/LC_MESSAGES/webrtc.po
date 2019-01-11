@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-26 15:14-0400\n"
-"PO-Revision-Date: 2018-10-19 13:00+0000\n"
+"PO-Revision-Date: 2019-01-12 15:00+0000\n"
 "Last-Translator: Bastian Mertgen <b.mertgen@bastian-mertgen.de>\n"
 "Language-Team: German <http://*/projects/freepbx/webrtc/de/>\n"
 "Language: de_DE\n"
@@ -48,7 +48,7 @@ msgstr ""
 
 #: webrtc.i18n.php:6
 msgid "Connectivity"
-msgstr "Verbindungen"
+msgstr "Konnektivität"
 
 #: ucp/views/phone.php:28
 msgid "DEF"
@@ -56,7 +56,7 @@ msgstr ""
 
 #: ucp/assets/js/global.js:69 ucp/assets/js/global.js:77
 msgid "Disable"
-msgstr ""
+msgstr "Deaktivieren"
 
 #: ucp/views/settings.php:7
 msgid "Disconnect Phone"
@@ -64,15 +64,15 @@ msgstr "Telefonverbindung trennen"
 
 #: ucp/assets/js/global.js:525
 msgid "Disconnected"
-msgstr ""
+msgstr "Getrennt"
 
 #: ucp/assets/js/global.js:68 ucp/assets/js/global.js:76
 msgid "Enable"
-msgstr ""
+msgstr "Aktivieren"
 
 #: views/ucp_config.php:19
 msgid "Enable Phone"
-msgstr ""
+msgstr "Telefon aktiveren"
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
