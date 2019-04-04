@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-26 15:14-0400\n"
-"PO-Revision-Date: 2019-01-12 15:00+0000\n"
-"Last-Translator: Bastian Mertgen <b.mertgen@bastian-mertgen.de>\n"
+"PO-Revision-Date: 2019-04-05 10:00+0000\n"
+"Last-Translator: florian alberts <alberts@ar-systems.de>\n"
 "Language-Team: German <http://*/projects/freepbx/webrtc/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -21,16 +21,17 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 
 #: ucp/views/phone.php:24
+#, fuzzy
 msgid "ABC"
-msgstr ""
+msgstr "ABC"
 
 #: ucp/views/phone.php:78
 msgid "Call"
-msgstr ""
+msgstr "Anruf"
 
 #: Webrtc.class.php:287
 msgid "Certificate Manager"
-msgstr ""
+msgstr "Zertifikatsmanager"
 
 #: ucp/assets/js/global.js:254
 msgid "Click this window to answer or close this window to ignore"
@@ -44,15 +45,16 @@ msgstr "Telefon verbinden"
 
 #: ucp/assets/js/global.js:534
 msgid "Connecting to socket..."
-msgstr ""
+msgstr "Verbinde mit Socket..."
 
 #: webrtc.i18n.php:6
 msgid "Connectivity"
 msgstr "Konnektivität"
 
 #: ucp/views/phone.php:28
+#, fuzzy
 msgid "DEF"
-msgstr ""
+msgstr "DEF"
 
 #: ucp/assets/js/global.js:69 ucp/assets/js/global.js:77
 msgid "Disable"
