@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-26 15:14-0400\n"
-"PO-Revision-Date: 2019-04-05 10:00+0000\n"
+"PO-Revision-Date: 2019-04-11 11:00+0000\n"
 "Last-Translator: florian alberts <alberts@ar-systems.de>\n"
 "Language-Team: German <http://*/projects/freepbx/webrtc/de/>\n"
 "Language: de_DE\n"
@@ -82,7 +82,7 @@ msgstr "WebRTC Old ARI-Telefon aktivieren"
 
 #: views/ucp_config.php:38
 msgid "Enable the phone in UCP for this user"
-msgstr ""
+msgstr "Aktiviere Telefonie im  Benutzerkontrollzentrum für diesen Anwender"
 
 #: functions.inc/hook_core.php:62
 #, php-format
@@ -95,7 +95,7 @@ msgstr ""
 
 #: ucp/views/phone.php:34
 msgid "GHI"
-msgstr ""
+msgstr "GHI (Taste 4 auf Telefonen)"
 
 #: Webrtc.class.php:381
 msgid "HTTPS is not enabled for Asterisk"
@@ -103,7 +103,7 @@ msgstr "HTTPS ist für Asterisk nicht aktiviert"
 
 #: ucp/views/phone.php:81
 msgid "Hold"
-msgstr ""
+msgstr "Halten"
 
 #: ucp/assets/js/global.js:253
 #, perl-format
@@ -116,11 +116,11 @@ msgstr "Erben"
 
 #: ucp/views/phone.php:38
 msgid "JKL"
-msgstr ""
+msgstr "JKL (Taste 5 auf Telefonen)"
 
 #: ucp/views/phone.php:42
 msgid "MNO"
-msgstr ""
+msgstr "MNO (Taste 6 auf Telefonen)"
 
 #: views/ucp_config.php:26
 msgid "No"
@@ -128,35 +128,37 @@ msgstr "Nein"
 
 #: ucp/assets/js/global.js:604
 msgid "Not supported in this browser"
-msgstr ""
+msgstr "Dieser Browser wird nicht unterstützt"
 
 #: ucp/views/phone.php:88
 msgid "Note: An Active call will not be dropped when this window is closed"
 msgstr ""
+"Beachte: Ein laufendes Gespräch wird nicht abgebrochen wenn das Fenster "
+"geschlossen wird"
 
 #: ucp/assets/js/global.js:611
 msgid "Only supported over HTTPS"
-msgstr ""
+msgstr "Nur über sichere Verbindung möglich"
 
 #: ucp/views/phone.php:48
 msgid "PQRS"
-msgstr ""
+msgstr "PQRS (Taste 7 auf Telefonen)"
 
 #: Webrtc.class.php:280 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
 msgid "Phone"
-msgstr ""
+msgstr "Telefon"
 
 #: ucp/views/phone.php:86
 msgid "Phone Status"
-msgstr ""
+msgstr "Telefonstatus"
 
 #: ucp/assets/js/global.js:493
 msgid "Registered"
-msgstr ""
+msgstr "Registriert"
 
 #: ucp/assets/js/global.js:540
 msgid "Registering..."
-msgstr ""
+msgstr "Registriere..."
 
 #: ucp/assets/js/global.js:511
 msgid "Registration Failed"
