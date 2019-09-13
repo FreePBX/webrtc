@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-26 15:14-0400\n"
-"PO-Revision-Date: 2019-05-03 14:00+0000\n"
+"PO-Revision-Date: 2019-09-13 13:04+0000\n"
 "Last-Translator: Bastian Mertgen <b.mertgen@bastian-mertgen.de>\n"
 "Language-Team: German <http://*/projects/freepbx/webrtc/de/>\n"
 "Language: de_DE\n"
@@ -51,7 +51,6 @@ msgid "Connectivity"
 msgstr "Konnektivität"
 
 #: ucp/views/phone.php:28
-#, fuzzy
 msgid "DEF"
 msgstr "DEF"
 
@@ -169,7 +168,7 @@ msgstr "Stummschaltung"
 
 #: ucp/views/phone.php:52
 msgid "TUV"
-msgstr ""
+msgstr "TUV"
 
 #: functions.inc/hook_core.php:77
 msgid "The Certificate to use from Certificate Manager"
@@ -200,7 +199,7 @@ msgstr ""
 
 #: ucp/assets/js/global.js:503 ucp/assets/js/global.js:520
 msgid "Unregistered"
-msgstr ""
+msgstr "Nicht registriert"
 
 #: Webrtc.class.php:300 Webrtc.class.php:303
 #, php-format
