@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>15.0.5</version>
+	<version>15.0.6</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -15,6 +15,7 @@
 		phone they will be connected to device 99XXXX which will receive calls from the original extension
 	</description>
 	<changelog>
+		*15.0.6* Related to FREEPBX-20414: removed $jobid from runRestore() 
 		*15.0.5* fixing legacy restore 
 		*15.0.4* backup and restore 
 		*15.0.3* FREEPBX-18471 allow 15,16,17
