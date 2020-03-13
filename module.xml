@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>15.0.6</version>
+	<version>15.0.7</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -15,6 +15,7 @@
 		phone they will be connected to device 99XXXX which will receive calls from the original extension
 	</description>
 	<changelog>
+		*15.0.7* FREEI-1374 PBXact 15 QA - Devices used count is increased after restoring PBXact 13 to PBXact15 
 		*15.0.6* Related to FREEPBX-20414: removed $jobid from runRestore() 
 		*15.0.5* fixing legacy restore 
 		*15.0.4* backup and restore 
