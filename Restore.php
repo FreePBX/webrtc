@@ -9,5 +9,11 @@ class Restore Extends Base\RestoreBase{
 
 	public function processLegacy($pdo, $data, $tables, $unknownTables){
 		$this->restoreLegacyDatabase($pdo);
+		//recreate all extensions on restore
+		$bmo = $this->FreePBX->Webrtc;
+		$clients = $bmo->getClientsEnabled();
+		foreach($clients as $client) {
+			$bmo->createDevice($client['user'],$client['certid']);
+		}
 	}
 }
