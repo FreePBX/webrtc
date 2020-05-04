@@ -90,7 +90,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 
 		$clients = $this->getClientsEnabled();
 		foreach($clients as $client) {
-			$this->createDevice($client['device'],$client['certid']);
+			$this->createDevice($client['user'],$client['certid']);
 		}
 
 		return true;
