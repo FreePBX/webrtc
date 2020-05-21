@@ -90,8 +90,8 @@
 	</hooks>
 	<database>
 		<table name="webrtc_clients">
-			<field name="user" type="string" length="190"/>
-			<field name="device" type="string" length="190"/>
+			<field name="user" type="bigint"/>
+			<field name="device" type="bigint"/>
 			<field name="certid" type="integer" notnull="false"/>
 			<key name="user" type="unique">
 				<column name="user"/>
