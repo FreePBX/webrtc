@@ -14,6 +14,7 @@
 		will be created (where XXXX is the original extension number), when the user then views the web interface of the WebRTC
 		phone they will be connected to device 99XXXX which will receive calls from the original extension
 	</description>
+  	<more-info>https://wiki.freepbx.org/display/FPG/WebRTC+Phone-UCP</more-info>
 	<changelog>
 		*13.0.32.9* FREEPBX-18471 allow 15,16,17
 		*13.0.32.8* Depend on core
