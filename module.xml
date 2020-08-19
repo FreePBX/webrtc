@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>15.0.8</version>
+	<version>15.0.9</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -14,7 +14,9 @@
 		will be created (where XXXX is the original extension number), when the user then views the web interface of the WebRTC
 		phone they will be connected to device 99XXXX which will receive calls from the original extension
 	</description>
+  	<more-info>https://wiki.freepbx.org/display/FPG/WebRTC+Phone-UCP</more-info>
 	<changelog>
+		*15.0.9* Packaging of ver 15.0.9
 		*15.0.8* FREEI-1374 PBXact 15 QA - Devices used count is increased after restoring PBXact 13 to PBXact15 
 		*15.0.7* FREEI-1374 PBXact 15 QA - Devices used count is increased after restoring PBXact 13 to PBXact15 
 		*15.0.6* Related to FREEPBX-20414: removed $jobid from runRestore() 
