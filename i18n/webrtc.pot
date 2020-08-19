@@ -3,25 +3,20 @@
 # For licensing information, please see the file named LICENSE located in the module directory
 #
 # FreePBX language template for webrtc
-# Copyright (C) 2008-2018 Sangoma Technologies, Inc.
+# Copyright (C) 2008-2020 Sangoma Technologies, Inc.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-26 15:09-0400\n"
+"POT-Creation-Date: 2020-08-19 10:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: ucp/assets/jssiplibs/sip-0.7.5.min.js:37
-#: ucp/assets/jssiplibs/sip-0.7.7.min.js:37
-msgid ""
-")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error parsing "
-msgstr ""
 
 #: views/ucp_config.php:64
 msgid "Certificate WebRTC Phone should use for this user."
@@ -118,12 +113,6 @@ msgstr ""
 msgid ""
 "To utilize WebRTC in ARI you must add at least one certificate %s through "
 "Certificate Manager"
-msgstr ""
-
-#: ucp/assets/js/global.js:303
-msgid ""
-"Unable to start call. Please allow the WebRTC session in your browser and "
-"refresh"
 msgstr ""
 
 #: Webrtc.class.php:325

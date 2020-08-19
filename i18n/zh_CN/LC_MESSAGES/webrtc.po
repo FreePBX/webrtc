@@ -9,23 +9,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-26 15:09-0400\n"
+"POT-Creation-Date: 2020-08-19 10:12+0000\n"
 "PO-Revision-Date: 2015-11-23 13:55+0200\n"
 "Last-Translator: james <zhulizhong@gmail.com>\n"
 "Language-Team: Simplified Chinese <http://weblate.freepbx.org/projects/"
 "freepbx/webrtc/zh_CN/>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 2.2-dev\n"
-
-#: ucp/assets/jssiplibs/sip-0.7.5.min.js:37
-#: ucp/assets/jssiplibs/sip-0.7.7.min.js:37
-msgid ""
-")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error parsing "
-msgstr ""
 
 #: views/ucp_config.php:64
 msgid "Certificate WebRTC Phone should use for this user."
@@ -124,12 +118,6 @@ msgid ""
 "Certificate Manager"
 msgstr "为了使用webRTC，必须通过证书管理员添加证书 %s"
 
-#: ucp/assets/js/global.js:303
-msgid ""
-"Unable to start call. Please allow the WebRTC session in your browser and "
-"refresh"
-msgstr "不能发起呼叫，请在浏览器设置支持WebRTC，或者重新刷新浏览器"
-
 #: Webrtc.class.php:325 Webrtc.class.php:328
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
@@ -158,6 +146,11 @@ msgstr "是"
 #: Webrtc.class.php:312
 msgid "You have no certificates setup in Certificate Manager"
 msgstr "在证书管理员中没有证书设置"
+
+#~ msgid ""
+#~ "Unable to start call. Please allow the WebRTC session in your browser and "
+#~ "refresh"
+#~ msgstr "不能发起呼叫，请在浏览器设置支持WebRTC，或者重新刷新浏览器"
 
 #~ msgid ""
 #~ "The STUN Server address is blank. In many cases this can cause issues. "
