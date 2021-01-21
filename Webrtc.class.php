@@ -29,20 +29,6 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 	);
 
 	/**
-	 * Supported Versions of Asterisk for this module
-	 * @type {array}
-	 */
-	private $supported = array(
-		"11" => "11.11",
-		"12" => "12.4",
-		"13" => "13",
-		"14" => "14",
-		"15" => "15",
-		"16" => "16",
-		"17" => "17"
-	);
-
-	/**
 	 * Prefix added to all WebRTC Extensions
 	 * @type {int}
 	 */
@@ -281,12 +267,9 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		$version = $this->FreePBX->Config->get('ASTVERSION');
 		$vParts = explode(".",$version);
 		$base = $vParts[0];
-		if(isset($this->supported[$base])) {
-			if(!version_compare($version, $this->supported[$base], "ge")) {
-				return sprintf(_("Unsupported Version of Asterisk, You need at least %s you have %s"), $this->supported[$base], $version);
-			}
-		} else {
-			return sprintf(_("Unsupported Version of Asterisk, You need at least %s you have %s"), $this->supported["11"], $version);
+		$res_ver = IsAsteriskSupported($base); // method located in framework utility.function.php
+		if ($res_ver["status"] == false) {
+			return (sprintf(_("Running an unsupported version of Asterisk. %s Detected Asterisk version: %s "), $res_ver["message"], $version));
 		}
 		return true;
 	}

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreePBX 2.5 Chinese Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-26 15:16-0400\n"
+"POT-Creation-Date: 2021-01-21 10:49+0000\n"
 "PO-Revision-Date: 2018-03-14 14:52+0200\n"
 "Last-Translator: james <zhulizhong@gmail.com>\n"
 "Language-Team: Simplified Chinese <http://weblate.freepbx.org/projects/"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Call"
 msgstr ""
 
-#: Webrtc.class.php:273
+#: Webrtc.class.php:259
 msgid "Certificate Manager"
 msgstr ""
 
@@ -92,7 +92,7 @@ msgstr "在ARI中对%s 开启WebRTC。注意：UCP中已经停止使用ARI"
 msgid "GHI"
 msgstr ""
 
-#: Webrtc.class.php:378
+#: Webrtc.class.php:361
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "没有对Asterisk开启HTTPS"
 
@@ -137,7 +137,7 @@ msgstr ""
 msgid "PQRS"
 msgstr ""
 
-#: Webrtc.class.php:266 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
+#: Webrtc.class.php:252 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
 msgid "Phone"
 msgstr ""
 
@@ -155,6 +155,12 @@ msgstr ""
 
 #: ucp/assets/js/global.js:511
 msgid "Registration Failed"
+msgstr ""
+
+#: Webrtc.class.php:272
+#, php-format
+msgid ""
+"Running an unsupported version of Asterisk. %s Detected Asterisk version: %s "
 msgstr ""
 
 #: ucp/views/settings.php:3
@@ -193,11 +199,6 @@ msgstr "为了使用webRTC，必须通过证书管理员添加证书 %s"
 msgid "Unregistered"
 msgstr ""
 
-#: Webrtc.class.php:286 Webrtc.class.php:289
-#, php-format
-msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
-msgstr "不能支持Asterisk的版本，用户至少需要%s, 但是现在的版本是%s"
-
 #: functions.inc/hook_core.php:76
 msgid "Use Certificate"
 msgstr "使用证书"
@@ -218,10 +219,13 @@ msgstr "WebRTC 电话"
 msgid "Yes"
 msgstr "是"
 
-#: Webrtc.class.php:273
+#: Webrtc.class.php:259
 #, php-format
 msgid "You have no default certificates setup in %s"
 msgstr ""
+
+#~ msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
+#~ msgstr "不能支持Asterisk的版本，用户至少需要%s, 但是现在的版本是%s"
 
 #~ msgid "Certificate WebRTC Phone should use for this user."
 #~ msgstr "此用户使用带证书的WebRTC 电话。"

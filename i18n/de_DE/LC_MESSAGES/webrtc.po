@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-26 15:16-0400\n"
+"POT-Creation-Date: 2021-01-21 10:49+0000\n"
 "PO-Revision-Date: 2018-06-01 14:24+0000\n"
 "Last-Translator: Nils Heckenkamp <nheckenkamp@sangoma.com>\n"
 "Language-Team: German <http://*/projects/freepbx/webrtc/de/>\n"
@@ -28,7 +28,7 @@ msgstr ""
 msgid "Call"
 msgstr ""
 
-#: Webrtc.class.php:273
+#: Webrtc.class.php:259
 msgid "Certificate Manager"
 msgstr ""
 
@@ -95,7 +95,7 @@ msgstr ""
 msgid "GHI"
 msgstr ""
 
-#: Webrtc.class.php:378
+#: Webrtc.class.php:361
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "HTTPS ist für Asterisk nicht aktiviert"
 
@@ -140,7 +140,7 @@ msgstr ""
 msgid "PQRS"
 msgstr ""
 
-#: Webrtc.class.php:266 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
+#: Webrtc.class.php:252 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
 msgid "Phone"
 msgstr ""
 
@@ -158,6 +158,12 @@ msgstr ""
 
 #: ucp/assets/js/global.js:511
 msgid "Registration Failed"
+msgstr ""
+
+#: Webrtc.class.php:272
+#, php-format
+msgid ""
+"Running an unsupported version of Asterisk. %s Detected Asterisk version: %s "
 msgstr ""
 
 #: ucp/views/settings.php:3
@@ -199,13 +205,6 @@ msgstr ""
 msgid "Unregistered"
 msgstr ""
 
-#: Webrtc.class.php:286 Webrtc.class.php:289
-#, php-format
-msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
-msgstr ""
-"Nicht unterstützte Version von Asterisk. Sie benötigen mindestens %s. Sie "
-"haben %s"
-
 #: functions.inc/hook_core.php:76
 msgid "Use Certificate"
 msgstr "Zertifikat verwenden"
@@ -226,10 +225,15 @@ msgstr "WebRTC-Telefon"
 msgid "Yes"
 msgstr "Ja"
 
-#: Webrtc.class.php:273
+#: Webrtc.class.php:259
 #, php-format
 msgid "You have no default certificates setup in %s"
 msgstr ""
+
+#~ msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
+#~ msgstr ""
+#~ "Nicht unterstützte Version von Asterisk. Sie benötigen mindestens %s. Sie "
+#~ "haben %s"
 
 #~ msgid ""
 #~ ")),-1===f?(this.headers[b].splice(c,1),void this.logger.warn('error "

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-26 15:16-0400\n"
+"POT-Creation-Date: 2021-01-21 10:49+0000\n"
 "PO-Revision-Date: 2016-06-07 10:27+0200\n"
 "Last-Translator: Ernesto <ecasas@sangoma.com>\n"
 "Language-Team: Spanish <http://weblate.freepbx.org/projects/freepbx/webrtc/"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Call"
 msgstr ""
 
-#: Webrtc.class.php:273
+#: Webrtc.class.php:259
 msgid "Certificate Manager"
 msgstr ""
 
@@ -94,7 +94,7 @@ msgstr ""
 msgid "GHI"
 msgstr ""
 
-#: Webrtc.class.php:378
+#: Webrtc.class.php:361
 msgid "HTTPS is not enabled for Asterisk"
 msgstr ""
 
@@ -139,7 +139,7 @@ msgstr ""
 msgid "PQRS"
 msgstr ""
 
-#: Webrtc.class.php:266 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
+#: Webrtc.class.php:252 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
 msgid "Phone"
 msgstr ""
 
@@ -157,6 +157,12 @@ msgstr ""
 
 #: ucp/assets/js/global.js:511
 msgid "Registration Failed"
+msgstr ""
+
+#: Webrtc.class.php:272
+#, php-format
+msgid ""
+"Running an unsupported version of Asterisk. %s Detected Asterisk version: %s "
 msgstr ""
 
 #: ucp/views/settings.php:3
@@ -198,12 +204,6 @@ msgstr ""
 msgid "Unregistered"
 msgstr ""
 
-#: Webrtc.class.php:286 Webrtc.class.php:289
-#, php-format
-msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
-msgstr ""
-"versión de Asterisk no soportada. Usted necesita al menos %s y tiene %s"
-
 #: functions.inc/hook_core.php:76
 msgid "Use Certificate"
 msgstr "Use Certificado"
@@ -224,10 +224,14 @@ msgstr "Teléfono WebRTC"
 msgid "Yes"
 msgstr "Si"
 
-#: Webrtc.class.php:273
+#: Webrtc.class.php:259
 #, php-format
 msgid "You have no default certificates setup in %s"
 msgstr ""
+
+#~ msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
+#~ msgstr ""
+#~ "versión de Asterisk no soportada. Usted necesita al menos %s y tiene %s"
 
 #~ msgid "Enable WebRTC Phone"
 #~ msgstr "Habilitar Teléfono WebRTC"
