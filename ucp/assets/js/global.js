@@ -424,6 +424,9 @@ var WebrtcC = UCPMC.extend({
 
 				this.state = "accepted";
 			break;
+                        case "progress":
+                                this.playRing();
+                        break;
 			case "accepted":
 				this.stopRing();
 				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").removeClass("shake");
