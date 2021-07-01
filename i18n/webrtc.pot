@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-16 13:48+0000\n"
+"POT-Creation-Date: 2021-07-01 12:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,11 +34,11 @@ msgstr ""
 msgid "Click this window to answer or close this window to ignore"
 msgstr ""
 
-#: ucp/assets/js/global.js:513
+#: ucp/assets/js/global.js:516
 msgid "Connect Phone"
 msgstr ""
 
-#: ucp/assets/js/global.js:534
+#: ucp/assets/js/global.js:537
 msgid "Connecting to socket..."
 msgstr ""
 
@@ -59,7 +59,7 @@ msgstr ""
 msgid "Disconnect Phone"
 msgstr ""
 
-#: ucp/assets/js/global.js:525
+#: ucp/assets/js/global.js:528
 msgid "Disconnected"
 msgstr ""
 
@@ -120,7 +120,7 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: ucp/assets/js/global.js:604
+#: ucp/assets/js/global.js:607
 msgid "Not supported in this browser"
 msgstr ""
 
@@ -128,7 +128,7 @@ msgstr ""
 msgid "Note: An Active call will not be dropped when this window is closed"
 msgstr ""
 
-#: ucp/assets/js/global.js:611
+#: ucp/assets/js/global.js:614
 msgid "Only supported over HTTPS"
 msgstr ""
 
@@ -146,15 +146,15 @@ msgstr ""
 msgid "Phone Status"
 msgstr ""
 
-#: ucp/assets/js/global.js:493
+#: ucp/assets/js/global.js:496
 msgid "Registered"
 msgstr ""
 
-#: ucp/assets/js/global.js:540
+#: ucp/assets/js/global.js:543
 msgid "Registering..."
 msgstr ""
 
-#: ucp/assets/js/global.js:511
+#: ucp/assets/js/global.js:514
 msgid "Registration Failed"
 msgstr ""
 
@@ -194,8 +194,8 @@ msgid ""
 "Certificate Manager"
 msgstr ""
 
-#: ucp/assets/js/global.js:503
-#: ucp/assets/js/global.js:520
+#: ucp/assets/js/global.js:506
+#: ucp/assets/js/global.js:523
 msgid "Unregistered"
 msgstr ""
 
