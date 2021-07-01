@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-21 10:49+0000\n"
+"POT-Creation-Date: 2021-07-01 12:19+0000\n"
 "PO-Revision-Date: 2018-09-04 08:42+0000\n"
 "Last-Translator: Petr Varvarovsky <petrv@atlantis.cz>\n"
 "Language-Team: Czech <http://*/projects/freepbx/webrtc/cs/>\n"
@@ -38,11 +38,11 @@ msgstr ""
 "Kliknutím na toto okno můžete na tuto zprávu odpovědět, ignorovat ji nebo ji "
 "zavřít"
 
-#: ucp/assets/js/global.js:513
+#: ucp/assets/js/global.js:516
 msgid "Connect Phone"
 msgstr "Připojit telefon"
 
-#: ucp/assets/js/global.js:534
+#: ucp/assets/js/global.js:537
 msgid "Connecting to socket..."
 msgstr "Připojení k soketu ..."
 
@@ -62,7 +62,7 @@ msgstr "Zakázat"
 msgid "Disconnect Phone"
 msgstr "Odpojit telefon"
 
-#: ucp/assets/js/global.js:525
+#: ucp/assets/js/global.js:528
 msgid "Disconnected"
 msgstr "Odpojeno"
 
@@ -124,7 +124,7 @@ msgstr "MNO"
 msgid "No"
 msgstr "Ne"
 
-#: ucp/assets/js/global.js:604
+#: ucp/assets/js/global.js:607
 msgid "Not supported in this browser"
 msgstr "V tomto prohlížeči není podporováno"
 
@@ -132,7 +132,7 @@ msgstr "V tomto prohlížeči není podporováno"
 msgid "Note: An Active call will not be dropped when this window is closed"
 msgstr "Poznámka: Po uzavření tohoto okna nebude aktivní hovor zrušen"
 
-#: ucp/assets/js/global.js:611
+#: ucp/assets/js/global.js:614
 msgid "Only supported over HTTPS"
 msgstr "Podporováno pouze přes protokol HTTPS"
 
@@ -148,15 +148,15 @@ msgstr "Telefon"
 msgid "Phone Status"
 msgstr "Stav telefonu"
 
-#: ucp/assets/js/global.js:493
+#: ucp/assets/js/global.js:496
 msgid "Registered"
 msgstr "Registrován"
 
-#: ucp/assets/js/global.js:540
+#: ucp/assets/js/global.js:543
 msgid "Registering..."
 msgstr "Registrace ..."
 
-#: ucp/assets/js/global.js:511
+#: ucp/assets/js/global.js:514
 msgid "Registration Failed"
 msgstr "Registrace se nezdařila"
 
@@ -201,7 +201,7 @@ msgstr ""
 "Chcete-li využít technologii WebRTC v systému ARI, musíte přidat certifikát "
 "%s prostřednictvím Správce certifikátů"
 
-#: ucp/assets/js/global.js:503 ucp/assets/js/global.js:520
+#: ucp/assets/js/global.js:506 ucp/assets/js/global.js:523
 msgid "Unregistered"
 msgstr "Neregistrován"
 

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreePBX 2.5 Chinese Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-21 10:49+0000\n"
+"POT-Creation-Date: 2021-07-01 12:19+0000\n"
 "PO-Revision-Date: 2018-03-14 14:52+0200\n"
 "Last-Translator: james <zhulizhong@gmail.com>\n"
 "Language-Team: Simplified Chinese <http://weblate.freepbx.org/projects/"
@@ -37,11 +37,11 @@ msgstr ""
 msgid "Click this window to answer or close this window to ignore"
 msgstr "点击此窗口应答或忽略关闭窗口"
 
-#: ucp/assets/js/global.js:513
+#: ucp/assets/js/global.js:516
 msgid "Connect Phone"
 msgstr "连接电话终端"
 
-#: ucp/assets/js/global.js:534
+#: ucp/assets/js/global.js:537
 msgid "Connecting to socket..."
 msgstr ""
 
@@ -61,7 +61,7 @@ msgstr ""
 msgid "Disconnect Phone"
 msgstr "对电话挂机"
 
-#: ucp/assets/js/global.js:525
+#: ucp/assets/js/global.js:528
 msgid "Disconnected"
 msgstr ""
 
@@ -121,7 +121,7 @@ msgstr ""
 msgid "No"
 msgstr "否"
 
-#: ucp/assets/js/global.js:604
+#: ucp/assets/js/global.js:607
 msgid "Not supported in this browser"
 msgstr ""
 
@@ -129,7 +129,7 @@ msgstr ""
 msgid "Note: An Active call will not be dropped when this window is closed"
 msgstr ""
 
-#: ucp/assets/js/global.js:611
+#: ucp/assets/js/global.js:614
 msgid "Only supported over HTTPS"
 msgstr ""
 
@@ -145,15 +145,15 @@ msgstr ""
 msgid "Phone Status"
 msgstr ""
 
-#: ucp/assets/js/global.js:493
+#: ucp/assets/js/global.js:496
 msgid "Registered"
 msgstr ""
 
-#: ucp/assets/js/global.js:540
+#: ucp/assets/js/global.js:543
 msgid "Registering..."
 msgstr ""
 
-#: ucp/assets/js/global.js:511
+#: ucp/assets/js/global.js:514
 msgid "Registration Failed"
 msgstr ""
 
@@ -195,7 +195,7 @@ msgid ""
 "Certificate Manager"
 msgstr "为了使用webRTC，必须通过证书管理员添加证书 %s"
 
-#: ucp/assets/js/global.js:503 ucp/assets/js/global.js:520
+#: ucp/assets/js/global.js:506 ucp/assets/js/global.js:523
 msgid "Unregistered"
 msgstr ""
 
