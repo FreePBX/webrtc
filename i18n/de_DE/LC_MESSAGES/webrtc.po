@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-26 15:14-0400\n"
+"POT-Creation-Date: 2021-07-02 04:33+0000\n"
 "PO-Revision-Date: 2019-09-13 13:04+0000\n"
 "Last-Translator: Bastian Mertgen <b.mertgen@bastian-mertgen.de>\n"
 "Language-Team: German <http://*/projects/freepbx/webrtc/de/>\n"
@@ -38,11 +38,11 @@ msgstr ""
 "Klicken Sie zum Antworten auf dieses Fenster oder schließen Sie dieses "
 "Fenster, um es zu ignorieren"
 
-#: ucp/assets/js/global.js:513
+#: ucp/assets/js/global.js:516
 msgid "Connect Phone"
 msgstr "Telefon verbinden"
 
-#: ucp/assets/js/global.js:534
+#: ucp/assets/js/global.js:537
 msgid "Connecting to socket..."
 msgstr "Verbinde mit Socket..."
 
@@ -62,7 +62,7 @@ msgstr "Deaktivieren"
 msgid "Disconnect Phone"
 msgstr "Telefonverbindung trennen"
 
-#: ucp/assets/js/global.js:525
+#: ucp/assets/js/global.js:528
 msgid "Disconnected"
 msgstr "Getrennt"
 
@@ -124,7 +124,7 @@ msgstr "MNO (Taste 6 auf Telefonen)"
 msgid "No"
 msgstr "Nein"
 
-#: ucp/assets/js/global.js:604
+#: ucp/assets/js/global.js:607
 msgid "Not supported in this browser"
 msgstr "Dieser Browser wird nicht unterstützt"
 
@@ -134,7 +134,7 @@ msgstr ""
 "Beachte: Ein laufendes Gespräch wird nicht abgebrochen wenn das Fenster "
 "geschlossen wird"
 
-#: ucp/assets/js/global.js:611
+#: ucp/assets/js/global.js:614
 msgid "Only supported over HTTPS"
 msgstr "Nur über sichere Verbindung möglich"
 
@@ -150,15 +150,15 @@ msgstr "Telefon"
 msgid "Phone Status"
 msgstr "Telefonstatus"
 
-#: ucp/assets/js/global.js:493
+#: ucp/assets/js/global.js:496
 msgid "Registered"
 msgstr "Registriert"
 
-#: ucp/assets/js/global.js:540
+#: ucp/assets/js/global.js:543
 msgid "Registering..."
 msgstr "Registriere..."
 
-#: ucp/assets/js/global.js:511
+#: ucp/assets/js/global.js:514
 msgid "Registration Failed"
 msgstr "Registrierung fehlgeschlagen"
 
@@ -197,7 +197,7 @@ msgstr ""
 "Um WebRTC in ARI verwenden zu können, muss mindestens ein Zertifikat %s über "
 "den Zertifikatmanager hinzugefügt werden"
 
-#: ucp/assets/js/global.js:503 ucp/assets/js/global.js:520
+#: ucp/assets/js/global.js:506 ucp/assets/js/global.js:523
 msgid "Unregistered"
 msgstr "Nicht registriert"
 

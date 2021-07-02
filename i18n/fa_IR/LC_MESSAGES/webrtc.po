@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-26 15:14-0400\n"
+"POT-Creation-Date: 2021-07-02 04:33+0000\n"
 "PO-Revision-Date: 2019-01-26 21:00+0000\n"
 "Last-Translator: Media Mousavi <mousavi.media@gmail.com>\n"
 "Language-Team: Persian <http://*/projects/freepbx/webrtc/fa/>\n"
@@ -37,11 +37,11 @@ msgid "Click this window to answer or close this window to ignore"
 msgstr ""
 "برای پاسخ به تماس روی این پنجره کلیک کنید یا برای رد تماس این پنجره را ببندید"
 
-#: ucp/assets/js/global.js:513
+#: ucp/assets/js/global.js:516
 msgid "Connect Phone"
 msgstr "اتصال تلفن"
 
-#: ucp/assets/js/global.js:534
+#: ucp/assets/js/global.js:537
 msgid "Connecting to socket..."
 msgstr "اتصال به سوکت ..."
 
@@ -61,7 +61,7 @@ msgstr "غیرفعال"
 msgid "Disconnect Phone"
 msgstr "قطع کردن اتصال تلفن"
 
-#: ucp/assets/js/global.js:525
+#: ucp/assets/js/global.js:528
 msgid "Disconnected"
 msgstr "قطع شده"
 
@@ -122,7 +122,7 @@ msgstr "MNO"
 msgid "No"
 msgstr "خیر"
 
-#: ucp/assets/js/global.js:604
+#: ucp/assets/js/global.js:607
 msgid "Not supported in this browser"
 msgstr "در این مرورگر پشتیبانی نمیشود"
 
@@ -130,7 +130,7 @@ msgstr "در این مرورگر پشتیبانی نمیشود"
 msgid "Note: An Active call will not be dropped when this window is closed"
 msgstr "توجه: هنگامی که این پنجره بسته شده، تماس فعال نخواهد شد"
 
-#: ucp/assets/js/global.js:611
+#: ucp/assets/js/global.js:614
 msgid "Only supported over HTTPS"
 msgstr "فقط HTTPS پشتیبانی می شود"
 
@@ -146,15 +146,15 @@ msgstr "تلفن"
 msgid "Phone Status"
 msgstr "وضعیت تلفن"
 
-#: ucp/assets/js/global.js:493
+#: ucp/assets/js/global.js:496
 msgid "Registered"
 msgstr "ثبت شده"
 
-#: ucp/assets/js/global.js:540
+#: ucp/assets/js/global.js:543
 msgid "Registering..."
 msgstr "در حال ثبت..."
 
-#: ucp/assets/js/global.js:511
+#: ucp/assets/js/global.js:514
 msgid "Registration Failed"
 msgstr "ثبت نام ناموفق بود"
 
@@ -192,7 +192,7 @@ msgstr ""
 "برای استفاده از WebRTC در ARI می بایست حداقل یک مجوز %s از طریق ماژول مدیریت "
 "مجوز تعریف کنید"
 
-#: ucp/assets/js/global.js:503 ucp/assets/js/global.js:520
+#: ucp/assets/js/global.js:506 ucp/assets/js/global.js:523
 msgid "Unregistered"
 msgstr "ثبت نام نشده"
 
