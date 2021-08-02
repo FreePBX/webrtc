@@ -220,7 +220,7 @@ var WebrtcC = UCPMC.extend({
 		$("#ringtone").trigger("pause");
 		$("#ringtone").trigger("load");
 	},
-        playRingBack: function() {
+	playRingBack: function() {
                 if(!this.silenced) {
                         $("#ringback").trigger("play");
                 }
