@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>16.0.4</version>
+	<version>16.0.5</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -16,6 +16,7 @@
 	</description>
   	<more-info>https://wiki.freepbx.org/display/FPG/WebRTC+Phone-UCP</more-info>
 	<changelog>
+		*16.0.5* Packaging of ver 16.0.5
 		*16.0.4* Packaging of ver 16.0.4
 		*16.0.3* Packaging of ver 16.0.3
 		*16.0.2* Fixing FREEPBX-22186 
