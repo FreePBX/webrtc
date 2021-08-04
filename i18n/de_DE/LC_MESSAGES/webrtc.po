@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-01 12:19+0000\n"
+"POT-Creation-Date: 2021-08-04 02:39+0000\n"
 "PO-Revision-Date: 2018-06-01 14:24+0000\n"
 "Last-Translator: Nils Heckenkamp <nheckenkamp@sangoma.com>\n"
 "Language-Team: German <http://*/projects/freepbx/webrtc/de/>\n"
@@ -32,17 +32,17 @@ msgstr ""
 msgid "Certificate Manager"
 msgstr ""
 
-#: ucp/assets/js/global.js:254
+#: ucp/assets/js/global.js:264
 msgid "Click this window to answer or close this window to ignore"
 msgstr ""
 "Klicken Sie zum Antworten auf dieses Fenster oder schließen Sie dieses "
 "Fenster, um es zu ignorieren"
 
-#: ucp/assets/js/global.js:516
+#: ucp/assets/js/global.js:530
 msgid "Connect Phone"
 msgstr "Telefon verbinden"
 
-#: ucp/assets/js/global.js:537
+#: ucp/assets/js/global.js:551
 msgid "Connecting to socket..."
 msgstr ""
 
@@ -62,7 +62,7 @@ msgstr ""
 msgid "Disconnect Phone"
 msgstr "Telefonverbindung trennen"
 
-#: ucp/assets/js/global.js:528
+#: ucp/assets/js/global.js:542
 msgid "Disconnected"
 msgstr ""
 
@@ -103,7 +103,7 @@ msgstr "HTTPS ist für Asterisk nicht aktiviert"
 msgid "Hold"
 msgstr ""
 
-#: ucp/assets/js/global.js:253
+#: ucp/assets/js/global.js:263
 #, perl-format
 msgid "Incoming call from %s"
 msgstr "Eingehender Anruf von %s"
@@ -124,7 +124,7 @@ msgstr ""
 msgid "No"
 msgstr "Nein"
 
-#: ucp/assets/js/global.js:607
+#: ucp/assets/js/global.js:621
 msgid "Not supported in this browser"
 msgstr ""
 
@@ -132,7 +132,7 @@ msgstr ""
 msgid "Note: An Active call will not be dropped when this window is closed"
 msgstr ""
 
-#: ucp/assets/js/global.js:614
+#: ucp/assets/js/global.js:628
 msgid "Only supported over HTTPS"
 msgstr ""
 
@@ -148,15 +148,15 @@ msgstr ""
 msgid "Phone Status"
 msgstr ""
 
-#: ucp/assets/js/global.js:496
+#: ucp/assets/js/global.js:510
 msgid "Registered"
 msgstr ""
 
-#: ucp/assets/js/global.js:543
+#: ucp/assets/js/global.js:557
 msgid "Registering..."
 msgstr ""
 
-#: ucp/assets/js/global.js:514
+#: ucp/assets/js/global.js:528
 msgid "Registration Failed"
 msgstr ""
 
@@ -201,7 +201,7 @@ msgstr ""
 "Um WebRTC in ARI verwenden zu können, muss mindestens ein Zertifikat %s über "
 "den Zertifikatmanager hinzugefügt werden"
 
-#: ucp/assets/js/global.js:506 ucp/assets/js/global.js:523
+#: ucp/assets/js/global.js:520 ucp/assets/js/global.js:537
 msgid "Unregistered"
 msgstr ""
 
