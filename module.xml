@@ -59,9 +59,12 @@
 		<table name="webrtc_clients">
 			<field name="user" type="string" length="190"/>
 			<field name="device" type="string" length="190"/>
+			<field name="prefix" type="string" length="10"/>
+			<field name="module" type="string" length="100"/>
 			<field name="certid" type="integer" notnull="false"/>
-			<key name="user" type="unique">
+			<key name="userandprefix" type="unique">
 				<column name="user"/>
+				<column name="prefix" />
 			</key>
 			<key name="device" type="unique">
 				<column name="device"/>
