@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-01 12:29+0000\n"
+"POT-Creation-Date: 2021-09-06 09:13+0000\n"
 "PO-Revision-Date: 2018-09-04 08:42+0000\n"
 "Last-Translator: Petr Varvarovsky <petrv@atlantis.cz>\n"
 "Language-Team: Czech <http://*/projects/freepbx/webrtc/cs/>\n"
@@ -32,17 +32,17 @@ msgstr "Volat"
 msgid "Certificate Manager"
 msgstr "Správce certifikátů"
 
-#: ucp/assets/js/global.js:254
+#: ucp/assets/js/global.js:264
 msgid "Click this window to answer or close this window to ignore"
 msgstr ""
 "Kliknutím na toto okno můžete na tuto zprávu odpovědět, ignorovat ji nebo ji "
 "zavřít"
 
-#: ucp/assets/js/global.js:516
+#: ucp/assets/js/global.js:530
 msgid "Connect Phone"
 msgstr "Připojit telefon"
 
-#: ucp/assets/js/global.js:537
+#: ucp/assets/js/global.js:551
 msgid "Connecting to socket..."
 msgstr "Připojení k soketu ..."
 
@@ -62,7 +62,7 @@ msgstr "Zakázat"
 msgid "Disconnect Phone"
 msgstr "Odpojit telefon"
 
-#: ucp/assets/js/global.js:528
+#: ucp/assets/js/global.js:542
 msgid "Disconnected"
 msgstr "Odpojeno"
 
@@ -103,7 +103,7 @@ msgstr "HTTPS není pro Asterisk povoleno"
 msgid "Hold"
 msgstr "Přidržet"
 
-#: ucp/assets/js/global.js:253
+#: ucp/assets/js/global.js:263
 #, perl-format
 msgid "Incoming call from %s"
 msgstr "Příchozí hovor od %s"
@@ -124,7 +124,7 @@ msgstr "MNO"
 msgid "No"
 msgstr "Ne"
 
-#: ucp/assets/js/global.js:607
+#: ucp/assets/js/global.js:621
 msgid "Not supported in this browser"
 msgstr "V tomto prohlížeči není podporováno"
 
@@ -132,7 +132,7 @@ msgstr "V tomto prohlížeči není podporováno"
 msgid "Note: An Active call will not be dropped when this window is closed"
 msgstr "Poznámka: Po uzavření tohoto okna nebude aktivní hovor zrušen"
 
-#: ucp/assets/js/global.js:614
+#: ucp/assets/js/global.js:628
 msgid "Only supported over HTTPS"
 msgstr "Podporováno pouze přes protokol HTTPS"
 
@@ -148,15 +148,15 @@ msgstr "Telefon"
 msgid "Phone Status"
 msgstr "Stav telefonu"
 
-#: ucp/assets/js/global.js:496
+#: ucp/assets/js/global.js:510
 msgid "Registered"
 msgstr "Registrován"
 
-#: ucp/assets/js/global.js:543
+#: ucp/assets/js/global.js:557
 msgid "Registering..."
 msgstr "Registrace ..."
 
-#: ucp/assets/js/global.js:514
+#: ucp/assets/js/global.js:528
 msgid "Registration Failed"
 msgstr "Registrace se nezdařila"
 
@@ -201,7 +201,7 @@ msgstr ""
 "Chcete-li využít technologii WebRTC v systému ARI, musíte přidat certifikát "
 "%s prostřednictvím Správce certifikátů"
 
-#: ucp/assets/js/global.js:506 ucp/assets/js/global.js:523
+#: ucp/assets/js/global.js:520 ucp/assets/js/global.js:537
 msgid "Unregistered"
 msgstr "Neregistrován"
 
