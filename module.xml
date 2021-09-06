@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>15.0.10.3</version>
+	<version>15.0.10.4</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -16,6 +16,7 @@
 	</description>
   	<more-info>https://wiki.freepbx.org/display/FPG/WebRTC+Phone-UCP</more-info>
 	<changelog>
+		*15.0.10.4* FREEI-3795 Create pjsip extensions(webrtc) for the Soft Phone to register against 
 		*15.0.10.3* FREEI-3830  PBXact 16 - Extension license count is not showing properly 
 		*15.0.10.2* FREEPBX-22571 
 		*15.0.10.1* Fixing FREEPBX-22571 
@@ -65,7 +66,7 @@
 			<field name="certid" type="integer" notnull="false"/>
 			<key name="userandprefix" type="unique">
 				<column name="user"/>
-				<column name="prefix" />
+				<column name="prefix"/>
 			</key>
 			<key name="device" type="unique">
 				<column name="device"/>
