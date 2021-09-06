@@ -76,7 +76,9 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 
 		$clients = $this->getClientsEnabled();
 		foreach($clients as $client) {
-			$this->createDevice($client['user'],$client['certid']);
+			$prefix = isset($client['prefix'])?$client['prefix']:$this->prefix;
+			$module = isset($client['module'])&& ($client['module']!='')?$client['module']:'UCP';
+			$this->createDevice($client['user'],$client['certid'],$prefix,$module);
 		}
 
 		return true;
@@ -232,6 +234,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 				$this->removeDevice($user['default_extension']);
 			}
 		}
+		//
 	}
 
 	public function ucpConfigPage($mode, $user, $action) {
@@ -290,16 +293,17 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		return $this->delConfig($setting);
 	}
 
-	public function checkEnabled($user) {
-		$settings = $this->getClientSettingsByUser($user);
+	public function checkEnabled($user,$prefix ='') {
+		$prefix = ($prefix == '')?$this->prefix:$prefix;
+		$settings = $this->getClientSettingsByUser($user,$prefix);
 		return !empty($settings);
 	}
 
-	public function setClientSettings($user,$device) {
+	public function setClientSettings($user,$device,$prefix,$module) {
 		try {
-			$sql = "REPLACE INTO webrtc_clients (`user`, `device`) VALUES(?,?)";
+			$sql = "REPLACE INTO webrtc_clients (`user`, `device`,`prefix`,`module`) VALUES(?,?,?,?)";
 			$sth = $this->Database->prepare($sql);
-			return $sth->execute(array($user,$device));
+			return $sth->execute(array($user,$device,$prefix,$module));
 		} catch(Exception $e) {
 			return false;
 		}
@@ -327,10 +331,10 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		return $results;
 	}
 
-	public function getClientSettingsByUser($user) {
-		$sql = "SELECT * FROM webrtc_clients WHERE `user` = ?";
+	public function getClientSettingsByUser($user,$prefix) {
+		$sql = "SELECT * FROM webrtc_clients WHERE `user` = ? AND `prefix`=?";
 		$sth = $this->Database->prepare($sql);
-		$sth->execute(array($user));
+		$sth->execute(array($user,$prefix));
 		$results = $sth->fetch(PDO::FETCH_ASSOC);
 		if(empty($results)) {
 			return false;
@@ -342,7 +346,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		$dev = $this->FreePBX->Core->getDevice($results['device']);
 		if(empty($dev)) {
 			//no device so remove the settings, someone deleted the device basically
-			$this->removeClientSettingsByUser($user);
+			$this->removeClientSettingsByUser($user,$prefix);
 			return false;
 		}
 		if($this->FreePBX->Config->get('HTTPTLSENABLE') && $dev['transport'] == "chan_sip" && ($dev['transport'] != "wss" && $dev['transport'] != "wss,ws")) {
@@ -373,18 +377,23 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		return $results;
 	}
 
-	public function removeClientSettingsByUser($user) {
+	public function removeClientSettingsByUser($user,$prefix) {
 		try {
-			$sql = "DELETE FROM webrtc_clients WHERE `user` = ?";
+			$sql = "DELETE FROM webrtc_clients WHERE `user` = ? AND prefix=?";
 			$sth = $this->Database->prepare($sql);
-			return $sth->execute(array($user));
+			return $sth->execute(array($user,$prefix));
 		} catch(Exception $e) {
 			return true;
 		}
 	}
 
-	public function createDevice($extension) {
-		$id = $this->prefix.$extension;
+	public function createDevice($extension,$cid = '',$prefix='',$module='UCP') {
+		if($prefix == ''){
+			$id = $this->prefix.$extension;
+			$prefix = $this->prefix;
+		}else {
+			$id = $prefix.$extension;
+		}
 		$previous = $this->FreePBX->Core->getDevice($id);
 		if(!empty($previous)) {
 			$this->FreePBX->Core->delDevice($id);
@@ -400,12 +409,16 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		$settings['devicetype']['value'] = 'fixed';
 		$settings['context']['value'] = !empty($dev['context']) ? $dev['context'] : "from-internal";
 		$settings['user']['value'] = $extension;
+		$settings['webrtc']['value'] = !empty($dev['webrtc']) ? $dev['webrtc'] : "yes";
 		$defaultCert = $this->FreePBX->Certman->getDefaultCertDetails();
 		if(empty($defaultCert)) {
 			return false;
 		}
+		if($cid == ''){
+			$cid = $defaultCert['cid'];
+		}
 		$cert = array(
-			"certificate" => $defaultCert['cid'],
+			"certificate" => $cid,
 			"verify" => "fingerprint",
 			"setup" => "actpass",
 			"rekey" => "0"
@@ -430,6 +443,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 				$settings['media_use_received_transport']['value'] = 'yes';
 				$settings['timers']['value'] = 'no';
 				$settings['media_encryption']['value'] = 'dtls';
+				$settings['webrtc']['value'] = 'yes';
 				if((version_compare($version,'13.15.0','ge') && version_compare($version,'14.0','lt')) || version_compare($version,'14.4.0','ge')) {
 					$settings['rtcp_mux']['value'] = 'yes';
 				}
@@ -440,7 +454,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 			break;
 		}
 		$this->FreePBX->Certman->addDTLSOptions($id, $cert);
-		$this->setClientSettings($extension,$id);
+		$this->setClientSettings($extension,$id,$prefix,$module);
 		return true;
 	}
 
@@ -459,9 +473,12 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		return $websocketMode;
 	}
 
-	public function removeDevice($extension) {
-		$id = $this->prefix.$extension;
-		$this->removeClientSettingsByUser($extension);
+	public function removeDevice($extension,$prefix = '') {
+		if($prefix == ''){
+			$prefix = $this->prefix;
+		}
+		$id = $prefix.$extension;
+		$this->removeClientSettingsByUser($extension,$prefix);
 		$this->deleteDevice($id);
 	}
 
