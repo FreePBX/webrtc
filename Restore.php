@@ -5,6 +5,11 @@ class Restore Extends Base\RestoreBase{
 	public function runRestore(){
 		$configs = $this->getConfigs();
 		$this->importTables($configs['tables']);
+		$bmo = $this->FreePBX->Webrtc;
+		$clients = $bmo->getClientsEnabled();
+		foreach($clients as $client) {
+			$bmo->createDevice($client['user'],$client['certid']);
+		}
 	}
 
 	public function processLegacy($pdo, $data, $tables, $unknownTables){

@@ -220,6 +220,16 @@ var WebrtcC = UCPMC.extend({
 		$("#ringtone").trigger("pause");
 		$("#ringtone").trigger("load");
 	},
+	playRingBack: function() {
+                if(!this.silenced) {
+                        $("#ringback").trigger("play");
+                }
+        },
+        stopRingBack: function() {
+                $("#ringback").trigger("pause");
+                $("#ringback").trigger("load");
+        },
+
 	manageSession: function(session, direction) {
 		var Webrtc = this,
 				id,
@@ -313,6 +323,7 @@ var WebrtcC = UCPMC.extend({
 		}
 		$("#menu_webrtc_phone .btn-primary").prop("disabled", false);
 		this.stopRing();
+		this.stopRingBack();
 	},
 	startCall: function(event) {
 		if (this.notification !== null) {
@@ -374,6 +385,7 @@ var WebrtcC = UCPMC.extend({
 			this.activeCalls[this.activeCallId].terminate();
 		}
 		this.stopRing();
+		this.stopRingBack();
 	},
 	poll: function(data) {
 
@@ -424,10 +436,11 @@ var WebrtcC = UCPMC.extend({
 
 				this.state = "accepted";
 			break;
-                        case "progress":
-                                this.playRing();
-                        break;
+			case "progress":
+				this.playRingBack();
+			break;
 			case "accepted":
+				this.stopRingBack();
 				this.stopRing();
 				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").removeClass("shake");
 				$("#menu_webrtc_phone .contactDisplay").hide();
@@ -482,6 +495,7 @@ var WebrtcC = UCPMC.extend({
 			break;
 			case "terminated":
 				this.stopRing();
+				this.stopRingBack();
 				$("#menu_webrtc_phone .actions .right").hide();
 				$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").removeClass("shake");
 				$("#menu_webrtc_phone .activeCallSession .keypad").show();
@@ -639,6 +653,7 @@ var WebrtcC = UCPMC.extend({
 		.done(function( script, textStatus ) {
 			$("#footer").append("<audio id=\"audio_remote\" autoplay=\"autoplay\" />");
 			$("#footer").append("<audio id=\"ringtone\"><source src=\"modules/Webrtc/assets/sounds/ring.mp3\" type=\"audio/mpeg\"></audio>");
+			$("#footer").append("<audio id=\"ringback\"><source src=\"modules/Webrtc/assets/sounds/US_Ringback.mp3\" type=\"audio/mpeg\"></audio>");
 			$this.callOptions.media.render.remote = document.getElementById('audio_remote');
 			$this.phone = new SIP.UA(
 				{
