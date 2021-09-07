@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreePBX 2.5 Chinese Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-06 09:16+0000\n"
+"POT-Creation-Date: 2021-09-07 07:19+0000\n"
 "PO-Revision-Date: 2018-03-14 14:52+0200\n"
 "Last-Translator: james <zhulizhong@gmail.com>\n"
 "Language-Team: Simplified Chinese <http://weblate.freepbx.org/projects/"
@@ -92,7 +92,7 @@ msgstr "在ARI中对%s 开启WebRTC。注意：UCP中已经停止使用ARI"
 msgid "GHI"
 msgstr ""
 
-#: Webrtc.class.php:365
+#: Webrtc.class.php:366
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "没有对Asterisk开启HTTPS"
 
