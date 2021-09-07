@@ -331,7 +331,8 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		return $results;
 	}
 
-	public function getClientSettingsByUser($user,$prefix) {
+	public function getClientSettingsByUser($user,$prefix='') {
+		 $prefix = ($prefix == '')?$this->prefix:$prefix;
 		$sql = "SELECT * FROM webrtc_clients WHERE `user` = ? AND `prefix`=?";
 		$sth = $this->Database->prepare($sql);
 		$sth->execute(array($user,$prefix));
