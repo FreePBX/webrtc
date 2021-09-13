@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-02 04:33+0000\n"
+"POT-Creation-Date: 2021-09-13 03:02+0000\n"
 "PO-Revision-Date: 2019-01-26 21:00+0000\n"
 "Last-Translator: Media Mousavi <mousavi.media@gmail.com>\n"
 "Language-Team: Persian <http://*/projects/freepbx/webrtc/fa/>\n"
@@ -28,7 +28,7 @@ msgstr "ABC"
 msgid "Call"
 msgstr "تماس"
 
-#: Webrtc.class.php:287
+#: Webrtc.class.php:288
 msgid "Certificate Manager"
 msgstr "مدیر گواهینامه"
 
@@ -93,7 +93,7 @@ msgstr ""
 msgid "GHI"
 msgstr "GHI"
 
-#: Webrtc.class.php:381
+#: Webrtc.class.php:382
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "سرویس HTTPS برای استریسک فعال نشده است"
 
@@ -138,7 +138,7 @@ msgstr "فقط HTTPS پشتیبانی می شود"
 msgid "PQRS"
 msgstr "PQRS"
 
-#: Webrtc.class.php:280 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
+#: Webrtc.class.php:281 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
 msgid "Phone"
 msgstr "تلفن"
 
@@ -196,7 +196,7 @@ msgstr ""
 msgid "Unregistered"
 msgstr "ثبت نام نشده"
 
-#: Webrtc.class.php:300 Webrtc.class.php:303
+#: Webrtc.class.php:301 Webrtc.class.php:304
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
@@ -223,7 +223,7 @@ msgstr "تلفن WebRTC"
 msgid "Yes"
 msgstr "بله"
 
-#: Webrtc.class.php:287
+#: Webrtc.class.php:288
 #, php-format
 msgid "You have no default certificates setup in %s"
 msgstr "شما هیچ تنظیمات پیش فرض در ٪s1 ندارید"

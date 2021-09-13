@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>14.0.3.10</version>
+	<version>14.0.3.11</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -16,6 +16,7 @@
 	</description>
   	<more-info>https://wiki.freepbx.org/display/FPG/WebRTC+Phone-UCP</more-info>
 	<changelog>
+		*14.0.3.11* FREEPBX-22767 Exception Unsupported Version of Asterisk, You need at least 11.11 you have 18.5.0 
 		*14.0.3.10* Packaging of ver 14.0.3.10
 		*14.0.3.9* Packaging of ver 14.0.3.9
 		*14.0.3.8* FREEPBX-18421
