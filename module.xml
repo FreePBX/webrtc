@@ -31,7 +31,7 @@
 	<depends>
 		<engine>asterisk 11.5</engine>
 		<module>certman ge 16.0.13</module>
-		<module>core ge 16.0.56.6</module>
+		<module>core ge 16.0.56.9</module>
 		<module>ucp ge 16.0.12</module>
 		<version>16.0</version>
 	</depends>
