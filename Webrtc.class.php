@@ -35,7 +35,8 @@ class Webrtc extends \FreePBX_Helpers implements \BMO {
 		"14" => "14",
 		"15" => "15",
 		"16" => "16",
-		"17" => "17"
+		"17" => "17",
+		"18" => "18"
 	);
 
 	/**
