@@ -407,6 +407,10 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		if(!empty($previous['secret'])) {
 			$settings['secret']['value'] = $previous['secret'];
 		}
+		if($module == 'SangomaConnect'){
+			$settings['force_callerid']['value'] = 'yes';
+			$settings['callerid']['value'] = $user['name'].' <'.$extension.'>';
+		}
 		$settings['devicetype']['value'] = 'fixed';
 		$settings['context']['value'] = !empty($dev['context']) ? $dev['context'] : "from-internal";
 		$settings['user']['value'] = $extension;
