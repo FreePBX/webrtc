@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-09-13 03:02+0000\n"
-"PO-Revision-Date: 2022-04-21 08:21+0000\n"
+"PO-Revision-Date: 2022-04-22 10:01+0000\n"
 "Last-Translator: Dmitriy Q <krotesk@ya.ru>\n"
 "Language-Team: Russian <http://weblate.freepbx.org/projects/freepbx/webrtc/"
 "ru/>\n"
@@ -28,36 +28,36 @@ msgstr "ABC"
 
 #: ucp/views/phone.php:78
 msgid "Call"
-msgstr ""
+msgstr "Вызов"
 
 #: Webrtc.class.php:288
 msgid "Certificate Manager"
-msgstr ""
+msgstr "Менеджер сертификатов"
 
 #: ucp/assets/js/global.js:254
 msgid "Click this window to answer or close this window to ignore"
-msgstr ""
+msgstr "Щелкните это окно, чтобы ответить, или закройте чтобы проигнорировать"
 
 #: ucp/assets/js/global.js:516
 msgid "Connect Phone"
-msgstr ""
+msgstr "Подключить телефон"
 
 #: ucp/assets/js/global.js:537
 msgid "Connecting to socket..."
-msgstr ""
+msgstr "Подключение к сокету..."
 
 #: webrtc.i18n.php:6
 msgid "Connectivity"
-msgstr ""
+msgstr "Подключения"
 
 #: ucp/views/phone.php:28
 msgid "DEF"
-msgstr ""
+msgstr "DEF"
 
 #: ucp/assets/js/global.js:69
 #: ucp/assets/js/global.js:77
 msgid "Disable"
-msgstr ""
+msgstr "Выключить"
 
 #: ucp/views/settings.php:7
 msgid "Disconnect Phone"
@@ -70,7 +70,7 @@ msgstr ""
 #: ucp/assets/js/global.js:68
 #: ucp/assets/js/global.js:76
 msgid "Enable"
-msgstr ""
+msgstr "Включить"
 
 #: views/ucp_config.php:19
 msgid "Enable Phone"
@@ -93,7 +93,7 @@ msgstr ""
 
 #: ucp/views/phone.php:34
 msgid "GHI"
-msgstr ""
+msgstr "GHI"
 
 #: Webrtc.class.php:382
 msgid "HTTPS is not enabled for Asterisk"
@@ -110,19 +110,19 @@ msgstr ""
 
 #: views/ucp_config.php:29
 msgid "Inherit"
-msgstr ""
+msgstr "Наследовать"
 
 #: ucp/views/phone.php:38
 msgid "JKL"
-msgstr ""
+msgstr "JKL"
 
 #: ucp/views/phone.php:42
 msgid "MNO"
-msgstr ""
+msgstr "MNO"
 
 #: views/ucp_config.php:26
 msgid "No"
-msgstr ""
+msgstr "Нет"
 
 #: ucp/assets/js/global.js:607
 msgid "Not supported in this browser"
@@ -138,7 +138,7 @@ msgstr ""
 
 #: ucp/views/phone.php:48
 msgid "PQRS"
-msgstr ""
+msgstr "PQRS"
 
 #: Webrtc.class.php:281
 #: ucp/Webrtc.class.php:28
@@ -168,11 +168,11 @@ msgstr ""
 
 #: ucp/views/phone.php:52
 msgid "TUV"
-msgstr ""
+msgstr "TUV"
 
 #: functions.inc/hook_core.php:77
 msgid "The Certificate to use from Certificate Manager"
-msgstr ""
+msgstr "Сертификат для использования из Менеджера сертификатов"
 
 #: webrtc.i18n.php:8
 msgid "The WebRTC Module allows an Administrator to enable a "
@@ -205,11 +205,11 @@ msgstr ""
 
 #: functions.inc/hook_core.php:76
 msgid "Use Certificate"
-msgstr ""
+msgstr "Используемый сертификат"
 
 #: ucp/views/phone.php:56
 msgid "WXYZ"
-msgstr ""
+msgstr "WXYZ"
 
 #: ucp/Webrtc.class.php:55
 msgid "WebRTC"
@@ -221,7 +221,7 @@ msgstr ""
 
 #: views/ucp_config.php:24
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: Webrtc.class.php:288
 #, php-format
