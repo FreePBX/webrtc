@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-09-13 03:02+0000\n"
-"PO-Revision-Date: 2022-04-22 10:01+0000\n"
+"PO-Revision-Date: 2022-05-13 07:01+0000\n"
 "Last-Translator: Dmitriy Q <krotesk@ya.ru>\n"
 "Language-Team: Russian <http://weblate.freepbx.org/projects/freepbx/webrtc/"
 "ru/>\n"
@@ -101,12 +101,12 @@ msgstr ""
 
 #: ucp/views/phone.php:81
 msgid "Hold"
-msgstr ""
+msgstr "удержание"
 
 #: ucp/assets/js/global.js:253
 #, perl-format
 msgid "Incoming call from %s"
-msgstr ""
+msgstr "Входящий вызов от %s"
 
 #: views/ucp_config.php:29
 msgid "Inherit"
