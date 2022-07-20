@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-09-13 03:02+0000\n"
-"PO-Revision-Date: 2022-05-13 07:01+0000\n"
-"Last-Translator: Dmitriy Q <krotesk@ya.ru>\n"
+"PO-Revision-Date: 2022-07-20 07:50+0000\n"
+"Last-Translator: ded <ceo@postmet.com>\n"
 "Language-Team: Russian <http://weblate.freepbx.org/projects/freepbx/webrtc/"
 "ru/>\n"
 "Language: ru\n"
@@ -61,11 +61,11 @@ msgstr "Выключить"
 
 #: ucp/views/settings.php:7
 msgid "Disconnect Phone"
-msgstr ""
+msgstr "ОТключить телефон"
 
 #: ucp/assets/js/global.js:528
 msgid "Disconnected"
-msgstr ""
+msgstr "Отключено"
 
 #: ucp/assets/js/global.js:68
 #: ucp/assets/js/global.js:76
@@ -74,15 +74,15 @@ msgstr "Включить"
 
 #: views/ucp_config.php:19
 msgid "Enable Phone"
-msgstr ""
+msgstr "Включить телефон"
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
-msgstr ""
+msgstr "Использовать телефон со старым WebRTC ARI"
 
 #: views/ucp_config.php:38
 msgid "Enable the phone in UCP for this user"
-msgstr ""
+msgstr "Использовать телефон в Панели пользователя этого пользователя"
 
 #: functions.inc/hook_core.php:62
 #, php-format
@@ -90,6 +90,8 @@ msgid ""
 "Enables WebRTC for this %s in the Asterisk Recording Interface (ARI). Note: "
 "ARI is depreciated in favor of UCP"
 msgstr ""
+"Мспользовать WebRTC для %s в  Asterisk Recording Interface (ARI). Примечание:"
+" использование ARI устарело в пользу UCP"
 
 #: ucp/views/phone.php:34
 msgid "GHI"
@@ -97,7 +99,7 @@ msgstr "GHI"
 
 #: Webrtc.class.php:382
 msgid "HTTPS is not enabled for Asterisk"
-msgstr ""
+msgstr "HTTPS не задействовано в Asterisk"
 
 #: ucp/views/phone.php:81
 msgid "Hold"
@@ -126,15 +128,15 @@ msgstr "Нет"
 
 #: ucp/assets/js/global.js:607
 msgid "Not supported in this browser"
-msgstr ""
+msgstr "Не поддерживается данным браузером"
 
 #: ucp/views/phone.php:88
 msgid "Note: An Active call will not be dropped when this window is closed"
-msgstr ""
+msgstr "Примечание: активный вызов не сбрасывается призакрытиии этого окна"
 
 #: ucp/assets/js/global.js:614
 msgid "Only supported over HTTPS"
-msgstr ""
+msgstr "Поддерживается только с использованием HTTPS"
 
 #: ucp/views/phone.php:48
 msgid "PQRS"
@@ -144,27 +146,27 @@ msgstr "PQRS"
 #: ucp/Webrtc.class.php:28
 #: ucp/Webrtc.class.php:44
 msgid "Phone"
-msgstr ""
+msgstr "Телефон"
 
 #: ucp/views/phone.php:86
 msgid "Phone Status"
-msgstr ""
+msgstr "Статус телефона"
 
 #: ucp/assets/js/global.js:496
 msgid "Registered"
-msgstr ""
+msgstr "Зарегистрирован"
 
 #: ucp/assets/js/global.js:543
 msgid "Registering..."
-msgstr ""
+msgstr "Регистрируется..."
 
 #: ucp/assets/js/global.js:514
 msgid "Registration Failed"
-msgstr ""
+msgstr "Регистрация отклонена"
 
 #: ucp/views/settings.php:3
 msgid "Silence Ringer"
-msgstr ""
+msgstr "Тихий звонок"
 
 #: ucp/views/phone.php:52
 msgid "TUV"
@@ -176,7 +178,7 @@ msgstr "Сертификат для использования из Менедж
 
 #: webrtc.i18n.php:8
 msgid "The WebRTC Module allows an Administrator to enable a "
-msgstr ""
+msgstr "Модуль WebRTC делает возможным задействовать Администратору "
 
 #: functions.inc/hook_core.php:58
 msgid ""
@@ -184,6 +186,9 @@ msgid ""
 "this time. Please enable the chan_sip driver (along with pjsip or by itself) "
 "or alert the FreePBX Developers"
 msgstr ""
+"Интерфейс вэбсокета работает через PJSIP, Но PJSIP не поддерживается в "
+"текущей версии. Задействуйте драйвер канала  chan_sip (может работать вместе "
+"с pjsip или самостоятельно) или сообщите об этом разработчикам FreePBX"
 
 #: functions.inc/hook_core.php:82
 #, php-format
@@ -191,17 +196,21 @@ msgid ""
 "To utilize WebRTC in ARI you must add at least one certificate %s through "
 "Certificate Manager"
 msgstr ""
+"Для реализации WebRTC в составе с ARI нужно добавить по крайней мере один "
+"сертификат %s через модуль управления сертификатами"
 
 #: ucp/assets/js/global.js:506
 #: ucp/assets/js/global.js:523
 msgid "Unregistered"
-msgstr ""
+msgstr "Не зарегистрирован"
 
 #: Webrtc.class.php:301
 #: Webrtc.class.php:304
 #, php-format
 msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
+"Неподдерживаемая версия Астериск. Требуется по крайней мере  %s, у вас же "
+"имеется  %s"
 
 #: functions.inc/hook_core.php:76
 msgid "Use Certificate"
@@ -213,11 +222,11 @@ msgstr "WXYZ"
 
 #: ucp/Webrtc.class.php:55
 msgid "WebRTC"
-msgstr ""
+msgstr "WebRTC"
 
 #: webrtc.i18n.php:4
 msgid "WebRTC Phone"
-msgstr ""
+msgstr "Телефон WebRTC"
 
 #: views/ucp_config.php:24
 msgid "Yes"
@@ -226,4 +235,4 @@ msgstr "Да"
 #: Webrtc.class.php:288
 #, php-format
 msgid "You have no default certificates setup in %s"
-msgstr ""
+msgstr "Нет ни одного сертификата по умолчанию в  %s"
