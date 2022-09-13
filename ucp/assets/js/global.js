@@ -420,7 +420,7 @@ var WebrtcC = UCPMC.extend({
 				button.prop("disabled", false);
 			break;
 			case "hold":
-				secondbutton.removeClass().addClass("btn btn-success secondaction").text("UnHold");
+				secondbutton.removeClass().addClass("btn btn-success secondaction").text("Resume");
 				secondbutton.css("background-color","orange");
 				if(!$("#webrtc-hold").length) {
 					$(".custom-widget[data-widget_rawname=webrtc] .fa-phone").after('<i id="webrtc-hold" class="fa fa-pause fa-stack-2x blink hidden"></i>');
