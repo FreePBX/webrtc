@@ -9,17 +9,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-13 03:02+0000\n"
+"POT-Creation-Date: 2022-09-16 06:54+0000\n"
 "PO-Revision-Date: 2022-07-20 07:50+0000\n"
 "Last-Translator: ded <ceo@postmet.com>\n"
 "Language-Team: Russian <http://weblate.freepbx.org/projects/freepbx/webrtc/"
 "ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.0.1\n"
 
 #: ucp/views/phone.php:24
@@ -30,19 +30,19 @@ msgstr "ABC"
 msgid "Call"
 msgstr "Вызов"
 
-#: Webrtc.class.php:288
+#: Webrtc.class.php:262
 msgid "Certificate Manager"
 msgstr "Менеджер сертификатов"
 
-#: ucp/assets/js/global.js:254
+#: ucp/assets/js/global.js:264
 msgid "Click this window to answer or close this window to ignore"
 msgstr "Щелкните это окно, чтобы ответить, или закройте чтобы проигнорировать"
 
-#: ucp/assets/js/global.js:516
+#: ucp/assets/js/global.js:530
 msgid "Connect Phone"
 msgstr "Подключить телефон"
 
-#: ucp/assets/js/global.js:537
+#: ucp/assets/js/global.js:551
 msgid "Connecting to socket..."
 msgstr "Подключение к сокету..."
 
@@ -54,8 +54,7 @@ msgstr "Подключения"
 msgid "DEF"
 msgstr "DEF"
 
-#: ucp/assets/js/global.js:69
-#: ucp/assets/js/global.js:77
+#: ucp/assets/js/global.js:69 ucp/assets/js/global.js:77
 msgid "Disable"
 msgstr "Выключить"
 
@@ -63,12 +62,11 @@ msgstr "Выключить"
 msgid "Disconnect Phone"
 msgstr "ОТключить телефон"
 
-#: ucp/assets/js/global.js:528
+#: ucp/assets/js/global.js:542
 msgid "Disconnected"
 msgstr "Отключено"
 
-#: ucp/assets/js/global.js:68
-#: ucp/assets/js/global.js:76
+#: ucp/assets/js/global.js:68 ucp/assets/js/global.js:76
 msgid "Enable"
 msgstr "Включить"
 
@@ -90,14 +88,14 @@ msgid ""
 "Enables WebRTC for this %s in the Asterisk Recording Interface (ARI). Note: "
 "ARI is depreciated in favor of UCP"
 msgstr ""
-"Мспользовать WebRTC для %s в  Asterisk Recording Interface (ARI). Примечание:"
-" использование ARI устарело в пользу UCP"
+"Мспользовать WebRTC для %s в  Asterisk Recording Interface (ARI). "
+"Примечание: использование ARI устарело в пользу UCP"
 
 #: ucp/views/phone.php:34
 msgid "GHI"
 msgstr "GHI"
 
-#: Webrtc.class.php:382
+#: Webrtc.class.php:366
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "HTTPS не задействовано в Asterisk"
 
@@ -105,7 +103,7 @@ msgstr "HTTPS не задействовано в Asterisk"
 msgid "Hold"
 msgstr "удержание"
 
-#: ucp/assets/js/global.js:253
+#: ucp/assets/js/global.js:263
 #, perl-format
 msgid "Incoming call from %s"
 msgstr "Входящий вызов от %s"
@@ -126,7 +124,7 @@ msgstr "MNO"
 msgid "No"
 msgstr "Нет"
 
-#: ucp/assets/js/global.js:607
+#: ucp/assets/js/global.js:621
 msgid "Not supported in this browser"
 msgstr "Не поддерживается данным браузером"
 
@@ -134,7 +132,7 @@ msgstr "Не поддерживается данным браузером"
 msgid "Note: An Active call will not be dropped when this window is closed"
 msgstr "Примечание: активный вызов не сбрасывается призакрытиии этого окна"
 
-#: ucp/assets/js/global.js:614
+#: ucp/assets/js/global.js:628
 msgid "Only supported over HTTPS"
 msgstr "Поддерживается только с использованием HTTPS"
 
@@ -142,9 +140,7 @@ msgstr "Поддерживается только с использование�
 msgid "PQRS"
 msgstr "PQRS"
 
-#: Webrtc.class.php:281
-#: ucp/Webrtc.class.php:28
-#: ucp/Webrtc.class.php:44
+#: Webrtc.class.php:255 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
 msgid "Phone"
 msgstr "Телефон"
 
@@ -152,17 +148,23 @@ msgstr "Телефон"
 msgid "Phone Status"
 msgstr "Статус телефона"
 
-#: ucp/assets/js/global.js:496
+#: ucp/assets/js/global.js:510
 msgid "Registered"
 msgstr "Зарегистрирован"
 
-#: ucp/assets/js/global.js:543
+#: ucp/assets/js/global.js:557
 msgid "Registering..."
 msgstr "Регистрируется..."
 
-#: ucp/assets/js/global.js:514
+#: ucp/assets/js/global.js:528
 msgid "Registration Failed"
 msgstr "Регистрация отклонена"
+
+#: Webrtc.class.php:275
+#, php-format
+msgid ""
+"Running an unsupported version of Asterisk. %s Detected Asterisk version: %s "
+msgstr ""
 
 #: ucp/views/settings.php:3
 msgid "Silence Ringer"
@@ -199,18 +201,9 @@ msgstr ""
 "Для реализации WebRTC в составе с ARI нужно добавить по крайней мере один "
 "сертификат %s через модуль управления сертификатами"
 
-#: ucp/assets/js/global.js:506
-#: ucp/assets/js/global.js:523
+#: ucp/assets/js/global.js:520 ucp/assets/js/global.js:537
 msgid "Unregistered"
 msgstr "Не зарегистрирован"
-
-#: Webrtc.class.php:301
-#: Webrtc.class.php:304
-#, php-format
-msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
-msgstr ""
-"Неподдерживаемая версия Астериск. Требуется по крайней мере  %s, у вас же "
-"имеется  %s"
 
 #: functions.inc/hook_core.php:76
 msgid "Use Certificate"
@@ -232,7 +225,12 @@ msgstr "Телефон WebRTC"
 msgid "Yes"
 msgstr "Да"
 
-#: Webrtc.class.php:288
+#: Webrtc.class.php:262
 #, php-format
 msgid "You have no default certificates setup in %s"
 msgstr "Нет ни одного сертификата по умолчанию в  %s"
+
+#~ msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
+#~ msgstr ""
+#~ "Неподдерживаемая версия Астериск. Требуется по крайней мере  %s, у вас же "
+#~ "имеется  %s"
