@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>16.0.11</version>
+	<version>16.0.12</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -16,6 +16,7 @@
 	</description>
   	<more-info>https://wiki.freepbx.org/display/FPG/WebRTC+Phone-UCP</more-info>
 	<changelog>
+		*16.0.12* FREEI-5230 button label changed from Unhold to Resume 
 		*16.0.11* FREEI-4683 
 		*16.0.10* SCD-28 CDR report vs Call Event Logs - possible issue with shadow ext 
 		*16.0.9* FREEI-3916 Webrtc release(v15.0.10.4) is breaking existing webrtc setup 
