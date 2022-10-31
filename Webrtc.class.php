@@ -388,6 +388,27 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		}
 	}
 
+	/* Updates the extension settings from Core  */
+
+	public function updatefromcore($ext,$settings=[]){
+		//update accountcode from primary extension to all its devices of webrtc
+		if(isset($settings['devinfo_accountcode']) && strlen(trim($settings['devinfo_accountcode'])) > 0){
+			$data = $settings['devinfo_accountcode'];
+			$sql = "SELECT `device` FROM webrtc_clients WHERE `user` = ? ";
+			$sth = $this->Database->prepare($sql);
+			$sth->execute(array($ext));
+			$results = $sth->fetchAll(PDO::FETCH_ASSOC);
+			if(is_array($results)){
+				foreach($results as $res) {
+					$device = $res['device'];
+					$query = "Update sip SET `data`=? Where `id`=? AND `keyword`=?";
+					$sth1 = $this->Database->prepare($query);
+					$sth1->execute(array($data,$device,'accountcode'));
+				}
+			}
+		}
+	}
+
 	public function createDevice($extension,$cid = '',$prefix='',$module='UCP') {
 		if($prefix == ''){
 			$id = $this->prefix.$extension;
