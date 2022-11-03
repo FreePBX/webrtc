@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>16.0.13</version>
+	<version>16.0.14</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -16,6 +16,7 @@
 	</description>
   	<more-info>https://wiki.freepbx.org/display/FPG/WebRTC+Phone-UCP</more-info>
 	<changelog>
+		*16.0.14* FREEI-5337 accountcode for shadow extension only gets set at endpoint creation 
 		*16.0.13* FREEI-5337 accountcode for shadow extension only gets set at endpoint creation 
 		*16.0.12* FREEI-5230 button label changed from Unhold to Resume 
 		*16.0.11* FREEI-4683 
