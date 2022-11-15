@@ -392,18 +392,32 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 
 	public function updatefromcore($ext,$settings=[]){
 		//update accountcode from primary extension to all its devices of webrtc
-		if(isset($settings['devinfo_accountcode']) && strlen(trim($settings['devinfo_accountcode'])) > 0){
-			$data = $settings['devinfo_accountcode'];
-			$sql = "SELECT `device` FROM webrtc_clients WHERE `user` = ? ";
-			$sth = $this->Database->prepare($sql);
-			$sth->execute(array($ext));
-			$results = $sth->fetchAll(PDO::FETCH_ASSOC);
-			if(is_array($results)){
-				foreach($results as $res) {
-					$device = $res['device'];
+		$sql = "SELECT `device` FROM webrtc_clients WHERE `user` = ? ";
+		$sth = $this->Database->prepare($sql);
+		$sth->execute(array($ext));
+		$results = $sth->fetchAll(PDO::FETCH_ASSOC);
+		if(is_array($results)){
+			foreach($results as $res) {
+				$device = $res['device'];
+				if(isset($settings['devinfo_accountcode']) && strlen(trim($settings['devinfo_accountcode'])) > 0){
+					$data = $settings['devinfo_accountcode'];
 					$query = "Update sip SET `data`=? Where `id`=? AND `keyword`=?";
 					$sth1 = $this->Database->prepare($query);
 					$sth1->execute(array($data,$device,'accountcode'));
+				}
+				// update pickup groups
+				if(isset($settings['devinfo_namedcallgroup']) && strlen(trim($settings['devinfo_namedcallgroup'])) > 0){
+					$data = $settings['devinfo_namedcallgroup'];
+					$query = "REPLACE INTO sip (`id`, `data`,`keyword`) VALUES(?,?,?)";
+					$sth1 = $this->Database->prepare($query);
+					$sth1->execute(array($device,$data,'namedcallgroup'));
+				}
+				//devinfo_namedpickupgroup
+				if(isset($settings['devinfo_namedpickupgroup']) && strlen(trim($settings['devinfo_namedpickupgroup'])) > 0){
+					$data = $settings['devinfo_namedpickupgroup'];
+					$query = "REPLACE INTO sip (`id`, `data`,`keyword`) VALUES(?,?,?)";
+					$sth1 = $this->Database->prepare($query);
+					$sth1->execute(array($device,$data,'namedpickupgroup'));
 				}
 			}
 		}
