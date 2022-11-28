@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>15.0.10.11</version>
+	<version>15.0.10.12</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -16,6 +16,7 @@
 	</description>
   	<more-info>https://wiki.freepbx.org/display/FPG/WebRTC+Phone-UCP</more-info>
 	<changelog>
+		*15.0.10.12* Packaging of ver 15.0.10.12
 		*15.0.10.11* SCD-350 Call Pickup feature using feature code *8 not working on SCD 
 		*15.0.10.10* FREEI-5337 accountcode for shadow extension only gets set at endpoint creation 
 		*15.0.10.9* FREEI-5230 button label changed from Unhold to Resume 
