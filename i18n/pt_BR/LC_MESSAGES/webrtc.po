@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-07 07:19+0000\n"
+"POT-Creation-Date: 2022-11-28 05:53+0000\n"
 "PO-Revision-Date: 2016-12-20 23:26+0200\n"
 "Last-Translator: Alexander <alexander.schley@paranagua.pr.gov.br>\n"
 "Language-Team: Portuguese (Brazil) <http://weblate.freepbx.org/projects/"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Call"
 msgstr ""
 
-#: Webrtc.class.php:262
+#: Webrtc.class.php:287
 msgid "Certificate Manager"
 msgstr ""
 
@@ -94,7 +94,7 @@ msgstr ""
 msgid "GHI"
 msgstr ""
 
-#: Webrtc.class.php:366
+#: Webrtc.class.php:391
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "HTTPS não está habilitado para o Asterisk"
 
@@ -139,7 +139,7 @@ msgstr ""
 msgid "PQRS"
 msgstr ""
 
-#: Webrtc.class.php:255 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
+#: Webrtc.class.php:280 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
 msgid "Phone"
 msgstr ""
 
@@ -159,7 +159,7 @@ msgstr ""
 msgid "Registration Failed"
 msgstr ""
 
-#: Webrtc.class.php:275
+#: Webrtc.class.php:300
 #, php-format
 msgid ""
 "Running an unsupported version of Asterisk. %s Detected Asterisk version: %s "
@@ -224,7 +224,7 @@ msgstr "Telefone WebRTC"
 msgid "Yes"
 msgstr "Sim"
 
-#: Webrtc.class.php:262
+#: Webrtc.class.php:287
 #, php-format
 msgid "You have no default certificates setup in %s"
 msgstr ""
