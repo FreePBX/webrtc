@@ -10,40 +10,41 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-09-13 03:02+0000\n"
-"PO-Revision-Date: 2016-06-07 10:27+0200\n"
-"Last-Translator: Ernesto <ecasas@sangoma.com>\n"
+"PO-Revision-Date: 2023-02-11 20:01+0000\n"
+"Last-Translator: Javier Pastor <jpastor@cerebelum.net>\n"
 "Language-Team: Spanish <http://weblate.freepbx.org/projects/freepbx/webrtc/"
-"es_ES/>\n"
+"es/>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.4\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #: ucp/views/phone.php:24
 msgid "ABC"
-msgstr ""
+msgstr "ABC"
 
 #: ucp/views/phone.php:78
 msgid "Call"
-msgstr ""
+msgstr "Llamar"
 
 #: Webrtc.class.php:288
 msgid "Certificate Manager"
-msgstr ""
+msgstr "Administrador de certificados"
 
 #: ucp/assets/js/global.js:254
 msgid "Click this window to answer or close this window to ignore"
 msgstr ""
+"Haga clic en esta ventana para responder o cierre esta ventana para ignorar"
 
 #: ucp/assets/js/global.js:516
 msgid "Connect Phone"
-msgstr ""
+msgstr "Conectar Teléfono"
 
 #: ucp/assets/js/global.js:537
 msgid "Connecting to socket..."
-msgstr ""
+msgstr "Estableciendo conexión con el socket..."
 
 #: webrtc.i18n.php:6
 msgid "Connectivity"
@@ -51,27 +52,27 @@ msgstr "Conectividad"
 
 #: ucp/views/phone.php:28
 msgid "DEF"
-msgstr ""
+msgstr "DEF"
 
 #: ucp/assets/js/global.js:69 ucp/assets/js/global.js:77
 msgid "Disable"
-msgstr ""
+msgstr "Deshabilitado"
 
 #: ucp/views/settings.php:7
 msgid "Disconnect Phone"
-msgstr ""
+msgstr "Desconectar Teléfono"
 
 #: ucp/assets/js/global.js:528
 msgid "Disconnected"
-msgstr ""
+msgstr "Desconectado"
 
 #: ucp/assets/js/global.js:68 ucp/assets/js/global.js:76
 msgid "Enable"
-msgstr ""
+msgstr "Habilitar"
 
 #: views/ucp_config.php:19
 msgid "Enable Phone"
-msgstr ""
+msgstr "Habilitar Teléfono"
 
 #: functions.inc/hook_core.php:62
 msgid "Enable WebRTC Old ARI Phone"
@@ -79,7 +80,7 @@ msgstr "Habilitar WebRTC viejo ARI Phone"
 
 #: views/ucp_config.php:38
 msgid "Enable the phone in UCP for this user"
-msgstr ""
+msgstr "Habilitar el teléfono en UCP para este usuario"
 
 #: functions.inc/hook_core.php:62
 #, php-format
@@ -92,20 +93,20 @@ msgstr ""
 
 #: ucp/views/phone.php:34
 msgid "GHI"
-msgstr ""
+msgstr "GHI"
 
 #: Webrtc.class.php:382
 msgid "HTTPS is not enabled for Asterisk"
-msgstr ""
+msgstr "HTTPS no está habilitado para Asterisk"
 
 #: ucp/views/phone.php:81
 msgid "Hold"
-msgstr ""
+msgstr "Espere"
 
 #: ucp/assets/js/global.js:253
 #, perl-format
 msgid "Incoming call from %s"
-msgstr ""
+msgstr "Llamada entrante de %s"
 
 #: views/ucp_config.php:29
 msgid "Inherit"
@@ -113,11 +114,11 @@ msgstr "heredado"
 
 #: ucp/views/phone.php:38
 msgid "JKL"
-msgstr ""
+msgstr "JKL"
 
 #: ucp/views/phone.php:42
 msgid "MNO"
-msgstr ""
+msgstr "MNO"
 
 #: views/ucp_config.php:26
 msgid "No"
@@ -125,47 +126,48 @@ msgstr "No"
 
 #: ucp/assets/js/global.js:607
 msgid "Not supported in this browser"
-msgstr ""
+msgstr "No compatible con este navegador"
 
 #: ucp/views/phone.php:88
 msgid "Note: An Active call will not be dropped when this window is closed"
 msgstr ""
+"Nota: Una llamada activa no se interrumpirá cuando se cierre esta ventana"
 
 #: ucp/assets/js/global.js:614
 msgid "Only supported over HTTPS"
-msgstr ""
+msgstr "Sólo es compatible a través de HTTPS"
 
 #: ucp/views/phone.php:48
 msgid "PQRS"
-msgstr ""
+msgstr "PQRS"
 
 #: Webrtc.class.php:281 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
 msgid "Phone"
-msgstr ""
+msgstr "Teléfono"
 
 #: ucp/views/phone.php:86
 msgid "Phone Status"
-msgstr ""
+msgstr "Estado del Teléfono"
 
 #: ucp/assets/js/global.js:496
 msgid "Registered"
-msgstr ""
+msgstr "Registrado"
 
 #: ucp/assets/js/global.js:543
 msgid "Registering..."
-msgstr ""
+msgstr "Registrando..."
 
 #: ucp/assets/js/global.js:514
 msgid "Registration Failed"
-msgstr ""
+msgstr "Registro Fallido"
 
 #: ucp/views/settings.php:3
 msgid "Silence Ringer"
-msgstr ""
+msgstr "Silenciar Timbre"
 
 #: ucp/views/phone.php:52
 msgid "TUV"
-msgstr ""
+msgstr "TUV"
 
 #: functions.inc/hook_core.php:77
 msgid "The Certificate to use from Certificate Manager"
@@ -196,7 +198,7 @@ msgstr ""
 
 #: ucp/assets/js/global.js:506 ucp/assets/js/global.js:523
 msgid "Unregistered"
-msgstr ""
+msgstr "No Registrado"
 
 #: Webrtc.class.php:301 Webrtc.class.php:304
 #, php-format
@@ -210,11 +212,11 @@ msgstr "Use Certificado"
 
 #: ucp/views/phone.php:56
 msgid "WXYZ"
-msgstr ""
+msgstr "WXYZ"
 
 #: ucp/Webrtc.class.php:55
 msgid "WebRTC"
-msgstr ""
+msgstr "WebRTC"
 
 #: webrtc.i18n.php:4
 msgid "WebRTC Phone"
@@ -227,7 +229,7 @@ msgstr "Si"
 #: Webrtc.class.php:288
 #, php-format
 msgid "You have no default certificates setup in %s"
-msgstr ""
+msgstr "No tiene una configuración de certificados predeterminada en %s"
 
 #~ msgid "Enable WebRTC Phone"
 #~ msgstr "Habilitar Teléfono WebRTC"
