@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>16.0.12</version>
+	<version>17.0.1</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -16,18 +16,7 @@
 	</description>
   	<more-info>https://wiki.freepbx.org/display/FPG/WebRTC+Phone-UCP</more-info>
 	<changelog>
-		*16.0.12* FREEI-5230 button label changed from Unhold to Resume 
-		*16.0.11* FREEI-4683 
-		*16.0.10* SCD-28 CDR report vs Call Event Logs - possible issue with shadow ext 
-		*16.0.9* FREEI-3916 Webrtc release(v15.0.10.4) is breaking existing webrtc setup 
-		*16.0.8* Packaging of ver 16.0.8
-		*16.0.7* FREEI-3795 Create pjsip extensions(webrtc) for the Soft Phone to register against 
-		*16.0.6* FREEI-3830  PBXact 16 - Extension license count is not showing properly 
-		*16.0.5* Packaging of ver 16.0.5
-		*16.0.4* Packaging of ver 16.0.4
-		*16.0.3* Packaging of ver 16.0.3
-		*16.0.2* Fixing FREEPBX-22186 
-		*16.0.1alpha* 16.0.1 alpha release
+		*17.0.1* 17.0.1 alpha release
 	</changelog>
 	<info/>
 	<category>Connectivity</category>
@@ -36,7 +25,7 @@
 		<module>certman ge 16.0.13</module>
 		<module>core ge 16.0.56.9</module>
 		<module>ucp ge 16.0.12</module>
-		<version>16.0</version>
+		<version>17.0</version>
 	</depends>
 	<hooks>
 		<ucp class="Ucp">
@@ -72,6 +61,6 @@
 		</table>
 	</database>
 	<supported>
-		<version>16.0</version>
+		<version>17.0</version>
 	</supported>
 </module>
