@@ -80,7 +80,32 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 			$module = isset($client['module'])&& ($client['module']!='')?$client['module']:'UCP';
 			$this->createDevice($client['user'],$client['certid'],$prefix,$module);
 		}
-
+		// update settings from core which are already saved
+		$sql = "SELECT DISTINCT(`user`) FROM webrtc_clients";
+		$sth = $this->Database->prepare($sql);
+		$sth->execute();
+		$results = $sth->fetchAll(PDO::FETCH_ASSOC);
+		if(!empty($results)) {
+			foreach($results as $row) {
+			$setting = [];
+			$id= $row['user'];
+			$q1 = "SELECT `data` FROM sip where id=? AND `keyword` = ?";
+			$sth1 = $this->Database->prepare($q1);
+			$sth1->execute(array($id,'accountcode'));
+			$r1 = $sth1->fetch(PDO::FETCH_ASSOC);
+			$setting['devinfo_accountcode'] = $r1['data'];
+			//
+			$sth1->execute(array($id,'namedcallgroup'));
+			$r2 = $sth1->fetch(PDO::FETCH_ASSOC);
+			$setting['devinfo_namedcallgroup'] = $r2['data'];
+			//
+			$sth1->execute(array($id,'namedpickupgroup'));
+			$r3 = $sth1->fetch(PDO::FETCH_ASSOC);
+			$setting['devinfo_namedpickupgroup'] = $r3['data'];
+			$this->updatefromcore($id,$setting);
+			unset($setting);
+                        }
+		}
 		return true;
 	}
 	public function uninstall() {
@@ -388,6 +413,41 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		}
 	}
 
+	/* Updates the extension settings from Core  */
+
+	public function updatefromcore($ext,$settings=[]){
+		//update accountcode from primary extension to all its devices of webrtc
+		$sql = "SELECT `device` FROM webrtc_clients WHERE `user` = ? ";
+		$sth = $this->Database->prepare($sql);
+		$sth->execute(array($ext));
+		$results = $sth->fetchAll(PDO::FETCH_ASSOC);
+		if(is_array($results)){
+			foreach($results as $res) {
+				$device = $res['device'];
+				if(isset($settings['devinfo_accountcode']) && strlen(trim($settings['devinfo_accountcode'])) > 0){
+					$data = $settings['devinfo_accountcode'];
+					$query = "Update sip SET `data`=? Where `id`=? AND `keyword`=?";
+					$sth1 = $this->Database->prepare($query);
+					$sth1->execute(array($data,$device,'accountcode'));
+				}
+				// update pickup groups
+				if(isset($settings['devinfo_namedcallgroup']) && strlen(trim($settings['devinfo_namedcallgroup'])) > 0){
+					$data = $settings['devinfo_namedcallgroup'];
+					$query = "REPLACE INTO sip (`id`, `data`,`keyword`) VALUES(?,?,?)";
+					$sth1 = $this->Database->prepare($query);
+					$sth1->execute(array($device,$data,'namedcallgroup'));
+				}
+				//devinfo_namedpickupgroup
+				if(isset($settings['devinfo_namedpickupgroup']) && strlen(trim($settings['devinfo_namedpickupgroup'])) > 0){
+					$data = $settings['devinfo_namedpickupgroup'];
+					$query = "REPLACE INTO sip (`id`, `data`,`keyword`) VALUES(?,?,?)";
+					$sth1 = $this->Database->prepare($query);
+					$sth1->execute(array($device,$data,'namedpickupgroup'));
+				}
+			}
+		}
+	}
+
 	public function createDevice($extension,$cid = '',$prefix='',$module='UCP') {
 		if($prefix == ''){
 			$id = $this->prefix.$extension;
@@ -413,6 +473,8 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		}
 		$accountcode = $this->FreePBX->astman->database_get("AMPUSER",$extension."/accountcode");
 		$settings['accountcode']['value'] = $accountcode;
+		$settings['namedcallgroup']['value'] = isset($dev['namedcallgroup'])?$dev['namedcallgroup']:'';
+		$settings['namedpickupgroup']['value'] = isset($dev['namedpickupgroup'])?$dev['namedpickupgroup']:'';
 		$settings['devicetype']['value'] = 'fixed';
 		$settings['context']['value'] = !empty($dev['context']) ? $dev['context'] : "from-internal";
 		$settings['user']['value'] = $extension;
