@@ -42,6 +42,7 @@
 		</dashboard>
 		<core class="Core" namespace="FreePBX\modules">
 			<method callingMethod="delUser" class="Webrtc" namespace="FreePBX\modules">delUser</method>
+			<method callingMethod="addUser" class="Webrtc" namespace="FreePBX\modules">updatefromcore</method>
 		</core>
 	</hooks>
 	<database>
