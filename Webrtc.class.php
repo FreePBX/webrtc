@@ -11,28 +11,13 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 	 * Device Overrides depending on TECH to enable WebRTC
 	 * @type {array}
 	 */
-	private $overrides = array(
-		"sip" => array(
-			"transport" => "wss,ws",
-			"avpf" => "yes",
-			"force_avp" => "yes",
-			"icesupport" => "yes",
-			"encryption" => "yes",
-			"rtcp_mux" => "yes"
-		),
-		"pjsip" => array(
-			"media_use_received_transport" => "yes",
-			"avpf" => "yes",
-			"icesupport" => "yes",
-			"rtcp_mux" => "yes"
-		)
-	);
+	private array $overrides = ["sip" => ["transport" => "wss,ws", "avpf" => "yes", "force_avp" => "yes", "icesupport" => "yes", "encryption" => "yes", "rtcp_mux" => "yes"], "pjsip" => ["media_use_received_transport" => "yes", "avpf" => "yes", "icesupport" => "yes", "rtcp_mux" => "yes"]];
 
 	/**
 	 * Prefix added to all WebRTC Extensions
 	 * @type {int}
 	 */
-	private $prefix = '99';
+	private string $prefix = '99';
 
 	public function doConfigPageInit($page) {
 
@@ -45,13 +30,13 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 			throw new Exception($status);
 		}
 		//Remove Old Link if need be
-		if(file_exists($this->FreePBX->Config->get('ASTETCDIR').'/http.conf') && is_link($this->FreePBX->Config->get('ASTETCDIR').'/http.conf') && (readlink($this->FreePBX->Config->get('ASTETCDIR').'/http.conf') == dirname(__FILE__).'/etc/httpd.conf')) {
+		if(file_exists($this->FreePBX->Config->get('ASTETCDIR').'/http.conf') && is_link($this->FreePBX->Config->get('ASTETCDIR').'/http.conf') && (readlink($this->FreePBX->Config->get('ASTETCDIR').'/http.conf') == __DIR__.'/etc/httpd.conf')) {
 			unlink($this->FreePBX->Config->get('ASTETCDIR').'/http.conf');
 		}
 
 
 		if($this->FreePBX->Config->conf_setting_exists('HTTPENABLED')) {
-			$this->FreePBX->Config->set_conf_values(array('HTTPENABLED' => true),true);
+			$this->FreePBX->Config->set_conf_values(['HTTPENABLED' => true],true);
 		}
 
 		try {
@@ -67,7 +52,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 			$sql = "DROP TABLE IF EXISTS `webrtc_settings`";
 			$sth = $this->Database->prepare($sql);
 			$sth->execute();
-		} catch(Exception $e) {}
+		} catch(Exception) {}
 
 		$prefix = $this->getConfig('prefix');
 		if(empty($prefix)) {
@@ -76,7 +61,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 
 		$clients = $this->getClientsEnabled();
 		foreach($clients as $client) {
-			$prefix = isset($client['prefix'])?$client['prefix']:$this->prefix;
+			$prefix = $client['prefix'] ?? $this->prefix;
 			$module = isset($client['module'])&& ($client['module']!='')?$client['module']:'UCP';
 			$this->createDevice($client['user'],$client['certid'],$prefix,$module);
 		}
@@ -91,17 +76,17 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 			$id= $row['user'];
 			$q1 = "SELECT `data` FROM sip where id=? AND `keyword` = ?";
 			$sth1 = $this->Database->prepare($q1);
-			$sth1->execute(array($id,'accountcode'));
+			$sth1->execute([$id, 'accountcode']);
 			$r1 = $sth1->fetch(PDO::FETCH_ASSOC);
-			$setting['devinfo_accountcode'] = $r1['data'];
+			$setting['devinfo_accountcode'] = (is_array($r1) && array_key_exists('data', $r1)) ? $r1['data'] : '';
 			//
-			$sth1->execute(array($id,'namedcallgroup'));
+			$sth1->execute([$id, 'namedcallgroup']);
 			$r2 = $sth1->fetch(PDO::FETCH_ASSOC);
-			$setting['devinfo_namedcallgroup'] = $r2['data'];
+			$setting['devinfo_namedcallgroup'] = (is_array($r2) && array_key_exists('data', $r2)) ? $r2['data'] : '';
 			//
-			$sth1->execute(array($id,'namedpickupgroup'));
+			$sth1->execute([$id, 'namedpickupgroup']);
 			$r3 = $sth1->fetch(PDO::FETCH_ASSOC);
-			$setting['devinfo_namedpickupgroup'] = $r3['data'];
+			$setting['devinfo_namedpickupgroup'] = (is_array($r3) && array_key_exists('data', $r3)) ? $r3['data'] : '';
 			$this->updatefromcore($id,$setting);
 			unset($setting);
                         }
@@ -263,7 +248,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 	}
 
 	public function ucpConfigPage($mode, $user, $action) {
-		$html = array();
+		$html = [];
 		$defaultCert = $this->FreePBX->Certman->getDefaultCertDetails();
 		if(empty($user)) {
 			$enabled = ($mode == 'group') ? true : null;
@@ -276,24 +261,20 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 			}
 		}
 
-		$html[0] = array(
-			"title" => _("Phone"),
-			"rawname" => "webrtc",
-			"content" => ""
-		);
+		$html[0] = ["title" => _("Phone"), "rawname" => "webrtc", "content" => ""];
 		if($this->validVersion() === true && !empty($defaultCert)) {
-			$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("mode" => $mode, "enabled" => $enabled, "webrtcmessage" => '', "config" => true));
+			$html[0]['content'] = load_view(__DIR__."/views/ucp_config.php",["mode" => $mode, "enabled" => $enabled, "webrtcmessage" => '', "config" => true]);
 		} elseif($this->validVersion() === true) {
-			$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("mode" => $mode, "enabled" => $enabled, "webrtcmessage" => sprintf(_('You have no default certificates setup in %s'),'<a href="?display=certman">'._('Certificate Manager').'</a>'), "config" => false));
+			$html[0]['content'] = load_view(__DIR__."/views/ucp_config.php",["mode" => $mode, "enabled" => $enabled, "webrtcmessage" => sprintf(_('You have no default certificates setup in %s'),'<a href="?display=certman">'._('Certificate Manager').'</a>'), "config" => false]);
 		} else {
-			$html[0]['content'] = load_view(dirname(__FILE__)."/views/ucp_config.php",array("mode" => $mode, "enabled" => $enabled, "webrtcmessage" => $this->validVersion(), "config" => false));
+			$html[0]['content'] = load_view(__DIR__."/views/ucp_config.php",["mode" => $mode, "enabled" => $enabled, "webrtcmessage" => $this->validVersion(), "config" => false]);
 		}
 		return $html;
 	}
 
 	public function validVersion() {
 		$version = $this->FreePBX->Config->get('ASTVERSION');
-		$vParts = explode(".",$version);
+		$vParts = explode(".",(string) $version);
 		$base = $vParts[0];
 		$res_ver = IsAsteriskSupported($base); // method located in framework utility.function.php
 		if ($res_ver["status"] == false) {
@@ -328,8 +309,8 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		try {
 			$sql = "REPLACE INTO webrtc_clients (`user`, `device`,`prefix`,`module`) VALUES(?,?,?,?)";
 			$sth = $this->Database->prepare($sql);
-			return $sth->execute(array($user,$device,$prefix,$module));
-		} catch(Exception $e) {
+			return $sth->execute([$user, $device, $prefix, $module]);
+		} catch(Exception) {
 			return false;
 		}
     }
@@ -339,8 +320,8 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		try {
 			$sql = "REPLACE INTO webrtc_clients (`user`, `device`, `certid`) VALUES(?,?,?)";
 			$sth = $this->Database->prepare($sql);
-			return $sth->execute(array($user,$device,$certid));
-		} catch(Exception $e) {
+			return $sth->execute([$user, $device, $certid]);
+		} catch(Exception) {
 			return false;
 		}
 	}
@@ -351,7 +332,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		$sth->execute();
 		$results = $sth->fetchAll(PDO::FETCH_ASSOC);
 		if(empty($results)) {
-			return array();
+			return [];
 		}
 		return $results;
 	}
@@ -360,13 +341,13 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		 $prefix = ($prefix == '')?$this->prefix:$prefix;
 		$sql = "SELECT * FROM webrtc_clients WHERE `user` = ? AND `prefix`=?";
 		$sth = $this->Database->prepare($sql);
-		$sth->execute(array($user,$prefix));
+		$sth->execute([$user, $prefix]);
 		$results = $sth->fetch(PDO::FETCH_ASSOC);
 		if(empty($results)) {
 			return false;
 		}
 
-		$serverparts = explode(":", $_SERVER['HTTP_HOST']); //strip off port because we define it
+		$serverparts = explode(":", (string) $_SERVER['HTTP_HOST']); //strip off port because we define it
 		$sip_server = $serverparts[0];
 		$secure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on";
 		$dev = $this->FreePBX->Core->getDevice($results['device']);
@@ -388,7 +369,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		$suffix = !empty($prefix) ? "/".$prefix."/ws" : "/ws";
 
 		if($secure && !$this->FreePBX->Config->get('HTTPTLSENABLE')) {
-			return array("status" => false, "message" => _("HTTPS is not enabled for Asterisk"));
+			return ["status" => false, "message" => _("HTTPS is not enabled for Asterisk")];
 		}
 
 		$type = ($this->FreePBX->Config->get('HTTPTLSENABLE') && $secure) ? 'wss' : 'ws';
@@ -398,7 +379,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 			$stunaddr = $this->FreePBX->Sipsettings->getConfig("webrtcstunaddr");
 			$stunaddr = !empty($stunaddr) ? $stunaddr : $this->FreePBX->Sipsettings->getConfig("stunaddr");
 			$results['stunaddr'] = $stunaddr;
-		} catch(Exception $e) {}
+		} catch(Exception) {}
 		$results['stunaddr'] = !empty($results['stunaddr']) ? "stun:".$results['stunaddr'] : "stun:stun.l.google.com:19302";
 		return $results;
 	}
@@ -407,8 +388,8 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		try {
 			$sql = "DELETE FROM webrtc_clients WHERE `user` = ? AND prefix=?";
 			$sth = $this->Database->prepare($sql);
-			return $sth->execute(array($user,$prefix));
-		} catch(Exception $e) {
+			return $sth->execute([$user, $prefix]);
+		} catch(Exception) {
 			return true;
 		}
 	}
@@ -419,30 +400,30 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		//update accountcode from primary extension to all its devices of webrtc
 		$sql = "SELECT `device` FROM webrtc_clients WHERE `user` = ? ";
 		$sth = $this->Database->prepare($sql);
-		$sth->execute(array($ext));
+		$sth->execute([$ext]);
 		$results = $sth->fetchAll(PDO::FETCH_ASSOC);
 		if(is_array($results)){
 			foreach($results as $res) {
 				$device = $res['device'];
-				if(isset($settings['devinfo_accountcode']) && strlen(trim($settings['devinfo_accountcode'])) > 0){
+				if(isset($settings['devinfo_accountcode']) && strlen(trim((string) $settings['devinfo_accountcode'])) > 0){
 					$data = $settings['devinfo_accountcode'];
 					$query = "Update sip SET `data`=? Where `id`=? AND `keyword`=?";
 					$sth1 = $this->Database->prepare($query);
-					$sth1->execute(array($data,$device,'accountcode'));
+					$sth1->execute([$data, $device, 'accountcode']);
 				}
 				// update pickup groups
-				if(isset($settings['devinfo_namedcallgroup']) && strlen(trim($settings['devinfo_namedcallgroup'])) > 0){
+				if(isset($settings['devinfo_namedcallgroup']) && strlen(trim((string) $settings['devinfo_namedcallgroup'])) > 0){
 					$data = $settings['devinfo_namedcallgroup'];
 					$query = "REPLACE INTO sip (`id`, `data`,`keyword`) VALUES(?,?,?)";
 					$sth1 = $this->Database->prepare($query);
-					$sth1->execute(array($device,$data,'namedcallgroup'));
+					$sth1->execute([$device, $data, 'namedcallgroup']);
 				}
 				//devinfo_namedpickupgroup
-				if(isset($settings['devinfo_namedpickupgroup']) && strlen(trim($settings['devinfo_namedpickupgroup'])) > 0){
+				if(isset($settings['devinfo_namedpickupgroup']) && strlen(trim((string) $settings['devinfo_namedpickupgroup'])) > 0){
 					$data = $settings['devinfo_namedpickupgroup'];
 					$query = "REPLACE INTO sip (`id`, `data`,`keyword`) VALUES(?,?,?)";
 					$sth1 = $this->Database->prepare($query);
-					$sth1->execute(array($device,$data,'namedpickupgroup'));
+					$sth1->execute([$device, $data, 'namedpickupgroup']);
 				}
 			}
 		}
@@ -461,6 +442,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		}
 		$version = $this->FreePBX->Config->get('ASTVERSION');
 		$user = $this->FreePBX->Core->getUser($extension);
+		$user['name'] = (array_key_exists('name', $user)) ? $user['name'] : '';
 		$dev = $this->FreePBX->Core->getDevice($extension);
 		$socket = $this->getSocketMode();
 		$settings = $this->FreePBX->Core->generateDefaultDeviceSettings($socket,$id,'WebRTC '.$user['name']);
@@ -473,8 +455,8 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		}
 		$accountcode = $this->FreePBX->astman->database_get("AMPUSER",$extension."/accountcode");
 		$settings['accountcode']['value'] = $accountcode;
-		$settings['namedcallgroup']['value'] = isset($dev['namedcallgroup'])?$dev['namedcallgroup']:'';
-		$settings['namedpickupgroup']['value'] = isset($dev['namedpickupgroup'])?$dev['namedpickupgroup']:'';
+		$settings['namedcallgroup']['value'] = $dev['namedcallgroup'] ?? '';
+		$settings['namedpickupgroup']['value'] = $dev['namedpickupgroup'] ?? '';
 		$settings['devicetype']['value'] = 'fixed';
 		$settings['context']['value'] = !empty($dev['context']) ? $dev['context'] : "from-internal";
 		$settings['user']['value'] = $extension;
@@ -486,12 +468,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		if($cid == ''){
 			$cid = $defaultCert['cid'];
 		}
-		$cert = array(
-			"certificate" => $cid,
-			"verify" => "fingerprint",
-			"setup" => "actpass",
-			"rekey" => "0"
-		);
+		$cert = ["certificate" => $cid, "verify" => "fingerprint", "setup" => "actpass", "rekey" => "0"];
 		switch($socket) {
 			case 'sip':
 				$settings['avpf']['value'] = 'yes';
@@ -531,7 +508,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 		$websocketMode = null;
 		if($this->FreePBX->astman->mod_loaded("res_pjsip_transport_websocket")) {
 			$type = $this->FreePBX->astman->Command("module show like res_pjsip_transport_websocket");
-			if(preg_match("/Not Running/",$type['data'])) {
+			if(preg_match("/Not Running/",(string) $type['data'])) {
 				$websocketMode = 'sip';
 			} else {
 				$websocketMode = 'pjsip';
@@ -554,12 +531,12 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 	private function deleteDevice($device) {
 		try {
 			return $this->FreePBX->Core->delDevice($device);
-		} catch(Exception $e) {
+		} catch(Exception) {
 			return false;
 		}
 	}
 	public function dashboardIgnoreExt(){
-		return array(array('length' => 2, 'value' => '99'));
+		return [['length' => 2, 'value' => '99']];
 	}
 	public function delUser($extension, $editmode=false) {
 		if(!$editmode) {

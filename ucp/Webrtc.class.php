@@ -21,40 +21,24 @@ class Webrtc extends Modules{
 
 	public function getSimpleWidgetList() {
 		if(!$this->webrtc->checkEnabled($this->ext)) {
-			return array();
+			return [];
 		}
-		return array(
-			"rawname" => "webrtc",
-			"display" => _("Phone"),
-			"icon" => "fa fa-phone",
-			"list" => array(
-				"phone" => array(
-					"display" => "Phone",
-					"hasSettings" => true
-				)
-			)
-		);
+		return ["rawname" => "webrtc", "display" => _("Phone"), "icon" => "fa fa-phone", "list" => ["phone" => ["display" => "Phone", "hasSettings" => true]]];
 	}
 
 	public function getSimpleWidgetDisplay($id) {
 		if(!$this->webrtc->checkEnabled($this->ext)) {
-			return array();
+			return [];
 		}
-		return array(
-			'title' => _("Phone"),
-			'html' => load_view(__DIR__."/views/phone.php",array())
-		);
+		return ['title' => _("Phone"), 'html' => load_view(__DIR__."/views/phone.php",[])];
 	}
 
 	public function getSimpleWidgetSettingsDisplay($id) {
 		if(!$this->webrtc->checkEnabled($this->ext)) {
-			return array();
+			return [];
 		}
-		$displayvars = array();
-		$display = array(
-			'title' => _("WebRTC"),
-			'html' => $this->load_view(__DIR__.'/views/settings.php',$displayvars)
-		);
+		$displayvars = [];
+		$display = ['title' => _("WebRTC"), 'html' => $this->load_view(__DIR__.'/views/settings.php',$displayvars)];
 
 		return $display;
 	}
@@ -70,15 +54,10 @@ class Webrtc extends Modules{
 		* @return bool True if pass
 		*/
 		function ajaxRequest($command, $settings) {
-			switch($command) {
-				case 'cimage':
-				case 'contacts':
-					return true;
-				break;
-				default:
-					return false;
-				break;
-			}
+			return match ($command) {
+       'cimage', 'contacts' => true,
+       default => false,
+   };
 		}
 
 		public function ajaxCustomHandler() {
@@ -119,10 +98,10 @@ class Webrtc extends Modules{
 		* @return mixed Output if success, otherwise false will generate a 500 error serverside
 		*/
 		function ajaxHandler() {
-			$return = array("status" => false, "message" => "");
+			$return = ["status" => false, "message" => ""];
 			switch($_REQUEST['command']) {
 				case "contacts":
-					$return = array();
+					$return = [];
 					if($this->Modules->moduleHasMethod('Contactmanager','lookupMultiple')) {
 						$search = !empty($_REQUEST['search']) ? $_REQUEST['search'] : "";
 						$results = $this->Modules->Contactmanager->lookupMultiple($search);
@@ -130,10 +109,7 @@ class Webrtc extends Modules{
 							foreach($results as $res) {
 								foreach($res['numbers'] as $type => $num) {
 									if(!empty($num)) {
-										$return[] = array(
-											"value" => $num,
-											"text" => $res['displayname'] . " (".$type.")"
-										);
+										$return[] = ["value" => $num, "text" => $res['displayname'] . " (".$type.")"];
 									}
 								}
 							}
@@ -153,23 +129,12 @@ class Webrtc extends Modules{
 	function getStaticSettings() {
 		$settings = $this->webrtc->getClientSettingsByUser($this->ext);
 		if(!empty($settings['status'])) {
-			return array(
-				'enabled' => true,
-				'settings' => array(
-					'wsservers' => $settings['websocket'],
-					'uri' => $settings['sipuri'],
-					'password' => $settings['password'],
-					'log' => 3,
-					'iceServers' => array($settings['stunaddr']),
-					'gatheringTimeout' => 2000
-				),
-				'extensions' => array($this->user['default_extension'])
-			);
+			return ['enabled' => true, 'settings' => ['wsservers' => $settings['websocket'], 'uri' => $settings['sipuri'], 'password' => $settings['password'], 'log' => 3, 'iceServers' => [$settings['stunaddr']], 'gatheringTimeout' => 2000], 'extensions' => [$this->user['default_extension']]];
 		} else {
 			if(!empty($settings['message'])) {
-				return array('enabled' => false, "message" => $settings['message']);
+				return ['enabled' => false, "message" => $settings['message']];
 			} else {
-				return array('enabled' => false);
+				return ['enabled' => false];
 			}
 		}
 	}

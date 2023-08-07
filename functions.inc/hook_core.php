@@ -5,15 +5,15 @@ function webrtc_configpageinit($pagename) {
 	global $currentcomponent;
 	global $amp_conf;
 
-	$action = isset($_REQUEST['action'])?$_REQUEST['action']:null;
-	$extdisplay = isset($_REQUEST['extdisplay'])?$_REQUEST['extdisplay']:null;
-	$extension = isset($_REQUEST['extension'])?$_REQUEST['extension']:null;
-	$tech_hardware = isset($_REQUEST['tech_hardware'])?$_REQUEST['tech_hardware']:null;
-	$supported_hardware = array('sip','pjsip','iax2','dahdi');
+	$action = $_REQUEST['action'] ?? null;
+	$extdisplay = $_REQUEST['extdisplay'] ?? null;
+	$extension = $_REQUEST['extension'] ?? null;
+	$tech_hardware = $_REQUEST['tech_hardware'] ?? null;
+	$supported_hardware = ['sip', 'pjsip', 'iax2', 'dahdi'];
 
     // We only want to hook the 'extensions' pages.
 	$th = !empty($_REQUEST['tech_hardware']) ? $_REQUEST['tech_hardware'] : '';
-	if ($pagename != 'extensions' && in_array(str_replace('_generic','',$th),$supported_hardware))  {
+	if ($pagename != 'extensions' && in_array(str_replace('_generic','',(string) $th),$supported_hardware))  {
 		return true;
 	}
 
@@ -43,7 +43,7 @@ function webrtc_configpageload($mode) {
 	$certman = FreePBX::Certman();
 
 
-	$extdisplay = isset($_REQUEST['extdisplay'])?$_REQUEST['extdisplay']:null;
+	$extdisplay = $_REQUEST['extdisplay'] ?? null;
 
 	$webrtc_select = $currentcomponent->getoptlist('webrtc_enable');
 
@@ -60,12 +60,9 @@ function webrtc_configpageload($mode) {
 			} else {
 				$currentcomponent->addguielem('WebRTC Phone', new gui_selectbox( 'webrtc_enable', $webrtc_select, $webrtc_value,
 				_('Enable WebRTC Old ARI Phone'), sprintf(_('Enables WebRTC for this %s in the Asterisk Recording Interface (ARI). Note: ARI is depreciated in favor of UCP'),$mode), false));
-				$certs = array();
+				$certs = [];
 				foreach($mcerts as $cert) {
-					$certs[] = array(
-						"text" => $cert['basename'],
-						"value" => $cert['cid']
-					);
+					$certs[] = ["text" => $cert['basename'], "value" => $cert['cid']];
 				}
 				$settings = $webrtc->getClientSettingsByUser($extdisplay);
 				$cert = !empty($settings['certid']) ? $settings['certid'] : '';
@@ -88,12 +85,12 @@ function webrtc_configpageload($mode) {
 }
 
 function webrtc_extensions_configprocess() {
-	$action = isset($_REQUEST['action'])?$_REQUEST['action']:null;
-	$extension = isset($_REQUEST['extdisplay'])?$_REQUEST['extdisplay']:null;
+	$action = $_REQUEST['action'] ?? null;
+	$extension = $_REQUEST['extdisplay'] ?? null;
 	$webrtc = FreePBX::Webrtc();
 	switch ($action) {
 		case 'add':
-			$extension = isset($_REQUEST['extension']) ? $_REQUEST['extension'] : null;
+			$extension = $_REQUEST['extension'] ?? null;
 		case 'edit':
 			$prev =  ($action != 'add') ? $webrtc->checkEnabled($extension) : false;
 			if($_REQUEST['webrtc_enable'] == 'yes' && !$prev) {
