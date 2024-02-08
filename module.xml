@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>17.0.1</version>
+	<version>17.0.2</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -16,15 +16,15 @@
 	</description>
   	<more-info>https://wiki.freepbx.org/display/FPG/WebRTC+Phone-UCP</more-info>
 	<changelog>
-		*17.0.1* 17.0.1 alpha release
+		*17.0.2* 17.0.2  release
 	</changelog>
 	<info/>
 	<category>Connectivity</category>
 	<depends>
 		<engine>asterisk 11.5</engine>
-		<module>certman ge 16.0.13</module>
-		<module>core ge 16.0.56.9</module>
-		<module>ucp ge 16.0.12</module>
+		<module>certman ge 17.0.1</module>
+		<module>core ge 17.0.1</module>
+		<module>ucp ge 17.0.1</module>
 		<version>17.0</version>
 	</depends>
 	<hooks>
