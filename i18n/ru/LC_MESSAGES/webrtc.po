@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-28 05:53+0000\n"
+"POT-Creation-Date: 2024-02-08 05:26-0500\n"
 "PO-Revision-Date: 2022-07-20 07:50+0000\n"
 "Last-Translator: ded <ceo@postmet.com>\n"
 "Language-Team: Russian <http://weblate.freepbx.org/projects/freepbx/webrtc/"
@@ -18,8 +18,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.0.1\n"
 
 #: ucp/views/phone.php:24
@@ -30,7 +30,7 @@ msgstr "ABC"
 msgid "Call"
 msgstr "Вызов"
 
-#: Webrtc.class.php:287
+#: Webrtc.class.php:268
 msgid "Certificate Manager"
 msgstr "Менеджер сертификатов"
 
@@ -95,7 +95,7 @@ msgstr ""
 msgid "GHI"
 msgstr "GHI"
 
-#: Webrtc.class.php:391
+#: Webrtc.class.php:372
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "HTTPS не задействовано в Asterisk"
 
@@ -140,7 +140,7 @@ msgstr "Поддерживается только с использование�
 msgid "PQRS"
 msgstr "PQRS"
 
-#: Webrtc.class.php:280 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
+#: Webrtc.class.php:264 ucp/Webrtc.class.php:26 ucp/Webrtc.class.php:33
 msgid "Phone"
 msgstr "Телефон"
 
@@ -160,7 +160,7 @@ msgstr "Регистрируется..."
 msgid "Registration Failed"
 msgstr "Регистрация отклонена"
 
-#: Webrtc.class.php:300
+#: Webrtc.class.php:281
 #, php-format
 msgid ""
 "Running an unsupported version of Asterisk. %s Detected Asterisk version: %s "
@@ -174,7 +174,7 @@ msgstr "Тихий звонок"
 msgid "TUV"
 msgstr "TUV"
 
-#: functions.inc/hook_core.php:77
+#: functions.inc/hook_core.php:74
 msgid "The Certificate to use from Certificate Manager"
 msgstr "Сертификат для использования из Менеджера сертификатов"
 
@@ -192,7 +192,7 @@ msgstr ""
 "текущей версии. Задействуйте драйвер канала  chan_sip (может работать вместе "
 "с pjsip или самостоятельно) или сообщите об этом разработчикам FreePBX"
 
-#: functions.inc/hook_core.php:82
+#: functions.inc/hook_core.php:79
 #, php-format
 msgid ""
 "To utilize WebRTC in ARI you must add at least one certificate %s through "
@@ -205,7 +205,7 @@ msgstr ""
 msgid "Unregistered"
 msgstr "Не зарегистрирован"
 
-#: functions.inc/hook_core.php:76
+#: functions.inc/hook_core.php:73
 msgid "Use Certificate"
 msgstr "Используемый сертификат"
 
@@ -213,7 +213,7 @@ msgstr "Используемый сертификат"
 msgid "WXYZ"
 msgstr "WXYZ"
 
-#: ucp/Webrtc.class.php:55
+#: ucp/Webrtc.class.php:41
 msgid "WebRTC"
 msgstr "WebRTC"
 
@@ -225,7 +225,7 @@ msgstr "Телефон WebRTC"
 msgid "Yes"
 msgstr "Да"
 
-#: Webrtc.class.php:287
+#: Webrtc.class.php:268
 #, php-format
 msgid "You have no default certificates setup in %s"
 msgstr "Нет ни одного сертификата по умолчанию в  %s"

@@ -3,13 +3,13 @@
 # For licensing information, please see the file named LICENSE located in the module directory
 #
 # FreePBX language template for webrtc
-# Copyright (C) 2008-2023 Sangoma Technologies, Inc.
+# Copyright (C) 2008-2024 Sangoma Technologies, Inc.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-31 06:11+0000\n"
+"POT-Creation-Date: 2024-02-08 05:26-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "Call"
 msgstr ""
 
-#: Webrtc.class.php:287
+#: Webrtc.class.php:268
 msgid "Certificate Manager"
 msgstr ""
 
@@ -91,7 +91,7 @@ msgstr ""
 msgid "GHI"
 msgstr ""
 
-#: Webrtc.class.php:391
+#: Webrtc.class.php:372
 msgid "HTTPS is not enabled for Asterisk"
 msgstr ""
 
@@ -136,9 +136,9 @@ msgstr ""
 msgid "PQRS"
 msgstr ""
 
-#: Webrtc.class.php:280
-#: ucp/Webrtc.class.php:28
-#: ucp/Webrtc.class.php:44
+#: Webrtc.class.php:264
+#: ucp/Webrtc.class.php:26
+#: ucp/Webrtc.class.php:33
 msgid "Phone"
 msgstr ""
 
@@ -158,7 +158,7 @@ msgstr ""
 msgid "Registration Failed"
 msgstr ""
 
-#: Webrtc.class.php:300
+#: Webrtc.class.php:281
 #, php-format
 msgid ""
 "Running an unsupported version of Asterisk. %s Detected Asterisk version: %s "
@@ -172,7 +172,7 @@ msgstr ""
 msgid "TUV"
 msgstr ""
 
-#: functions.inc/hook_core.php:77
+#: functions.inc/hook_core.php:74
 msgid "The Certificate to use from Certificate Manager"
 msgstr ""
 
@@ -187,7 +187,7 @@ msgid ""
 "or alert the FreePBX Developers"
 msgstr ""
 
-#: functions.inc/hook_core.php:82
+#: functions.inc/hook_core.php:79
 #, php-format
 msgid ""
 "To utilize WebRTC in ARI you must add at least one certificate %s through "
@@ -199,7 +199,7 @@ msgstr ""
 msgid "Unregistered"
 msgstr ""
 
-#: functions.inc/hook_core.php:76
+#: functions.inc/hook_core.php:73
 msgid "Use Certificate"
 msgstr ""
 
@@ -207,7 +207,7 @@ msgstr ""
 msgid "WXYZ"
 msgstr ""
 
-#: ucp/Webrtc.class.php:55
+#: ucp/Webrtc.class.php:41
 msgid "WebRTC"
 msgstr ""
 
@@ -219,7 +219,7 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: Webrtc.class.php:287
+#: Webrtc.class.php:268
 #, php-format
 msgid "You have no default certificates setup in %s"
 msgstr ""

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-28 05:53+0000\n"
+"POT-Creation-Date: 2024-02-08 05:26-0500\n"
 "PO-Revision-Date: 2016-10-08 12:26+0200\n"
 "Last-Translator: psdk <hyavari26@gmail.com>\n"
 "Language-Team: Persian (Iran) <http://weblate.freepbx.org/projects/freepbx/"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Call"
 msgstr ""
 
-#: Webrtc.class.php:287
+#: Webrtc.class.php:268
 msgid "Certificate Manager"
 msgstr ""
 
@@ -94,7 +94,7 @@ msgstr ""
 msgid "GHI"
 msgstr ""
 
-#: Webrtc.class.php:391
+#: Webrtc.class.php:372
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "سرویس HTTPS برای استریسک فعال نشده است"
 
@@ -139,7 +139,7 @@ msgstr ""
 msgid "PQRS"
 msgstr ""
 
-#: Webrtc.class.php:280 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
+#: Webrtc.class.php:264 ucp/Webrtc.class.php:26 ucp/Webrtc.class.php:33
 msgid "Phone"
 msgstr ""
 
@@ -159,7 +159,7 @@ msgstr ""
 msgid "Registration Failed"
 msgstr ""
 
-#: Webrtc.class.php:300
+#: Webrtc.class.php:281
 #, php-format
 msgid ""
 "Running an unsupported version of Asterisk. %s Detected Asterisk version: %s "
@@ -173,7 +173,7 @@ msgstr "سکوت زنگ"
 msgid "TUV"
 msgstr ""
 
-#: functions.inc/hook_core.php:77
+#: functions.inc/hook_core.php:74
 msgid "The Certificate to use from Certificate Manager"
 msgstr "مجوزی که از طریق مدیریت مجوزها، مورد استفاده قرار می گیرد"
 
@@ -190,7 +190,7 @@ msgstr ""
 "واسط وب سوکت در حال حاضر از طریق PJSIP  اجرا می شود؛ PJSIP در حال حاضر "
 "پشتیبانی نمی شود. لطفا ماژول chan_sip را فعال کرده و از آن استفاده کنید"
 
-#: functions.inc/hook_core.php:82
+#: functions.inc/hook_core.php:79
 #, php-format
 msgid ""
 "To utilize WebRTC in ARI you must add at least one certificate %s through "
@@ -203,7 +203,7 @@ msgstr ""
 msgid "Unregistered"
 msgstr ""
 
-#: functions.inc/hook_core.php:76
+#: functions.inc/hook_core.php:73
 msgid "Use Certificate"
 msgstr "از مجوز استفاده نمایید"
 
@@ -211,7 +211,7 @@ msgstr "از مجوز استفاده نمایید"
 msgid "WXYZ"
 msgstr ""
 
-#: ucp/Webrtc.class.php:55
+#: ucp/Webrtc.class.php:41
 msgid "WebRTC"
 msgstr "ارتباط WebRTC"
 
@@ -223,7 +223,7 @@ msgstr "تلفن WebRTC"
 msgid "Yes"
 msgstr "بله"
 
-#: Webrtc.class.php:287
+#: Webrtc.class.php:268
 #, php-format
 msgid "You have no default certificates setup in %s"
 msgstr ""

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-28 05:53+0000\n"
+"POT-Creation-Date: 2024-02-08 05:26-0500\n"
 "PO-Revision-Date: 2018-09-04 08:42+0000\n"
 "Last-Translator: Petr Varvarovsky <petrv@atlantis.cz>\n"
 "Language-Team: Czech <http://*/projects/freepbx/webrtc/cs/>\n"
@@ -28,7 +28,7 @@ msgstr "ABC"
 msgid "Call"
 msgstr "Volat"
 
-#: Webrtc.class.php:287
+#: Webrtc.class.php:268
 msgid "Certificate Manager"
 msgstr "Správce certifikátů"
 
@@ -95,7 +95,7 @@ msgstr ""
 msgid "GHI"
 msgstr "GHI"
 
-#: Webrtc.class.php:391
+#: Webrtc.class.php:372
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "HTTPS není pro Asterisk povoleno"
 
@@ -140,7 +140,7 @@ msgstr "Podporováno pouze přes protokol HTTPS"
 msgid "PQRS"
 msgstr "PQRS"
 
-#: Webrtc.class.php:280 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
+#: Webrtc.class.php:264 ucp/Webrtc.class.php:26 ucp/Webrtc.class.php:33
 msgid "Phone"
 msgstr "Telefon"
 
@@ -160,7 +160,7 @@ msgstr "Registrace ..."
 msgid "Registration Failed"
 msgstr "Registrace se nezdařila"
 
-#: Webrtc.class.php:300
+#: Webrtc.class.php:281
 #, php-format
 msgid ""
 "Running an unsupported version of Asterisk. %s Detected Asterisk version: %s "
@@ -174,7 +174,7 @@ msgstr "Tiché vyzvánění"
 msgid "TUV"
 msgstr "TUV"
 
-#: functions.inc/hook_core.php:77
+#: functions.inc/hook_core.php:74
 msgid "The Certificate to use from Certificate Manager"
 msgstr "Certifikát k použítí od správce certifikátů"
 
@@ -192,7 +192,7 @@ msgstr ""
 "Prosím, povolte ovladač chan_sip (spolu s pjsip nebo samostatně), nebo "
 "upozorněte vývojáře FreePBX"
 
-#: functions.inc/hook_core.php:82
+#: functions.inc/hook_core.php:79
 #, php-format
 msgid ""
 "To utilize WebRTC in ARI you must add at least one certificate %s through "
@@ -205,7 +205,7 @@ msgstr ""
 msgid "Unregistered"
 msgstr "Neregistrován"
 
-#: functions.inc/hook_core.php:76
+#: functions.inc/hook_core.php:73
 msgid "Use Certificate"
 msgstr "Použít certifikát"
 
@@ -213,7 +213,7 @@ msgstr "Použít certifikát"
 msgid "WXYZ"
 msgstr "WXYZ"
 
-#: ucp/Webrtc.class.php:55
+#: ucp/Webrtc.class.php:41
 msgid "WebRTC"
 msgstr "WebRTC"
 
@@ -225,7 +225,7 @@ msgstr "WebRTC telefon"
 msgid "Yes"
 msgstr "Ano"
 
-#: Webrtc.class.php:287
+#: Webrtc.class.php:268
 #, php-format
 msgid "You have no default certificates setup in %s"
 msgstr "Nemáte žádné výchozí nastavení certifikátů v %s"

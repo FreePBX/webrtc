@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-13 03:02+0000\n"
+"POT-Creation-Date: 2024-02-08 05:26-0500\n"
 "PO-Revision-Date: 2023-12-10 19:47+0000\n"
 "Last-Translator: Szymon Wysokinski <szymon.wysokinski@sqspolska.pl>\n"
 "Language-Team: Polish <http://weblate.freepbx.org/projects/freepbx/webrtc/pl/"
 ">\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
@@ -30,19 +30,19 @@ msgstr "ABC"
 msgid "Call"
 msgstr "Połączenie"
 
-#: Webrtc.class.php:288
+#: Webrtc.class.php:268
 msgid "Certificate Manager"
 msgstr "Menedżer certyfikatów"
 
-#: ucp/assets/js/global.js:254
+#: ucp/assets/js/global.js:264
 msgid "Click this window to answer or close this window to ignore"
 msgstr "Kliknij to okno aby odpowiedzieć lub zamknij to okno aby zignorować"
 
-#: ucp/assets/js/global.js:516
+#: ucp/assets/js/global.js:530
 msgid "Connect Phone"
 msgstr "Podłącz telefon"
 
-#: ucp/assets/js/global.js:537
+#: ucp/assets/js/global.js:551
 msgid "Connecting to socket..."
 msgstr "Podłączanie do socketu..."
 
@@ -54,8 +54,7 @@ msgstr "Łączność"
 msgid "DEF"
 msgstr "DEF"
 
-#: ucp/assets/js/global.js:69
-#: ucp/assets/js/global.js:77
+#: ucp/assets/js/global.js:69 ucp/assets/js/global.js:77
 msgid "Disable"
 msgstr "Wyłącz"
 
@@ -63,12 +62,11 @@ msgstr "Wyłącz"
 msgid "Disconnect Phone"
 msgstr "Odłącz telefon"
 
-#: ucp/assets/js/global.js:528
+#: ucp/assets/js/global.js:542
 msgid "Disconnected"
 msgstr "Odłączony"
 
-#: ucp/assets/js/global.js:68
-#: ucp/assets/js/global.js:76
+#: ucp/assets/js/global.js:68 ucp/assets/js/global.js:76
 msgid "Enable"
 msgstr "Włącz"
 
@@ -97,7 +95,7 @@ msgstr ""
 msgid "GHI"
 msgstr "GHI"
 
-#: Webrtc.class.php:382
+#: Webrtc.class.php:372
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "HTTPS nie jest włączony w Asterisk"
 
@@ -105,7 +103,7 @@ msgstr "HTTPS nie jest włączony w Asterisk"
 msgid "Hold"
 msgstr "Zawieś"
 
-#: ucp/assets/js/global.js:253
+#: ucp/assets/js/global.js:263
 #, perl-format
 msgid "Incoming call from %s"
 msgstr "Połączenie przychodzące od %s"
@@ -126,7 +124,7 @@ msgstr "MNO"
 msgid "No"
 msgstr "Nie"
 
-#: ucp/assets/js/global.js:607
+#: ucp/assets/js/global.js:621
 msgid "Not supported in this browser"
 msgstr "Nieobsługiwane w tej przeglądarce"
 
@@ -135,7 +133,7 @@ msgid "Note: An Active call will not be dropped when this window is closed"
 msgstr ""
 "Uwaga: Po zamknięciu tego okna aktywne połączenie nie zostanie przerwane"
 
-#: ucp/assets/js/global.js:614
+#: ucp/assets/js/global.js:628
 msgid "Only supported over HTTPS"
 msgstr "Obsługiwane tylko przez HTTPS"
 
@@ -143,9 +141,7 @@ msgstr "Obsługiwane tylko przez HTTPS"
 msgid "PQRS"
 msgstr "PQRS"
 
-#: Webrtc.class.php:281
-#: ucp/Webrtc.class.php:28
-#: ucp/Webrtc.class.php:44
+#: Webrtc.class.php:264 ucp/Webrtc.class.php:26 ucp/Webrtc.class.php:33
 msgid "Phone"
 msgstr "Telefon"
 
@@ -153,17 +149,23 @@ msgstr "Telefon"
 msgid "Phone Status"
 msgstr "Stan telefonu"
 
-#: ucp/assets/js/global.js:496
+#: ucp/assets/js/global.js:510
 msgid "Registered"
 msgstr "Zarejestrowany"
 
-#: ucp/assets/js/global.js:543
+#: ucp/assets/js/global.js:557
 msgid "Registering..."
 msgstr "Rejestrowanie..."
 
-#: ucp/assets/js/global.js:514
+#: ucp/assets/js/global.js:528
 msgid "Registration Failed"
 msgstr "Rejestracja nie powiodła się"
+
+#: Webrtc.class.php:281
+#, php-format
+msgid ""
+"Running an unsupported version of Asterisk. %s Detected Asterisk version: %s "
+msgstr ""
 
 #: ucp/views/settings.php:3
 msgid "Silence Ringer"
@@ -173,7 +175,7 @@ msgstr "Wycisz dzwonek"
 msgid "TUV"
 msgstr "TUV"
 
-#: functions.inc/hook_core.php:77
+#: functions.inc/hook_core.php:74
 msgid "The Certificate to use from Certificate Manager"
 msgstr "Certyfikat z Menedżera Certyfikatów który ma być używany"
 
@@ -191,7 +193,7 @@ msgstr ""
 "obsługiwany. Włącz sterownik chan_sip (wraz z pjsip lub sam) lub powiadom "
 "programistów FreePBX"
 
-#: functions.inc/hook_core.php:82
+#: functions.inc/hook_core.php:79
 #, php-format
 msgid ""
 "To utilize WebRTC in ARI you must add at least one certificate %s through "
@@ -200,18 +202,11 @@ msgstr ""
 "Aby korzystać z WebRTC w ARI, musisz dodać co najmniej jeden certyfikat %s "
 "poprzez Menedżera Certyfikatów"
 
-#: ucp/assets/js/global.js:506
-#: ucp/assets/js/global.js:523
+#: ucp/assets/js/global.js:520 ucp/assets/js/global.js:537
 msgid "Unregistered"
 msgstr "Niezarejestrowany"
 
-#: Webrtc.class.php:301
-#: Webrtc.class.php:304
-#, php-format
-msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
-msgstr "Nieobsługiwana wersja Asterisk. Potrzebujesz co najmniej %s masz %s"
-
-#: functions.inc/hook_core.php:76
+#: functions.inc/hook_core.php:73
 msgid "Use Certificate"
 msgstr "Użyj certyfikatu"
 
@@ -219,7 +214,7 @@ msgstr "Użyj certyfikatu"
 msgid "WXYZ"
 msgstr "WXYZ"
 
-#: ucp/Webrtc.class.php:55
+#: ucp/Webrtc.class.php:41
 msgid "WebRTC"
 msgstr "Web RTC"
 
@@ -231,7 +226,11 @@ msgstr "Telefon WebRTC"
 msgid "Yes"
 msgstr "Tak"
 
-#: Webrtc.class.php:288
+#: Webrtc.class.php:268
 #, php-format
 msgid "You have no default certificates setup in %s"
 msgstr "Nie masz domyślnych ustawień certyfikatów w %s"
+
+#, php-format
+#~ msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
+#~ msgstr "Nieobsługiwana wersja Asterisk. Potrzebujesz co najmniej %s masz %s"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-28 05:53+0000\n"
+"POT-Creation-Date: 2024-02-08 05:26-0500\n"
 "PO-Revision-Date: 2017-07-18 10:23+0200\n"
 "Last-Translator: PETER <ftek@ymail.com>\n"
 "Language-Team: Vietnamese <http://weblate.freepbx.org/projects/freepbx/"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Call"
 msgstr ""
 
-#: Webrtc.class.php:287
+#: Webrtc.class.php:268
 msgid "Certificate Manager"
 msgstr ""
 
@@ -94,7 +94,7 @@ msgstr ""
 msgid "GHI"
 msgstr ""
 
-#: Webrtc.class.php:391
+#: Webrtc.class.php:372
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "HTTPS không được kích hoạt cho Asterisk"
 
@@ -139,7 +139,7 @@ msgstr ""
 msgid "PQRS"
 msgstr ""
 
-#: Webrtc.class.php:280 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
+#: Webrtc.class.php:264 ucp/Webrtc.class.php:26 ucp/Webrtc.class.php:33
 msgid "Phone"
 msgstr ""
 
@@ -159,7 +159,7 @@ msgstr ""
 msgid "Registration Failed"
 msgstr ""
 
-#: Webrtc.class.php:300
+#: Webrtc.class.php:281
 #, php-format
 msgid ""
 "Running an unsupported version of Asterisk. %s Detected Asterisk version: %s "
@@ -173,7 +173,7 @@ msgstr "Để chuông chế độ im lặng"
 msgid "TUV"
 msgstr ""
 
-#: functions.inc/hook_core.php:77
+#: functions.inc/hook_core.php:74
 msgid "The Certificate to use from Certificate Manager"
 msgstr "Chứng thực sử dụng từ trình quản lý chứng thực"
 
@@ -191,7 +191,7 @@ msgstr ""
 "điểm này. Vui lòng kích hoạt driver  chan_sip ( kèm với pjsip hoặc chính nó) "
 "hoặc cảnh báo những nhà phát triển FreePBX"
 
-#: functions.inc/hook_core.php:82
+#: functions.inc/hook_core.php:79
 #, php-format
 msgid ""
 "To utilize WebRTC in ARI you must add at least one certificate %s through "
@@ -204,7 +204,7 @@ msgstr ""
 msgid "Unregistered"
 msgstr ""
 
-#: functions.inc/hook_core.php:76
+#: functions.inc/hook_core.php:73
 msgid "Use Certificate"
 msgstr "Sử dụng chứng thực"
 
@@ -212,7 +212,7 @@ msgstr "Sử dụng chứng thực"
 msgid "WXYZ"
 msgstr ""
 
-#: ucp/Webrtc.class.php:55
+#: ucp/Webrtc.class.php:41
 msgid "WebRTC"
 msgstr "WebRTC (web API được phát triển bởi World Wide Web Consortium)"
 
@@ -224,7 +224,7 @@ msgstr "Điện thoại WebRTC"
 msgid "Yes"
 msgstr "Có"
 
-#: Webrtc.class.php:287
+#: Webrtc.class.php:268
 #, php-format
 msgid "You have no default certificates setup in %s"
 msgstr ""
