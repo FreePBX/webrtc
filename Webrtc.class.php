@@ -471,8 +471,7 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 			$settings['force_callerid']['value'] = 'yes';
 			$settings['callerid']['value'] = $user['name'].' <'.$extension.'>';
 		}
-		$accountcode = $this->FreePBX->astman->database_get("AMPUSER",$extension."/accountcode");
-		$settings['accountcode']['value'] = $accountcode;
+		$settings['accountcode']['value'] = $dev['accountcode'];
 		$settings['namedcallgroup']['value'] = isset($dev['namedcallgroup'])?$dev['namedcallgroup']:'';
 		$settings['namedpickupgroup']['value'] = isset($dev['namedpickupgroup'])?$dev['namedpickupgroup']:'';
 		$settings['devicetype']['value'] = 'fixed';
