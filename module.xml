@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>16.0.17</version>
+	<version>16.0.18</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -16,6 +16,7 @@
 	</description>
   	<more-info>https://wiki.freepbx.org/display/FPG/WebRTC+Phone-UCP</more-info>
 	<changelog>
+		*16.0.18* Packaging of ver 16.0.18
 		*16.0.17* FREEPBX-23865 
 		*16.0.16* Packaging of ver 16.0.16
 		*16.0.15* SCD-350 Call Pickup feature using feature code *8 not working on SCD 

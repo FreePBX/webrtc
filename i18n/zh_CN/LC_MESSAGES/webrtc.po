@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreePBX 2.5 Chinese Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-28 05:53+0000\n"
+"POT-Creation-Date: 2024-03-04 08:33+0000\n"
 "PO-Revision-Date: 2018-03-14 14:52+0200\n"
 "Last-Translator: james <zhulizhong@gmail.com>\n"
 "Language-Team: Simplified Chinese <http://weblate.freepbx.org/projects/"
@@ -44,10 +44,6 @@ msgstr "连接电话终端"
 #: ucp/assets/js/global.js:551
 msgid "Connecting to socket..."
 msgstr ""
-
-#: webrtc.i18n.php:6
-msgid "Connectivity"
-msgstr "通信接口连接"
 
 #: ucp/views/phone.php:28
 msgid "DEF"
@@ -175,10 +171,6 @@ msgstr ""
 msgid "The Certificate to use from Certificate Manager"
 msgstr "使用的证书来自于证书管理员"
 
-#: webrtc.i18n.php:8
-msgid "The WebRTC Module allows an Administrator to enable a "
-msgstr ""
-
 #: functions.inc/hook_core.php:58
 msgid ""
 "The WebSockets Interface is running through PJSIP, PJSIP is not supported at "
@@ -211,10 +203,6 @@ msgstr ""
 msgid "WebRTC"
 msgstr ""
 
-#: webrtc.i18n.php:4
-msgid "WebRTC Phone"
-msgstr "WebRTC 电话"
-
 #: views/ucp_config.php:24
 msgid "Yes"
 msgstr "是"
@@ -223,6 +211,12 @@ msgstr "是"
 #, php-format
 msgid "You have no default certificates setup in %s"
 msgstr ""
+
+#~ msgid "Connectivity"
+#~ msgstr "通信接口连接"
+
+#~ msgid "WebRTC Phone"
+#~ msgstr "WebRTC 电话"
 
 #~ msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 #~ msgstr "不能支持Asterisk的版本，用户至少需要%s, 但是现在的版本是%s"

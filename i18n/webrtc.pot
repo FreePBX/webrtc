@@ -3,13 +3,13 @@
 # For licensing information, please see the file named LICENSE located in the module directory
 #
 # FreePBX language template for webrtc
-# Copyright (C) 2008-2022 Sangoma Technologies, Inc.
+# Copyright (C) 2008-2024 Sangoma Technologies, Inc.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-30 09:29+0000\n"
+"POT-Creation-Date: 2024-03-04 08:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,10 +40,6 @@ msgstr ""
 
 #: ucp/assets/js/global.js:551
 msgid "Connecting to socket..."
-msgstr ""
-
-#: webrtc.i18n.php:6
-msgid "Connectivity"
 msgstr ""
 
 #: ucp/views/phone.php:28
@@ -176,10 +172,6 @@ msgstr ""
 msgid "The Certificate to use from Certificate Manager"
 msgstr ""
 
-#: webrtc.i18n.php:8
-msgid "The WebRTC Module allows an Administrator to enable a "
-msgstr ""
-
 #: functions.inc/hook_core.php:58
 msgid ""
 "The WebSockets Interface is running through PJSIP, PJSIP is not supported at "
@@ -209,10 +201,6 @@ msgstr ""
 
 #: ucp/Webrtc.class.php:55
 msgid "WebRTC"
-msgstr ""
-
-#: webrtc.i18n.php:4
-msgid "WebRTC Phone"
 msgstr ""
 
 #: views/ucp_config.php:24

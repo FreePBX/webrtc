@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-28 05:53+0000\n"
+"POT-Creation-Date: 2024-03-04 08:33+0000\n"
 "PO-Revision-Date: 2022-07-20 07:50+0000\n"
 "Last-Translator: ded <ceo@postmet.com>\n"
 "Language-Team: Russian <http://weblate.freepbx.org/projects/freepbx/webrtc/"
@@ -45,10 +45,6 @@ msgstr "Подключить телефон"
 #: ucp/assets/js/global.js:551
 msgid "Connecting to socket..."
 msgstr "Подключение к сокету..."
-
-#: webrtc.i18n.php:6
-msgid "Connectivity"
-msgstr "Подключения"
 
 #: ucp/views/phone.php:28
 msgid "DEF"
@@ -178,10 +174,6 @@ msgstr "TUV"
 msgid "The Certificate to use from Certificate Manager"
 msgstr "Сертификат для использования из Менеджера сертификатов"
 
-#: webrtc.i18n.php:8
-msgid "The WebRTC Module allows an Administrator to enable a "
-msgstr "Модуль WebRTC делает возможным задействовать Администратору "
-
 #: functions.inc/hook_core.php:58
 msgid ""
 "The WebSockets Interface is running through PJSIP, PJSIP is not supported at "
@@ -217,10 +209,6 @@ msgstr "WXYZ"
 msgid "WebRTC"
 msgstr "WebRTC"
 
-#: webrtc.i18n.php:4
-msgid "WebRTC Phone"
-msgstr "Телефон WebRTC"
-
 #: views/ucp_config.php:24
 msgid "Yes"
 msgstr "Да"
@@ -229,6 +217,15 @@ msgstr "Да"
 #, php-format
 msgid "You have no default certificates setup in %s"
 msgstr "Нет ни одного сертификата по умолчанию в  %s"
+
+#~ msgid "Connectivity"
+#~ msgstr "Подключения"
+
+#~ msgid "The WebRTC Module allows an Administrator to enable a "
+#~ msgstr "Модуль WebRTC делает возможным задействовать Администратору "
+
+#~ msgid "WebRTC Phone"
+#~ msgstr "Телефон WebRTC"
 
 #~ msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 #~ msgstr ""

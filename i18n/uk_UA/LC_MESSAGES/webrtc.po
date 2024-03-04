@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-28 05:53+0000\n"
+"POT-Creation-Date: 2024-03-04 08:33+0000\n"
 "PO-Revision-Date: 2016-10-05 20:09+0200\n"
 "Last-Translator: Maxim <maxim@ua.fm>\n"
 "Language-Team: Ukrainian <http://weblate.freepbx.org/projects/freepbx/webrtc/"
@@ -46,10 +46,6 @@ msgstr "Підключення телефону"
 #: ucp/assets/js/global.js:551
 msgid "Connecting to socket..."
 msgstr ""
-
-#: webrtc.i18n.php:6
-msgid "Connectivity"
-msgstr "Зв'язок"
 
 #: ucp/views/phone.php:28
 msgid "DEF"
@@ -177,10 +173,6 @@ msgstr ""
 msgid "The Certificate to use from Certificate Manager"
 msgstr ""
 
-#: webrtc.i18n.php:8
-msgid "The WebRTC Module allows an Administrator to enable a "
-msgstr ""
-
 #: functions.inc/hook_core.php:58
 msgid ""
 "The WebSockets Interface is running through PJSIP, PJSIP is not supported at "
@@ -215,10 +207,6 @@ msgstr ""
 msgid "WebRTC"
 msgstr "WebRTC"
 
-#: webrtc.i18n.php:4
-msgid "WebRTC Phone"
-msgstr "WebRTC телефон"
-
 #: views/ucp_config.php:24
 msgid "Yes"
 msgstr "Так"
@@ -227,6 +215,12 @@ msgstr "Так"
 #, php-format
 msgid "You have no default certificates setup in %s"
 msgstr ""
+
+#~ msgid "Connectivity"
+#~ msgstr "Зв'язок"
+
+#~ msgid "WebRTC Phone"
+#~ msgstr "WebRTC телефон"
 
 #~ msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 #~ msgstr ""

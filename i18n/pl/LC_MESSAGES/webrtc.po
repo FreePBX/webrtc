@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-13 03:02+0000\n"
+"POT-Creation-Date: 2024-03-04 08:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ucp/views/phone.php:24
@@ -26,32 +26,27 @@ msgstr ""
 msgid "Call"
 msgstr ""
 
-#: Webrtc.class.php:288
+#: Webrtc.class.php:287
 msgid "Certificate Manager"
 msgstr ""
 
-#: ucp/assets/js/global.js:254
+#: ucp/assets/js/global.js:264
 msgid "Click this window to answer or close this window to ignore"
 msgstr ""
 
-#: ucp/assets/js/global.js:516
+#: ucp/assets/js/global.js:530
 msgid "Connect Phone"
 msgstr ""
 
-#: ucp/assets/js/global.js:537
+#: ucp/assets/js/global.js:551
 msgid "Connecting to socket..."
-msgstr ""
-
-#: webrtc.i18n.php:6
-msgid "Connectivity"
 msgstr ""
 
 #: ucp/views/phone.php:28
 msgid "DEF"
 msgstr ""
 
-#: ucp/assets/js/global.js:69
-#: ucp/assets/js/global.js:77
+#: ucp/assets/js/global.js:69 ucp/assets/js/global.js:77
 msgid "Disable"
 msgstr ""
 
@@ -59,12 +54,11 @@ msgstr ""
 msgid "Disconnect Phone"
 msgstr ""
 
-#: ucp/assets/js/global.js:528
+#: ucp/assets/js/global.js:542
 msgid "Disconnected"
 msgstr ""
 
-#: ucp/assets/js/global.js:68
-#: ucp/assets/js/global.js:76
+#: ucp/assets/js/global.js:68 ucp/assets/js/global.js:76
 msgid "Enable"
 msgstr ""
 
@@ -91,7 +85,7 @@ msgstr ""
 msgid "GHI"
 msgstr ""
 
-#: Webrtc.class.php:382
+#: Webrtc.class.php:391
 msgid "HTTPS is not enabled for Asterisk"
 msgstr ""
 
@@ -99,7 +93,7 @@ msgstr ""
 msgid "Hold"
 msgstr ""
 
-#: ucp/assets/js/global.js:253
+#: ucp/assets/js/global.js:263
 #, perl-format
 msgid "Incoming call from %s"
 msgstr ""
@@ -120,7 +114,7 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: ucp/assets/js/global.js:607
+#: ucp/assets/js/global.js:621
 msgid "Not supported in this browser"
 msgstr ""
 
@@ -128,7 +122,7 @@ msgstr ""
 msgid "Note: An Active call will not be dropped when this window is closed"
 msgstr ""
 
-#: ucp/assets/js/global.js:614
+#: ucp/assets/js/global.js:628
 msgid "Only supported over HTTPS"
 msgstr ""
 
@@ -136,9 +130,7 @@ msgstr ""
 msgid "PQRS"
 msgstr ""
 
-#: Webrtc.class.php:281
-#: ucp/Webrtc.class.php:28
-#: ucp/Webrtc.class.php:44
+#: Webrtc.class.php:280 ucp/Webrtc.class.php:28 ucp/Webrtc.class.php:44
 msgid "Phone"
 msgstr ""
 
@@ -146,16 +138,22 @@ msgstr ""
 msgid "Phone Status"
 msgstr ""
 
-#: ucp/assets/js/global.js:496
+#: ucp/assets/js/global.js:510
 msgid "Registered"
 msgstr ""
 
-#: ucp/assets/js/global.js:543
+#: ucp/assets/js/global.js:557
 msgid "Registering..."
 msgstr ""
 
-#: ucp/assets/js/global.js:514
+#: ucp/assets/js/global.js:528
 msgid "Registration Failed"
+msgstr ""
+
+#: Webrtc.class.php:300
+#, php-format
+msgid ""
+"Running an unsupported version of Asterisk. %s Detected Asterisk version: %s "
 msgstr ""
 
 #: ucp/views/settings.php:3
@@ -168,10 +166,6 @@ msgstr ""
 
 #: functions.inc/hook_core.php:77
 msgid "The Certificate to use from Certificate Manager"
-msgstr ""
-
-#: webrtc.i18n.php:8
-msgid "The WebRTC Module allows an Administrator to enable a "
 msgstr ""
 
 #: functions.inc/hook_core.php:58
@@ -188,15 +182,8 @@ msgid ""
 "Certificate Manager"
 msgstr ""
 
-#: ucp/assets/js/global.js:506
-#: ucp/assets/js/global.js:523
+#: ucp/assets/js/global.js:520 ucp/assets/js/global.js:537
 msgid "Unregistered"
-msgstr ""
-
-#: Webrtc.class.php:301
-#: Webrtc.class.php:304
-#, php-format
-msgid "Unsupported Version of Asterisk, You need at least %s you have %s"
 msgstr ""
 
 #: functions.inc/hook_core.php:76
@@ -211,15 +198,11 @@ msgstr ""
 msgid "WebRTC"
 msgstr ""
 
-#: webrtc.i18n.php:4
-msgid "WebRTC Phone"
-msgstr ""
-
 #: views/ucp_config.php:24
 msgid "Yes"
 msgstr ""
 
-#: Webrtc.class.php:288
+#: Webrtc.class.php:287
 #, php-format
 msgid "You have no default certificates setup in %s"
 msgstr ""
