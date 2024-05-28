@@ -20,16 +20,49 @@ class Webrtc extends Modules{
 	}
 
 	public function getSimpleWidgetList() {
-		if(!$this->webrtc->checkEnabled($this->ext)) {
-			return [];
+		$responseData = array(
+			"rawname" => "webrtc",
+			"display" => _("Phone"),
+			"icon" => "fa fa-phone",
+			"list" => []
+		);
+		$errors = $this->validate();
+		if ($errors['hasError']) {
+			return array_merge($responseData, $errors);
 		}
-		return ["rawname" => "webrtc", "display" => _("Phone"), "icon" => "fa fa-phone", "list" => ["phone" => ["display" => "Phone", "hasSettings" => true]]];
+
+		$widgets['phone'] = [
+			"display" => "Phone",
+			"hasSettings" => true
+		];
+
+		$responseData['list'] = $widgets;
+		return $responseData;
+	}
+
+	/**
+	 * validate against rules
+	 */
+	private function validate() {
+		$data = array(
+			'hasError' => false,
+			'errorMessages' => []
+		);
+
+		if (!$this->webrtc->checkEnabled($this->ext)) {
+			$data['hasError'] = true;
+			$data['errorMessages'][] = _('Webrtc is not enabled for this extension.');
+		}
+
+		return $data;
 	}
 
 	public function getSimpleWidgetDisplay($id) {
-		if(!$this->webrtc->checkEnabled($this->ext)) {
-			return [];
+		$errors = $this->validate();
+		if ($errors['hasError']) {
+			return $errors;
 		}
+
 		return ['title' => _("Phone"), 'html' => load_view(__DIR__."/views/phone.php",[])];
 	}
 
