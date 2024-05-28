@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-04 10:14-0500\n"
+"POT-Creation-Date: 2024-05-28 09:53-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,8 +137,8 @@ msgid "PQRS"
 msgstr ""
 
 #: Webrtc.class.php:264
-#: ucp/Webrtc.class.php:26
-#: ucp/Webrtc.class.php:33
+#: ucp/Webrtc.class.php:25
+#: ucp/Webrtc.class.php:66
 msgid "Phone"
 msgstr ""
 
@@ -207,12 +207,16 @@ msgstr ""
 msgid "WXYZ"
 msgstr ""
 
-#: ucp/Webrtc.class.php:41
+#: ucp/Webrtc.class.php:74
 msgid "WebRTC"
 msgstr ""
 
 #: webrtc.i18n.php:4
 msgid "WebRTC Phone"
+msgstr ""
+
+#: ucp/Webrtc.class.php:54
+msgid "Webrtc is not enabled for this extension."
 msgstr ""
 
 #: views/ucp_config.php:24

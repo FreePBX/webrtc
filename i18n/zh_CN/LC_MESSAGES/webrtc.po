@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreePBX 2.5 Chinese Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-08 05:26-0500\n"
+"POT-Creation-Date: 2024-05-28 09:53-0400\n"
 "PO-Revision-Date: 2018-03-14 14:52+0200\n"
 "Last-Translator: james <zhulizhong@gmail.com>\n"
 "Language-Team: Simplified Chinese <http://weblate.freepbx.org/projects/"
@@ -137,7 +137,7 @@ msgstr ""
 msgid "PQRS"
 msgstr ""
 
-#: Webrtc.class.php:264 ucp/Webrtc.class.php:26 ucp/Webrtc.class.php:33
+#: Webrtc.class.php:264 ucp/Webrtc.class.php:25 ucp/Webrtc.class.php:66
 msgid "Phone"
 msgstr ""
 
@@ -207,13 +207,17 @@ msgstr "使用证书"
 msgid "WXYZ"
 msgstr ""
 
-#: ucp/Webrtc.class.php:41
+#: ucp/Webrtc.class.php:74
 msgid "WebRTC"
 msgstr ""
 
 #: webrtc.i18n.php:4
 msgid "WebRTC Phone"
 msgstr "WebRTC 电话"
+
+#: ucp/Webrtc.class.php:54
+msgid "Webrtc is not enabled for this extension."
+msgstr ""
 
 #: views/ucp_config.php:24
 msgid "Yes"
