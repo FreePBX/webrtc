@@ -154,6 +154,9 @@ var WebrtcC = UCPMC.extend({
 				case "accepted":
 					$this.hangup();
 				break;
+				case "progress":
+					$this.abortCall();
+				break;
 				case "invite":
 					$this.answer();
 				break;
@@ -387,6 +390,13 @@ var WebrtcC = UCPMC.extend({
 		this.stopRing();
 		this.stopRingBack();
 	},
+	abortCall: function() {
+		if (this.activeCallId !== null) {
+			this.activeCalls[this.activeCallId].terminate();
+		}
+		this.stopRing();
+		this.stopRingBack();
+	},
 	poll: function(data) {
 
 	},
@@ -438,6 +448,8 @@ var WebrtcC = UCPMC.extend({
 			break;
 			case "progress":
 				this.playRingBack();
+				button.prop("disabled", false);
+				button.removeClass().addClass("btn btn-danger action").text("Cancel");
 			break;
 			case "accepted":
 				this.stopRingBack();
