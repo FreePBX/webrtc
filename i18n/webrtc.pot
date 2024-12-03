@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-28 09:53-0400\n"
+"POT-Creation-Date: 2024-12-03 06:07-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,15 +30,15 @@ msgstr ""
 msgid "Certificate Manager"
 msgstr ""
 
-#: ucp/assets/js/global.js:264
+#: ucp/assets/js/global.js:267
 msgid "Click this window to answer or close this window to ignore"
 msgstr ""
 
-#: ucp/assets/js/global.js:530
+#: ucp/assets/js/global.js:542
 msgid "Connect Phone"
 msgstr ""
 
-#: ucp/assets/js/global.js:551
+#: ucp/assets/js/global.js:563
 msgid "Connecting to socket..."
 msgstr ""
 
@@ -59,7 +59,7 @@ msgstr ""
 msgid "Disconnect Phone"
 msgstr ""
 
-#: ucp/assets/js/global.js:542
+#: ucp/assets/js/global.js:554
 msgid "Disconnected"
 msgstr ""
 
@@ -99,7 +99,7 @@ msgstr ""
 msgid "Hold"
 msgstr ""
 
-#: ucp/assets/js/global.js:263
+#: ucp/assets/js/global.js:266
 #, perl-format
 msgid "Incoming call from %s"
 msgstr ""
@@ -120,7 +120,7 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: ucp/assets/js/global.js:621
+#: ucp/assets/js/global.js:633
 msgid "Not supported in this browser"
 msgstr ""
 
@@ -128,7 +128,7 @@ msgstr ""
 msgid "Note: An Active call will not be dropped when this window is closed"
 msgstr ""
 
-#: ucp/assets/js/global.js:628
+#: ucp/assets/js/global.js:640
 msgid "Only supported over HTTPS"
 msgstr ""
 
@@ -146,15 +146,15 @@ msgstr ""
 msgid "Phone Status"
 msgstr ""
 
-#: ucp/assets/js/global.js:510
+#: ucp/assets/js/global.js:522
 msgid "Registered"
 msgstr ""
 
-#: ucp/assets/js/global.js:557
+#: ucp/assets/js/global.js:569
 msgid "Registering..."
 msgstr ""
 
-#: ucp/assets/js/global.js:528
+#: ucp/assets/js/global.js:540
 msgid "Registration Failed"
 msgstr ""
 
@@ -194,8 +194,8 @@ msgid ""
 "Certificate Manager"
 msgstr ""
 
-#: ucp/assets/js/global.js:520
-#: ucp/assets/js/global.js:537
+#: ucp/assets/js/global.js:532
+#: ucp/assets/js/global.js:549
 msgid "Unregistered"
 msgstr ""
 
