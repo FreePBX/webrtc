@@ -465,14 +465,14 @@ var WebrtcC = UCPMC.extend({
 				input.prop("disabled", false);
 				button.prop("disabled", false);
 				button.removeClass().addClass("btn btn-danger action").text("Hangup");
-				$("#menu_webrtc_phone .contact-info").addClass("in");
+				$("#menu_webrtc_phone .contact-info").removeClass("fade");
 				$("#webrtc-timer-container").remove();
 				clearInterval(this.timerObject);
 				$('#webrtc-disconnect-switch').bootstrapToggle('disable');
 				var updateTimer = function() {
 					if($this.activeCallId === null) {
 						clearInterval($this.timerObject);
-						$("#menu_webrtc_phone .contact-info").removeClass("in");
+						$("#menu_webrtc_phone .contact-info").addClass("fade");
 						$('#webrtc-disconnect-switch').bootstrapToggle('enable');
 						return;
 					}
