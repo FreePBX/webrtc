@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-03 06:07-0500\n"
+"POT-Creation-Date: 2025-08-18 00:38-0400\n"
 "PO-Revision-Date: 2018-06-01 14:24+0000\n"
 "Last-Translator: Nils Heckenkamp <nheckenkamp@sangoma.com>\n"
 "Language-Team: German <http://*/projects/freepbx/webrtc/de/>\n"
@@ -95,7 +95,7 @@ msgstr ""
 msgid "GHI"
 msgstr ""
 
-#: Webrtc.class.php:372
+#: Webrtc.class.php:374
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "HTTPS ist für Asterisk nicht aktiviert"
 

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-03 06:07-0500\n"
+"POT-Creation-Date: 2025-08-18 00:38-0400\n"
 "PO-Revision-Date: 2016-10-08 12:26+0200\n"
 "Last-Translator: psdk <hyavari26@gmail.com>\n"
 "Language-Team: Persian (Iran) <http://weblate.freepbx.org/projects/freepbx/"
@@ -94,7 +94,7 @@ msgstr ""
 msgid "GHI"
 msgstr ""
 
-#: Webrtc.class.php:372
+#: Webrtc.class.php:374
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "سرویس HTTPS برای استریسک فعال نشده است"
 

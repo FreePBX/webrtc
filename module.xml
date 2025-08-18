@@ -1,7 +1,7 @@
 <module>
 	<rawname>webrtc</rawname>
 	<name>WebRTC Phone</name>
-	<version>17.0.3.1</version>
+	<version>17.0.3.2</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -16,6 +16,7 @@
 	</description>
   	<more-info>https://sangomakb.atlassian.net/wiki/spaces/PG/pages/38634428/WebRTC+Phone-UCP</more-info>
 	<changelog>
+		*17.0.3.2* Github Issue#830 Undefined array key "HTTP_HOST" 
 		*17.0.3.1* Fixing FREEI-1507 Webrtc call not showing callerid issue 
 		*17.0.3* Fixing FREEI-1408 UCP Web Phone cannot Hangup call before it is answered issue. 
 		*17.0.2* 17.0.2  release
