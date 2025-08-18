@@ -347,7 +347,9 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 			return false;
 		}
 
-		$serverparts = explode(":", (string) $_SERVER['HTTP_HOST']); //strip off port because we define it
+		$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+		$serverparts = explode(":", (string) $host);
+
 		$sip_server = $serverparts[0];
 		$secure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on";
 		$dev = $this->FreePBX->Core->getDevice($results['device']);
