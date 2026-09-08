@@ -6,6 +6,8 @@ use FreePBX_Helpers;
 use PDO;
 use Exception;
 class Webrtc extends FreePBX_Helpers implements BMO {
+	protected \FreePBX $FreePBX;
+	protected $Database;
 
 	/**
 	 * Device Overrides depending on TECH to enable WebRTC
@@ -18,6 +20,11 @@ class Webrtc extends FreePBX_Helpers implements BMO {
 	 * @type {int}
 	 */
 	private string $prefix = '99';
+
+	public function __construct($freepbx = null) {
+		parent::__construct($freepbx);
+		$this->Database = $this->FreePBX->Database;
+	}
 
 	public function doConfigPageInit($page) {
 

@@ -10,6 +10,10 @@ use \UCP\Modules as Modules;
 class Webrtc extends Modules{
 	protected $module = 'Webrtc';
 	private $ext = 0;
+	private $Modules;
+	private $webrtc;
+	private $astman;
+	private $user = null;
 
 	function __construct($Modules) {
 		$this->Modules = $Modules;

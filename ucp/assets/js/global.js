@@ -107,7 +107,7 @@ var WebrtcC = UCPMC.extend({
 		}
 
 		if(typeof this.phone === "object" && this.phone !== null && this.phone.isRegistered()) {
-			$("#menu_webrtc_phone .action").prop("disable",false);
+			$("#menu_webrtc_phone .action").prop("disabled",false);
 		}
 
 		$("#menu_webrtc_phone .keypad td").click(function() {
