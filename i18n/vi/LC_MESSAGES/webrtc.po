@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-18 00:38-0400\n"
+"POT-Creation-Date: 2026-10-06 07:24-0400\n"
 "PO-Revision-Date: 2017-07-18 10:23+0200\n"
 "Last-Translator: PETER <ftek@ymail.com>\n"
 "Language-Team: Vietnamese <http://weblate.freepbx.org/projects/freepbx/"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Call"
 msgstr ""
 
-#: Webrtc.class.php:268
+#: Webrtc.class.php:275
 msgid "Certificate Manager"
 msgstr ""
 
@@ -94,7 +94,7 @@ msgstr ""
 msgid "GHI"
 msgstr ""
 
-#: Webrtc.class.php:374
+#: Webrtc.class.php:381
 msgid "HTTPS is not enabled for Asterisk"
 msgstr "HTTPS không được kích hoạt cho Asterisk"
 
@@ -139,7 +139,7 @@ msgstr ""
 msgid "PQRS"
 msgstr ""
 
-#: Webrtc.class.php:264 ucp/Webrtc.class.php:25 ucp/Webrtc.class.php:66
+#: Webrtc.class.php:271 ucp/Webrtc.class.php:29 ucp/Webrtc.class.php:70
 msgid "Phone"
 msgstr ""
 
@@ -159,7 +159,7 @@ msgstr ""
 msgid "Registration Failed"
 msgstr ""
 
-#: Webrtc.class.php:281
+#: Webrtc.class.php:288
 #, php-format
 msgid ""
 "Running an unsupported version of Asterisk. %s Detected Asterisk version: %s "
@@ -212,7 +212,7 @@ msgstr "Sử dụng chứng thực"
 msgid "WXYZ"
 msgstr ""
 
-#: ucp/Webrtc.class.php:74
+#: ucp/Webrtc.class.php:78
 msgid "WebRTC"
 msgstr "WebRTC (web API được phát triển bởi World Wide Web Consortium)"
 
@@ -220,7 +220,7 @@ msgstr "WebRTC (web API được phát triển bởi World Wide Web Consortium)"
 msgid "WebRTC Phone"
 msgstr "Điện thoại WebRTC"
 
-#: ucp/Webrtc.class.php:54
+#: ucp/Webrtc.class.php:58
 msgid "Webrtc is not enabled for this extension."
 msgstr ""
 
@@ -228,7 +228,7 @@ msgstr ""
 msgid "Yes"
 msgstr "Có"
 
-#: Webrtc.class.php:268
+#: Webrtc.class.php:275
 #, php-format
 msgid "You have no default certificates setup in %s"
 msgstr ""
